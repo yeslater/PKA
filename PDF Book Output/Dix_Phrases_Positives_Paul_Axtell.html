@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dix phrases positives à dire aux enfants — Paul Axtell</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.2em; margin-bottom: 10px; font-weight: 700; }
+        header .author { font-size: 1.2em; opacity: 0.95; margin-bottom: 15px; }
+        header .thesis { font-style: italic; font-size: 1.05em; opacity: 0.9; max-width: 900px; margin: 0 auto; }
+
+        .content { padding: 40px; }
+
+        h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin: 40px 0 30px 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        section { margin-bottom: 50px; }
+
+        .chapter-section {
+            background: #f8f9fb;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            border-radius: 8px;
+        }
+
+        .chapter-title {
+            font-size: 1.4em;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .chapter-summary {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .quotes-box {
+            background: white;
+            border-left: 4px solid #764ba2;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        blockquote {
+            font-style: italic;
+            color: #764ba2;
+            margin: 12px 0;
+            padding-left: 15px;
+            border-left: 3px solid #667eea;
+        }
+
+        .key-ideas {
+            background: white;
+            border-radius: 6px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .key-idea {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .key-idea:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .idea-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .idea-text { color: #555; margin-bottom: 8px; }
+        .idea-practice {
+            color: #764ba2;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .ideas-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ideas-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .ideas-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .callout {
+            background: #e8edf7;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .callout-title {
+            color: #764ba2;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .comparison-box {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .book-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .comparison-item {
+            padding: 15px;
+            background: #f8f9fb;
+            border-radius: 6px;
+        }
+
+        .comparison-label {
+            font-weight: 600;
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .before, .after {
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .before {
+            background: #ffe8e8;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .after {
+            background: #e8f8e8;
+            border-left: 4px solid #27ae60;
+        }
+
+        .before h4 { color: #c0392b; margin-bottom: 10px; }
+        .after h4 { color: #1e8449; margin-bottom: 10px; }
+
+        .action-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .action-list li {
+            padding: 15px;
+            margin-bottom: 12px;
+            background: #f8f9fb;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+        }
+
+        .action-domain {
+            font-weight: 600;
+            color: #764ba2;
+            font-size: 0.95em;
+            margin-bottom: 8px;
+        }
+
+        .action-text { color: #555; }
+
+        .footer {
+            background: #f8f9fb;
+            padding: 30px;
+            text-align: center;
+            color: #888;
+            font-size: 0.95em;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dix phrases positives à dire aux enfants</h1>
+            <div class="author">Paul Axtell</div>
+            <div class="thesis">Les mots que vous dites à vos enfants — et la façon dont vous les dites — forment la relation et l'identité de votre enfant pour la vie. Choisir consciemment ces paroles est le plus grand acte parental.</div>
+        </header>
+
+        <div class="content">
+            <!-- SECTION 1: CHAPITRE PAR CHAPITRE -->
+            <section>
+                <h2>Résumé Chapitre par Chapitre</h2>
+
+                <div class="chapter-section">
+                    <div class="chapter-title">Chapitre 1 — Je t'apprécie</div>
+                    <div class="chapter-summary">
+                        La phrase "Je t'apprécie" est plus puissante que "Je t'aime". L'amour est inconditionnel, mais l'appréciation est concrète et spécifique. Dire à un enfant "Je t'apprécie pour ton honnêteté" ou "J'apprécie ta créativité" lui montre qu'on le voit véritablement — pas juste qu'on le tolère. Cette reconnaissance construit son identité autour de ses forces réelles, pas autour de l'approbation parentale générale.
+                    </div>
+                    <div class="quotes-box">
+                        <div style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Citations marquantes :</div>
+                        <blockquote>"La personne la plus importante est toujours celle avec qui vous êtes maintenant."</blockquote>
+                        <blockquote>"Je t'apprécie" reconnaît quelque chose de précis et de réel chez votre enfant.</blockquote>
+                        <blockquote>"C'est une façon de démontrer que vous pensez que votre enfant compte vraiment."</blockquote>
+                        <blockquote>"L'appréciation est un acte d'attention — vous avez remarqué quelque chose de bien chez cet enfant."</blockquote>
+                        <blockquote>"Passer du temps avec vos enfants et les regarder lancer le ballon au panier est un cadeau."</blockquote>
+                    </div>
+                    <div class="key-ideas">
+                        <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">Top 5 idées clés :</div>
+                        <div class="key-idea">
+                            <div class="idea-title">1. Appréciation spécifique plutôt que générale</div>
+                            <div class="idea-text">Ne dites pas "Tu es un bon enfant", mais "Je t'apprécie pour avoir aidé ton frère sans qu'on te le demande".</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Avec Matteo, appréciez sa curiosité intellectuelle : "J'apprécie que tu me poses des questions sur comment les systèmes fonctionnent." Avec Felix, reconnaissez sa créativité : "J'apprécie le temps que tu prends pour inventer de nouveaux jeux pour nous."</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">2. L'appréciation crée l'identité</div>
+                            <div class="idea-text">Les enfants deviennent ce que vous appréciez en eux. L'appréciation répétée devient une conviction intérieure.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> En exprimant régulièrement votre appréciation pour la résilience de vos garçons face à la séparation, vous renforcez cette qualité. "J'apprécie ta force et ta patience" aide l'enfant à intégrer cette image de lui-même.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">3. Distinction entre amour et appréciation</div>
+                            <div class="idea-text">L'amour est inconditionnel et donné. L'appréciation est gagnée par les actions et reconnaît les efforts réels.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Assurez vos enfants que l'amour ne change jamais, tout en appréciant les moments où ils montrent leur meilleur. Cette distinction enseigne que les actions ont de l'importance.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">4. Apprécier le processus, pas juste le résultat</div>
+                            <div class="idea-text">Appréciez les efforts, la tentative, la persévérance — pas uniquement la victoire finale.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Quand Matteo struggle avec un problème difficile de géographie : "J'apprécie la façon dont tu explores différentes perspectives sur cette question." Avec Felix après une défaite aux échecs : "J'apprécie les stratégies créatives que tu as essayées."</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">5. Appréciation comme fondation de confiance</div>
+                            <div class="idea-text">Les enfants qui se sentent appréciés pour qui ils sont vraiment ont plus confiance en eux et prennent plus de risques sains.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Créez un rituel : chaque soir au souper, chacun apprécie quelque chose chez un membre de la famille. Cela normalise la reconnaissance et renforce la sécurité relationnelle.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-section">
+                    <div class="chapter-title">Chapitre 2 — Tu apprends rapidement</div>
+                    <div class="chapter-summary">
+                        Cette phrase crée un mentalité de croissance. Au lieu de dire "Tu es intelligent", dites "Tu apprends rapidement". Ce changement subtil mais puissant enseigne que les compétences se développent par l'effort et la pratique, non par le talent inné. L'enfant internalise que les défis ne signifient pas qu'il est "mauvais", mais qu'il est en train d'apprendre.
+                    </div>
+                    <div class="quotes-box">
+                        <div style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Citations marquantes :</div>
+                        <blockquote>"Même si mon père devait voyager beaucoup, j'avais toujours l'impression qu'il n'était jamais loin."</blockquote>
+                        <blockquote>"De trois à huit ans" — les enfants jeunes comprennent rapidement les attentes des parents.</blockquote>
+                        <blockquote>"Tu apprends rapidement" construit une croyance en la capacité plutôt qu'une attribution de talent.</blockquote>
+                        <blockquote>"L'enfant qui a entendu cela mille fois commence à y croire."</blockquote>
+                        <blockquote>"C'est une prophétie auto-réalisatrice — une croyance que l'enfant internalise et qui devient vraie."</blockquote>
+                    </div>
+                    <div class="key-ideas">
+                        <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">Top 5 idées clés :</div>
+                        <div class="key-idea">
+                            <div class="idea-title">1. Mentalité de croissance vs. mentalité fixe</div>
+                            <div class="idea-text">"Tu apprends rapidement" (croissance) vs. "Tu es intelligent" (fixe). La première invite à l'amélioration continue; la seconde crée de la pression.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Matteo lutte parfois avec le français écrit malgré sa force en histoire. Dites : "Tu apprends rapidement la grammaire" plutôt que "Tu n'es pas bon en français." Cela le garde engagé dans l'apprentissage.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">2. L'effort devient valorisé</div>
+                            <div class="idea-text">Quand on dit qu'on apprend rapidement, les enfants commencent à voir l'effort comme preuve de compétence, pas comme preuve d'incapacité.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Si Felix est frustré en apprenant les échecs : "Tu apprends les stratégies rapidement. Regarde — il y a trois jours tu ne connaissais pas la fourchette, et maintenant..." Cela montre le progrès.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">3. Prophétie auto-réalisatrice</div>
+                            <div class="idea-text">L'enfant qui entend "Tu apprends rapidement" commence réellement à apprendre plus rapidement — il y croit et essaie plus fort.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Répétez cette phrase régulièrement dans différents contextes. Quand Matteo maîtrise un nouveau concept en géographie : "Comme d'habitude, tu as appris ça rapidement."</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">4. Défi = opportunité, pas menace</div>
+                            <div class="idea-text">Les enfants avec mentalité de croissance voient les défis comme des occasions de pratiquer et d'améliorer leurs compétences.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Quand l'un de vos garçons rencontre quelque chose de difficile : "C'est exactement le genre de chose où tu apprends. C'est un bon défi pour toi."</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">5. Intégration complète par 13-14 ans</div>
+                            <div class="idea-text">Si vous commencez tôt et dites cela constamment, cela devient la croyance fondamentale de l'enfant sur lui-même.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> À 13 ans, Matteo devrait avoir intégré cette croyance. Continuez à la renforcer pour maintenir la résilience face aux défis académiques et sociaux croissants.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-section">
+                    <div class="chapter-title">Chapitre 3 — Merci</div>
+                    <div class="chapter-summary">
+                        Merci est plus que de la politesse. C'est une reconnaissance que l'action de l'enfant a de l'importance et a contribué au bien-être de la famille. "Merci d'avoir rangé ta chambre sans que je te le demande" enseigne que les actions sont remarquées et appréciées. C'est différent de "Bien fait" (performance), car c'est relationnel. Merci crée une dynamique de réciprocité et montre à l'enfant qu'il compte vraiment.
+                    </div>
+                    <div class="quotes-box">
+                        <div style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Citations marquantes :</div>
+                        <blockquote>"Merci pour avoir aidé ta mère — cela a rendu sa journée beaucoup plus facile."</blockquote>
+                        <blockquote>"Ta contribution a de la valeur pour cette famille."</blockquote>
+                        <blockquote>"Merci" reconnaît à la fois l'action ET l'impact de cette action.</blockquote>
+                        <blockquote>"C'est un acte de réciprocité — vous montrez que ses gestes comptent."</blockquote>
+                        <blockquote>"Les parents qui disent 'merci' créent des enfants qui pensent 'je compte'."</blockquote>
+                    </div>
+                    <div class="key-ideas">
+                        <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">Top 5 idées clés :</div>
+                        <div class="key-idea">
+                            <div class="idea-title">1. Merci spécifique plutôt que générique</div>
+                            <div class="idea-text">"Merci" doit inclure l'action: "Merci d'avoir fait ta part des tâches ménagères" pas juste "Merci".</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Au lieu de "Bien joué," dites à Matteo : "Merci d'avoir expliqué ce concept de géographie à ton frère — tu l'as vraiment aidé." Avec Felix : "Merci d'avoir pensé à rentrer ton vélo sans qu'on te le demande."</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">2. Merci vs. Bien fait</div>
+                            <div class="idea-text">"Bien fait" (Bravo!) évalue la performance. "Merci" reconnaît l'impact sur les autres. Les deux sont importants.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Après un match de ski de fond : "C'était courageux de terminer cette course" (Bravo pour la performance) ET "Merci de me montrer comment tu persévères — c'est un bel exemple pour ton frère" (impact relationnel).</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">3. Gratitude réciproque</div>
+                            <div class="idea-text">Quand les parents disent merci aux enfants, les enfants apprennent à être reconnaissants aussi. Cela crée une dynamique familiale de gratitude.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Soyez authentique dans votre gratitude. Si Matteo ou Felix vous aide, dites vraiment merci. Cela normalise la reconnaissance mutuelle dans la famille.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">4. Merci enseigne la valeur contribuée</div>
+                            <div class="idea-text">Les enfants comprennent qu'ils ne sont pas juste "élevés" — ils contribuent activement au bien-être de la famille.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Dans votre reconstruction post-séparation, reconnaître la contribution de vos enfants (leur compréhension, leur flexibilité, leur amour) renforce qu'ils font partie de la solution, pas juste de la situation.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">5. Merci pour qui ils sont, pas juste ce qu'ils font</div>
+                            <div class="idea-text">Merci peut aussi reconnaître l'être : "Merci pour ta gentillesse" ou "Merci pour ta honnêteté."</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> "Merci de t'inquiéter pour moi — ta sensibilité et ton empathie sont précieuses." Ce type de merci renforce l'identité de l'enfant au niveau de l'être.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-section">
+                    <div class="chapter-title">Chapitre 4 — Que dirais-tu si on s'entendait pour...?</div>
+                    <div class="chapter-summary">
+                        Les ententes sont différentes des règles. Les ententes sont collaboratives. "Que dirais-tu si on s'entendait pour que tu sois à la maison à 21h?" invite l'enfant dans la création de la règle. Les enfants respectent beaucoup plus les ententes qu'ils ont contribué à créer. Ce chapitre offre des exemples pour les trois âges (3-8, 8-12, 12+) et présente le protocole "Ouch/Oups" pour les paroles blessantes et un modèle de conversation pour résoudre les conflits.
+                    </div>
+                    <div class="quotes-box">
+                        <div style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Citations marquantes :</div>
+                        <blockquote>"Bien s'entendre est à la base des relations privilégiées."</blockquote>
+                        <blockquote>"Les ententes créent une clarté mutuelle."</blockquote>
+                        <blockquote>"Quand votre enfant contribue à créer la règle, il la respecte."</blockquote>
+                        <blockquote>"Les ententes réduisent les conflits et les comportements de rébellion."</blockquote>
+                        <blockquote>"CINDY: Voici mon problème. PAUL: D'accord, quand tu seras prête à en discuter, je suis prêt à t'écouter."</blockquote>
+                    </div>
+                    <div class="key-ideas">
+                        <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">Top 5 idées clés :</div>
+                        <div class="key-idea">
+                            <div class="idea-title">1. Ententes vs. Règles imposées</div>
+                            <div class="idea-text">Les ententes sont créées ensemble. Les règles sont imposées. Les enfants coopèrent beaucoup mieux avec les ententes.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Avec Matteo (13), au lieu de "Tu dois être à la maison à 21h", essayez : "Qu'est-ce qui te semble être un horaire raisonnable pour rentrer après le film avec tes amis?" Son input crée une entente qu'il respectera.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">2. Clarté mutuelle</div>
+                            <div class="idea-text">Les ententes clarifient les attentes — les deux parties savent ce qui est attendu.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Pour les tâches ménagères, créez des ententes avec Felix : "On s'entend pour que tu rinces ta vaisselle chaque soir?" Au lieu de laisser flou et de vous fâcher plus tard.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">3. Protocole Ouch/Oups</div>
+                            <div class="idea-text">Enseignez aux enfants à dire "Ouch!" quand quelqu'un dit quelque chose de blessant, et à dire "Oups!" quand ils réalisent leur erreur.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Si les garçons se chamaillent et que l'un dit quelque chose de blessant : "Ouch!" arrête le moment et crée un espace pour corriger. Si celui qui l'a dit réalise son erreur : "Oups, je n'aurais pas dû dire ça." Cela enseigne la responsabilité et la réparation.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">4. Modèle de conversation pour résoudre les conflits</div>
+                            <div class="idea-text">Une personne expose, l'autre écoute sans juger, puis ensemble vous trouvez une solution.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Quand un conflit surgit : 1) Celui qui a un problème parle. 2) L'autre écoute sans réfutation. 3) Demandez : "Qu'est-ce que tu veux voir se produire?" 4) Ensemble, trouvez une solution. Cette structure transforme les conflits en opportunités d'apprentissage.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">5. Adapter aux stades de développement</div>
+                            <div class="idea-text">À 3-8 ans: ententes simples. À 8-12: plus de nuance. À 12+: c'est une collaboration réelle sur les règles de vie.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Matteo (13) peut participer à des conversations sérieuses sur les attentes. Pas de "parce que je l'ai dit", mais "Voici mon souci... comment on peut résoudre ça ensemble?" Ce respect du développement de l'adolescence renforce votre relation.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-section">
+                    <div class="chapter-title">Chapitre 5 — Dis-m'en davantage</div>
+                    <div class="chapter-summary">
+                        Cette phrase ouvre les portes de la communication. Au lieu de demander "Comment ça s'est passé à l'école?" (réponse typique: "Bien"), posez des questions spécifiques et ouvertes. Axtell souligne que les enfants partagent leurs histoires une seule fois — si vous les écoutez, ils reviendront. Si vous manquez ce moment, ils s'éloignent. L'écoute doit être totale: pas d'écran, pas d'interruption, juste de la présence. Les enfants ont besoin de savoir qu'on vraiment les écoute.
+                    </div>
+                    <div class="quotes-box">
+                        <div style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Citations marquantes :</div>
+                        <blockquote>"Les ados disent une seule fois leur histoire. Si vous n'écoutez pas ce moment-là, ils la racontent à quelqu'un d'autre."</blockquote>
+                        <blockquote>"L'art véritable de la conversation n'est pas seulement de dire les bons mots au bon moment, mais de ne pas dire la mauvaise chose lorsqu'on est tenté."</blockquote>
+                        <blockquote>"Juste écouter. Vraiment écouter. Rien de plus."</blockquote>
+                        <blockquote>"Dis-m'en davantage" est une invitation — pas un interrogatoire."</blockquote>
+                        <blockquote>"Chaque enfant de douze ans que j'ai connu avait besoin d'une personne qui l'écoutait vraiment."</blockquote>
+                    </div>
+                    <div class="key-ideas">
+                        <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">Top 5 idées clés :</div>
+                        <div class="key-idea">
+                            <div class="idea-title">1. Questions spécifiques plutôt que générales</div>
+                            <div class="idea-text">"Comment ça s'est passé à l'école?" n'obtient rien. "Qu'as-tu appris de nouveau aujourd'hui?" invite une réponse réelle.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Avec Matteo intéressé par la géographie: "Qu'est-ce que tu as découvert sur ce pays aujourd'hui?" Avec Felix: "Quelqu'un a-t-il apporté un nouveau jeu à l'école que tu as envie d'essayer?"</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">2. Les enfants partagent une seule fois</div>
+                            <div class="idea-text">Cette sagesse est profonde: si vous manquez le moment où un enfant veut vous raconter quelque chose, il le racontera à quelqu'un d'autre, pas à vous.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Quand Matteo rentre de l'école avec quelque chose à dire, mettez-le de côté complètement. Pas de téléphone, pas de cuisine, juste l'écoute. C'est ce moment-là qui remplit la banque relationnelle.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">3. Écoute sans interruption, sans redirection</div>
+                            <div class="idea-text">Écoutez vraiment. Pas de conseils non sollicités, pas de résolutions immédiates, pas de jugement.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Felix vous dit qu'il a eu une mauvaise journée aux échecs. Écoutez sa frustration sans dire "Ah, mais tu as appris quelque chose!" Juste: "Ça semble difficile. Dis-m'en davantage."</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">4. Créer les conditions pour que les enfants parlent</div>
+                            <div class="idea-text">Les enfants parlent en activité, pas face-à-face assis. En voiture, pendant une promenade, pendant une cuisine ensemble.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Prévoyez du temps côte à côte. Un trajet en voiture, une activité, un repas. C'est dans ces moments que les enfants se sentent assez en sécurité pour s'ouvrir. Posez votre question spécifique et écoutez.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">5. 15 minutes d'attention complète chaque jour</div>
+                            <div class="idea-text">Ce n'est pas beaucoup, mais c'est puissant. Chaque enfant a besoin de savoir qu'il a votre attention entière.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Promettez-vous (et tenez votre promesse) que chaque enfant a 15 minutes de votre attention complète chaque jour. Pas de distraction. Pour Matteo ce pourrait être une conversation sur un documentaire. Pour Felix, 15 minutes à jouer aux échecs ensemble.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-section">
+                    <div class="chapter-title">Chapitre 6 — Lisons ensemble</div>
+                    <div class="chapter-summary">
+                        Lire ensemble est bien plus que de l'éducation — c'est une expérience de connexion. Lire à haute voix à vos enfants, même une fois qu'ils peuvent lire seuls, ouvre des portes à leur compréhension du monde. C'est aussi un cadeau : vous leur donnez accès aux idées, cultures, et perspectives que vous ne pourriez pas leur enseigner directement. Jouer ensemble, discuter des histoires, explorer des mondes ensemble — c'est comment on rend la vie riche ensemble.
+                    </div>
+                    <div class="quotes-box">
+                        <div style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Citations marquantes :</div>
+                        <blockquote>"La lecture est une fenêtre sur le monde."</blockquote>
+                        <blockquote>"Lire à haute voix ensemble crée une compréhension commune des histoires et des valeurs."</blockquote>
+                        <blockquote>"Les pères jouent un rôle fondamental dans l'apprentissage de la lecture."</blockquote>
+                        <blockquote>"Si nous pouvions les intéresser à la musique, à la danse, à l'opéra, aux musées, au plein air, nous le ferions."</blockquote>
+                        <blockquote>"La lecture nous ouvre les portes de toute l'opulence que contient la planète."</blockquote>
+                    </div>
+                    <div class="key-ideas">
+                        <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">Top 5 idées clés :</div>
+                        <div class="key-idea">
+                            <div class="idea-title">1. Lire à haute voix a des bénéfices profonds</div>
+                            <div class="idea-text">Développement du langage, vocabulaire enrichi, mais surtout: c'est une activité partagée qui crée une intimité rare.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Même si Matteo peut lire seul, lire ensemble un livre que vous trouvez tous les deux intéressant crée une expérience commune. Vous discutez ensemble, partagez les réactions. C'est précieux à 13 ans.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">2. Les livres comme portes à des mondes différents</div>
+                            <div class="idea-text">À travers les livres, les enfants découvrent des cultures, des perspectives, des situations qu'ils ne vivraient jamais autrement.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Avec Matteo et sa passion pour la géographie et l'histoire, les livres sont parfaits. Choisissez des récits d'exploration, des biographies de géographes. Avec Felix, des aventures créatives qui stimulent son imagination.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">3. Les histoires enseignent les valeurs</div>
+                            <div class="idea-text">Les histoires montrent comment on répond aux défis, à la peur, à l'amitié, sans être un sermon.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> En lisant un personnage qui persévère à travers la difficulté, vous ne dites pas "tu dois persévérer". Vous lisez l'histoire ensemble et les leçons sont intégrées naturellement.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">4. Les garçons et la lecture</div>
+                            <div class="idea-text">Il y a plus de garçons en difficulté de lecture. Les pères et les figures masculines qui lisent créent un modèle puissant.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Le simple acte de lire avec vos fils, d'être visible en train de lire, envoie un message: "c'est quelque chose que les hommes aussi font et apprécient." Cela combat les stéréotypes.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">5. Jouer ensemble crée les mêmes liens</div>
+                            <div class="idea-text">Lire, jouer, explorer ensemble — c'est comment on noue des liens et comment on rend la vie riche et significative.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Que ce soit lire, jouer aux échecs avec Felix, regarder un documentaire avec Matteo, ou faire une activité extérieure — ces moments partagés remplissent le réservoir émotionnel de votre relation.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-section">
+                    <div class="chapter-title">Chapitre 7 — Nous faisons tous des erreurs</div>
+                    <div class="chapter-summary">
+                        "Les bons enfants font face à des problèmes. Les bons parents connaissent des problèmes avec leurs enfants. La vie est une succession de problèmes." Le message: les erreurs ne sont pas des tragédies, elles sont des opportunités d'apprentissage. Quand vous nommez les erreurs comme naturelles, les enfants relaxent. Ils ne sont pas des imposants — les erreurs sont simplement la vie. Ce chapitre offre un modèle de comment aider un enfant à traverser une erreur: d'abord inspirer la confiance, puis discuter ensemble de la solution.
+                    </div>
+                    <div class="quotes-box">
+                        <div style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Citations marquantes :</div>
+                        <blockquote>"Les bons enfants font face à des problèmes."</blockquote>
+                        <blockquote>"Un bon jugement vient de l'expérience, et souvent, l'expérience vient d'un mauvais jugement."</blockquote>
+                        <blockquote>"Les erreurs sont des occasions ultimes d'apprentissage."</blockquote>
+                        <blockquote>"Voilà pourquoi il est si réconfortant de marcher main dans la main."</blockquote>
+                        <blockquote>"J'ai raté plus de 9000 paniers au cours de ma carrière. J'ai perdu presque 300 parties... C'est en raison de cette conjonction que j'ai réussi."</blockquote>
+                    </div>
+                    <div class="key-ideas">
+                        <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">Top 5 idées clés :</div>
+                        <div class="key-idea">
+                            <div class="idea-title">1. Les erreurs sont normales et nécessaires</div>
+                            <div class="idea-text">La vie est une succession de problèmes. Ce n'est pas anormal — c'est la vie humaine.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Quand Matteo ou Felix font une erreur, dites vraiment: "C'est normal. C'est comme ça qu'on apprend." Ne dramatisez pas, ne punissez pas le premier réflexe. C'est un moment d'enseignement, pas une tragédie.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">2. Distinguer responsabilité et culpabilité</div>
+                            <div class="idea-text">Une erreur = responsabilité de corriger + culpabilité. Vous visez la responsabilité, pas la honte.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> "Tu as renversé le lait. C'est pas grave — tu l'as pas fait exprès. Ensemble on va nettoyer et trouver comment faire autrement la prochaine fois." Cela enseigne la responsabilité sans la honte.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">3. Montrez vos propres erreurs</div>
+                            <div class="idea-text">Les enfants qui voient les parents commettre des erreurs et les corriger apprennent que c'est normal et possible.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Parlez à vos enfants de vos propres erreurs — particulièrement dans cette période de changement. "J'ai raté quelque chose ce weekend, et j'ai dû corriger ça. C'est pas grave, on apprend." Cela modèle la résilience.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">4. Erreurs comme données, pas définition</div>
+                            <div class="idea-text">Une erreur ne signifie pas qu'on EST mauvais, juste qu'on a FAIT une mauvaise action.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> "Tu as oublié ton devoir — c'est pas que tu es oublieux. C'est que tu as oublié cette fois. Comment on peut s'assurer que ça n'arrive pas demain?"</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">5. La relation se renforce par la réparation</div>
+                            <div class="idea-text">Comment vous traversez ensemble une erreur renforce votre lien bien plus que l'absence d'erreur.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Quand un conflit surgit entre les garçons ou avec vous, le fait que vous le résolvez ensemble (au lieu de vous éloigner) crée une relation plus profonde et plus solide.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-section">
+                    <div class="chapter-title">Chapitre 8 — Je m'excuse ou Je suis désolé</div>
+                    <div class="chapter-summary">
+                        Les parents doivent s'excuser auprès de leurs enfants. Rapidement. Sincèrement. Ce simple acte enseigne l'humilité, la responsabilité, et le respect. "Je suis désolé" n'est pas une perte d'autorité — c'est une démonstration de maturité. Quand les enfants voient un adulte commettre une erreur, la reconnaître, et la corriger, ils apprennent comment on vit dignement. Ce chapitre parle du timing (plus tôt c'est mieux), du ton (authentique, pas défensif), et de la permanence (les paroles blessantes ont un poids qui persiste).
+                    </div>
+                    <div class="quotes-box">
+                        <div style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Citations marquantes :</div>
+                        <blockquote>"L'art véritable de la conversation n'est pas seulement de dire les bons mots au bon moment, mais de ne pas dire la mauvaise chose lorsqu'on est tenté."</blockquote>
+                        <blockquote>"Je m'excuse" doit être rapide — le plus tôt le mieux."</blockquote>
+                        <blockquote>"Le ton de voix est en partie responsable, car la personne ressent votre soutien."</blockquote>
+                        <blockquote>"Les enfants se rendront compte que vous avez commis une erreur et l'accepteront, pourvu que vous le fassiez."</blockquote>
+                        <blockquote>"Chacun de nous trébuche. C'est ce qui le rend merveilleux de marcher main dans la main."</blockquote>
+                    </div>
+                    <div class="key-ideas">
+                        <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">Top 5 idées clés :</div>
+                        <div class="key-idea">
+                            <div class="idea-title">1. La rapidité de l'excuse</div>
+                            <div class="idea-text">Le moment où vous vous excusez détermine l'efficacité. Plus tôt = plus authentique et cicatricante.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Si vous criez après Matteo ou Felix sur un ton que vous regrettez, excusez-vous dans les minutes qui suivent. "Je suis désolé d'avoir crié. Tu as raison de..." Cela ferme rapidement la blessure.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">2. Le ton de voix compte profondément</div>
+                            <div class="idea-text">Une excuse avec un ton défensif n'est pas une excise. Votre voix doit être sincère et douce.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Ne dites pas "Je m'excuse, mais..." — cela annule l'excuse. Dites simplement "Je me suis fâché injustement. Je suis désolé. Comment on peut réparer ça?" avec une voix calme et authentique.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">3. Les paroles blessantes ont un poids</div>
+                            <div class="idea-text">Quand vous dites quelque chose de blessant, cela persiste. Les enfants s'en souviennent. C'est pourquoi l'excise rapide est importante.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Si vous dites quelque chose pendant une dispute que vous regrettez ("Tu es insupportable!" ou "Je ne peux pas"), l'enfant le porte. Excusez-vous spécifiquement: "Je regrette d'avoir dit ça. Ce que je ressens, c'est de la frustration, pas ça."</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">4. L'excise enseigne l'humilité</div>
+                            <div class="idea-text">Quand les enfants voient un parent faillible, il devient humain et plus proche. Pas moins respecté — plus respecté pour son honnêteté.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Dans votre reconstruction post-séparation, être capable de dire "J'ai merdé" à vos enfants leur enseigne l'intégrité. "J'aurais dû gérer ça différemment. Je fais mieux la prochaine fois."</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">5. L'excise crée une relation fondée sur la sécurité</div>
+                            <div class="idea-text">Les enfants qui voient un parent qui reconnaît ses erreurs et en répond ressentent une sécurité profonde: personne n'est parfait, et c'est ok.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Cette capacité à s'excuser construit une relation où vos enfants peuvent aussi prendre des risques, faire des erreurs, et vous le dire sans crainte extrême de jugement. C'est fondamental pour la confiance.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-section">
+                    <div class="chapter-title">Chapitre 9 — Qu'en penses-tu?</div>
+                    <div class="chapter-summary">
+                        Cette phrase invite l'enfant dans la pensée et la réflexion. Au lieu de donner les réponses, demandez ce qu'ils en pense. Cela enseigne à penser pour soi-même, à former ses propres opinions, à avoir une voix dans les décisions familiales. Axtell identifie 5 choses que les ados besoin pour être résilients : être aimés, pouvoir faire des choix, avoir de l'influence sur la famille, ajouter de la valeur, et participer aux conversations familiales. Cette phrase adresse tous ces besoin à la fois.
+                    </div>
+                    <div class="quotes-box">
+                        <div style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Citations marquantes :</div>
+                        <blockquote>"Il y a cinq choses dont les ados ont besoin pour être résilients."</blockquote>
+                        <blockquote>"Ils ont besoin de savoir qu'ils sont aimés, qu'ils peuvent faire des choix..."</blockquote>
+                        <blockquote>"Qu'en penses-tu?" concrétise tout cela en une seule question."</blockquote>
+                        <blockquote>"Les enfants se sentent mieux lorsqu'ils ont la possibilité de choisir."</blockquote>
+                        <blockquote>"De notre côté, nous chercherons certainement des occasions de vous donner des chances et de vous aider à prendre de nouveaux départs."</blockquote>
+                    </div>
+                    <div class="key-ideas">
+                        <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">Top 5 idées clés :</div>
+                        <div class="key-idea">
+                            <div class="idea-title">1. Développer la pensée critique</div>
+                            <div class="idea-text">"Qu'en penses-tu?" enseigne à l'enfant à analyser, évaluer, et former ses propres conclusions.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Avec Matteo intéressé par la géographie et l'histoire: "Tu as vu ce conflit géopolitique aux nouvelles. Qu'en penses-tu? Pourquoi ça se passe, selon toi?" Cela le traite comme un penseur, pas juste un récepteur d'information.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">2. L'influence dans la famille</div>
+                            <div class="idea-text">Quand vous demandez à un enfant son avis sur les décisions familiales, vous le montrez que sa voix compte.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> "Où voulez-vous aller en vacances ce printemps? Qu'en pensez-vous?" Ce n'est pas que vous ferez toujours ce qu'ils suggèrent, mais leur opinion est dans l'équation.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">3. Choix réels vs. faux choix</div>
+                            <div class="idea-text">Les enfants savent la différence entre "Qu'en penses-tu?" authentique et un choix illusoire ("Tu préfères A ou B?" — deux options que vous contrôlez).</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Une question authentique: "Qu'en penses-tu du fait que tu sois trop attaché à ton écran?" Pas: "Tu préfères 1 heure ou 2 heures d'écran?" La première le traite comme un penseur. La seconde, comme quelqu'un à gérer.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">4. Résilience par la participation</div>
+                            <div class="idea-text">Les enfants qui participent aux conversations familiales et aux prises de décision sont plus résilients face aux défis.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Lors de changements difficiles (comme les modifications de garde post-séparation), demander "Qu'en penses-tu? Comment on peut rendre ça plus facile?" rend vos enfants partenaires, pas victimes.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">5. Cinq piliers de la résilience des ados</div>
+                            <div class="idea-text">Aimés, pouvoir choisir, influence, ajouter de la valeur, participer. "Qu'en penses-tu?" adresse tous les cinq.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Cette phrase simple dit à vos enfants : "Tu comptes. Ton opinion a de l'importance. Tu es un partenaire dans cette famille, pas juste un enfant à élever." À 13 et 11 ans, c'est exactement ce dont ils ont besoin d'entendre.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-section">
+                    <div class="chapter-title">Chapitre 10 — Oui</div>
+                    <div class="chapter-summary">
+                        Ce chapitre simple mais profond demande: combien de fois par jour dites-vous "non"? Et le plus important: est-ce nécessaire? Axtell observe que nos premiers réflexes incluent beaucoup de "non" — souvent par habitude, par contrôle, ou par inertie, pas par vrai refus. Quand vous remplacez "non" par "oui, je peux faire ça" ou "pas maintenant, mais mercredi", vous enseignez à l'enfant que ses demandes sont entendues ET que la vie est une série de choix et de possibilités, pas de refus automatiques. Le message profond: les enfants avec qui on dit "oui" plus souvent deviennent des adultes qui pensent "je peux le faire".
+                    </div>
+                    <div class="quotes-box">
+                        <div style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Citations marquantes :</div>
+                        <blockquote>"Non est une réponse qui a tendance à avoir du poids."</blockquote>
+                        <blockquote>"Les enfants doivent apprendre à bien se comporter, alors il convient de leur dire non lorsqu'ils posent selon vous des gestes inacceptables."</blockquote>
+                        <blockquote>"Non est souvent notre réaction automatique."</blockquote>
+                        <blockquote>"Pas maintenant, mais je pourrais..." ou "Voici ce qu'il faudrait pour que je dise oui à la demande."</blockquote>
+                        <blockquote>"Les enfants doivent apprendre qu'ils ne gagnent pas toujours, mais qu'on leur écoute et on les respecte."</blockquote>
+                    </div>
+                    <div class="key-ideas">
+                        <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">Top 5 idées clés :</div>
+                        <div class="key-idea">
+                            <div class="idea-title">1. Compter combien de fois vous dites "non"</div>
+                            <div class="idea-text">La plupart des parents disent "non" par habitude bien plus souvent que nécessaire. Un audit personnel est révélateur.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Pendant une journée, notez chaque fois que vous dites "non" à vos enfants. Combien étaient vraiment des refus nécessaires vs. de simples réflexes de contrôle? Soyez honnête avec vous-même.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">2. "Non" est lourd psychologiquement</div>
+                            <div class="idea-text">Humains, les enfants comme les adultes, interprètent "non" comme un rejet personnel quand il est répété.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Si Matteo ou Felix vous demande quelque chose dix fois par jour et vous dites "non" dix fois, ils ne reçoivent pas la leçon "tu dois accepter un refus". Ils reçoivent "tu comptes pas".</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">3. Alternatives à "non": "Pas maintenant, mais..."</div>
+                            <div class="idea-text">Au lieu de "Non, tu ne peux pas jouer à l'ordinateur", dites "Pas maintenant, mais mercredi après l'école".</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Cette formulation dit trois choses: 1) j'ai entendu ta demande; 2) c'est pas une catégorie interdite; 3) il y a un "quand" à venir. Cela transforme un refus en une promesse.</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">4. "Non" doit être l'exception, pas la règle</div>
+                            <div class="idea-text">Les règles claires, annoncées à l'avance, remplacent les "non" constants. À ce point, "non" n'est vraiment dit que quand c'est nécessaire.</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> Au lieu de "Non, pas d'écran" chaque soir, créez une entente : "On s'entend pour pas d'écran après 20h. Pourquoi? Parce que tu as besoin de sommeil." Clair, collaboratif, peu de "non".</div>
+                        </div>
+                        <div class="key-idea">
+                            <div class="idea-title">5. Les enfants apprennent qu'on les écoute ET qu'on dit non</div>
+                            <div class="idea-text">Ce n'est pas "toujours oui". C'est "oui quand c'est possible, non quand c'est nécessaire, mais toujours en te respectant".</div>
+                            <div class="idea-practice"><strong>Pour Yvé :</strong> "Je pense que c'est une bonne idée. Parlons d'comment on pourrait le faire" vs. "Non, c'est pas possible." Le premier dit à l'enfant: tu as été entendu et pris au sérieux, même si la réponse est non.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: 10 IDÉES PRINCIPALES -->
+            <section>
+                <h2>Les 10 Idées les Plus Importantes du Livre</h2>
+                <ul class="ideas-list">
+                    <li><strong>La langue crée l'identité :</strong> Ce que vous dites à vos enfants façonne qui ils deviennent. "Tu apprends rapidement" crée un apprenant. "Tu es mauvais en maths" crée quelqu'un qui abandonne. Les paroles créent la réalité.</li>
+                    <li><strong>L'appréciation spécifique construit la confiance :</strong> "Je t'apprécie pour ton honnêteté" enseigne à l'enfant qu'on le voit vraiment — pas juste qu'on l'aime génériquement. Cela construit une confiance profonde dans la relation.</li>
+                    <li><strong>Les ententes (collaboratives) remplacent les règles (imposées) :</strong> Un enfant qui contribue à créer la règle la respecte. "Que dirais-tu si on s'entendait..." engage l'enfant, crée la clarté, et réduit la rébellion.</li>
+                    <li><strong>L'écoute sans interruption change tout :</strong> "Dis-m'en davantage" signifie: je suis vraiment présent, je veux entendre ta pensée, tu comptes. Les enfants partagent leurs histoires une seule fois. Si vous les manquez, elles vont ailleurs.</li>
+                    <li><strong>Les erreurs sont des opportunités d'apprentissage :</strong> "Nous faisons tous des erreurs" normalise le fait que c'est humain. Les enfants qui pensent que les erreurs sont naturelles essaient plus fort, prennent plus de risques sains, et résilissent mieux.</li>
+                    <li><strong>S'excuser rapidement enseigne l'intégrité :</strong> Quand un parent dit "Je suis désolé" avec sincérité, il modèle l'humilité et montre que la responsabilité personnelle est non-négociable. Les enfants apprennent qu'on peut être faillible et honnête.</li>
+                    <li><strong>Poser la question, pas donner la réponse :</strong> "Qu'en penses-tu?" enseigne à penser pour soi-même, à avoir une voix, à avoir de l'influence. C'est comment on élève des penseurs, pas des obéisseurs.</li>
+                    <li><strong>"Oui" est plus puissant que "non" :</strong> Les enfants exposés à plus de "oui" (assorti de conditions claires si nécessaire) deviennent des adultes qui pensent "je peux le faire". Les enfants entendant constamment "non" commencent à croire qu'ils ne peuvent pas.</li>
+                    <li><strong>La gratitude crée la réciprocité :</strong> "Merci" n'est pas juste une politesse. C'est un acte qui dit "tu as de l'importance, ta contribution compte, j'ai remarqué". Les enfants qui reçoivent cela deviennent reconnaissants en retour.</li>
+                    <li><strong>Les connexions partagées (lecture, jeu, conversation) remplissent le réservoir émotionnel :</strong> Les 15 minutes d'attention complète, les conversations côte à côte, les livres lus ensemble, les jeux joués côte à côte — c'est comment on bâtit une relation qui survit aux turbulences de l'adolescence.</li>
+                </ul>
+            </section>
+
+            <!-- SECTION 3: RÉSUMÉ POUR FELIX -->
+            <section>
+                <h2>Résumé Actionnable pour Felix (11 ans)</h2>
+                <div class="callout">
+                    <div class="callout-title">Le message pour Felix</div>
+                    <p>
+                        Felix, tu es créatif, social, et tu aimes inventer des jeux, faire des blagues, et passer du temps avec les gens que tu aimes. Ce livre est pour ton papa, mais il y a un secret dedans: les phrases qu'il dit changent ta vie plus que n'importe quel événement extérieur.
+                    </p>
+                </div>
+
+                <h3 style="color: #764ba2; margin-top: 30px; font-size: 1.2em;">Les phrases pour toi</h3>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">❶ "Je t'apprécie"</div>
+                    <p>Ton papa reconnaît que tu as un don pour faire rire les gens, que tu créés de la joie autour de toi. Quand il dit "Je t'apprécie de nous faire rire," tu comprends que c'est une force réelle, pas juste "tu es gentil".</p>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">❷ "Tu apprends rapidement"</div>
+                    <p>Aux échecs, tu learns les stratégies vite. À la musique, tu assumes les nouveaux instruments. Ce message dit: tu n'es pas "bon" ou "mauvais" — tu APPRENDS. Les défis font partie du processus, pas une preuve que tu ne peux pas.</p>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">❸ "Dis-m'en davantage"</div>
+                    <p>Ton papa veut vraiment entendre tes histoires, tes pensées, tes observations. Pas pour te juger, mais pour te CONNAÎTRE. Quand tu lui dis quelque chose et il écoute vraiment, tu lui dis à nouveau la prochaine fois. C'est comment se construisent les relations.</p>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">❹ "Nous faisons tous des erreurs"</div>
+                    <p>Quand tu manques un coup aux échecs, quand tu oublies quelque chose, quand tu dis quelque chose que tu regrettais — c'est normal. Ton papa aussi fait des erreurs. Les erreurs ne te définissent pas. Apprendre oui.</p>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">❺ "Qu'en penses-tu?"</div>
+                    <p>Tu es un penseur créatif. Ton papa te demande ton avis parce qu'il te respecte, pas parce qu'il attend que tu aies les réponses. Tes pensées comptent. Ta voix comptent dans cette famille.</p>
+                </div>
+
+                <h3 style="color: #764ba2; margin-top: 30px; font-size: 1.2em;">Trois actions concrètes</h3>
+                <div class="action-list">
+                    <li>
+                        <div class="action-domain">Les jeux ensemble</div>
+                        <div class="action-text">15 minutes d'échecs avec ton papa chaque semaine, c'est comme une charge de batterie pour votre relation. Pendant ce temps, tu es le maître, ton papa apprend de toi. C'est puissant.</div>
+                    </li>
+                    <li>
+                        <div class="action-domain">Les histoires que tu crées</div>
+                        <div class="action-text">Continue à inventer des blagues, des jeux, des univers. Ton papa aime ça, et c'est aussi normal que de jouer aux échecs. C'est qui tu es.</div>
+                    </li>
+                    <li>
+                        <div class="action-domain">Les moments câlins</div>
+                        <div class="action-text">Tu dis que tu aimes les massages de ton papa. Dis-le. Demande-les. C'est une façon que vous vous sentez connectés. C'est ok de vouloir ce contact.</div>
+                    </li>
+                </div>
+            </section>
+
+            <!-- SECTION 4: RÉSUMÉ POUR MATTEO -->
+            <section>
+                <h2>Résumé Actionnable pour Matteo (13 ans)</h2>
+                <div class="callout">
+                    <div class="callout-title">Le message pour Matteo</div>
+                    <p>
+                        Matteo, tu es analytique, tu lis énormément, tu penses profondément sur la géographie, l'histoire, les systèmes. Ce livre est un guide pour ton papa sur comment te parler — mais en le lisant, tu comprends aussi comment construire une relation solide avec un adulte qui t'aime.
+                    </p>
+                </div>
+
+                <h3 style="color: #764ba2; margin-top: 30px; font-size: 1.2em;">Les phrases qui te changent</h3>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">❶ "Je t'apprécie pour ta pensée approfondie"</div>
+                    <p>Tu ne cherches pas les réponses faciles. Tu questions, tu creuses, tu explores différentes perspectives. Quand ton papa dit "J'apprécie comme tu penses," il reconnaît ce qui est vrai: tu as une intelligence authentique, pas juste des bonnes notes.</p>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">❷ "Tu apprends rapidement"</div>
+                    <p>À 13 ans, tu sais qu'il y a des domaines où tu luttes — peut-être l'écriture créative quand tu excelles en analyse. Ce message enseigne: tu n'es pas "mauvais" en français. Tu apprends différemment, et c'est ok. Le défi enseigne.</p>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">❸ "Dis-m'en davantage"</div>
+                    <p>Quand tu parles de la géographie, de l'histoire, de tes documentaires, ton papa veut vraiment entendre. Pas pour t'interroger. Pour te connaître. Les adolescents de 13 ans sont rarement écoutés vraiment — tu serais surpris de reconnaître comme c'est rare et précieux.</p>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">❹ "Je m'excuse"</div>
+                    <p>À 13 ans, tu remarques si un adulte assume ses erreurs ou si ça cache les choses. Quand ton papa dit "Je suis désolé d'avoir crié," tu apprends que les gens honnêtes reconnaissent quand ils merdent. Pas parfaits — honnêtes. C'est plus rare qu'on pense.</p>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px;">❺ "Qu'en penses-tu?"</div>
+                    <p>Tu es capable de penser pour toi. Ton papa le sait. Quand il te demande ton avis sur les décisions familiales ou sur ce que tu observes dans le monde, il te traite comme un penseur, pas comme quelqu'un à contrôler. À 13 ans, c'est tout ce qui compte.</p>
+                </div>
+
+                <h3 style="color: #764ba2; margin-top: 30px; font-size: 1.2em;">Ce que tu dois savoir</h3>
+                <div class="action-list">
+                    <li>
+                        <div class="action-domain">La guitare est une porte</div>
+                        <div class="action-text">Tu joues de la guitare dans un groupe. Ton papa apprend aussi. Demande-lui de jouer quelque chose avec toi — pas pour le impressioner, juste pour explorer ensemble. C'est l'un des cadeaux rares que vous pouvez vous donner à cet âge.</div>
+                    </li>
+                    <li>
+                        <div class="action-domain">Tes luttes ne te définissent pas</div>
+                        <div class="action-text">Tu sais que tu manques parfois de patience, que tu struggles avec l'autocontrôle. Cela ne veut pas dire tu es incapable. Cela veut dire tu apprends l'autocontrôle à 13 ans. C'est dur. Cela finira.</div>
+                    </li>
+                    <li>
+                        <div class="action-domain">Dis à ton papa ce que tu penses vraiment</div>
+                        <div class="action-text">À 13 ans, tu pourrais croire que tu dois avoir toutes les réponses. Faux. Dire "Je ne sais pas" ou "Je pense différemment de toi" n'est pas une trahison — c'est comment on grandit ensemble.</div>
+                    </li>
+                </div>
+            </section>
+
+            <!-- SECTION 5: COMPARAISON AVEC LIVRES SIMILAIRES -->
+            <section>
+                <h2>Comparaison avec des Livres Similaires</h2>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px; font-size: 1.1em;">📚 "Why Smart Teens Hurt" (Eric Maisel) & "A Survival Guide to Parenting Teens" (Joani Geltman)</div>
+                    <div class="book-comparison">
+                        <div class="comparison-item">
+                            <div class="comparison-label">Similitudes</div>
+                            <p>Tous trois se concentrent sur le langage que vous utilisez avec vos enfants/ados. Tous trois reconnaissent que ce que vous DITES créée la relation et l'identité. Tous trois offrent des outils pratiques.</p>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Ce que Axtell offre de différent</div>
+                            <p>Axtell est le plus CONCIS et le plus ACTION. Dix phrases — c'est clair et mémorisable. Maisel et Geltman sont plus théoriques. Axtell te dit: dis ça, vois comment tout change.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px; font-size: 1.1em;">📚 "The 5 Love Languages" (Gary Chapman)</div>
+                    <div class="book-comparison">
+                        <div class="comparison-item">
+                            <div class="comparison-label">Similitudes</div>
+                            <p>Les deux reconnaissent que l'amour se communique différemment à chacun. Les deux changent le focus: pas "suis-je assez bon" mais "comment je communique mon amour effectivement."</p>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Ce que Axtell offre de différent</div>
+                            <p>Axtell spécifie le LANGAGE précis — pas juste le concept du langage d'amour. Au lieu de "parlez pour exprimer votre amour," il dit: "Dis ça phrase précise." C'est plus applicable.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px; font-size: 1.1em;">📚 "Mindset" (Carol Dweck) — mentalité de croissance</div>
+                    <div class="book-comparison">
+                        <div class="comparison-item">
+                            <div class="comparison-label">Similitudes</div>
+                            <p>Dweck explique pourquoi "Tu apprends rapidement" est plus puissant que "Tu es intelligent." Les deux changent la mentalité de l'enfant sur les défis. Les deux sont scientifiquement prouvés.</p>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Ce que Axtell offre de différent</div>
+                            <p>Axtell intègre la mentalité de croissance dans une approche PLUS VASTE — 10 phrases, pas 1. Axtell reconnaît aussi l'appréciation, la communication, l'excuse, pas juste le langage de croissance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-box">
+                    <div style="font-weight: 600; color: #667eea; margin-bottom: 15px; font-size: 1.1em;">📚 "Peaceful Parent, Happy Kids" (Laura Markham)</div>
+                    <div class="book-comparison">
+                        <div class="comparison-item">
+                            <div class="comparison-label">Similitudes</div>
+                            <p>Tous deux reconnaissent que les parents heureux créent un environnement où les enfants s'épanouissent. Tous deux voient le langage comme un outil de transformation.</p>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Ce que Axtell offre de différent</div>
+                            <p>Markham a une approche plus large sur la pleine conscience parentale. Axtell zoom-in sur dix phrases précises. Axtell est plus "tactique", Markham plus "mindset".</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #764ba2; margin-top: 30px; font-size: 1.2em;">📌 Ma recommandation pour Yvé</h3>
+                <div class="callout">
+                    <p>
+                        Si tu ne lisais qu'un livre, lequel? <strong>"Dix phrases positives à dire aux enfants"</strong> pour toi, père de deux garçons en reconstruction post-séparation. Pourquoi? Parce que tu n'as pas besoin d'une théorie complète de la parentalité consciente — tu as besoin de dix phrases que tu peux mémoriser et dire MAINTENANT. Le fait que tu sois en reconstruction signifie que tu doutes parfois si tu fais du bien. Ces dix phrases te donnent des actions concrètes et immédiates. Les garçons ont besoin d'un père qui sait ce dire. Ça, c'est ce livre.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <strong>Lecture complémentaire recommandée:</strong> "Why Smart Teens Hurt" pour Matteo spécifiquement, et "A Survival Guide to Parenting Teens" pour les deux ensemble. Ces deux-là complètent Axtell avec la compréhension des adolescents.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION 6: CE QUE CE LIVRE CHANGE POUR VOUS -->
+            <section>
+                <h2>Ce Que Ce Livre Change Pour Vous</h2>
+                <p style="margin-bottom: 30px; color: #555; font-style: italic;">
+                    Ce livre ne vous dit pas qui être. Il vous montre comment parler pour que vos enfants comprennent que vous les voyez, que vous les aimez, et que vous croyez en eux. Voici les recadrages majeurs:
+                </p>
+
+                <div class="before-after">
+                    <div class="before">
+                        <h4>Avant: Les paroles ne comptent pas tant que l'amour est là</h4>
+                        <p>Vous avez peut-être cru que tant que vous aimez vos enfants, ce que vous dites n'a pas d'importance. Ils sauront que vous les aimez.</p>
+                    </div>
+                    <div class="after">
+                        <h4>Après: Les paroles CRÉENT la réalité de l'amour</h4>
+                        <p>L'amour non exprimé n'existe pas pour l'enfant. Ce que vous DITES façonne comment ils comprennent votre amour et comment ils se voient eux-mêmes. "Je t'apprécie" enseigne qu'on les voit. "Tu apprends rapidement" enseigne qu'ils peuvent réussir. Les paroles créent la relation.</p>
+                    </div>
+                </div>
+
+                <div class="before-after">
+                    <div class="before">
+                        <h4>Avant: Contrôler avec des règles est parental</h4>
+                        <p>Vous pensiez peut-être que dire "non" et imposer des règles, c'est être un parent fort et clair. Les enfants doivent apprendre l'obéissance.</p>
+                    </div>
+                    <div class="after">
+                        <h4>Après: Collaborer sur les ententes crée la coopération</h4>
+                        <p>Les règles imposées créent de la rébellion. Les ententes collaboratives ("Que dirais-tu si on s'entendait...") créent de la compréhension mutuelle. Les enfants respectent ce qu'ils créent avec vous, pas ce qu'on leur impose.</p>
+                    </div>
+                </div>
+
+                <div class="before-after">
+                    <div class="before">
+                        <h4>Avant: Vous faites des erreurs; les enfants apprennent d'observer</h4>
+                        <p>Vous aviez peut-être pensé que vous deviez apparaître parfait ou au moins assez compétent pour ne pas perdre l'autorité si vous reconnaissiez une erreur.</p>
+                    </div>
+                    <div class="after">
+                        <h4>Après: S'excuser rapidement enseigne l'intégrité</h4>
+                        <p>Quand vous dites "Je suis désolé," vous ne perdez pas d'autorité — vous la gagnez. Les enfants apprennent qu'on peut être faillible ET intègre. C'est le modèle que Matteo et Felix imitent pour le reste de leur vie.</p>
+                    </div>
+                </div>
+
+                <div class="before-after">
+                    <div class="before">
+                        <h4>Avant: Vous êtes l'expert; vous avez les réponses</h4>
+                        <p>Vous pensiez peut-être que l'éducation parentale consistait à enseigner, corriger, diriger — vous aviez les réponses, ils apprenaient.</p>
+                    </div>
+                    <div class="after">
+                        <h4>Après: Vous posez les questions; ils deviennent des penseurs</h4>
+                        <p>"Qu'en penses-tu?" enseigne à penser pour soi-même. Vous ne perdez pas le leadership — vous le gagnez en les traitant comme des penseurs. À 13 et 11 ans, c'est précisément ce qu'ils cherchent.</p>
+                    </div>
+                </div>
+
+                <div class="before-after">
+                    <div class="before">
+                        <h4>Avant: Les paroles blessantes sont oubliées</h4>
+                        <p>Vous aviez peut-être cru que si vous perdiez votre calme et disiez quelque chose de blessant, ça disparaissait si vous bougiez simplement après.</p>
+                    </div>
+                    <div class="after">
+                        <h4>Après: Les paroles blessantes changent la relation jusqu'à la réparation</h4>
+                        <p>Quand vous criez "Tu es insupportable!" à un enfant, ça persiste. Ce que change les choses n'est pas de l'oublier — c'est de s'excuser spécifiquement et rapidement. "Je regrette d'avoir dit ça. Ce n'est pas ce que je pense" ferme la blessure.</p>
+                    </div>
+                </div>
+
+                <div class="before-after">
+                    <div class="before">
+                        <h4>Avant: Les problèmes avec les enfants sont des crises à résoudre</h4>
+                        <p>Vous aviez peut-être vu les conflits ou les erreurs des enfants comme des problèmes à fixer rapidement.</p>
+                    </div>
+                    <div class="after">
+                        <h4>Après: Les problèmes sont des opportunités d'enseignement</h4>
+                        <p>Quand Matteo lutte avec l'autocontrôle ou Felix oublie ses choses, ce n'est pas une crise parentale. C'est un moment d'enseigner ensemble comment on traverse la difficulté. Ce qui renforce votre relation n'est pas l'absence de problèmes — c'est comment vous les traversez ensemble.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 7: CE QUE VOUS POUVEZ FAIRE DIFFÉREMMENT -->
+            <section>
+                <h2>Ce Que Vous Pouvez Faire Différemment Dès Maintenant</h2>
+                <p style="margin-bottom: 30px; color: #555; font-style: italic;">
+                    La beauté de ce livre est sa simplicité: dix phrases, c'est tout ce qu'il faut. Voici comment les intégrer immédiatement dans votre vie avec Matteo (13) et Felix (11):
+                </p>
+
+                <h3 style="color: #764ba2; margin-top: 30px; font-size: 1.2em; margin-bottom: 20px;">🏠 VIE PARENTALE — Avec les deux garçons</h3>
+                <ul class="action-list">
+                    <li>
+                        <div class="action-domain">1. Créez une entente plutôt que d'imposer une règle</div>
+                        <div class="action-text">Cette semaine, remplacez un "non" avec "Que dirais-tu si on s'entendait pour...?" sur quelque chose qui crée généralement du friction. Par ex., au lieu de "Pas d'écran après 20h", demandez "On s'entend pour pas d'écran après 20h parce que tu as besoin de sommeil?" La différence est énorme.</div>
+                    </li>
+                    <li>
+                        <div class="action-domain">2. Arrêtez de dire "bien fait", commencez à dire "merci"</div>
+                        <div class="action-text">Demain, si l'un de vos garçons fait quelque chose de bien, au lieu de "C'est bien!" dites "Merci d'avoir fait ça — ça m'a vraiment aidé." Spécifiez ce que vous appréciez, pas juste que c'était bon. Remarquez comment ils réagissent.</div>
+                    </li>
+                    <li>
+                        <div class="action-domain">3. Écoutez sans interruption une fois par jour</div>
+                        <div class="action-text">Chaque jour, pendant 15 minutes, donnez à chaque enfant votre attention complète. Pas de téléphone, pas de multi-tâches, juste l'écoute. Posez une question spécifique ("Qu'as-tu découvert de nouveau aujourd'hui?" ou "Qu'en penses-tu de...?") et écoutez vraiment la réponse.</div>
+                    </li>
+                    <li>
+                        <div class="action-domain">4. Dites "Je m'excuse" plus vite</div>
+                        <div class="action-text">La proch

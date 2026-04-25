@@ -1,0 +1,50 @@
+[Wed 22 Apr 2026 19:49:58 EDT] Larry inbox check started
+[Wed 22 Apr 2026 19:49:58 EDT] Larry inbox check complete
+[Wed 22 Apr 2026 20:40:15 EDT] Sage PDF book check started
+[Wed 22 Apr 2026 20:40:15 EDT] New PDF detected: ParentsAdos - Eric Maisel - Why Smart Teens Hurt.pdf
+error: unknown option '--cwd'
+[Wed 22 Apr 2026 20:40:15 EDT] Sage completed summary for: ParentsAdos - Eric Maisel - Why Smart Teens Hurt.pdf
+[Wed 22 Apr 2026 20:40:15 EDT] New PDF detected: ParentsAdos - Joani Geltman - Survival Guide to Parenting Teens, A.pdf
+error: unknown option '--cwd'
+[Wed 22 Apr 2026 20:40:15 EDT] Sage completed summary for: ParentsAdos - Joani Geltman - Survival Guide to Parenting Teens, A.pdf
+[Wed 22 Apr 2026 20:40:15 EDT] Sage PDF book check complete
+[Wed 22 Apr 2026 20:41:12 EDT] Sage PDF book check started
+[Wed 22 Apr 2026 20:41:12 EDT] New PDF detected: ParentsAdos - Eric Maisel - Why Smart Teens Hurt.pdf
+Le fichier est prêt. Voici ce que Sage a livré pour Yvé :
+
+---
+
+**Fichier créé :**
+`/Users/yves-erikslater/Desktop/PKA/PDF Book Output/A_Survival_Guide_to_Parenting_Teens_Joani_Geltman.html`
+
+---
+
+**Livre traité :** *A Survival Guide to Parenting Teens* — Joani Geltman (2022)
+**Catégorie appliquée :** Parentalité (Context 1) avec éléments de Communication (Context 6)
+**Thèse centrale :** Comprendre le cerveau adolescent avant de parentifier — l'empathie précède toujours la discipline, la connexion précède toujours la correction.
+
+---
+
+**Contenu du résumé :**
+
+- **Section 1** — 10 parties résumées (80 chapitres regroupés), chacune avec 5 citations directes du livre et 5 idées clés avec mises en pratique concrètes ancrées dans la vie d'Yvé, Matteo et Felix
+- **Section 2** — Les 10 idées les plus importantes du livre, contextualisées pour un père célibataire de Mirabel
+- **Section 3** — Résumé actionnable pour **Felix** (11 ans) — langage adapté à sa personnalité sociale et créative, connecté aux échecs, au ski, aux amitiés
+- **Section 4** — Résumé actionnable pour **Matteo** (13 ans) — incluant la vraie explication neuroscientifique de l'impulsivité, défis son intelligence, adresse directement l'autocontrôle
+[Wed 22 Apr 2026 20:52:59 EDT] Sage completed summary for: ParentsAdos - Eric Maisel - Why Smart Teens Hurt.pdf
+[Wed 22 Apr 2026 20:52:59 EDT] Sage PDF book check complete
+[Wed 22 Apr 2026 20:54:58 EDT] Sage PDF book check started
+[Wed 22 Apr 2026 20:54:58 EDT] New PDF detected: ParentsAdos - Eric Maisel - Why Smart Teens Hurt.pdf
+You've hit your limit · resets 12am (America/Toronto)
+[Wed 22 Apr 2026 20:56:31 EDT] Sage completed summary for: ParentsAdos - Eric Maisel - Why Smart Teens Hurt.pdf
+[Wed 22 Apr 2026 20:56:31 EDT] Sage PDF book check complete
+[Fri 24 Apr 2026 14:41:35 EDT] Sage PDF book check started
+[Fri 24 Apr 2026 14:41:35 EDT] New PDF detected: ParentsFR - Paul Axtell - Dix phrases positives à dire aux enfants.pdf
+Error: Input must be provided either through stdin or as a prompt argument when using --print
+[Fri 24 Apr 2026 14:41:43 EDT] Sage completed summary for: ParentsFR - Paul Axtell - Dix phrases positives à dire aux enfants.pdf
+[Fri 24 Apr 2026 14:41:43 EDT] Sage PDF book check complete
+[Fri 24 Apr 2026 14:43:15 EDT] Sage PDF book check started
+[Fri 24 Apr 2026 14:43:15 EDT] New PDF detected: ParentsFR - Paul Axtell - Dix phrases positives à dire aux enfants.pdf
+You've hit your limit · resets 7pm (America/Toronto)
+[Fri 24 Apr 2026 14:44:28 EDT] Sage completed summary for: ParentsFR - Paul Axtell - Dix phrases positives à dire aux enfants.pdf
+[Fri 24 Apr 2026 14:44:28 EDT] Sage PDF book check complete

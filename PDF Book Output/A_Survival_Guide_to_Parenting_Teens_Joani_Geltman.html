@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Survival Guide to Parenting Teens — Joani Geltman</title>
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --accent: #e67e22;
+      --accent-light: #fdf2e9;
+      --teal: #16a085;
+      --teal-light: #e8f8f5;
+      --purple: #8e44ad;
+      --purple-light: #f5eef8;
+      --red: #c0392b;
+      --red-light: #fdedec;
+      --blue: #2980b9;
+      --blue-light: #ebf5fb;
+      --green: #27ae60;
+      --green-light: #eafaf1;
+      --gray: #7f8c8d;
+      --gray-light: #f8f9fa;
+      --border: #e8e8e8;
+      --text: #2d3436;
+      --text-light: #636e72;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--text);
+      background: #fafafa;
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #34495e 100%);
+      color: white;
+      padding: 50px 40px 40px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .page-header .author {
+      font-size: 1.2rem;
+      color: #bdc3c7;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .page-header .thesis {
+      font-size: 1.05rem;
+      color: #ecf0f1;
+      max-width: 750px;
+      margin: 0 auto;
+      font-style: italic;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 18px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+
+    /* NAV TABLE */
+    .toc {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+
+    .toc h2 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .toc ol {
+      columns: 2;
+      gap: 20px;
+      padding-left: 18px;
+    }
+
+    .toc li {
+      font-size: 0.92rem;
+      color: var(--blue);
+      margin-bottom: 6px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .toc a { color: var(--blue); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* SECTION HEADINGS */
+    .section-title {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      background: var(--primary);
+      padding: 16px 24px;
+      border-radius: 8px 8px 0 0;
+      margin-top: 56px;
+    }
+
+    .section-title .part-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #bdc3c7;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .chapter-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 32px;
+      margin-bottom: 8px;
+    }
+
+    .chapter-summary {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* QUOTES */
+    blockquote {
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      padding: 14px 20px;
+      margin: 12px 0;
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+      color: #5d4037;
+      font-size: 0.97rem;
+      line-height: 1.65;
+    }
+
+    .quotes-title {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gray);
+      margin: 24px 0 10px;
+    }
+
+    /* KEY IDEAS */
+    .ideas-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .idea-card {
+      background: var(--gray-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .idea-header {
+      background: var(--teal);
+      color: white;
+      padding: 10px 16px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .idea-body {
+      padding: 14px 16px 6px;
+      font-size: 0.96rem;
+    }
+
+    .idea-practice {
+      background: #fff9e6;
+      border-top: 1px dashed #f0c040;
+      padding: 12px 16px;
+      margin-top: 10px;
+      font-size: 0.93rem;
+      color: #5d4037;
+    }
+
+    .idea-practice strong {
+      color: var(--accent);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* SECTION 2 — TOP 10 */
+    .top10-section {
+      background: white;
+      border: 2px solid var(--primary);
+      border-radius: 10px;
+      padding: 36px;
+      margin: 48px 0;
+    }
+
+    .top10-section h2 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .top10-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .top10-item:last-child { border-bottom: none; }
+
+    .top10-num {
+      background: var(--primary);
+      color: white;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .top10-content strong {
+      display: block;
+      color: var(--primary);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .top10-content p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+
+    /* FELIX SECTION */
+    .felix-section {
+      background: linear-gradient(135deg, #e8f8f5 0%, #d5f5e3 100%);
+      border: 2px solid var(--teal);
+      border-radius: 12px;
+      padding: 36px;
+      margin: 48px 0;
+    }
+
+    .felix-section h2 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.4rem;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+
+    .felix-section .subtitle {
+      color: #27ae60;
+      font-style: italic;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .felix-section .action-box {
+      background: white;
+      border-left: 4px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-bottom: 14px;
+    }
+
+    .felix-section .action-box h4 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.9rem;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    /* MATTEO SECTION */
+    .matteo-section {
+      background: linear-gradient(135deg, #f5eef8 0%, #e8daef 100%);
+      border: 2px solid var(--purple);
+      border-radius: 12px;
+      padding: 36px;
+      margin: 48px 0;
+    }
+
+    .matteo-section h2 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.4rem;
+      color: var(--purple);
+      margin-bottom: 6px;
+    }
+
+    .matteo-section .subtitle {
+      color: #7d3c98;
+      font-style: italic;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .matteo-section .action-box {
+      background: white;
+      border-left: 4px solid var(--purple);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-bottom: 14px;
+    }
+
+    .matteo-section .action-box h4 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.9rem;
+      color: var(--purple);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.78rem;
+      padding: 3px 9px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+
+    .big-section-header {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.8rem;
+      color: var(--primary);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 10px;
+      margin: 60px 0 30px;
+    }
+
+    footer {
+      background: var(--primary);
+      color: #95a5a6;
+      text-align: center;
+      padding: 20px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.85rem;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 640px) {
+      .toc ol { columns: 1; }
+      .page-header h1 { font-size: 1.5rem; }
+      .container { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== PAGE HEADER ===== -->
+<div class="page-header">
+  <h1>A Survival Guide to Parenting Teens</h1>
+  <div class="author">Joani Geltman — HarperCollins Leadership, 2022</div>
+  <div class="thesis">
+    Thèse centrale : Avant de parentifier, comprendre. Le cerveau adolescent est biologiquement câblé pour l'impulsivité, l'égocentrisme et le besoin d'indépendance — pas pour vous exaspérer. La clé n'est pas de contrôler son ado, mais de l'outiller stratégiquement, de l'empathiser avant de le discipliner, et de choisir ses batailles avec précision pour préserver la relation à long terme.
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TABLE DES MATIÈRES -->
+  <div class="toc">
+    <h2>Structure du livre — 10 parties, 80 chapitres</h2>
+    <ol>
+      <li><a href="#part1">Élever un ado (Ch. 1–17)</a></li>
+      <li><a href="#part2">Motivation scolaire (Ch. 18–23)</a></li>
+      <li><a href="#part3">Le processus collégial (Ch. 24–27)</a></li>
+      <li><a href="#part4">Pièges de l'amitié (Ch. 28–32)</a></li>
+      <li><a href="#part5">Alcool et drogues (Ch. 33–40)</a></li>
+      <li><a href="#part6">Sexualité (Ch. 41–46)</a></li>
+      <li><a href="#part7">Sextos (Ch. 47–51)</a></li>
+      <li><a href="#part8">Cellulaires (Ch. 52–58)</a></li>
+      <li><a href="#part9">Réseaux sociaux (Ch. 59–68)</a></li>
+      <li><a href="#part10">Style parental (Ch. 69–80)</a></li>
+    </ol>
+  </div>
+
+  <!-- ===== SECTION 1 — RÉSUMÉ CHAPITRE PAR CHAPITRE ===== -->
+  <h2 class="big-section-header" id="chapitres">Section 1 — Résumé partie par partie</h2>
+
+  <!-- PART 1 -->
+  <div class="section-title" id="part1">
+    <span class="part-label">Partie 1 · Chapitres 1–17</span>
+    Élever un ado — Les mécanismes de base
+  </div>
+  <div class="chapter-block">
+    <div class="chapter-summary">
+      <p>La première partie établit les fondations : comprendre pourquoi les ados se comportent comme ils le font. De la déflection et du déni (ch. 1) à la conformité grégaire (ch. 2), en passant par les batailles du matin (ch. 3), l'entitlement (ch. 4), le trop de temps libre (ch. 5), la puberté (ch. 6), la «&nbsp;paresse&nbsp;» (ch. 7), la tentation vs la confiance (ch. 8), les mensonges par omission (ch. 9), le silence des garçons (ch. 10), le «&nbsp;quitter&nbsp;» (ch. 11), les luttes de pouvoir (ch. 12), l'oubli (ch. 13), le narcissisme (ch. 14), le pit bull (ch. 15), l'attitude (ch. 16) et la chambre en désordre (ch. 17). Geltman insiste : presque tous ces comportements sont biologiquement normaux, pas des défauts de caractère.</p>
+    </div>
+
+    <div class="quotes-title">Citations marquantes</div>
+    <blockquote>«&nbsp;Les ados utilisent la déflection et le déni pour éviter de vous décevoir, pour éviter de prendre leurs responsabilités, et pour se protéger de leurs propres sentiments de honte.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Ce comportement de clonage n'est pas une question de valeurs ni un défaut de caractère chez vos enfants. C'est développementalement normal !&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Les ados sont impulsifs, irrationnels et émotionnels — ce qui mène à des décisions qui se retournent souvent contre eux. Trouver des intérêts que l'on aime et auxquels on peut s'engager est une quête de toute une vie. Soyez patient avec le processus.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Votre teen est au buffet de la vie, explorant toutes sortes de nouveaux mets. Parfois ceux qu'elle croyait adorer se révèlent «&nbsp;mauvais&nbsp;», et parfois ils deviennent de nouveaux favoris.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Élever un ado exige que les parents se regardent de près eux-mêmes. Le niveau de conscience que votre ado a de qui vous êtes et de comment vous gérez les tempêtes de la vie n'a jamais été aussi important.&nbsp;»</blockquote>
+
+    <div class="quotes-title">Top 5 idées clés</div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-header">1. La déflection est un signal d'alarme, pas une attaque personnelle</div>
+        <div class="idea-body">Quand un ado part en vrille «&nbsp;pour rien&nbsp;», c'est presque toujours parce qu'il essaie d'éviter quelque chose de difficile à avouer. La colère soudaine est rarement à propos de ce dont il parle.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Quand Matteo ou Felix s'emporte apparemment pour rien — après l'école, le soir, au dîner — résiste à l'impulsion de répondre à l'argument de surface. Dis plutôt : «&nbsp;Je vois que tu es upset. Je ne vais pas embarquer dans cet argument, mais si y'a quelque chose que tu veux me dire, je t'écoute sans réagir.&nbsp;» Puis lâche. C'est souvent à ce moment que la vraie chose sort.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">2. La conformité chez l'ado n'est pas une régression — c'est une protection</div>
+        <div class="idea-body">Le nouveau cerveau adolescent génère pour la première fois la conscience aiguë d'être observé et jugé par les autres. Se conformer = se sentir en sécurité. Les valeurs transmises ne sont pas perdues, elles hivernent.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Felix est très social et très influençable par ses pairs — c'est sa force ET son point de vulnérabilité. Quand il veut absolument ce que ses amis ont ou font, évite le sermon «&nbsp;sois toi-même&nbsp;». Dis plutôt : «&nbsp;Je comprends que c'est super important pour toi. Voici ce que je peux faire pour toi.&nbsp;» Négocie le fond, pas le besoin d'appartenance.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">3. La paresse apparente est souvent un problème de temps non structuré</div>
+        <div class="idea-body">Les ados sans activités significatives après l'école ne «&nbsp;choisissent&nbsp;» pas d'être paresseux — ils sont submergés par trop d'options et manquent de structure motivante. L'estime de soi vient de l'accomplissement.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Si tu sens que Felix ou Matteo végète trop après l'école, ne nomme pas ça «&nbsp;paresse&nbsp;». Présente un choix concret : «&nbsp;On a remarqué que t'as beaucoup de temps libre. On aimerait que tu trouves quelque chose à investir — sport, activité, job — sinon l'argent de poche change.&nbsp;» Rend-le acteur du choix, pas victime d'un diktat.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">4. La tentation n'est pas une trahison de confiance</div>
+        <div class="idea-body">Quand un ado transgresse une règle dans un moment d'excitation sociale, c'est un problème de tentation (le moment est trop fort) plus que de confiance. Répondre à ça avec la punition seule rate le vrai sujet.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Matteo, analytique et intense, peut être amené à transgresser dans des contextes de groupe où le moment est puissant. Quand ça arrive, commence par : «&nbsp;Je comprends que c'était difficile de dire non dans ce contexte. Qu'est-ce qu'on peut prévoir pour la prochaine fois que tu seras dans cette situation ?&nbsp;» La punition seule ne prépare pas à la prochaine fois.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">5. Le silence des garçons est souvent un héritage familial, pas du rejet</div>
+        <div class="idea-body">Les garçons qui ne parlent pas reproduisent souvent le modèle masculin qu'ils ont observé. La clé pour les ouvrir : partager sa propre vulnérabilité, pas poser des questions.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Avec Matteo en particulier — intense et qui garde tout en dedans — essaie de partager quelque chose de vulnérable sur toi avant de lui poser une question. «&nbsp;Moi quand j'avais ton âge je trouvais ça difficile de...&nbsp;» Ça ouvre une porte différente que «&nbsp;comment ta journée s'est passée ?&nbsp;»
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 2 -->
+  <div class="section-title" id="part2">
+    <span class="part-label">Partie 2 · Chapitres 18–23</span>
+    Motivation et engagement scolaire
+  </div>
+  <div class="chapter-block">
+    <div class="chapter-summary">
+      <p>Geltman attaque la question scolaire avec réalisme : certains ados évitent les devoirs par peur de l'échec, d'autres parce qu'ils ont un parent qui est devenu le «&nbsp;CEO de leur vie scolaire&nbsp;». La sur-implication parentale — corriger les dissertations, faire les listes de lectures, relancer la motivation à leur place — crée précisément les jeunes adultes sans ressources internes. La gestion du temps (ch. 19), l'évitement des devoirs (ch. 20), la stratégie d'examen (ch. 21), les bulletins (ch. 22) et les lectures d'été (ch. 23) sont autant d'occasions de remettre la responsabilité entre les mains de l'ado.</p>
+    </div>
+
+    <div class="quotes-title">Citations marquantes</div>
+    <blockquote>«&nbsp;Personne n'a droit à une éducation collégiale. Si votre étudiant au secondaire ne montre aucune motivation académique et que vous vous retrouvez l'«&nbsp;orchestrateur&nbsp;» de ses devoirs, c'est un signal d'alarme pour sa réussite future.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Faire les choses à leur place inhibe leur capacité à développer des compétences de gestion du temps, à gérer la frustration quand le travail est difficile, ou à se sentir responsables de leurs succès et de leurs échecs.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Ce père était devenu le PDG de la vie de son fils. Il filmait chaque match pour analyser ses erreurs. Le fils était si terrorisé par la déception de son père qu'il n'avait jamais osé lui demander d'arrêter.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;La motivation vient de se sentir actif, impliqué, et d'avoir le sentiment d'avoir accompli quelque chose à la fin de la journée.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Quand les ados ont cette quantité de temps non structuré, ils tendent à avoir une faible motivation scolaire. L'estime de soi vient du fait d'être actif et impliqué.&nbsp;»</blockquote>
+
+    <div class="quotes-title">Top 5 idées clés</div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-header">1. L'aide excessive est l'ennemi de la compétence</div>
+        <div class="idea-body">Quand un parent orchestre les devoirs, corrige les dissertations et relance la motivation, l'ado ne développe jamais les muscles de l'effort autonome. Le sentiment d'accomplissement appartient au parent, pas à l'enfant.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Matteo réussit bien à l'école, mais si tu es celui qui surveille, qui rappelle, qui suit — il ne développe pas l'autonomie que tu veux lui transmettre. Teste ceci : une semaine sans rappels de devoirs. Observe ce qui se passe. C'est inconfortable mais c'est ainsi qu'il apprend à gérer ses propres priorités.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">2. La question «&nbsp;qu'est-ce que tu penses que tu devrais faire ?&nbsp;» vaut plus que la solution</div>
+        <div class="idea-body">Plutôt que de donner la réponse au problème scolaire ou organisationnel, poser la question met l'ado en position de résoudre lui-même. Il développe ainsi les circuits neuronaux de la pensée autonome.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Quand Felix ou Matteo vient avec un problème («&nbsp;j'ai un exam demain et j'ai pas étudié&nbsp;»), résiste à la résolution immédiate. Demande : «&nbsp;Ok. Qu'est-ce que tu penses que tu devrais faire là ?&nbsp;» Puis écoute. Tu peux guider après, mais laisse-les penser en premier.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">3. L'évitement des devoirs cache souvent la peur de l'échec</div>
+        <div class="idea-body">Un ado qui «&nbsp;ne fait pas ses devoirs&nbsp;» n'est pas nécessairement paresseux — il peut être submergé, anxieux ou avoir peur de mal faire. Le comportement d'évitement est une protection psychologique.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Si Matteo — impatient et perfectionniste à certains égards — évite un devoir difficile, la confrontation directe empire souvent la chose. Essaie : «&nbsp;Qu'est-ce qui est le plus difficile dans ce devoir en ce moment ?&nbsp;» Tu adresses la vraie cause, pas le symptôme.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">4. Le bulletin est un point de départ, pas une sentence</div>
+        <div class="idea-body">La réaction émotionnelle immédiate d'un parent à un mauvais bulletin (déception visible, punitions) ferme la conversation. Le bulletin est utile comme outil de dialogue stratégique, pas émotionnel.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Quand les bulletins arrivent, prends 24h avant d'en parler avec les garçons. Ça te donne le temps de passer de la réaction émotionnelle à la conversation productive. Arrive avec des questions, pas des constats.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">5. La gestion du temps s'enseigne comme une compétence, pas comme un ordre</div>
+        <div class="idea-body">On ne peut pas «&nbsp;dire&nbsp;» à un ado de gérer son temps — on doit lui montrer comment cartographier ses semaines et lui donner des outils concrets adaptés à sa façon de penser.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Felix — créatif et social — apprend mieux visuellement. Propose-lui un tableau mural ou un tableau blanc pour sa semaine. Matteo, plus analytique, pourrait préférer une app ou un agenda structuré. Le format doit leur appartenir, pas venir de toi.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 3 -->
+  <div class="section-title" id="part3">
+    <span class="part-label">Partie 3 · Chapitres 24–27</span>
+    Le processus collégial et le lâcher-prise
+  </div>
+  <div class="chapter-block">
+    <div class="chapter-summary">
+      <p>Cette section, qui peut sembler prématurée pour des enfants de 11 et 13 ans, contient des leçons fondamentales sur l'autonomie croissante. La «&nbsp;séniorite-parentite&nbsp;» (ch. 24) — quand le parent est plus anxieux que l'ado à propos du futur — est un avertissement précoce. Geltman décrit le processus de décision collégiale (ch. 25), l'art de lâcher prise (ch. 26) et la réalité du retour de l'étudiant à la maison (ch. 27). Le fil conducteur : la surprotection parentale, même bien intentionnée, crée des jeunes adultes incompétents à naviguer leur propre vie.</p>
+    </div>
+
+    <div class="quotes-title">Citations marquantes</div>
+    <blockquote>«&nbsp;Les nouvelles «&nbsp;ententes&nbsp;» basées sur le respect mutuel doivent être forgées. La porte tournante est maintenant en place — vos enfants vont et viennent entre la vraie vie et les bras accueillants et parfois étouffants de leur famille.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Reconnaître que les vieilles règles ont été dépassées et que de nouveaux «&nbsp;accords&nbsp;» basés sur le respect mutuel doivent être forgés.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Ce n'est pas votre travail de trouver un emploi d'été ou un stage à votre ado. Ne rédigez pas ses essais de candidature. Si vous faites tout, il n'aura jamais l'occasion de ressentir «&nbsp;regarde ce que j'ai accompli, je suis si fier de moi !&nbsp;»&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Devenir un adulte indépendant demande de l'entraînement. Faire les choses pour eux ne construit pas l'indépendance. L'adolescence est le moment d'enseigner.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Il y aura des moments où quelqu'un se fait coincer dans la porte — peut-être vous, et sûrement vos enfants. Mais la porte continuera de tourner parce qu'elle le doit. C'est la loi de la nature.&nbsp;»</blockquote>
+
+    <div class="quotes-title">Top 5 idées clés</div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-header">1. Chaque privilège accordé prématurément vole une occasion de l'attendre et de l'apprécier</div>
+        <div class="idea-body">Donner trop tôt (technologie, libertés, argent) prive l'ado des marqueurs de maturité qui structurent l'identité. L'attente elle-même a une valeur formative.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          À 11 et 13 ans, Matteo et Felix sont encore dans la phase où les privilèges graduels ont un impact fort. Documente mentalement quels privilèges tu accordes et à quel âge — pour que chacun reçoive quelque chose qui marque une progression, pas juste ce que l'autre a déjà.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">2. Le parent qui fait tout devient invisible à sa propre réussite</div>
+        <div class="idea-body">Quand le parent résout, organise et décide, c'est lui qui ressent l'accomplissement. L'ado, lui, est spectateur de sa propre vie. Inverser ça demande de tolérer l'inconfort de les voir se débattre.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Ton instinct de père attentif peut te pousser à intervenir vite quand tu vois les garçons peiner. Pratique le délai d'une réponse : attends 48h avant d'intervenir sur un problème non urgent. Tu seras souvent surpris qu'ils règlent eux-mêmes.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">3. Les règles imposées créent des briseurs de règles experts</div>
+        <div class="idea-body">Plus vous imposez de règles unilatéralement, plus vous incitez votre ado à développer une expertise dans la tromperie et le contournement. Partager le contrôle produit plus de conformité réelle.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Avec Matteo qui pousse les limites et lutte avec l'autocontrôle, les règles édictées d'en haut produiront de la résistance. Amène-le dans la création des règles : «&nbsp;Quelle règle penses-tu qui serait juste pour ce sujet ?&nbsp;» Il sera moins enclin à briser ce qu'il a contribué à construire.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">4. L'indépendance se construit dans les petites choses, pas d'un coup</div>
+        <div class="idea-body">Le lâcher-prise parental est un processus progressif. On ne prépare pas un ado à être adulte en lui accordant tout d'un coup, ni en le surcontrôlant jusqu'à 18 ans. C'est une série de petites délégations croissantes.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Identifie une chose par mois que tu délègues entièrement à chaque garçon — organisation d'une sortie, gestion d'un budget de poche, préparation d'un repas. Pas de micromanagement. Laisse-les aller jusqu'au bout, même imparfaitement.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">5. Votre anxiété parentale ne protège pas votre enfant — elle l'inhibe</div>
+        <div class="idea-body">L'anxiété d'un parent se transmettrait directement à l'ado. Un parent qui a peur de voir son enfant échouer l'empêche de développer la tolérance à l'échec dont il aura besoin toute sa vie.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Tu veux que tes fils apprennent la résilience — mais la résilience s'apprend dans l'adversité, pas dans un environnement où le parent intervient à la première difficulté. Quand tu ressens l'impulsion de sauver la situation, demande-toi : est-ce que c'est ma peur ou leur danger ?
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 4 -->
+  <div class="section-title" id="part4">
+    <span class="part-label">Partie 4 · Chapitres 28–32</span>
+    Pièges de l'amitié — Bullying, loyauté et inclusion
+  </div>
+  <div class="chapter-block">
+    <div class="chapter-summary">
+      <p>L'amitié est la priorité absolue de l'ado. Geltman explore le bullying (ch. 28) et ses effets cérébraux mesurables, la loyauté toxique (ch. 29) qui pousse les ados à protéger leurs pairs même dans leurs pires comportements, l'agonie des garçons en 9e année (ch. 30) — période particulièrement vulnérable — le sentiment d'exclusion (ch. 31) et l'ami «&nbsp;mauvaise graine&nbsp;» (ch. 32). Le message central : le parent ne peut pas choisir les amis de son ado, mais il peut l'aider à développer le jugement social et les outils pour naviguer ces dynamiques.</p>
+    </div>
+
+    <div class="quotes-title">Citations marquantes</div>
+    <blockquote>«&nbsp;Les recherches sur le bullying suggèrent que le cerveau d'un enfant change réellement à la suite de cette violence émotionnelle. Ce n'est pas «&nbsp;juste des enfants qui se chamaillent&nbsp;».&nbsp;»</blockquote>
+    <blockquote>«&nbsp;La loyauté chez les ados peut être nuisible à leur santé. Protéger un ami qui se comporte mal, même quand on sait que c'est faux, est une forme de pression de groupe que les adultes sous-estiment.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;L'ami que vous souhaiteriez que votre ado n'ait pas est souvent l'ami dont il a le plus besoin en ce moment — parce qu'il lui offre quelque chose que vous ne lui offrez pas.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Se sentir exclu est une douleur réelle, pas dramatique. Le cerveau de l'ado traite le rejet social de la même façon qu'une douleur physique.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;La chose la plus importante dans la vie d'un ado, c'est ses amis. Si vous attaquez ses amis, vous l'attaquez lui.&nbsp;»</blockquote>
+
+    <div class="quotes-title">Top 5 idées clés</div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-header">1. Le bullying laisse des traces neurologiques — ne minimise jamais</div>
+        <div class="idea-body">La recherche confirme que la victimisation sociale modifie le cerveau de l'ado. «&nbsp;C'est juste des enfants&nbsp;» est la pire réponse possible. L'intervention parentale doit être ferme mais stratégique.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Felix, très social, est particulièrement sensible aux dynamiques de groupe. Si tu sens qu'il souffre socialement, commence par écouter sans minimiser. Ne propose pas de solutions immédiatement — laisse-lui d'abord l'espace de nommer ce qu'il vit. La première réponse doit être l'empathie, pas la stratégie.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">2. Interdire un ami ne fonctionne presque jamais</div>
+        <div class="idea-body">Quand un parent s'oppose frontalement à une amitié, il donne à cet ami un pouvoir d'attraction encore plus grand. L'interdiction transforme le «&nbsp;mauvais ami&nbsp;» en rebelle romantique.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Si tu n'aimes pas un ami de Matteo ou Felix, ne l'interdit pas. Pose plutôt des questions à ton fils sur ce qu'il apprécie chez cet ami. Ça ouvre un dialogue sur les valeurs sans confrontation directe. Tu influences sans imposer.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">3. La loyauté aveugle doit être distinguée de l'amitié saine</div>
+        <div class="idea-body">Les ados confondent souvent loyauté et complicité. Apprendre à distinguer «&nbsp;soutenir un ami&nbsp;» de «&nbsp;protéger un ami qui fait du tort&nbsp;» est une compétence morale cruciale.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Utilise des exemples de sport ou d'actualité pour ouvrir ces conversations sans pointer vers leur vie directement. Matteo, analyste, adorera débattre : «&nbsp;Dans ce cas-là, tu penses que le joueur aurait dû parler ou rester loyal ?&nbsp;» C'est de la philosophie morale déguisée en conversation.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">4. Les garçons de 13-14 ans traversent une période sociale particulièrement brutale</div>
+        <div class="idea-body">Geltman identifie la première année du secondaire comme l'une des plus difficiles pour les garçons — hiérarchies sociales reconfigurées, plus le plus jeune de son groupe, corps qui change. C'est une période à surveiller activement.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Matteo est exactement dans cette zone à 13 ans. Sans en faire un drame, maintiens une présence discrète mais active : soirs à la maison, discussions légères sur comment ça se passe avec ses amis, observation de son niveau d'énergie et d'humeur. Tu cherches des signaux, pas des aveux.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">5. Le sentiment d'exclusion se traite par la connexion, pas la logique</div>
+        <div class="idea-body">Quand un ado se sent exclu, les arguments rationnels («&nbsp;ils ne méritent pas ton amitié&nbsp;») n'aident pas. Ce dont il a besoin : se sentir vu, puis être aidé à trouver d'autres connexions significatives.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Si Felix vit un épisode d'exclusion sociale, ton rôle n'est pas de résoudre le problème avec le groupe. Ton rôle est d'être la première connexion sûre. Puis tu peux l'aider à identifier d'autres contextes sociaux où il brille — les échecs, par exemple, où il est compétent et reconnu.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 5 -->
+  <div class="section-title" id="part5">
+    <span class="part-label">Partie 5 · Chapitres 33–40</span>
+    Alcool et drogues — Réalisme sans naïveté
+  </div>
+  <div class="chapter-block">
+    <div class="chapter-summary">
+      <p>Geltman aborde l'alcool et les drogues sans moralisme : les ados vont boire. La question est : comment minimiser les dommages ? Elle décrit les «&nbsp;personnalités de consommation&nbsp;» (ch. 33), propose une stratégie réaliste pour la sécurité (ch. 34), détaille les responsabilités légales du parent dont la maison est utilisée (ch. 35), raconte une histoire glaçante d'alcool et d'agression sexuelle (ch. 37), décortique le cannabis (ch. 38) et propose comment sécuriser la maison (ch. 39). Le message : la communication répétée, honnête et non moralisante est le seul outil qui fonctionne.</p>
+    </div>
+
+    <div class="quotes-title">Citations marquantes</div>
+    <blockquote>«&nbsp;Je ne veux pas que tu boives. C'est dangereux, ça endommage un cerveau en développement, et ça peut potentiellement te conduire à des situations qui peuvent changer le reste de ta vie. Mais je suis réaliste, et je sais que tu seras dans des situations où il y aura de l'alcool.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Cette conversation ne devrait pas se produire une seule fois. C'est une conversation qui devrait avoir lieu chaque fois que votre ado quitte la maison pour une fête. La répétition est la façon dont les gens apprennent.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Les parents sont toujours responsables de la sécurité des adolescents dans leur maison, qu'ils sachent ou non qu'il y a de l'alcool. C'est la loi.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Fouiller le web et les journaux pour des histoires de consommation excessive qui ont mal tourné et les partager constamment avec votre ado. Ce n'est PAS une conversation unique.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;La marijuana n'est pas inoffensive pour un cerveau adolescent en développement. Ce que les ados pensent qu'ils savent sur la marijuana est souvent basé sur des mythes ou sur ce que leurs pairs leur ont dit.&nbsp;»</blockquote>
+
+    <div class="quotes-title">Top 5 idées clés</div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-header">1. La conversation sur l'alcool doit être répétée, pas unique</div>
+        <div class="idea-body">Un seul «&nbsp;grand discours&nbsp;» sur l'alcool ne laisse pas de trace dans le cerveau adolescent. C'est la répétition qui crée les circuits de précaution. Chaque départ pour une fête est une occasion de le répéter brièvement.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Matteo a 13 ans — pas encore dans les fêtes d'alcool, mais pas loin. Commence maintenant avec des conversations légères, presque anodines, sur ce sujet. Pas de grands discours. Juste des petites phrases glissées : «&nbsp;As-tu vu cette histoire dans les nouvelles ?&nbsp;» Le but : que le message soit là avant que la situation arrive.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">2. Être la maison «&nbsp;safe&nbsp;» vaut mieux qu'interdire toutes les fêtes</div>
+        <div class="idea-body">Geltman recommande de créer les conditions pour que les ados veuillent rentrer chez vous plutôt qu'aller dans des maisons non supervisées. Ça demande d'être présent sans être intrusif.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Bâtis la maison de Mirabel comme la maison où les amis de tes fils aiment venir. Sois présent mais discret. Connais leurs amis par leur prénom. Ça te donne de l'influence sans contrôle — et ça maintient tes fils proches de toi.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">3. Le cannabis a des effets réels sur le cerveau adolescent — ne pas minimiser</div>
+        <div class="idea-body">La légalisation au Québec a créé une normalisation dangereuse pour les ados. Le cerveau adolescent est particulièrement vulnérable aux effets du cannabis sur la motivation et la mémoire à long terme.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Aborde ça avec Matteo de façon factuelle et scientifique — ça correspond à son mode de pensée analytique. Des articles sur la neuroscience du cannabis chez les ados seront plus efficaces qu'un interdit moral. Il respecte les arguments fondés sur les données.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">4. Avoir un «&nbsp;code d'urgence&nbsp;» avec son ado peut sauver une vie</div>
+        <div class="idea-body">Geltman recommande d'établir à l'avance un code de secours — un mot, un texto — que l'ado peut utiliser pour que le parent vienne le chercher sans questions posées cette nuit-là. Ça lui donne une sortie de secours sans perdre la face.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Établis ce code maintenant avec Matteo, avant qu'il en ait besoin. Dis-lui explicitement : «&nbsp;Si tu m'envoies ce mot, je viens te chercher, point. On parle demain.&nbsp;» C'est un investissement en confiance qui peut faire une vraie différence dans une mauvaise situation.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">5. La binge drinking est l'ennemi numéro un — pas la consommation occasionnelle</div>
+        <div class="idea-body">Geltman distingue clairement la consommation sociale de la consommation excessive. Le message réaliste est : si tu bois, ne binge. C'est plus efficace qu'un interdit total ignoré.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Quand tu parles d'alcool avec tes fils, sépare toujours les deux : «&nbsp;Je ne veux pas que vous buviez. Si jamais vous buvez, ne buvez jamais vite et en grande quantité. C'est ce qui tue les gens.&nbsp;» Court, clair, répété.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 6 -->
+  <div class="section-title" id="part6">
+    <span class="part-label">Partie 6 · Chapitres 41–46</span>
+    Sexualité — Parler sans fuir
+  </div>
+  <div class="chapter-block">
+    <div class="chapter-summary">
+      <p>Geltman aborde la sexualité avec franchise : les ados vont explorer, et votre silence ne les protège pas — il les laisse naviguer seuls. Elle guide les parents sur comment parler de sexe (ch. 41), comment aider les filles à dire non à la pression des gars (ch. 42), les situations sexuelles ambiguës (ch. 43), la façon de s'habiller (ch. 44), découvrir son ado avec quelqu'un dans sa chambre (ch. 45) et l'orientation sexuelle (ch. 46). Le fil conducteur : l'ado qui peut parler à son parent de sexualité prend de meilleures décisions que celui qui ne peut pas.</p>
+    </div>
+
+    <div class="quotes-title">Citations marquantes</div>
+    <blockquote>«&nbsp;L'ado qui peut vous parler de sexualité prend de meilleures décisions que celui qui ne peut pas. Votre malaise à aborder le sujet laisse votre enfant naviguer seul dans des eaux troubles.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Tout dans votre voix qui suggère que vous trouvez quelque chose de dégoutant ou répugnant fermera votre ado. Et vous ne voulez pas que ça arrive.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Comment votre ado choisit d'exprimer sa sexualité est son affaire. Nous l'aimons et voulons juste nous assurer que les décisions qu'il prend maintenant seront des décisions dont il se sentira bien plus tard.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Reconnaissez votre inconfort et assumez-le. Vous pourriez commencer ainsi : «&nbsp;C'est difficile pour moi d'aborder ce sujet, et je suis sûr que c'est difficile pour toi aussi d'entendre ce que j'ai à dire. Mais c'est important.&nbsp;»&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Les adolescents qui se sentent jugés dans leurs questions sur la sexualité apprennent vite à aller chercher leurs réponses ailleurs — avec des sources souvent bien moins fiables.&nbsp;»</blockquote>
+
+    <div class="quotes-title">Top 5 idées clés</div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-header">1. Le silence parental sur la sexualité n'est pas de la prudence — c'est de l'abandon</div>
+        <div class="idea-body">Les ados qui n'ont pas pu parler de sexualité avec leurs parents ne choisissent pas l'abstinence. Ils font leurs apprentissages via leurs pairs ou internet, avec des informations souvent fausses ou dangereuses.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Matteo a 13 ans — les conversations sur la sexualité doivent commencer maintenant si ce n'est pas déjà fait. Pas un grand discours, mais des petites conversations régulières, normalisées. Commence par la biologie, et laisse les questions de Matteo guider la profondeur.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">2. L'orientation sexuelle : la porte ouverte vaut mieux que la question directe</div>
+        <div class="idea-body">Un parent qui a posé des questions ouvertes sur l'amour et les relations, sans supposer l'hétérosexualité, est un parent à qui un ado peut venir si son orientation le surprend lui-même.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Dans tes conversations avec tes fils, utilise un langage non-binaire de genre quand tu parles de leurs futures relations. «&nbsp;Si un jour tu aimes quelqu'un...&nbsp;» plutôt que «&nbsp;quand tu auras une blonde&nbsp;». C'est une porte ouverte en tout temps.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">3. La pression sexuelle entre pairs s'anticipe, pas seulement se gère</div>
+        <div class="idea-body">Les ados qui ont des phrases toutes prêtes pour refuser une pression sexuelle sont mieux équipés que ceux à qui on a juste dit «&nbsp;dis non&nbsp;». Le role-play de scénarios est sous-utilisé par les parents.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Avec Matteo, qui aime les défis intellectuels, tu peux cadrer ça comme un exercice stratégique : «&nbsp;Qu'est-ce que tu dirais si un ami te mettait dans cette situation ?&nbsp;» C'est de la préparation, pas un sermon.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">4. L'habit ne fait pas l'intention — mais il faut quand même en parler</div>
+        <div class="idea-body">Geltman reconnaît que la façon de s'habiller d'un ado n'est pas une invitation sexuelle — mais elle affirme aussi que les parents ont le droit d'avoir des standards sans que ça soit un jugement moral sur l'enfant.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Si un jour Felix ou Matteo revient avec une façon de s'habiller qui te surprend, aborde ça avec curiosité avant le jugement. «&nbsp;C'est un nouveau style — comment t'es arrivé à ça ?&nbsp;» Tu apprends quelque chose sur eux avant de décider s'il y a une conversation à avoir.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">5. Trouver son ado dans une situation compromettante se gère avec calme, pas avec panique</div>
+        <div class="idea-body">La réaction du parent dans le moment — plus que la situation elle-même — détermine si l'ado pourra ou non venir te parler la prochaine fois. La panique ferme la porte. La réponse calme la maintient ouverte.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Prépare-toi mentalement à l'avance à cette éventualité. Décide maintenant comment tu veux réagir — ça te donnera un ancre dans le moment. La règle de Geltman : prends 24h avant d'avoir la grande conversation.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 7 -->
+  <div class="section-title" id="part7">
+    <span class="part-label">Partie 7 · Chapitres 47–51</span>
+    Sextos — La permanence de l'impulsion
+  </div>
+  <div class="chapter-block">
+    <div class="chapter-summary">
+      <p>Une section que les parents préfèrent ignorer jusqu'à ce que le problème arrive. Geltman démontre que le sextage est devenu un phénomène courant chez les ados — souvent motivé non par la sexualité mais par le désir de connexion et de validation. Les conséquences légales (ch. 51) sont réelles : un ado peut être considéré comme délinquant sexuel pour avoir transmis une photo. Les photos «&nbsp;privées&nbsp;» deviennent publiques (ch. 48), le harcèlement sexuel via photo n'est pas toujours un choix (ch. 49), et l'attrait du live-streaming (ch. 50) est sous-estimé.</p>
+    </div>
+
+    <div class="quotes-title">Citations marquantes</div>
+    <blockquote>«&nbsp;Une photo envoyée dans un moment d'impulsivité romantique peut devenir une arme entre les mains d'un ex blessé. Ce que les ados ne comprennent pas, c'est que le moment passe mais la photo reste.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Envoyer une photo sexy n'est pas toujours un choix — parfois c'est le résultat d'une pression intense et répétée. Le harcèlement sexuel peut se produire entièrement par texto.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Dans certains États et provinces, un ado qui transmet une photo intime d'un autre mineur peut être accusé de possession ou de distribution de pornographie juvénile. Les conséquences légales peuvent changer une vie.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;La règle est simple : si tu ne veux pas que ta mère, ton prof ou le directeur de l'école voie cette image, ne l'envoie pas. Jamais.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;L'attrait d'un public en direct est puissant pour les ados qui cherchent validation et connexion. Les parents doivent comprendre le «&nbsp;pourquoi&nbsp;» avant de pouvoir parler du «&nbsp;danger&nbsp;».&nbsp;»</blockquote>
+
+    <div class="quotes-title">Top 5 idées clés</div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-header">1. Le numérique est permanent — le cerveau ado ne comprend pas ça</div>
+        <div class="idea-body">Le cerveau adolescent vit dans le moment présent. L'idée qu'une photo, un texto ou un post existera encore dans 5, 10 ou 20 ans ne s'enregistre pas intuitivement. Le parent doit nommer cette réalité explicitement.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Avec Matteo, qui est analytique, utilise des exemples réels (journalistes, athlètes) dont des photos ou posts old-internet ont resurgi. Il comprendra l'argument logique. Avec Felix, parle de l'impact sur ses amitiés — c'est ce qui l'atteint le plus.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">2. Les conséquences légales du sextage sont réelles et méconnues</div>
+        <div class="idea-body">Au Canada, transmettre ou posséder une image intime d'un mineur est illégal, même si l'émetteur est lui-même mineur. Cette réalité légale doit être connue des ados avant d'être dans la situation.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Présente-ça factuellement, pas comme une menace : «&nbsp;Savais-tu que légalement, si quelqu'un t'envoie une photo intime d'une personne de ton âge et que tu la reçois, tu peux avoir des problèmes légaux même si tu n'as rien demandé ?&nbsp;» C'est de l'information, pas de la peur.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">3. La pression numérique est une forme de harcèlement — nomme-la</div>
+        <div class="idea-body">Les ados ne reconnaissent pas toujours la pression répétée d'envoyer une photo comme du harcèlement. Enseigner le vocabulaire («&nbsp;c'est du harcèlement&nbsp;») leur donne la capacité de nommer et d'agir.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Avec Felix, très social et désireux de plaire à ses amis, c'est particulièrement important. Dis-lui explicitement qu'il peut toujours te contacter s'il se sent pressé par quelqu'un numériquement, et que tu ne seras pas fâché contre lui.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">4. La règle «&nbsp;Est-ce que tu veux que maman/papa voie ça ?&nbsp;» est simple et efficace</div>
+        <div class="idea-body">Geltman offre un test de décision rapide pour les ados : si tu ne veux pas que quelqu'un d'important dans ta vie réelle voie ce contenu, ne l'envoie pas. Cette heuristique fonctionne mieux qu'une liste de règles complexes.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Partage cette règle simple avec tes fils : «&nbsp;Avant d'envoyer quelque chose en ligne, imagine que tu me le montres. Si tu ne pourrais pas, ne l'envoie pas.&nbsp;» Court, mémorisable, pas moralisateur.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">5. Les ados cherchent validation, pas sexe — comprendre le «&nbsp;pourquoi&nbsp;» change la conversation</div>
+        <div class="idea-body">La majorité des sextos sont motivés par le désir de connexion et de validation, pas par la sexualité elle-même. Répondre à ce besoin de reconnaissance d'une autre façon est plus efficace qu'interdire le comportement.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Si un jour tu découvres quelque chose de préoccupant numériquement, commence par demander ce que ton fils cherchait à ressentir ou à obtenir. Tu découvriras quelque chose de plus important que l'incident lui-même.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 8 -->
+  <div class="section-title" id="part8">
+    <span class="part-label">Partie 8 · Chapitres 52–58</span>
+    Cellulaires — L'écran comme soin émotionnel
+  </div>
+  <div class="chapter-block">
+    <div class="chapter-summary">
+      <p>Le cellulaire n'est pas juste un outil — pour les ados, c'est un prolongement de leur vie sociale et émotionnelle. Geltman aborde la question de la surveillance (ch. 52), l'addiction au cellulaire (ch. 53), l'excès de textos (ch. 54), la conduite distraite (ch. 55), la perte de sommeil (ch. 56) et la décision d'acheter un smartphone (ch. 57). Le point central : le cellulaire répond à des besoins émotionnels réels chez l'ado (connexion, appartenance, non-solitude). L'interdire sans comprendre le besoin derrière produit de la résistance, pas du changement.</p>
+    </div>
+
+    <div class="quotes-title">Citations marquantes</div>
+    <blockquote>«&nbsp;«&nbsp;Quand je texte quelqu'un, je ne me sens pas seul.&nbsp;» «&nbsp;Quand je n'ai pas mon téléphone, je me sens incomplet.&nbsp;» Ce sont les mots des ados eux-mêmes. Nous avons créé des monstres du texto qui avancent dans l'âge adulte terrifiés d'être seuls.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Utiliser ces appareils demande un cerveau actif. Pour dormir, vous avez besoin d'un cerveau calme. C'est un message contradictoire que vous envoyez à votre cerveau.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Il n'y a aucune corrélation entre l'expérience de conduite et les accidents liés à l'utilisation du cellulaire. En fait, des recherches récentes montrent que les adultes textent davantage en conduisant que les ados.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Quand vos enfants sont dans la voiture pendant que vous conduisez, dites à voix haute : «&nbsp;Éteins mon téléphone pour moi. Je ne veux pas parler en conduisant.&nbsp;» Je veux que vos enfants entendent ces mots pour qu'ils se logent dans ces cerveaux.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Ces appareils vous appartiennent. Si votre ado «&nbsp;choisit&nbsp;» de se battre là-dessus, alors vous pouvez «&nbsp;choisir&nbsp;» de les enlever complètement.&nbsp;»</blockquote>
+
+    <div class="quotes-title">Top 5 idées clés</div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-header">1. Le texte nocturne est une fuite de la solitude, pas de la désobéissance</div>
+        <div class="idea-body">Les ados qui textent après minuit le font parce qu'ils ont peur d'être seuls avec leurs pensées. C'est un signal émotionnel autant qu'un problème comportemental.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Établis une règle simple et non négociable : les téléphones chargent dans la cuisine ou le couloir la nuit, pas dans les chambres. Cadre ça sur le sommeil et la santé du cerveau, pas sur la confiance. C'est une règle de santé, pas de surveillance.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">2. L'écran avant le sommeil sabote le cerveau adolescent</div>
+        <div class="idea-body">Les écrans activent le cerveau au moment où il devrait se calmer. Enlever les écrans 30-60 minutes avant le coucher améliore la qualité du sommeil, et donc de l'humeur, la motivation et le comportement.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Installe une heure de «&nbsp;coucher des écrans&nbsp;» à la maison — applicable à toi aussi, ce qui donne l'exemple. Matteo, impatient, résistera. Felix, social, sera surtout difficile avec le dernier texto. La règle doit être non-négociable pour être efficace.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">3. Surveiller le téléphone de son ado : une décision d'âge et de contexte</div>
+        <div class="idea-body">Geltman ne donne pas de réponse unique sur la surveillance — elle dépend de l'âge, de l'historique de confiance et du contexte. Mais elle est claire : surveiller sans transparence brise la confiance plus qu'il ne la protège.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Si tu surveilles (et à 11-13 ans, c'est raisonnable), sois transparent sur le fait que tu surveilles. «&nbsp;Je regarde les applications installées une fois par mois, c'est ma responsabilité comme parent.&nbsp;» La surprise découverte crée une crise de confiance. La transparence évite ça.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">4. Modèle ta propre relation au cellulaire — les ados copient, pas les mots</div>
+        <div class="idea-body">Geltman est directe : si tu textes en conduisant, tes fils texteront en conduisant. Si tu consultes ton téléphone à table, ils penseront que c'est normal. Ton comportement est la leçon la plus puissante.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Commence par toi-même. Si tu veux que Matteo et Felix aient une relation saine aux écrans, nommer ce que tu fais à voix haute : «&nbsp;Je mets mon téléphone en mode silence pendant le dîner.&nbsp;» Les petits gestes visibles ont plus d'impact que les grandes règles.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">5. L'addiction au cellulaire nourrit la peur de la solitude — la vraie solution est ailleurs</div>
+        <div class="idea-body">Retirer le téléphone sans traiter le besoin sous-jacent ne règle rien. Les ados qui tolèrent bien la solitude, qui ont des activités porteuses de sens, dépendent moins de l'écran pour leur régulation émotionnelle.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          La vraie protection contre l'addiction aux écrans pour tes fils, c'est les activités où ils sont compétents et engagés : échecs pour Felix, guitare pour Matteo. Investis dans ces zones — elles seront une ancre émotionnelle naturelle contre le vide que comble autrement l'écran.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 9 -->
+  <div class="section-title" id="part9">
+    <span class="part-label">Partie 9 · Chapitres 59–68</span>
+    Réseaux sociaux — La vitrine permanente
+  </div>
+  <div class="chapter-block">
+    <div class="chapter-summary">
+      <p>Les réseaux sociaux amplifient tout : le meilleur de la socialisation adolescente mais aussi ses pires dérives. Geltman couvre le posting trop personnel (ch. 59), les «&nbsp;friending&nbsp;» stratégiques (ch. 60), le partage de mots de passe (ch. 61), le lien dangereux entre posts d'alcool et problèmes de consommation (ch. 62), les nouvelles plateformes risquées (ch. 63), les posts qui peuvent mener à la prison (ch. 64), l'usurpation d'identité entre ados (ch. 65), les mots de passe comme signe d'amour romantique (ch. 66), le nettoyage des profils pour l'emploi et les universités (ch. 67) et le cyberbullying (ch. 68).</p>
+    </div>
+
+    <div class="quotes-title">Citations marquantes</div>
+    <blockquote>«&nbsp;Tout ce que tu postes en ligne crée une image publique de toi. Les employeurs et les universités regardent maintenant systématiquement les profils des candidats. Ce que tu as posté à 15 ans peut te suivre à 25 ans.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Partager son mot de passe avec son petit ami ou sa petite amie peut sembler un acte d'amour. Ce que les ados ne voient pas, c'est que leurs amis ont confié à leur compte des informations privées sur leur propre vie.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Les menaces postées en ligne sont traitées comme des menaces réelles par les forces de l'ordre. Ce que les ados publient comme une blague peut les mener à une arrestation.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Le cyberbullying cause une douleur réelle. Ne pas voir la réaction physique de la victime ne protège pas le bully — et n'atténue pas la souffrance de la cible.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Les ados qui postent des photos d'alcool sur les réseaux sociaux ont statistiquement une probabilité plus élevée d'avoir un problème de consommation. Ce n'est pas une coïncidence.&nbsp;»</blockquote>
+
+    <div class="quotes-title">Top 5 idées clés</div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-header">1. L'internet est permanent — le cerveau ado ne ressent pas cette permanence</div>
+        <div class="idea-body">L'impulsivité adolescente est biologiquement incompatible avec la compréhension des conséquences à long terme d'un post. Les parents doivent combler ce manque en nommant la permanence explicitement et régulièrement.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Avec Matteo, qui pense à long terme quand tu l'y invites, la conversation sur les posts peut être menée comme une question de stratégie personnelle : «&nbsp;Comment tu veux être vu dans 10 ans ?&nbsp;» C'est une conversation sur l'identité, pas sur les règles.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">2. Les menaces en ligne sont prises au sérieux par les autorités — même entre amis</div>
+        <div class="idea-body">Ce que les ados considèrent comme une blague ou de l'humour noir peut être traité comme une menace criminelle réelle. Les conséquences légales de posts irréfléchis peuvent être dévastatrices.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Utilise des exemples concrets d'ados au Québec ou au Canada qui ont eu des problèmes légaux à cause de posts. Pas pour faire peur — pour rendre concret ce que le cerveau ado ne peut pas imaginer spontanément.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">3. Les mots de passe partagés trahissent plus que son propre propriétaire</div>
+        <div class="idea-body">Partager son mot de passe avec un amoureux expose les confidences de tous les amis qui ont partagé des informations dans ce compte. C'est un enjeu de loyauté, pas juste de vie privée personnelle.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Encadre la règle du mot de passe autour de la loyauté envers ses amis, pas autour de ta surveillance. «&nbsp;Tes amis te confient des choses. Si tu partages ton mot de passe, tu partages leurs secrets aussi.&nbsp;» C'est un argument que les deux garçons peuvent comprendre et respecter.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">4. Nettoyer son profil est une compétence professionnelle à enseigner tôt</div>
+        <div class="idea-body">Les universités et employeurs scrutent les profils publics des candidats. Aider son ado à comprendre sa «&nbsp;marque personnelle numérique&nbsp;» dès le secondaire est une préparation concrète à l'avenir.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Avec Matteo, qui approche l'âge des compétitions et des candidatures, faire un «&nbsp;audit&nbsp;» de son profil ensemble peut être une bonne activité père-fils — framing : «&nbsp;On va s'assurer que ce qu'on voit de toi en ligne te représente bien.&nbsp;»
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">5. Le cyberbullying est du bullying — le écran ne l'atténue pas</div>
+        <div class="idea-body">La distance physique du bullying numérique ne réduit pas la souffrance de la cible. Les parents qui minimisent («&nbsp;c'est juste des mots sur un écran&nbsp;») ratent l'ampleur de l'impact réel.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Felix, hyper-social, est à la fois plus vulnérable au cyberbullying et plus susceptible d'y participer sans réaliser l'impact. Parle-lui régulièrement de comment il se sent dans son groupe en ligne — pas pour surveiller, mais pour maintenir la connexion.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 10 -->
+  <div class="section-title" id="part10">
+    <span class="part-label">Partie 10 · Chapitres 69–80</span>
+    Style parental — L'art de garder le lien
+  </div>
+  <div class="chapter-block">
+    <div class="chapter-summary">
+      <p>La partie la plus pratique et la plus importante du livre. Geltman offre une feuille de route complète pour le style parental avec les ados : 4 types de conflits et leurs stratégies (ch. 69), pourquoi les lectures ne fonctionnent pas (ch. 70), la gestion du couvre-feu (ch. 71), comment poser moins de questions pour en savoir plus (ch. 72), l'amour qui responsabilise vs. l'amour qui sauve (ch. 73), les privilèges adaptés à l'âge (ch. 74), les conséquences qui ont un sens (ch. 75), la gestion de l'argent (ch. 76), créer la connexion (ch. 77), les règles co-construites (ch. 78), la coparentalité sans «&nbsp;bon/mauvais flic&nbsp;» (ch. 79) et trouver la joie avec son ado (ch. 80).</p>
+    </div>
+
+    <div class="quotes-title">Citations marquantes</div>
+    <blockquote>«&nbsp;Argumenter sert un but développemental chez l'adolescent. Pour un ado qui apprend à se séparer de ses parents et à penser par lui-même, se disputer avec ses parents est une façon de crier depuis les toits : «&nbsp;JE NE SUIS PAS VOUS !&nbsp;»&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Quand vous lui interdisez quelque chose de sûr ou de raisonnable et qu'il est en désaccord, pas besoin de défense. Après avoir empathisé avec sa déception, haussez les épaules. Ce mouvement est la ponctuation finale de votre phrase.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Demandez moins, obtenez plus. Plus vous posez de questions, moins vous obtenez d'informations. C'est un cycle vicieux où personne ne gagne.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Il est irréaliste d'espérer qu'une conséquence seule changera le comportement de votre ado ! Les conséquences sont importantes, mais elles ne sont efficaces que lorsqu'elles sont couplées à un apprentissage.&nbsp;»</blockquote>
+    <blockquote>«&nbsp;Votre ado devient une toute nouvelle personne. C'est un processus passionnant et merveilleux, et vous voulez en faire partie.&nbsp;»</blockquote>
+
+    <div class="quotes-title">Top 5 idées clés</div>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <div class="idea-header">1. Quatre types de conflits — quatre stratégies différentes</div>
+        <div class="idea-body">Sarcasme (répondre avec humour, pas défense), refus non-négociable (empathie + haussement d'épaules + silence), conflit qui dérape (toi qui quitte la pièce, puis écoute), et dépassement de ligne (conséquence relationnelle, pas punition immédiate).</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Avec Matteo intense et impatient, identifier quel TYPE de conflit est en cours change tout. Si c'est du sarcasme, pas besoin de te défendre. Si c'est une ligne franchie (langage abusif), la conséquence relationnelle — ne pas rendre un service le lendemain — est plus puissante qu'une punition immédiate.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">2. Les lectures ne fonctionnent pas — une phrase, puis silence</div>
+        <div class="idea-body">Quand un parent lance un discours après un «&nbsp;non&nbsp;», l'ado a arrêté d'écouter à la troisième phrase. Le silence après une décision claire est plus puissant que l'argument.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Pratique la règle «&nbsp;une phrase et un haussement d'épaules&nbsp;». Si Matteo ou Felix conteste une décision, ta réponse : «&nbsp;Je comprends que tu es déçu, et ma décision reste la même.&nbsp;» Puis silence. Chaque argument de ta part est du carburant pour leur résistance.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">3. Les règles co-construites sont respectées — les règles dictées sont contournées</div>
+        <div class="idea-body">Inviter l'ado dans la création des règles et de leurs conséquences produit une conformité beaucoup plus élevée. Pas parce que l'ado est «&nbsp;gentil&nbsp;», mais parce qu'il s'est engagé sur quelque chose qui lui appartient.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Choisis un sujet de règle actif chez toi (couvre-feu, écrans, tâches) et propose à chaque garçon de co-construire la règle et la conséquence. Le processus est aussi important que le résultat — et tu seras surpris de la raisonnabilité qu'ils montrent.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">4. Demander moins, observer plus — la connexion vient latéralement</div>
+        <div class="idea-body">Les meilleures conversations avec les ados ne commencent pas par des questions directes. Elles commencent par des activités partagées, des observations non-intrusives, des phrases du type «&nbsp;tu sembles pensif&nbsp;» plutôt que «&nbsp;qu'est-ce qui se passe ?&nbsp;»</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Avec tes fils, investis dans des activités côte à côte — regarder un match, cuisiner ensemble, faire du vélo — sans objectif de grande conversation. Les vraies conversations arrivent dans ces moments de côte à côte, pas face à face. Ton rôle : être là, pas interroger.
+        </div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-header">5. Trouver la joie dans l'ado qu'il est, pas celui que tu espérais</div>
+        <div class="idea-body">Geltman termine le livre avec un rappel : voir son ado dans ses forces, pas ses lacunes, est à la fois le plus difficile et le plus important travail du parent d'ado. La déception perçue devient une prophétie auto-réalisatrice.</div>
+        <div class="idea-practice">
+          <strong>En pratique pour Yvé</strong>
+          Chaque semaine, identifie une chose concrète que tu admires chez chacun de tes fils et dis-le-leur. Pas en réponse à une performance, mais juste comme observation : «&nbsp;J'ai remarqué comme tu prends soin de tes amis.&nbsp;» Ou : «&nbsp;Ta persévérance aux échecs me rend fier.&nbsp;» Ces petits miroirs deviennent leur identité.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 2 — TOP 10 ===== -->
+  <div class="top10-section" id="top10">
+    <h2>Section 2 — Les 10 idées les plus importantes du livre</h2>
+
+    <div class="top10-item">
+      <div class="top10-num">1</div>
+      <div class="top10-content">
+        <strong>Le cerveau ado n'est pas cassé — il est en construction</strong>
+        <p>L'impulsivité, l'égocentrisme et le manque de jugement à long terme sont des caractéristiques neurologiques normales de l'adolescence, pas des défauts de caractère. Comprendre ça change radicalement comment Yvé peut réagir quand Matteo perd patience ou que Felix prend une mauvaise décision sociale — c'est de la biologie, pas de la mauvaise volonté.</p>
+      </div>
+    </div>
+
+    <div class="top10-item">
+      <div class="top10-num">2</div>
+      <div class="top10-content">
+        <strong>L'empathie avant la discipline — toujours</strong>
+        <p>Chaque stratégie de Geltman commence par reconnaître la perspective de l'ado avant de corriger. «&nbsp;Je comprends que tu es déçu&nbsp;» ouvre la voie à une vraie communication. «&nbsp;Tu es irresponsable&nbsp;» la ferme. Cette séquence — empathie, puis correction — est le fil conducteur de tout le livre. Pour Yvé, cela signifie apprendre à nommer l'émotion de ses fils avant de répondre à leur comportement.</p>
+      </div>
+    </div>
+
+    <div class="top10-item">
+      <div class="top10-num">3</div>
+      <div class="top10-content">
+        <strong>Partager le contrôle produit plus d'obéissance que l'imposer</strong>
+        <p>Les règles dictées d'en haut créent des experts du contournement. Les règles co-construites créent des ados qui s'engagent envers leurs propres mots. Pour un père célibataire à Mirabel sans partenaire pour porter le poids des décisions, cette approche collaborative allège aussi la charge émotionnelle — les garçons deviennent partenaires, pas adversaires.</p>
+      </div>
+    </div>
+
+    <div class="top10-item">
+      <div class="top10-num">4</div>
+      <div class="top10-content">
+        <strong>Répétition, pas discours unique — pour tous les sujets importants</strong>
+        <p>Alcool, sexe, réseaux sociaux, conduite : une conversation unique ne laisse pas de trace dans un cerveau adolescent. Ce sont des conversations répétées, courtes, naturelles et non-moralisatrices qui construisent les circuits de précaution. Pour Yvé, qui a tendance à démarrer fort puis à décrocher, la clé est de bâtir ces conversations en routine légère, pas en événements.</p>
+      </div>
+    </div>
+
+    <div class="top10-item">
+      <div class="top10-num">5</div>
+      <div class="top10-content">
+        <strong>La conséquence seule ne change pas le comportement — il faut la paire apprentissage</strong>
+        <p>Punir sans explorer ce qui a mené à l'erreur et préparer à la prochaine situation similaire est une occasion ratée. L'ado apprend quand il est aidé à comprendre pourquoi et à planifier mieux. Pour Matteo qui lutte avec l'autocontrôle, cette approche est particulièrement pertinente : chaque erreur est une opportunité de construire un muscle, pas juste de subir une sanction.</p>
+      </div>
+    </div>
+
+    <div class="top10-item">
+      <div class="top10-num">6</div>
+      <div class="top10-content">
+        <strong>Le silence et l'observation valent mieux que l'interrogation</strong>
+        <p>Moins de questions = plus d'information. L'approche contre-intuitive de Geltman — observe, fais des remarques, crée des moments côte à côte — produit plus de confiance et d'ouverture que les check-lists parentales. Pour Yvé, dont les fils ont des personnalités différentes (Matteo qui retient, Felix qui déborde), deux approches distinctes s'imposent.</p>
+      </div>
+    </div>
+
+    <div class="top10-item">
+      <div class="top10-num">7</div>
+      <div class="top10-content">
+        <strong>La surprotection est la principale menace à l'indépendance</strong>
+        <p>Résoudre les problèmes de ses fils, orchestrer leurs succès scolaires, les sauver de leurs conséquences : chaque intervention «&nbsp;de trop&nbsp;» vole une opportunité de développer la compétence interne. Yvé veut que ses fils apprennent la résilience — mais la résilience ne se développe que dans l'adversité traversée, pas contournée par le parent.</p>
+      </div>
+    </div>
+
+    <div class="top10-item">
+      <div class="top10-num">8</div>
+      <div class="top10-content">
+        <strong>Le numérique est permanent — le cerveau ado ne ressent pas cette permanence</strong>
+        <p>L'un des plus grands écarts cognitifs entre parents et ados aujourd'hui. Ce que Matteo et Felix publient, envoient ou sauvegardent numériquement peut exister dans 10, 20 ou 30 ans. Les conversations régulières sur «&nbsp;la trace numérique&nbsp;» doivent commencer maintenant, avant les incidents, et être répétées.</p>
+      </div>
+    </div>
+
+    <div class="top10-item">
+      <div class="top10-num">9</div>
+      <div class="top10-content">
+        <strong>La relation est l'outil de prévention le plus efficace</strong>
+        <p>Un ado qui peut parler à son parent prend de meilleures décisions sur l'alcool, le sexe, les réseaux sociaux et les drogues. Investir dans la qualité de la relation — pas juste la discipline — est la meilleure stratégie de prévention longue durée. Pour Yvé, maintenir le lien à travers la séparation et les tensions quotidiennes est un travail actif qui paie sur le long terme.</p>
+      </div>
+    </div>
+
+    <div class="top10-item">
+      <div class="top10-num">10</div>
+      <div class="top10-content">
+        <strong>Voir l'ado qu'il est — pas celui qu'on espérait</strong>
+        <p>Chaque ado traverse l'adolescence différemment. Felix et Matteo ne seront pas les fils qu'Yvé avait imaginés quand ils avaient 6 ans — ils seront eux-mêmes, en construction. Accepter et célébrer ce qu'ils sont réellement, pas les pousser vers ce que le parent voudrait qu'ils soient, est le chemin vers une relation authentique et durable. Et c'est aussi, selon Geltman, ce qui leur permet de devenir véritablement eux-mêmes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 3 — FELIX ===== -->
+  <div class="felix-section" id="felix">
+    <h2>Section 3 — Ce livre pour Felix, 11 ans</h2>
+    <div class="subtitle">Créatif · Super social · Échecs · Ski de fond · Vélo de montagne</div>
+
+    <p style="margin-bottom: 20px;">Felix, toi tu es quelqu'un qui aime vraiment les gens. Les amis, c'est super important pour toi — et c'est une de tes plus belles forces. Ce livre, dans le fond, c'est un peu un guide pour traverser les prochaines années sans trop de dommages. Voici ce qui te concerne directement.</p>
+
+    <div class="action-box">
+      <h4>Sur les amis et la pression de groupe</h4>
+      <p>Des fois, tu vas avoir envie de faire des choses juste parce que tes amis les font — porter quelque chose, regarder quelque chose, envoyer quelque chose. C'est normal à ton âge, tout le monde vit ça. Mais voici un truc utile : si quelque chose te fait hésiter une demi-seconde, c'est cette demi-seconde-là qui compte. Écoute-la.</p>
+    </div>
+
+    <div class="action-box">
+      <h4>Sur les conflits avec les amis</h4>
+      <p>Quand tu te disputes avec un ami, ton cerveau à 11 ans ressent ça presque comme une douleur physique — c'est réel, c'est prouvé par la science. Ce n'est pas un drame que tu exagères. Mais en même temps, la plupart de ces disputes se règlent d'elles-mêmes si tu laisses passer quelques heures avant de réagir. Aux échecs, tu sais attendre le bon moment avant de jouer ton coup — essaie ça avec tes conflits aussi.</p>
+    </div>
+
+    <div class="action-box">
+      <h4>Sur les écrans et le téléphone</h4>
+      <p>Tu sais comment aux échecs, si tu joues trop longtemps tu commences à faire des erreurs parce que ton cerveau est fatigué ? L'écran avant de dormir, c'est exactement pareil — ça empêche ton cerveau de se recharger. Pas parce que c'est une règle, mais parce que la science dit que ça coupe la qualité du sommeil. Et toi, tu as besoin d'énergie pour être au top avec tes amis et sur les pistes de ski de fond.</p>
+    </div>
+
+    <div class="action-box">
+      <h4>Sur ce que tu postes en ligne</h4>
+      <p>Voilà une règle simple qui marche vraiment : avant d'envoyer ou de poster quelque chose, imagine que ton père, ton prof ou le directeur de ton école le voient. Si ça te ferait avoir honte ou t'inquiéter, ne le fais pas. Pas parce que c'est interdit, mais parce que sur internet, rien ne disparaît vraiment.</p>
+    </div>
+
+    <div class="action-box">
+      <h4>Sur les grandes émotions</h4>
+      <p>Tu es quelqu'un qui ressent les choses fort — la joie, la déception, l'excitation. C'est une qualité rare. Mais ça veut aussi dire que des fois, dans un moment de grande émotion, tu pourrais faire ou dire quelque chose que tu regretteras. La prochaine fois que tu sens que tu vas exploser — de joie, de colère, de tristesse — prends 5 respirations avant d'agir. C'est petit mais ça change tout.</p>
+    </div>
+
+    <div class="action-box">
+      <h4>Sur parler à ton père</h4>
+      <p>Tu n'as pas à tout lui dire, et c'est correct. Mais si tu vis quelque chose de difficile — un ami qui t'a blessé, une situation qui te rend mal à l'aise — ton père peut être une ressource utile, surtout si tu commences la conversation toi-même. Tu n'as pas besoin d'attendre qu'il te pose des questions.</p>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 4 — MATTEO ===== -->
+  <div class="matteo-section" id="matteo">
+    <h2>Section 4 — Ce livre pour Matteo, 13 ans</h2>
+    <div class="subtitle">Analytique · Lecteur vorace · Guitare · Impatient · Lutte avec l'autocontrôle</div>
+
+    <p style="margin-bottom: 20px;">Matteo, ce livre parle directement à ta situation. À 13 ans, ton cerveau est littéralement en train de se reconfigurer — et ça explique beaucoup de choses que tu ressens probablement. Voici les insights qui s'appliquent directement à toi.</p>
+
+    <div class="action-box">
+      <h4>Sur l'impulsivité et l'autocontrôle — la vraie explication neuroscientifique</h4>
+      <p>Ton cortex préfrontal — la partie du cerveau qui gère le jugement, la planification et l'autocontrôle — n'est pas complètement développé avant 25 ans. Ce n'est pas une excuse pour tout, mais c'est une information utile. Ça explique pourquoi tu peux être brillant dans une analyse intellectuelle et perdre complètement le contrôle dans une frustration une heure plus tard. Ce sont deux systèmes différents dans ton cerveau. La bonne nouvelle : comme la guitare, l'autocontrôle s'améliore avec la pratique délibérée. Chaque fois que tu choisis de ne pas réagir immédiatement, tu renforces ce muscle.</p>
+    </div>
+
+    <div class="action-box">
+      <h4>Sur les conflits avec ton père — le regard neutre</h4>
+      <p>Geltman explique que les ados se disputent avec leurs parents pour une raison précise : vous êtes en train de vous séparer psychologiquement, de construire votre propre identité distincte. Chaque dispute dit en quelque sorte «&nbsp;je ne suis pas toi — je pense par moi-même.&nbsp;» C'est normal. Mais il y a une différence entre une dispute qui exprime ça et une qui franchit les limites du respect. La ligne n'est pas dans le désaccord — c'est dans le comment.</p>
+    </div>
+
+    <div class="action-box">
+      <h4>Sur la tentation et les situations de groupe</h4>
+      <p>Voici quelque chose d'honnête : quand t'es dans un groupe, avec des amis, et que le moment est excitant, ton cerveau est biologiquement moins capable de peser les conséquences. Ce n'est pas de la faiblesse — c'est de la chimie cérébrale. La stratégie qui fonctionne : décide à l'avance de tes limites, avant d'être dans la situation. Un musicien qui improvise connaît ses gammes avant d'être sur scène — l'improvisation vient de la préparation, pas de l'improvisation pure.</p>
+    </div>
+
+    <div class="action-box">
+      <h4>Sur l'indépendance et les responsabilités</h4>
+      <p>Geltman montre clairement que les jeunes adultes les plus compétents sont ceux dont les parents les ont laissé faire des erreurs et en tirer des leçons tôt, pas ceux à qui tout a été résolu. À 13 ans, tu es à l'âge parfait pour commencer à gérer certaines choses complètement toi-même — tes devoirs, ton organisation, certains de tes choix. Ce que tu gères maintenant, tu le géreras mieux dans 5 ans. Ce qu'on gère à ta place, tu devras l'apprendre douloureusement plus tard.</p>
+    </div>
+
+    <div class="action-box">
+      <h4>Sur le numérique et la trace permanente</h4>
+      <p>Tu penses probablement à long terme mieux que la plupart de tes amis. Applique cette pensée à ce que tu fais en ligne. Un post, un message, une photo : dans 10 ans, tu pourrais te retrouver à un entretien d'embauche ou à une candidature pour quelque chose d'important, et cette trace existera encore. La règle que Geltman propose : si tu ne le dirais pas à voix haute devant tes professeurs ou ta famille, ne l'écris pas.</p>
+    </div>
+
+    <div class="action-box">
+      <h4>Sur la relation avec ton père</h4>
+      <p>Geltman dit quelque chose d'important pour les garçons : les fils dont les pères partagent leurs propres vulnérabilités ont plus de facilité à parler. Si ton père te dit parfois quelque chose de difficile sur sa propre vie, ce n'est pas un signe de faiblesse — c'est une invitation. Et tu n'as pas à avoir tout résolu dans ta tête avant d'en parler. Parler aide à résoudre, pas seulement parler après avoir résolu.</p>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  Résumé produit par Sage · PKA AI Team · Livre : <em>A Survival Guide to Parenting Teens</em> · Joani Geltman · 2022
+</footer>
+
+</body>
+</html>

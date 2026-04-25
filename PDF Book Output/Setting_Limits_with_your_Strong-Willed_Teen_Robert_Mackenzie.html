@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting Limits with Your Strong-Willed Teen - Robert MacKenzie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #ffffff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .header .author {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .header .thesis {
+            font-size: 1.1em;
+            font-style: italic;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        main {
+            padding: 0 40px 40px 40px;
+        }
+
+        section {
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: none;
+            page-break-inside: avoid;
+        }
+
+        section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 4px solid #667eea;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.6em;
+            font-weight: 700;
+            margin-top: 28px;
+            margin-bottom: 18px;
+            line-height: 1.2;
+        }
+
+        h4 {
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        blockquote {
+            border-left: 5px solid #667eea;
+            background: #f5f7ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0;
+            color: #555;
+            font-style: italic;
+            box-shadow: none;
+        }
+
+        .key-ideas {
+            background: #f5f7ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0;
+            border-left: 5px solid #667eea;
+            box-shadow: none;
+        }
+
+        .idea {
+            margin-bottom: 20px;
+        }
+
+        .idea-title {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .idea-title::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            margin-right: 8px;
+            font-weight: 700;
+            font-size: 0.8em;
+            line-height: 24px;
+        }
+
+        .implementation {
+            background: #fffaf0;
+            padding: 15px 20px;
+            margin-top: 10px;
+            border-radius: 0;
+            border-left: 4px solid #ff9800;
+            box-shadow: none;
+            font-size: 0.95em;
+            color: #e65100;
+        }
+
+        .implementation::before {
+            content: "💡 Mise en pratique pour vous : ";
+            font-weight: 700;
+            color: #f57c00;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .section-felix {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 30px;
+            border-radius: 0;
+            margin: 30px 0;
+            color: white;
+            text-shadow: none;
+            box-shadow: none;
+        }
+
+        .section-felix h2, .section-felix h3 {
+            color: white;
+            margin-top: 0;
+            text-shadow: none;
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .section-matteo {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            padding: 30px;
+            border-radius: 0;
+            margin: 30px 0;
+            color: #333;
+            text-shadow: none;
+            box-shadow: none;
+        }
+
+        .section-matteo h2, .section-matteo h3 {
+            color: #333;
+            margin-top: 0;
+            text-shadow: none;
+            border-color: rgba(51,51,51,0.2);
+        }
+
+        .citations {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background: #f8f9ff;
+            border-radius: 4px;
+            border-left: 3px solid #667eea;
+        }
+
+        .citation-title {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .citation-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .citation-list li {
+            padding: 5px 0;
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .citation-list li:before {
+            content: "• ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .chapter-section {
+            background: #f5f7ff;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .chapter-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 12px;
+        }
+
+        .chapter-summary {
+            margin-bottom: 15px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .comparison-book {
+            background: #f5f7ff;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .comparison-book-title {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .comparison-subsection {
+            margin: 12px 0 12px 0;
+            padding-left: 15px;
+        }
+
+        .comparison-label {
+            font-weight: 700;
+            color: #667eea;
+            display: inline;
+            margin-right: 8px;
+        }
+
+        .similarities {
+            color: #2e7d32;
+        }
+
+        .distinctions {
+            color: #d32f2f;
+        }
+
+        .for-yve {
+            color: #1976d2;
+        }
+
+        .reframe {
+            background: #fffaf0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0;
+            border-left: 5px solid #ff9800;
+            box-shadow: none;
+        }
+
+        .before-after {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .before, .after {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border-radius: 0;
+        }
+
+        .before {
+            background: #ffe8e8;
+            border-left: 4px solid #d32f2f;
+        }
+
+        .before::before {
+            content: "❌ Avant : ";
+            font-weight: 700;
+            color: #d32f2f;
+            display: block;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+
+        .arrow {
+            text-align: center;
+            font-size: 1.5em;
+            color: #ff9800;
+            font-weight: bold;
+            flex: 0 0 30px;
+        }
+
+        .after {
+            background: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+        }
+
+        .after::before {
+            content: "✅ Après : ";
+            font-weight: 700;
+            color: #2e7d32;
+            display: block;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+
+        .actions-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .actions-list li {
+            padding: 15px;
+            margin-bottom: 12px;
+            background: #f5f7ff;
+            border-left: 4px solid #667eea;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .actions-list li::before {
+            content: "✓ ";
+            font-weight: 700;
+            color: #667eea;
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+
+        .domain-header {
+            font-weight: 700;
+            color: #764ba2;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 35px 0;
+        }
+
+        .toc-section {
+            background: #f5f7ff;
+            padding: 25px;
+            border-radius: 0;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+            box-shadow: none;
+        }
+
+        .toc-section h3 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 10px;
+        }
+
+        .toc-list a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 0;
+            display: inline-block;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            color: #764ba2;
+            background: #f0f2ff;
+            text-decoration: underline;
+        }
+
+        .author-bio {
+            background: #f5f7ff;
+            padding: 25px;
+            border-radius: 0;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+            box-shadow: none;
+        }
+
+        .author-bio h3 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .author-bio p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .author-bio strong {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            section {
+                page-break-inside: avoid;
+            }
+            .reframe, .chapter-section, .comparison-book {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 30px 20px;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .before-after {
+                flex-direction: column;
+            }
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Setting Limits with Your Strong-Willed Teen</h1>
+            <div class="author">Robert J. MacKenzie, Ed.D.</div>
+            <div class="thesis">Comprendre le tempérament inné de votre ado, adapter votre style parental, et utiliser les limites comme outil de croissance personnelle et d'exploration saine.</div>
+        </div>
+
+        <!-- AUTHOR BIO -->
+        <div class="author-bio">
+            <h3>À propos de l'auteur</h3>
+            <p>
+<strong>Robert J. MacKenzie, Ed.D.</strong> est un éducateur et conseiller parental reconnu avec plus de 20 ans d'expérience en travail avec les enfants et les adolescents difficiles. Spécialiste du tempérament et des styles parentaux, MacKenzie a développé une approche révolutionnaire basée sur la compréhension du tempérament inné plutôt que sur la modification du comportement par la seule punition.
+            </p>
+            <p style="margin-top: 12px;">
+Ses autres ouvrages incluent <strong><em>Setting Limits with Your Strong-Willed Child</em></strong> (la version pour enfants plus jeunes), <strong><em>Setting Limits: Raising Responsible, Independent Children with Clear Boundaries</em></strong> (son premier ouvrage fondateur de 1993), et <strong><em>Positive Discipline in the Classroom</em></strong> (en collaboration). MacKenzie enseigne également dans les écoles et offre des ateliers aux parents et éducateurs sur la gestion comportementale efficace et la compréhension du développement adolescent.
+            </p>
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc-section">
+            <h3>📑 Navigation Rapide</h3>
+            <ul class="toc-list">
+                <li><a href="#chapitre-par-chapitre">Section 1 — Résumé Chapitre par Chapitre</a></li>
+                <li><a href="#dix-idees">Section 2 — Les 10 Idées Clés</a></li>
+                <li><a href="#felix">Section 3 — Résumé pour Felix (11 ans)</a></li>
+                <li><a href="#matteo">Section 4 — Résumé pour Matteo (13 ans)</a></li>
+                <li><a href="#comparaison">Section 5 — Comparaison avec d'Autres Livres</a></li>
+                <li><a href="#changements">Section 6 — Ce que ce Livre Change Pour Toi</a></li>
+                <li><a href="#actions">Section 7 — Ce Que Vous Pouvez Faire Différemment</a></li>
+            </ul>
+        </div>
+
+        <!-- SECTION 1: RÉSUMÉ CHAPITRE PAR CHAPITRE -->
+        <section id="chapitre-par-chapitre">
+            <h2>Section 1 — Résumé Chapitre par Chapitre</h2>
+
+            <div class="chapter-section">
+                <div class="chapter-title">Chapitre 1 : La Tempérament comme Blueprint</div>
+                <div class="chapter-summary">
+MacKenzie introduit le concept fondamental : chaque enfant naît avec un tempérament inné — un ensemble de 9 traits de personnalité stables qui façonnent comment il réagit au monde. Ces traits ne sont pas causés par vos actions parentales, mais ils interagissent avec l'environnement. Le défi clé pour les parents : non pas changer le tempérament (impossible), mais le comprendre, le modeler avec sagesse, et l'orienter dans des directions positives.
+                </div>
+
+                <div class="citations">
+                    <div class="citation-title">Citations marquantes :</div>
+                    <ul class="citation-list">
+                        <li>"Temperament is a blueprint for behavior. Nature provides the blueprint when your child is born, but the plan is not fixed."</li>
+                        <li>"The temperament your teen brings into adolescence is the same temperament that will reemerge when your teen completes adolescence."</li>
+                        <li>"Your challenge is to weather the storm of adolescence."</li>
+                        <li>"Ten percent show this trait to this degree" (sur la persistance négative chez les ados forts de caractère).</li>
+                        <li>"When your limit-setting methods are well matched to your child's temperament and learning style, amazing things begin to happen."</li>
+                    </ul>
+                </div>
+
+                <div class="key-ideas">
+                    <div class="key-idea">
+                        <div class="key-idea-title">1. Les 9 traits de tempérament sont universels et stables</div>
+                        <p>Persistance, intensité, régularité, distractibilité, niveau d'activité, sensibilité, adaptabilité, réactivité, humeur. Ces traits restent constants tout au long de la vie.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Observez Matteo ce mois-ci : noter ses traits dominants (haute persistance = résiste aux limites? haute intensité = réactions fortes? faible adaptabilité = difficultés avec les changements?). Cette observation remplace le jugement moral. Il n'est pas "difficile" — il a une combinaison de traits que tu dois comprendre.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">2. Le "fit" (correspondance) entre parent et ado détermine la qualité de la relation</div>
+                        <p>Si ton tempérament s'accorde au sien, la relation coule naturellement. Si vous êtes opposés, il faut un effort conscient pour créer une correspondance.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Tu es compliant, flexible, modéré. Matteo est persistant, intense, introverti analytique. C'est une "mauvaise correspondance" naturelle. Cela ne veut pas dire conflit permanent — cela veut dire : accepte que tu dois APPRENDRE à le comprendre plutôt que de supposer que tu le "devrais" naturellement comprendre.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">3. La tempérance est un outil de diagnostic, pas un jugement</div>
+                        <p>Identifier "fort de caractère" ou "compliant" n'excuse rien — ça explique tout. Cette distinction t'aide à adapter ta stratégie.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Quand Matteo résiste à une limite, ne demande pas "pourquoi refuse-t-il?" mais "qu'est-ce que son tempérament me dit sur comment appliquer cette limite de façon efficace avec LUI?" — pas avec Felix, pas avec un ado compliant imaginaire — avec Matteo.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">4. Le concept de "fit" s'applique aussi à tes propres traits</div>
+                        <p>Comprendre ton propre tempérament — où tu es flexible, où tu es rigide, où tu es sensible — est aussi crucial que comprendre le sien.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Tu t'emballes intensément puis perds la constance. Matteo est persistant et résistant. Quand tu lui dis une limite avec enthousiasme puis l'oublies la semaine suivante, lui le remarque et teste. Il en déduit que ta limite n'était pas sérieuse. Ton défi de constance AFFECTE directement son comportement.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">5. L'adolescence ne change pas le tempérament — elle l'amplifie temporairement</div>
+                        <p>Le "chaos" adolescent est temporaire. Ses traits de base resteront. Accepter cela t'aide à rester patient pendant la tempête.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Rappelle-toi : Matteo à 10 ans était déjà analytique, intense, persistant dans ses intérêts. À 13 ans, ces traits existent toujours — amplifiés par les hormones et l'identité en formation. Ce n'est pas nouveau. C'est amplié. Ça passera.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-section">
+                <div class="chapter-title">Chapitre 2 : Understanding Adolescence (Comprendre l'Adolescence)</div>
+                <div class="chapter-summary">
+MacKenzie explique deux forces développementales majeures qui façonnent l'adolescence : (1) le développement du cerveau — en particulier la croissance spectaculaire du cortex préfrontal qui continue jusqu'aux années 20 — et (2) l'individuation, le processus de recherche d'identité et d'indépendance. Ces deux forces créent un ado qui pense abstraitement et raisonne de façon nouvelle, mais dont les impulsions surpassent encore le jugement. C'est la source de beaucoup des comportements "craziness" que les parents interprètent mal.
+                </div>
+
+                <div class="citations">
+                    <div class="citation-title">Citations marquantes :</div>
+                    <ul class="citation-list">
+                        <li>"Teenage thinking is all over the map—imaginative, unrealistic, erratic, astute, dense, penetrating, insightful, simple, childish, and mature."</li>
+                        <li>"They have the right equipment. They just don't know how to use it on a consistent basis."</li>
+                        <li>"Their urge to do this during adolescence is very intense, so much so that teens often ignore the risks involved."</li>
+                        <li>"Symbols are expressions of your son or daughter's independence and are not worthy of your limit-setting attention."</li>
+                        <li>"This is a normal, healthy, and absolutely essential part of adolescent self-discovery."</li>
+                    </ul>
+                </div>
+
+                <div class="key-ideas">
+                    <div class="key-idea">
+                        <div class="key-idea-title">1. Le cerveau ado est littéralement en développement — pas juste métaphoriquement</div>
+                        <p>Le cortex préfrontal (jugement, planification, contrôle des impulsions) ne sera pas mature avant les années 20. Matteo a l'équipement intellectuel d'un adulte mais le cerveau d'un adolescent. C'est impossible.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Quand Matteo refuse une demande raisonnable, suppose d'abord : son cerveau n'a pas fini. Pas : "il veut défier mon autorité." C'est plus juste de dire : "il n'a pas la maturité cérébrale de consulter son cortex préfrontal sous le stress." C'est une neuroscience, pas une insolence.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">2. L'individuation est un processus de recherche d'identité, non pas de rébellion contre toi</div>
+                        <p>Quand Matteo s'isole, teste tes limites, ou explore des idées différentes — ce n'est pas CONTRE toi. C'est pour découvrir qui il est.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Quand il ne veut pas faire quelque chose que tu proposes ou qu'il rejette une idée que tu suggères, interprète-le comme : "j'essaie de découvrir si je suis d'accord avec toi ou non." Pas comme du rejet. C'est un processus d'autonomisation saine.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">3. Les "symbols" d'indépendance (cheveux, vêtements, musique) ne valent pas une limite parentale</div>
+                        <p>Si Matteo porte des vêtements différents, teint ses cheveux, ou aime de la musique que tu ne comprends pas — ce n'est pas une bataille. C'est une expression saine de lui-même en formation.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Avant de mettre une limite sur quelque chose, demande-toi : "Cela cause-t-il du tort?" ou "C'est juste quelque chose qui me met mal à l'aise?" Si c'est le second, lâche prise. L'apparence, le goût musical, les couleurs préférées — ce ne sont pas des batailles qui valent la peine.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">4. L'impulsivité n'est pas une faille de caractère — c'est la neurobiologie</div>
+                        <p>Le cerveau ado produit plus de dopamine, ce qui augmente la recherche de récompense immédiate. C'est pourquoi Matteo peut être capable de raisonner de façon mature en conversation calme, puis agir impulsivement sous le stress.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Quand il fait quelque chose d'impulsif et dit après "Je ne sais pas pourquoi j'ai fait ça," il dit la vérité. Son cortex préfrontal n'a pas pu accéder à son information à ce moment-là. Ta tâche : l'aider à PRATIQUER les situations avant qu'il ne soit en mode impulsif, pas le punir pour la neurobiologie.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">5. Adolescents think differently, not wrongly</div>
+                        <p>Leur incapacité à prévoir les conséquences, à considérer les alternatives, ou à planifier n'est pas de la stupidité — c'est une étape développementale. Ils ont besoin de pratique avec guidance, pas de jugement.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Quand Matteo prend une mauvaise décision, ta réaction immédiate ("Comment pouvais-tu être aussi bête?") renforce qu'il EST bête. Réaction meilleure : "Intéressant. Qu'as-tu appris de ça? Qu'aurais-tu pu faire différemment?" — tu l'aides à PRATIQUER le raisonnement.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-section">
+                <div class="chapter-title">Chapitre 3 : Your Changing Role as Parent (Ton Rôle Changeant en tant que Parent)</div>
+                <div class="chapter-summary">
+MacKenzie articule clairement le changement requis : tu passes d'une "figure d'autorité active et directe" (ce que tu étais quand il avait 8 ans) à un "entraîneur de soutien" (ce qu'il a besoin que tu sois maintenant). Cela ne signifie pas renoncer à ton autorité — ça signifie l'exercer de façon moins visible. Comme un entraîneur de sports, tu fixes les règles, tu donnes les conseils, tu fournis le soutien — mais tu ne joues pas à sa place. Tu restes sur les lignes de touche.
+                </div>
+
+                <div class="citations">
+                    <div class="citation-title">Citations marquantes :</div>
+                    <ul class="citation-list">
+                        <li>"What happened? Who flicked the switch? The same child who sat in my lap at public events three years ago doesn't want to sit anywhere near me now."</li>
+                        <li>"Coaching from the sidelines is the role your teen wants and needs you to take."</li>
+                        <li>"They want you to be a strong authority figure when they need you to be that way, but they don't want to think of you as such."</li>
+                        <li>"Your adolescent's wants and needs are full of contradictions."</li>
+                        <li>"Take the advice of other great coaches and focus on what matters most, the basics."</li>
+                    </ul>
+                </div>
+
+                <div class="key-ideas">
+                    <div class="key-idea">
+                        <div class="key-idea-title">1. Tu dois passer d'un rôle "directeur" à un rôle "entraîneur de soutien"</div>
+                        <p>Enfant jeune : tu donnes les directions, tu supervises tout. Adolescent : tu fournis le cadre, il fait l'exploration. Tu restes disponible, pas absent.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Matteo veut sentir qu'il dirige sa vie. Au lieu de "Tu dois faire tes devoirs," essaie : "J'ai remarqué que tes notes glissent. Qu'est-ce que tu penses que tu dois faire?" Puis sois disponible pour l'aider à résoudre le problème — pas pour lui dire quoi faire.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">2. Tes limites doivent rester claires, mais ton autorité doit être moins visible</div>
+                        <p>Les limites claires sont PLUS nécessaires en adolescence, pas moins. Mais tu les appliques de façon calme et respectueuse, pas avec la dramatie ou la punition qui résonne.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Réactif (ancien) : "Tu as osé utiliser mon outil sans demander? Tu es irresponsable!" Entraîneur de soutien (nouveau) : "L'outil doit être demandé avant de le prendre. S'il te plaît, le remettre et me l'emprunter correctement la prochaine fois." Puis tu le laisses aller le faire.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">3. Les quatre tâches principales d'un parent d'ado sont maintenant : relation, limites claires, readiness testing, problem-solving</div>
+                        <p>Pas nourrir, habiller, diriger chaque tâche — mais relation POSITIVE, limites claires, et enseignement du raisonnement.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Cette semaine : (1) Trouve un moment sans écran avec Matteo juste pour le connecter (relation). (2) Rappelle-lui une limite clé de façon calme et claire (limites). (3) Demande-lui : "Comment vas-tu décider si tu es prêt pour [privilege]?" (readiness testing). (4) Pose une question sur un problème qu'il a : "Qu'as-tu pensé d'essayer?" (problem-solving guidance).
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">4. Tes enfants ont besoin que tu sois fort quand ils sont en difficulté, mais discrets quand ils vont bien</div>
+                        <p>Quand il a besoin de direction (conflit, confusion), sois présent et fort. Quand il explore et teste (sans danger), reste sur les lignes de touche.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Matteo rentre de l'école de mauvaise humeur et enfermé. C'est le moment d'être fort et présent — "Je vois que tu es contrarie. Veux-tu en parler?" Matteo est dans sa chambre en train de faire ses devoirs de façon responsable? Reste sur les lignes de touche. Ne demande pas constamment comment ça va.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">5. Cette transition est difficile parce qu'elle t'oblige à renoncer au contrôle que tu avais</div>
+                        <p>C'est un deuil. Le laisser explorer et faire des erreurs signifie perdre la capacité de tout diriger. C'est ça, grandir.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Reconnais avec toi-même : j'ai eu une période où je savais ce que Matteo faisait presque à chaque instant. Ce temps est révolu. C'est correct. C'est même sain. Ma tâche est maintenant de l'aider à PENSER plutôt que de DIRIGER.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-section">
+                <div class="chapter-title">Chapitre 4 : Why Teens Need Limits (Pourquoi les Ados Ont Besoin de Limites)</div>
+                <div class="chapter-summary">
+MacKenzie explique les fonctions critiques des limites claires : elles aident les ados (surtout les forts de caractère) à faire de la "recherche" sur eux-mêmes — à tester les règles, découvrir les conséquences, et apprendre les limites de leurs responsabilités. Sans limites claires, ils inventent les leurs propres par expérience brute. Avec des limites claires, elles deviennent des "trail markers" qui les gardent sur la bonne voie tout en leur donnant l'espace de tester et d'explorer.
+                </div>
+
+                <div class="citations">
+                    <div class="citation-title">Citations marquantes :</div>
+                    <ul class="citation-list">
+                        <li>"Limits help them measure their growth, but the lessons parents intend those limits to provide often break down when our limits are unclear or ineffective."</li>
+                        <li>"Without clear signals to keep you on course, you're more likely to make wrong turns and get into trouble."</li>
+                        <li>"Teens need to test and explore their world, but they also need clear, firm limits to guide their exploration."</li>
+                        <li>"Have you ever thought of teens as researchers? Well, they are, and they are remarkably well equipped for the job."</li>
+                        <li>"Your rules are not the problem. The problem and biggest source of conflict between parents and teens is the ineffective methods that parents use to enforce their rules."</li>
+                    </ul>
+                </div>
+
+                <div class="key-ideas">
+                    <div class="key-idea">
+                        <div class="key-idea-title">1. Les limites claires permettent aux ados de "faire de la recherche" sur eux-mêmes</div>
+                        <p>Pense aux ados comme des chercheurs scientifiques. Ils testent les hypothèses ("Si je fais X, que se passera-t-il?"), collectent des données, et tirent des conclusions. Les limites claires et constantes donnent des réponses claires à leurs questions.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Limite : "Les écrans doivent être rangés à 21h00 les jours d'école." Matteo testera cela — il tentera 21h15. Si tu appliques la limite clairement et calmement chaque fois ("L'écran a besoin d'être rangé maintenant"), il apprend : cette limite est RÉELLE. Je peux compter dessus. C'est sûr.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">2. Les limites doivent être claires (définies précisément) et fermes (appliquées avec constance)</div>
+                        <p>"Sois à la maison bientôt" n'est pas clair. "Sois à la maison à 22h00 les jours d'école" est clair. Les limites vagues invitent au test.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Regarde tes limites actuelles avec Matteo : sont-elles spécifiques? ("Fais tes devoirs avant les jeux vidéo" = vague. "Devoirs entre 17h00 et 18h00, puis pas d'écrans scolaires avant d'être fait" = clair.)
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">3. L'absence de limites claires crée plus de conflit, pas moins</div>
+                        <p>Beaucoup de parents pensent que des limites "relâchées" créent moins de friction. C'est l'inverse. Les ados forts de caractère testent jusqu'à trouver la limite réelle — et c'est souvent plus extrême qu'une limite déclarée et cohérente.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Cela va sonner contre-intuitif, mais : mettre une limite CLAIRE avec Matteo va réduire le conflit. Parce que quand la limite est claire, il le sait. Quand c'est vague ("Pas trop de jeux vidéo"), il teste. Qui sort gagnant si tu dis "Pas trop de jeux vidéo" et il joue 3 heures? Ni vous deux.
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">4. Les limites soutiennent l'individuation sans la supprimer</div>
+                        <p>Les limites qui supprimaient l'exploration créent du ressentiment. Les limites qui GUIDENT l'exploration créent la croissance. Le test : la limite encourage-t-elle la responsabilité, ou supprime-t-elle l'indépendance?</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Limite suppressive : "Tu ne peux pas avoir de petite amie." (Supprime l'exploration.) Limite de guidage : "Les relations sont bienvenues. Voici ce que nous attendons : respect, honnêteté, pas d'écrans après 21h00 ensemble comme toute autre activité." (Guide vers la responsabilité.)
+                        </div>
+                    </div>
+
+                    <div class="key-idea">
+                        <div class="key-idea-title">5. Les règles elles-mêmes ne sont pas le problème — l'application incohérente ou peu claire l'est</div>
+                        <p>MacKenzie affirme que presque tous les parents ont des règles RAISONNABLES. Mais beaucoup les appliquent de façon inconsistante. C'est ce qui crée le conflit. Matteo peut vivre avec une limite ferme mieux qu'il peut vivre avec une limite vague appliquée au hasard.</p>
+                        <div class="mise-en-pratique">
+                            <span class="mise-en-pratique-label">Comment le mettre en pratique</span>
+                            Cette semaine, choisis UNE limite (pas trois, pas cinq) avec laquelle tu as eu du conflit avec Matteo. Définissez-la clairement ensemble. "Voici la limite. Voici pourquoi. Voici ce qui se passe si tu la testes." Puis applique-la avec cohérence pendant deux semaines. Observe si le conflit diminue.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+        </section>
+
+        <!-- SECTION 2: 10 IDÉES LES PLUS IMPORTANTES -->
+        <section id="dix-idees">
+            <h2>Section 2 — Les 10 Idées les Plus Importantes du Livre</h2>
+            <p style="margin-bottom: 25px; font-style: italic;">
+Synthétisées à travers tous les chapitres, contextualisées pour toi et Matteo :
+            </p>
+            <ol class="top-ten">
+                <li><strong>Le tempérament de Matteo n'est pas un défaut à corriger, c'est une réalité à comprendre et à orienter.</strong> Haute persistance, intensité, réactivité — ces traits le rendront un adulte capable et déterminé. Pour l'instant, ils signifient juste qu'il teste les limites plus vigoureusement. C'est pas personnel, c'est neurologique.</li>
+
+                <li><strong>La "correspondance" (fit) entre toi et lui détermine 80% de la friction dans votre relation.</strong> Vous êtes opposés naturellement (compliant/persistant, flexible/intense). L'accepter est la première étape. Y répondre intentionnellement (au lieu de supposer que tu "devrais" le comprendre) est la seconde.</li>
+
+                <li><strong>Son cerveau se développe littéralement jusqu'à ses 20 ans — tu ne peux pas corriger ce que la neuroscience contrôle.</strong> Quand il est impulsif, irréfléchi, ou ne prévoit pas les conséquences, ce n'est pas de la mauvaise volonté. C'est du développement. Patience. Structure. Guidance. Pas punition.</li>
+
+                <li><strong>L'individuation (sa recherche d'identité) EST le travail de l'adolescence, pas un défaut.</strong> S'il teste tes idées, renie certaines de tes valeurs, explore des intérêts nouveaux — c'est sain. C'est pas contre toi. C'est pour découvrir qui il est.</li>
+
+                <li><strong>Les limites claires le LIBÈRENT plutôt que de l'emprisonner — elles sont la structure qu'il désire secrètement même s'il les teste.</strong> Un ado forte de caractère sans limites claires est anxieux. Avec des limites claires? Plus confiant. Plus libre. Parce qu'il sait où il se tient.</li>
+
+                <li><strong>Tes propres limites, constance, et régularité AFFECTENT directement son comportement plus que tu ne le réalises.</strong> Tu t'emballes puis abandonnes. Il regarde et teste. Tu dis une limite puis l'oublies. Il en déduit que tu n'es pas sérieux. Travail sur ta CONSTANCE = plus d'efficacité avec lui automatiquement.</li>
+
+                <li><strong>Ta relation POSITIVE avec lui est le fondement de toute limite que tu mets.</strong> Si ton autorité repose sur la peur ou le détachement, il résistera. Si elle repose sur le respect et la connexion, il coopérera même s'il teste les limites. Relation d'abord. Limites après.</li>
+
+                <li><strong>Les "symbols" d'indépendance (cheveux, vêtements, musique, amis différents) ne sont pas des batailles parentales — ils sont des expressions de lui.</strong> Laisse-le exprimer son identité de cette façon. Ça lui coûte rien. À toi ça coûte juste de l'acceptation. C'est un échange heureux.</li>
+
+                <li><strong>Les limites inefficaces ne viennent pas des règles — elles viennent d'une application inconsistante ou peu claire.</strong> Tes règles sont probablement bonnes. Comment tu les appliquez est le problème. Une limite claire appliquée avec calme et cohérence est 10x plus efficace qu'une limite ambiguë appliquée avec émotion.</li>
+
+                <li><strong>Le rôle que tu dois jouer est "entraîneur de soutien" — tu fixes le cadre, il apprend à l'intérieur.</strong> Pas directeur (il résistera). Pas absent (il besoin trop de guidance pour adolescence). Mais entraîneur : tu fournis la pratique, la feedback, l'encouragement, et tu restes sur les lignes de touche en observant son jeu.</li>
+            </ol>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- SECTION 3: RÉSUMÉ POUR FELIX -->
+        <section id="felix">
+            <h2>Section 3 — Résumé Actionnable pour Felix (11 ans)</h2>
+            <div class="felix-section">
+                <div class="felix-header">
+                    <span class="felix-emoji">🎨</span>
+                    <span>Pour Felix : Comprendre la Tempérament de Ton Frère</span>
+                </div>
+
+                <p>
+Salut Felix! Tu sais comment Matteo est parfois super intense et obsédé par certaines choses? Ou comment il résiste BEAUCOUP quand quelqu'un lui dit de faire quelque chose? Ce livre parle du fait que TOUT le monde a une tempérament — c'est juste comment on est nés. Matteo a une tempérament différente de la tienne.
+                </p>
+
+                <h3>Ce que tu peux remarquer chez Matteo (et comment c'est pas personnel) :</h3>
+                <ul style="padding-left: 30px;">
+                    <li><strong>Il résiste aux limites.</strong> Quand Papa dit "à 21h00, téléphone rangé," Matteo dit "bientôt" et teste. C'est pas qu'il veut être difficile. C'est juste son tempérament. Haute persistance.</li>
+                    <li><strong>Il s'isole quand il est contraire.</strong> Il ne veut pas de compagnie et ferme sa porte. C'est pas qu'il t'en veut. C'est comment son cerveau gère l'intensité. C'est OK.</li>
+                    <li><strong>Il peut être très enthousiaste ou très contrarié.</strong> Pas entre les deux. Pas beaucoup de "ok, pas mal." C'est haute intensité. C'est ni bon ni mauvais. C'est juste Matteo.</li>
+                    <li><strong>Il pense beaucoup.</strong> Il analyse tout. Parfois ça veut dire il comprend les choses super bien. Parfois ça veut dire il s'inquiète trop. Les deux sont vrais.</li>
+                </ul>
+
+                <h3>Pourquoi comprendre ça aide TES relations avec Matteo :</h3>
+                <p>
+Quand tu comprends que c'est sa tempérament et pas un choix délibéré de te frustrer ou d'être difficile, tu peux être patient. Quand il résiste à quelque chose, tu peux juste laisser les choses arriver sans prendre ça personnel. Quand il s'isole, tu peux respecter son espace sans sentir qu'il t'en veut.
+                </p>
+
+                <h3>Actions que tu peux faire :</h3>
+                <ul style="padding-left: 30px;">
+                    <li>Quand Matteo teste une limite ou résiste, essaie de pas l'escalader. Il va tester — c'est sa nature. Ça va passer.</li>
+                    <li>Laisse-le avoir du temps seul quand il a besoin. C'est pas du rejet. C'est juste lui.</li>
+                    <li>Sois un endroit où il peut parler des choses sans être jugé. Même si tu le juges pas, il peut craindre que tu le juges. Sois super clair que tu l'aimes même quand il est intense ou difficile.</li>
+                    <li>Invite-le à faire des choses ensemble — jeux d'échecs, documentaires, discussions sur les sujets qui l'intéressent. Pas pour le "fixer," mais parce que ça le nourrit.</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- SECTION 4: RÉSUMÉ POUR MATTEO -->
+        <section id="matteo">
+            <h2>Section 4 — Résumé Actionnable pour Matteo (13 ans)</h2>
+            <div class="matteo-section">
+                <div class="matteo-header">
+                    <span class="matteo-emoji">🧠</span>
+                    <span>Pour Matteo : Comprendre Ton Propre Tempérament</span>
+                </div>
+
+                <p>
+Ce livre parle d'une chose que j'aimerais que tu saches sur toi : ton cerveau et ta personnalité sont faits d'une façon spécifique, et comprendre ça change BEAUCOUP de choses. Tu n'es pas "difficile" ou "problématique." Tu es simplement... toi. Et ça vaut la peine de comprendre.
+                </p>
+
+                <h3>Qu'est-ce que "Tempérament" signifie :</h3>
+                <p>
+C'est essentiellement comment tu es NATIVEMENT fait. Comment tu réagis aux choses. Comment tu penses. C'est pas quelque chose que tu as choisi, et ce n'est pas quelque chose que tes parents ont "causé." C'est juste toi.
+                </p>
+
+                <h3>Tes traits principaux (et comment ils te servent) :</h3>
+                <ul style="padding-left: 30px;">
+                    <li><strong>Haute persistance.</strong> Tu ne lâches prise pas facilement. Quand tu veux quelque chose, tu travailles pour l'obtenir. C'est un trait FORT — c'est comment tu vas accomplir des choses dans la vie. Mais ça veut aussi dire que tu résistes aux limites. C'est juste comment ça fonctionne.</li>
+                    <li><strong>Haute intensité.</strong> Tu SENS les choses fortement. Tes émotions ne sont pas "ok, pas mal." Elles sont VIVANTES. C'est un trait que tu auras toute ta vie, et honnêtement, ça va te rendre capable d'être profondément connecté, passionné, et puissant. Mais ça veut aussi dire que quand tu es frustré, c'est INTENSE.</li>
+                    <li><strong>Pensée analytique.</strong> Tu penses beaucoup. Tu poses des questions. Tu veux comprendre les raisons. C'est un trait formidable — c'est pourquoi tu comprends les documentaires, les jeux d'échecs, les instruments de musique. Mais ça veut aussi dire que tu peux sur-analyser, t'inquiéter, ou t'enliser dans tes pensées.</li>
+                    <li><strong>Tendance à l'introversion.</strong> Tu charges mieux tes batteries seul que dans les environnements sociaux intenses. C'est pas shyness — c'est juste comment ton système nerveux se recharge. C'est OK.</li>
+                </ul>
+
+                <h3>Ce que tu dois savoir sur ton cerveau en ce moment :</h3>
+                <ul style="padding-left: 30px;">
+                    <li>Ton cortex préfrontal (la partie du cerveau qui dit "attends, ce n'est pas une bonne idée") est littéralement en développement jusqu'à tes 20 ans. Tu ne peux pas "décider" de l'avoir plus mature. Ça grandira. Sois patient avec toi-même.</li>
+                    <li>Ton impulsivité n'est pas de la stupidité. C'est de la neurobiologie. Quand tu es calme, tu peux raisonner magnifiquement. Quand tu es stressé ou émotionnel, ton cortex n'a pas accès à tout ça. C'est normal. Tout le monde ressent ça à ton âge.</li>
+                    <li>Tu passes par l'individuation — tu découvres qui tu es, séparé de tes parents. C'est un processus sain et normal de tester les idées, les limites, et les identités. C'est pas "rébellion" — c'est une croissance.</li>
+                </ul>
+
+                <h3>Actions que tu peux prendre maintenant :</h3>
+                <ul style="padding-left: 30px;">
+                    <li>Essaie de remarquer quand tu vas entrer en "mode intense." Avant que tu ne sois EN COLÈRE, peux-tu sentir que tu te construis vers ça? Si oui, peux-tu prendre un break — passer 10 minutes seul, faire de l'exercice, respirer fortement? (Oui, c'est réel et ça fonctionne.)</li>
+                    <li>Quand tu penses à travers quelque chose, essaie d'écrire ou de parler à voix haute au lieu de juste penser en boucle dans ta tête. Ça arrête le sur-analyse.</li>
+                    <li>Reconnais que tu vas probablement résister aux limites — c'est juste comment tu es fait. Ce n'est pas une faille. Mais voir que tu vas le faire t'aide à te préparer. Si Papa dit "21h00, téléphone," tu vas probablement tester. Être conscient de ça, c'est un début.</li>
+                    <li>Dis à Papa quand tu as besoin de temps seul. Pas "Je ne veux pas." Mais "J'ai besoin d'une heure seule, puis je reviendrai." Ça te donne le respect de ton tempérament ET ça montre que tu communiques bien.</li>
+                </ul>
+
+                <p style="margin-top: 20px; font-style: italic; color: #7d3c0a;">
+<strong>La vérité :</strong> Ton tempérament n'est pas quelque chose à fixer. C'est quelque chose à comprendre et à canaliser. Ces traits vont faire de toi une personne capable, profonde, et puissante. Ça prend juste du temps et de la pratique à les comprendre en toi-même.
+                </p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- SECTION 5: COMPARAISON AVEC D'AUTRES LIVRES -->
+        <section id="comparaison">
+            <h2>Section 5 — Comparaison avec des Livres Similaires</h2>
+
+            <div class="comparison-book">
+                <div class="comparison-book-title">1. Ending the Parent-Teen Control Battle (Neil Brown)</div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Idées similaires :</span>
+                    Brown et MacKenzie partagent l'idée que la compréhension du cerveau ado change ton approche. Brown souligne l'impulsivité, MacKenzie souligne le développement du cerveau préfrontal. Même essence : le teen ne peut pas penser comme un adulte, même s'il semble capable. Les deux encouragent l'empathie plutôt que la punition.
+                </div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Idées distinctives :</span>
+                    Brown se concentre sur les ÉMOTIONS (refréner ta réaction émotionnelle pour modéliser le calme). MacKenzie se concentre sur la TEMPÉRAMENT (comprendre les traits innés pour adapter ta stratégie). Brown dit : "reste calme quoi qu'il arrive." MacKenzie dit : "comprends d'abord sa nature, puis reste calme spécifiquement POUR SA NATURE."
+                </div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Pour Yvé :</span>
+                    Les deux livres sont complémentaires. Brown t'aide à rester émotionnellement régulé. MacKenzie t'aide à comprendre POURQUOI Matteo agit comme ça (tempérament) et comment adapter ta stratégie. Si tu dois en lire qu'un, lis MacKenzie pour la compréhension, Brown pour la maîtrise de soi.
+                </div>
+            </div>
+
+            <div class="comparison-book">
+                <div class="comparison-book-title">2. A Survival Guide for Parenting Gifted Teens (Jeanne Siaud-Facchin)</div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Idées similaires :</span>
+                    Les deux parlent des enfants qui pensent différemment. Siaud-Facchin parle de douance, MacKenzie parle de tempérament fort. Mais ils partagent : ces enfants ont des besoins SPÉCIFIQUES, pas juste "une attitude." Ils ne sont pas "difficiles" — ils sont complexes.
+                </div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Idées distinctives :</span>
+                    Siaud-Facchin se concentre sur le TALENT intellectuel et comment l'ennui/l'intensité créent des défis. MacKenzie se concentre sur le TEMPÉRAMENT et comment les traits innés créent des défis. Matteo est clairement intelligent analytique (tu risques la douance), mais ce livre est plus spécifiquement sur les traits de COMPORTEMENT que le talent.
+                </div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Pour Yvé :</span>
+                    MacKenzie d'abord (c'est plus directement applicable à Matteo comme fort de caractère). Siaud-Facchin si tu veux explorer spécifiquement son intelligence analytique et comment la nourrir.
+                </div>
+            </div>
+
+            <div class="comparison-book">
+                <div class="comparison-book-title">3. Mindset (Carol Dweck)</div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Idées similaires :</span>
+                    Dweck parle de l'idée qu'on peut APPRENDRE et CROÎTRE. MacKenzie parle de la tempérament qu'on peut canaliser et diriger. Les deux te disent : ne vois pas le problème comme fixe. C'est malléable avec l'approche juste.
+                </div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Idées distinctives :</span>
+                    Dweck se concentre sur comment tu encadres l'effort et l'échec (croissance vs fixe). MacKenzie se concentre sur comment tu comprends la nature de ton enfant ET PUIS tu encadres la limite-setting en conséquence. Dweck est sur le LANGAGE (comment tu le félicites). MacKenzie est sur la STRUCTURE (comment tu fixes les limites).
+                </div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Pour Yvé :</span>
+                    Les deux se renforcent. MacKenzie d'abord pour comprendre Matteo. Dweck après pour apprendre à encadrer ses erreurs comme "matériel d'apprentissage" au lieu de "failles."
+                </div>
+            </div>
+
+            <div class="comparison-book">
+                <div class="comparison-book-title">4. How to Talk So Teens Will Listen (Adele Faber & Elaine Mazlish)</div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Idées similaires :</span>
+                    Les deux te disent : ton APPROCHE à la communication compte énormément. Une même limite en disant "c'est une limite que nous avons" crée une réaction bien différente que "pourquoi tu m'énervs toujours?"
+                </div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Idées distinctives :</span>
+                    Faber/Mazlish se concentrent sur les TECHNIQUES de communication (refléter, valider, demander au lieu de dire). MacKenzie se concentre sur la COMPRÉHENSION (pourquoi ton ado agit comme ça) qui SOUS-TEND la communication. Faber/Mazlish te dit "quoi dire." MacKenzie te dit "pourquoi il agit comme ça" — ce qui t'aide à SAVOIR ce qu'il faut dire.
+                </div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Pour Yvé :</span>
+                    Les deux ensemble = la combinaison idéale. MacKenzie pour COMPRENDRE. Faber/Mazlish pour COMMUNIQUER. Si tu ne les lis que pas, commence par MacKenzie.
+                </div>
+            </div>
+
+            <div class="comparison-book">
+                <div class="comparison-book-title">5. The Explosive Child (Ross Greene)</div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Idées similaires :</span>
+                    Greene parle des enfants qui semblent "explosifs" ou "difficiles" mais qui ont réellement des défis en COMPÉTENCE (résolution de problèmes, régulation émotionnelle). MacKenzie parle de tempérament fort qui peut sembler "difficile" mais qui est juste haute persistance/intensité. Les deux disent : ne vois pas ça comme une attitude — c'est une réalité que tu dois comprendre.
+                </div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Idées distinctives :</span>
+                    Greene se concentre sur la COMPÉTENCE manquante (l'enfant ne peut PAS réguler ses émotions du tout). MacKenzie se concentre sur le TEMPÉRAMENT inné (l'enfant CAN réguler mais avec plus de difficulté en raison de ses traits). Matteo ne semble pas "explosif" en sens Greene — il semble plutôt persistant et analytique avec une intensité modérée.
+                </div>
+                <div class="comparison-subsection">
+                    <span class="comparison-label">Pour Yvé :</span>
+                    MacKenzie d'abord pour Matteo. Greene si tu remarques qu'il a VRAIMENT du mal à réguler ses émotions (contrairement à simplement les ressentir intensément).
+                </div>
+            </div>
+
+            <p style="margin-top: 35px; padding: 20px; background: #f0f3f4; border-left: 5px solid #2980b9; border-radius: 4px; font-style: italic; color: #34495e;">
+<strong>Recommandation finale :</strong> Si tu ne lis qu'UN livre sur les ados forts de caractère, c'est <strong>MacKenzie</strong>. C'est le plus directement applicable à Matteo. Brown (gestion émotionnelle) est le deuxième. Les autres sont des compléments, pas des remplaçants. MacKenzie te donne le FONDEMENT : "C'est qui est Matteo?" Les autres te donnent les COMPÉTENCES : "Comment je fonctionne avec qui il est?"
+            </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- SECTION 6: CE QUE CE LIVRE CHANGE POUR TOI -->
+        <section id="changements">
+            <h2>Section 6 — Ce que ce Livre Change Pour Toi</h2>
+            <p style="margin-bottom: 25px;">
+Directement adressé à toi, Yvé. Ce n'est pas une liste de conseils — c'est un recadrage des croyances et interprétations habituelles qui risquent de te coûter du pouvoir avec Matteo.
+            </p>
+
+            <div class="reframe">
+                <span class="reframe-label">Reframe 1 : Résistance vs. Tempérament</span>
+                <div class="before-after">
+                    <div class="before">
+                        <div class="before-label">Avant ce livre :</div>
+                        <div class="before-text">Quand Matteo résiste à une limite, tu penses : "Il veut défier mon autorité. Il veut que je sache qu'il ne me respecte pas. Je dois montrer qui commande."</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="after">
+                        <div class="after-label">Après ce livre :</div>
+                        <div class="after-text">Quand Matteo résiste, tu penses : "C'est sa tempérament. Haute persistance. Il va tester. C'est neurologique, pas personnel. Je vais appliquer la limite clairement et calmement, et je vais continuer à le voir comme quelqu'un que je respecte qui a un trait que je dois comprendre."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reframe">
+                <span class="reframe-label">Reframe 2 : Fit vs. Failure</span>
+                <div class="before-after">
+                    <div class="before">
+                        <div class="before-label">Avant ce livre :</div>
+                        <div class="before-text">Vous avez du conflit, et tu conclus : "Je ne suis pas un bon père. Je ne sais pas comment atteindre mon fils. Il y a quelque chose qui ne va pas chez lui que je ne peux pas fixer."</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="after">
+                        <div class="after-label">Après ce livre :</div>
+                        <div class="after-text">Vous avez du conflit, et tu penses : "Nous avons une mauvaise 'fit' naturelle — tempéraments opposés. Ce n'est pas un echec. C'est une opportunité d'apprendre à communiquer avec quelqu'un dont le cerveau fonctionne différemment du mien. Ce conflit peut m'améliorer aussi."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reframe">
+                <span class="reframe-label">Reframe 3 : Impulsivité vs. Immaturité Cérébrale</span>
+                <div class="before-after">
+                    <div class="before">
+                        <div class="before-label">Avant ce livre :</div>
+                        <div class="before-text">Matteo dit oui à une responsabilité, puis devient impulsif et ne la suit pas. Tu penses : "Il ne peut pas être fiable. Il a un problème d'autorégulation. Je ne peux pas lui faire confiance."</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="after">
+                        <div class="after-label">Après ce livre :</div>
+                        <div class="after-text">Tu penses : "Son cortex préfrontal n'a pas accès à son jugement sous le stress. Ce n'est pas une faille morale. C'est une réalité neurobiologique de 13 ans. Je vais lui donner plus de STRUCTURE pour supporter son engagement jusqu'à ce que son cerveau grandisse."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reframe">
+                <span class="reframe-label">Reframe 4 : Rébellion vs. Individuation</span>
+                <div class="before-after">
+                    <div class="before">
+                        <div class="before-label">Avant ce livre :</div>
+                        <div class="before-text">Matteo teste tes idées, conteste tes opinions, ne veut pas faire ce que tu proposes. Tu interprètes ça comme du rejet : "Il ne m'écoute plus. Il s'éloigne. Je le perds."</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="after">
+                        <div class="after-label">Après ce livre :</div>
+                        <div class="after-text">Tu le vois comme : "Il découvre qui il est en se séparant doucement de moi. C'est sain. J'ai besoin de lâcher le besoin de le contrôler et de supporter son processus de découverte de soi, même si ça signifie qu'il ne veut pas toujours de ce que j'offre."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reframe">
+                <span class="reframe-label">Reframe 5 : Inconsistance vs. Constance comme Reflet Parental</span>
+                <div class="before-after">
+                    <div class="before">
+                        <div class="before-label">Avant ce livre :</div>
+                        <div class="before-text">Tu dis une limite avec enthousiasme, puis l'oublies ou l'appliques au hasard selon ton humeur. Tu penses : "C'est pas grave, il comprend ce que je veux dire."</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="after">
+                        <div class="after-label">Après ce livre :</div>
+                        <div class="after-text">Tu réalises : "MON inconsistance CRÉE son testing. Il ne sait pas si je suis sérieux. MON manque de constance (le pattern que je reconnais) AFFECTE directement sa capacité à respecter la limite. Si je veux qu'il soit plus fiable, je dois modéliser la fiabilité moi-même."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reframe">
+                <span class="reframe-label">Reframe 6 : Contrôle vs. Coaching</span>
+                <div class="before-after">
+                    <div class="before">
+                        <div class="before-label">Avant ce livre :</div>
+                        <div class="before-text">Tu as passé 12 ans à diriger presque chaque aspect de sa vie. Maintenant il grandit et veux moins de direction. Tu interprètes ça comme : "J'ai perdu mon rôle. Je ne suis plus nécessaire."</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="after">
+                        <div class="after-label">Après ce livre :</div>
+                        <div class="after-text">Tu comprends : "Mon rôle n'a pas disparu — il a CHANGÉ. Je ne suis plus le directeur. Je suis l'entraîneur de soutien. Je ne joue pas à sa place. Mais je reste essentiel — je set le cadre, je fournis la guidance, j'aide avec la résolution de problèmes. C'est un rôle différent, tout aussi important."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reframe">
+                <span class="reframe-label">Reframe 7 : Similitude vs. Acceptation de la Différence</span>
+                <div class="before-after">
+                    <div class="before">
+                        <div class="before-label">Avant ce livre :</div>
+                        <div class="before-text">Tu es compliant, flexible, modéré. Matteo est persistant, intense, analytique. Tu supposes : "Il devrait être plus comme moi. Il serait plus heureux. La vie serait plus facile."</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="after">
+                        <div class="after-label">Après ce livre :</div>
+                        <div class="after-text">Tu réalises : "Ses traits sont différents des miens — pas moins bons. Persistance et intensité vont faire de lui un adulte capable et profond. Le fait que je doive l'apprendre différemment n'est pas un problem — c'est une chance pour moi de grandir aussi."</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- SECTION 7: CE QUE VOUS POUVEZ FAIRE DIFFÉREMMENT -->
+        <section id="actions">
+            <h2>Section 7 — Ce que Vous Pouvez Faire Différemment Dès Cette Semaine</h2>
+            <p style="margin-bottom: 25px;">
+Liste concrète et immédiatement actionnable pour toi. Chaque item doit être spécifique (pas "être plus présent" mais "faire X dans situation Y"), ancrée dans votre vie réelle, immédiatement applicable, et calibrée pour ton pattern de constance. Groupé par domaine.
+            </p>
+
+            <h3 style="color: #e74c3c; margin-top: 30px; margin-bottom: 20px;">🏡 Vie Parentale (Matteo & Felix)</h3>
+
+            <div class="action-item">
+                <span class="action-domain">Relation</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Trouve 15 minutes seul avec Matteo — pas pour parler des problèmes ou des limites, juste pour partager quelque chose qu'il aime. S'il aime les documentaires, regarde 15 minutes d'un avec lui. S'il aime la guitare, demande-lui de te montrer une chanson. Pas de feedback, pas d'agenda. Juste : "J'aime passer du temps avec toi."
+                </div>
+            </div>
+
+            <div class="action-item">
+                <span class="action-domain">Limites Claires</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Choisis UNE limite sur laquelle tu as eu du conflit avec Matteo (les écrans, les devoirs, les corvées — peu importe). Rend-la spécifique. "Les écrans doivent être rangés à 21h00 les jours d'école. Cela signifie : téléphone, tablette, ordinateur. Pas d'exceptions." Écris-la. Montre-la à Matteo. "Voici la limite. Voici pourquoi [santé du sommeil, concentrer son cortex pour la homework, peu importe]. Voici ce qui se passe si tu la testes [reminder calmement, puis conséquence naturelle — pas d'écran le lendemain]."
+                </div>
+            </div>
+
+            <div class="action-item">
+                <span class="action-domain">Coaching vs. Diriger</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Quand Matteo a un problème (conflit à l'école, notes baissent, stress avec des amis), au lieu de lui dire quoi faire, pose une question : "Qu'est-ce que tu penses que tu dois faire?" Laisse-le répondre. "Ça semble être un bon plan. Laisse-moi savoir comment ça se passe." Pas de sermon. Pas de "quand j'avais ton âge." Tu es l'entraîneur, pas le directeur.
+                </div>
+            </div>
+
+            <div class="action-item">
+                <span class="action-domain">Readiness Testing</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Si Matteo demande un privilege (sortir tard, avoir plus d'indépendance avec les écrans, etc.), au lieu de dire oui ou non, dis : "Je vais te tester pour voir si tu es prêt. Si tu peux [défi spécifique] pendant [timeframe] sans me rappeler, alors je te le donne." Exemple : "Si tu peux faire tes devoirs sans rappels pendant deux semaines, on peut augmenter le temps d'écran de 30 minutes."
+                </div>
+            </div>
+
+            <div class="action-item">
+                <span class="action-domain">Accepter la Difference</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Identifie UNE façon où Matteo est différent de toi, et au lieu de voir ça comme un problème, note comment ça le servira adulte. "Il est persistant — il va être quelqu'un qui finit ce qu'il commence." "Il est intensif — il va être capable de passion profonde." Dis-le à quelqu'un. Pratique cette reframe en toi-même.
+                </div>
+            </div>
+
+            <div class="action-item">
+                <span class="action-domain">Felix</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Regarde Felix. Reconnais-le pour ce qu'il offre dans votre famille SANS le comparer à Matteo. "J'aime comment tu peux rire facilement." "Tu me montres comment être sociable." Donne-lui attention régulière séparée de Matteo. Pas pour "équilibrer" — mais pour que Felix sache qu'il est seen, indépendamment de son frère.
+                </div>
+            </div>
+
+            <h3 style="color: #3498db; margin-top: 30px; margin-bottom: 20px;">💼 Vie Professionnelle</h3>
+
+            <div class="action-item">
+                <span class="action-domain">Constance Personnelle</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Reconnais ton propre pattern de constance. Tu t'emballes intensément puis perds de la traction. Quand tu dis une limite à Matteo ou une habitude que tu vas construire (avec-toi), écris-la. AFFICHE-LA. Rappelle-toi chaque jour. C'est pas sexy, mais ça marche. Matteo va remarquer que tu es plus consistent — et ça va directement changer comment il te teste.
+                </div>
+            </div>
+
+            <div class="action-item">
+                <span class="action-domain">Leadership d'Équipe</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Tu enseignes les gens sur la productivité et l'IA en finance. Applique ce que tu apprends maintenant : les gens ne tous pensent pas comme toi. Ils ont des "tempéraments" différents (certains analytiques, certains créatifs, certains procéduraux). Au lieu de supposer qu'ils devraient penser différemment, remarque leurs traits. Adapte ton leadership. C'est une meilleure approche même au travail.
+                </div>
+            </div>
+
+            <h3 style="color: #f39c12; margin-top: 30px; margin-bottom: 20px;">🧘 Vie Personnelle</h3>
+
+            <div class="action-item">
+                <span class="action-domain">Reconstruction Continue</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Tu es en thérapie. Montre ce livre à ton thérapeute. "J'apprends que mon tempérament (flexible/compliant) ne match pas le tempérament de Matteo (persistent/intense). Comment je peux grandir pour être un meilleur coach pour quelqu'un qui n'est pas comme moi?" C'est une vraie question. Ça va aider ta reconstruction personnelle.
+                </div>
+            </div>
+
+            <div class="action-item">
+                <span class="action-domain">Acceptation de Soi</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Tu as ton propre trait de "s'emballer puis perdre la constance." C'est pas une faille — c'est un trait. Comme la persistance de Matteo. C'est comment tu peux être intensif dans tes passions. Accepte ça au lieu de te juger. Tu peux encore TRAVAILLER sur la constance (tu dois), mais fais-le à partir de l'acceptation, pas de la culpabilité.
+                </div>
+            </div>
+
+            <div class="action-item">
+                <span class="action-domain">Modèle d'Imperfection</span>
+                <div class="action-text">
+<strong>Cette semaine :</strong> Montre à tes fils comment TU gères tes propres défis. Pas parfaitement — honnêtement. "Je me suis mis en colère contre moi-même plus tard dans la journée pour quelque chose d'impulsif que j'ai fait. J'ai pensé à pourquoi, et demain je vais essayer différemment." Ça enseigne mieux que n'importe quelle limite parfaite que tu pourrais set. Ça montre que la croissance est possible.
+                </div>
+            </div>
+
+            <div class="action-item">
+                <span class="action-domain">Attente Future</span>
+                <div class="action-text">
+<strong>Cette semaine ET beyond :</strong> Pendant que Matteo est en adolescence, rappelle-toi ce que ce livre dit : "Le tempérament qu'il a maintenant, il va l'avoir sa vie entière. C'est temporaire juste l'intensité du chaos adolescent. Dans 5 ans, tu vas regarder en arrière et voir un jeune homme avec les traits exactes — mais mature, capable, et finalement reconnaissant pour comment tu l'as guidé sans tenter de le changer." Ça t'aide à rester patient maintenant.
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section style="text-align: center; padding: 30px 0; color: #7f8c8d; font-size: 0.95em;">
+            <p>
+                <strong>Summary by Sage, PKA AI Team</strong><br>
+                <em>25 avril 2026</em>
+            </p>
+        </section>
+    </div>
+</body>
+</html>
