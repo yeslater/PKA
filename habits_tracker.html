@@ -33,6 +33,43 @@
             padding-bottom: 15px;
         }
 
+        .date-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .date-nav button {
+            padding: 8px 12px;
+            font-size: 13px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .date-nav button:hover {
+            background: #e0e0e0;
+        }
+
+        .date-nav input {
+            padding: 8px 12px;
+            font-size: 13px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .date-nav .current-date {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            min-width: 150px;
+        }
+
         .date {
             font-size: 14px;
             color: #666;
@@ -200,6 +237,12 @@
 <body>
     <div class="container">
         <div class="header">
+            <div class="date-nav">
+                <button onclick="previousDay()">← Previous</button>
+                <input type="date" id="dateInput" onchange="goToDate()">
+                <button onclick="todayButton()">Today</button>
+                <button onclick="nextDay()">Next →</button>
+            </div>
             <div class="date" id="dateDisplay"></div>
             <div class="title">Daily Habits</div>
         </div>
@@ -227,6 +270,8 @@
     </div>
 
     <script>
+        let currentDate = new Date();
+
         const habits = [
             'Sommeil',
             'Méditation',
@@ -279,9 +324,66 @@
             return date.toLocaleDateString('en-US', options);
         }
 
+        function getDateKey(date) {
+            return date.toISOString().split('T')[0];
+        }
+
+        function updateDateDisplay() {
+            const dateKey = getDateKey(currentDate);
+            const today = getDateKey(new Date());
+            let displayText = formatDate(currentDate);
+
+            if (dateKey === today) {
+                displayText += ' (Today)';
+            } else if (dateKey < today) {
+                const daysAgo = Math.floor((new Date() - currentDate) / (1000 * 60 * 60 * 24));
+                displayText += ` (${daysAgo} ${daysAgo === 1 ? 'day' : 'days'} ago)`;
+            }
+
+            document.getElementById('dateDisplay').textContent = displayText;
+            document.getElementById('dateInput').value = dateKey;
+        }
+
+        function previousDay() {
+            currentDate.setDate(currentDate.getDate() - 1);
+            updateDateDisplay();
+            loadDay();
+        }
+
+        function nextDay() {
+            currentDate.setDate(currentDate.getDate() + 1);
+            updateDateDisplay();
+            loadDay();
+        }
+
+        function todayButton() {
+            currentDate = new Date();
+            updateDateDisplay();
+            loadDay();
+        }
+
+        function goToDate() {
+            const dateInput = document.getElementById('dateInput').value;
+            if (dateInput) {
+                currentDate = new Date(dateInput + 'T00:00:00');
+                updateDateDisplay();
+                loadDay();
+            }
+        }
+
+        function loadDay() {
+            const dateKey = getDateKey(currentDate);
+            document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
+                const savedValue = localStorage.getItem(`${dateKey}-habit-${index}`);
+                checkbox.checked = savedValue === 'true';
+                toggleHabitStyle(index);
+            });
+            updateProgress();
+        }
+
         function initializeUI() {
-            // Set date
-            document.getElementById('dateDisplay').textContent = formatDate(new Date());
+            // Initialize current date
+            updateDateDisplay();
 
             // Create habit checkboxes
             const grid = document.getElementById('habitsGrid');
@@ -312,16 +414,9 @@
                 div.appendChild(checkbox);
                 div.appendChild(label);
                 grid.appendChild(div);
-
-                // Load from localStorage
-                const savedValue = localStorage.getItem(`habit-${index}`);
-                if (savedValue === 'true') {
-                    checkbox.checked = true;
-                    toggleHabitStyle(index);
-                }
             });
 
-            updateProgress();
+            loadDay();
         }
 
         function toggleHabitStyle(index) {
@@ -345,10 +440,15 @@
         }
 
         function resetCheckboxes() {
-            if (confirm('Clear all checkboxes for today?')) {
+            const dateKey = getDateKey(currentDate);
+            const confirmMsg = dateKey === getDateKey(new Date())
+                ? 'Clear all checkboxes for today?'
+                : `Clear all checkboxes for ${formatDate(currentDate)}?`;
+
+            if (confirm(confirmMsg)) {
                 document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
                     checkbox.checked = false;
-                    localStorage.removeItem(`habit-${index}`);
+                    localStorage.removeItem(`${dateKey}-habit-${index}`);
                     toggleHabitStyle(index);
                 });
                 updateProgress();
@@ -356,35 +456,41 @@
         }
 
         function saveToDatabase() {
-            const today = new Date().toISOString().split('T')[0];
+            const dateKey = getDateKey(currentDate);
             const data = {};
 
             uniqueHabits.forEach((habit, index) => {
                 const checkbox = document.getElementById(`check-${index}`);
                 data[habit] = checkbox.checked ? 1 : 0;
-                // Save to localStorage as backup
-                localStorage.setItem(`habit-${index}`, checkbox.checked);
+                // Save to localStorage with date key
+                localStorage.setItem(`${dateKey}-habit-${index}`, checkbox.checked);
             });
 
             // Send data to server (would be the Python backend)
+            const today = getDateKey(new Date());
+            const isTodaysData = dateKey === today;
+            const message = isTodaysData
+                ? '✓ Saved today'
+                : `✓ Saved ${formatDate(currentDate)}`;
+
             fetch('/api/save-habits', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    date: today,
+                    date: dateKey,
                     habits: data
                 })
             })
             .then(response => {
                 if (response.ok) {
-                    showStatus('✓ Saved to database', 'success');
+                    showStatus(message, 'success');
                 } else {
-                    showStatus('⚠ Saved locally (database offline)', 'success');
+                    showStatus(`⚠ ${message} (offline)`, 'success');
                 }
             })
             .catch(error => {
                 // Gracefully degrade to localStorage only
-                showStatus('✓ Saved locally (no server)', 'success');
+                showStatus(message, 'success');
             });
         }
 
