@@ -2,6 +2,7 @@
 
 **From:** Jordan (Productivity Coach) + Finn (Personal Productivity Developer)  
 **Date:** 2026-04-25  
+**Updated:** 2026-04-25 (added 4 new habits)  
 **Status:** Live — start logging today
 
 ---
@@ -29,17 +30,25 @@ This distinction is crucial. Some habits might need to be redesigned or abandone
 
 ---
 
-## What You're Tracking (15 habits daily)
+## What You're Tracking (19 habits daily)
 
+### Essential Habits (16) — ★
 | Category | Habits |
 |----------|--------|
-| **Sleep & Recovery** | Sommeil (Sleep) |
+| **Sleep & Recovery** | Sommeil (Sleep), Consommation eau (Water) |
 | **Mindfulness** | Méditation, Plan (daily planning) |
 | **Productivity** | Journal, Lecture (Reading), Big P (personal project), Big W (work project) |
 | **Physical** | Étirements, Cardio, Weightlifting, Protéines/Bouffe |
 | **Connection** | QT Friends, QT Matteo, QT Felix, QT Girlfriend |
 
+### Optional Habits (3) — (opt)
+- Nouvelle recette (Try a new recipe)
+- Pratique guitare ou piano (Guitar or piano practice)
+- Rangement-menage (Tidying/cleaning)
+
 Each habit is binary: done or not done. No grey zone.
+
+**The distinction:** Essential habits are your core daily commitments. Optional habits are nice-to-haves. The tracker shows both, but you'll likely see different success rates — that's the insight you're looking for.
 
 ---
 
