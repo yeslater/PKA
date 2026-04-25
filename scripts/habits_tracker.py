@@ -17,7 +17,7 @@ from pathlib import Path
 
 DB_PATH = Path(__file__).parent.parent / "Database" / "pka.db"
 
-HABITS = [
+ESSENTIAL_HABITS = [
     'Sommeil',
     'Méditation',
     'Plan',
@@ -27,6 +27,7 @@ HABITS = [
     'Cardio',
     'Weightlifting',
     'Protéines/Bouffe',
+    'Consommation eau',
     'Big P',
     'Big W',
     'QT Friends',
@@ -34,6 +35,14 @@ HABITS = [
     'QT Felix',
     'QT Girlfriend'
 ]
+
+OPTIONAL_HABITS = [
+    'Nouvelle recette',
+    'Pratique guitare ou piano',
+    'Rangement-menage'
+]
+
+HABITS = ESSENTIAL_HABITS + OPTIONAL_HABITS
 
 def init_db():
     """Create habits table if it doesn't exist."""
@@ -53,12 +62,16 @@ def init_db():
             cardio INTEGER,
             weightlifting INTEGER,
             proteines INTEGER,
+            consommation_eau INTEGER,
             big_p INTEGER,
             big_w INTEGER,
             qt_friends INTEGER,
             qt_matteo INTEGER,
             qt_felix INTEGER,
             qt_girlfriend INTEGER,
+            nouvelle_recette INTEGER,
+            pratique_musique INTEGER,
+            rangement_menage INTEGER,
             completed_count INTEGER,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
@@ -84,12 +97,16 @@ def save_habits(date_str, habits_dict):
         'Cardio': 'cardio',
         'Weightlifting': 'weightlifting',
         'Protéines/Bouffe': 'proteines',
+        'Consommation eau': 'consommation_eau',
         'Big P': 'big_p',
         'Big W': 'big_w',
         'QT Friends': 'qt_friends',
         'QT Matteo': 'qt_matteo',
         'QT Felix': 'qt_felix',
-        'QT Girlfriend': 'qt_girlfriend'
+        'QT Girlfriend': 'qt_girlfriend',
+        'Nouvelle recette': 'nouvelle_recette',
+        'Pratique guitare ou piano': 'pratique_musique',
+        'Rangement-menage': 'rangement_menage'
     }
 
     values = [date_str]
@@ -106,9 +123,10 @@ def save_habits(date_str, habits_dict):
         c.execute(f'''
             INSERT OR REPLACE INTO habits_daily (
                 date, sommeil, meditation, plan, journal, lecture,
-                etirements, cardio, weightlifting, proteines, big_p, big_w,
-                qt_friends, qt_matteo, qt_felix, qt_girlfriend, completed_count
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                etirements, cardio, weightlifting, proteines, consommation_eau,
+                big_p, big_w, qt_friends, qt_matteo, qt_felix, qt_girlfriend,
+                nouvelle_recette, pratique_musique, rangement_menage, completed_count
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', values)
         conn.commit()
         print(f"✓ Saved {date_str}: {completed}/15 habits completed")
@@ -129,8 +147,9 @@ def weekly_summary():
 
     c.execute('''
         SELECT date, sommeil, meditation, plan, journal, lecture,
-               etirements, cardio, weightlifting, proteines, big_p, big_w,
-               qt_friends, qt_matteo, qt_felix, qt_girlfriend, completed_count
+               etirements, cardio, weightlifting, proteines, consommation_eau,
+               big_p, big_w, qt_friends, qt_matteo, qt_felix, qt_girlfriend,
+               nouvelle_recette, pratique_musique, rangement_menage, completed_count
         FROM habits_daily
         WHERE date >= ?
         ORDER BY date DESC
@@ -145,6 +164,7 @@ def weekly_summary():
 
     print("\n" + "="*70)
     print("WEEKLY HABIT SUMMARY (Last 7 Days)")
+    print("★ = Essential | (opt) = Optional")
     print("="*70)
 
     # Calculate success rates
@@ -154,7 +174,7 @@ def weekly_summary():
     for row in rows:
         date = row[0]
         completed = row[-2]
-        print(f"\n{date}: {completed}/15 ✓")
+        print(f"\n{date}: {completed}/19 ✓")
 
         for i, habit in enumerate(HABITS):
             if row[i+1] == 1:
@@ -202,25 +222,35 @@ def summary():
     ''')
 
     avg, best, worst = c.fetchone()
-    print(f"\nAverage per day: {avg}/15")
-    print(f"Best day: {best}/15")
-    print(f"Worst day: {worst}/15")
+    print(f"\nAverage per day: {avg}/19")
+    print(f"Best day: {best}/19")
+    print(f"Worst day: {worst}/19")
 
     c.execute(f'''
         SELECT SUM(sommeil), SUM(meditation), SUM(plan), SUM(journal), SUM(lecture),
                SUM(etirements), SUM(cardio), SUM(weightlifting), SUM(proteines),
-               SUM(big_p), SUM(big_w), SUM(qt_friends), SUM(qt_matteo),
-               SUM(qt_felix), SUM(qt_girlfriend)
+               SUM(consommation_eau), SUM(big_p), SUM(big_w), SUM(qt_friends),
+               SUM(qt_matteo), SUM(qt_felix), SUM(qt_girlfriend),
+               SUM(nouvelle_recette), SUM(pratique_musique), SUM(rangement_menage)
         FROM habits_daily
     ''')
 
     totals = c.fetchone()
     conn.close()
 
-    print("\nHABIT SUCCESS COUNTS:")
-    for habit, count in zip(HABITS, totals):
+    print("\nESSENTIAL HABITS:")
+    for habit in ESSENTIAL_HABITS:
+        idx = HABITS.index(habit)
+        count = totals[idx]
         rate = (count / total_days) * 100
-        print(f"  {habit:20} {count:3}/{total_days} ({rate:5.1f}%)")
+        print(f"  ★ {habit:25} {count:3}/{total_days} ({rate:5.1f}%)")
+
+    print("\nOPTIONAL HABITS:")
+    for habit in OPTIONAL_HABITS:
+        idx = HABITS.index(habit)
+        count = totals[idx]
+        rate = (count / total_days) * 100
+        print(f"    {habit:25} {count:3}/{total_days} ({rate:5.1f}%)")
 
     print("="*70 + "\n")
 

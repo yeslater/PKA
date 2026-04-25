@@ -94,6 +94,18 @@
             user-select: none;
         }
 
+        .habit-item.optional label::after {
+            content: ' (opt)';
+            font-size: 12px;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .habit-item.essential label::before {
+            content: '★ ';
+            color: #ff9800;
+        }
+
         .actions {
             display: flex;
             gap: 10px;
@@ -195,7 +207,7 @@
         <div class="habits-grid" id="habitsGrid"></div>
 
         <div class="progress">
-            <div id="progressText">0 of 16 completed</div>
+            <div id="progressText">0 of 19 completed</div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill" style="width: 0%"></div>
             </div>
@@ -209,7 +221,8 @@
         <div class="status" id="status"></div>
 
         <div class="footer">
-            Tracker started: 2026-04-25 | Data saved to PKA.db
+            Tracker started: 2026-04-25 | Updated: 2026-04-25 | Data saved to PKA.db<br>
+            <small>★ = Essential | (opt) = Optional</small>
         </div>
     </div>
 
@@ -234,7 +247,7 @@
         ];
 
         // Remove duplicate 'Plan' from the list
-        const uniqueHabits = [
+        const essentialHabits = [
             'Sommeil',
             'Méditation',
             'Plan',
@@ -244,6 +257,7 @@
             'Cardio',
             'Weightlifting',
             'Protéines/Bouffe',
+            'Consommation eau',
             'Big P',
             'Big W',
             'QT Friends',
@@ -251,6 +265,14 @@
             'QT Felix',
             'QT Girlfriend'
         ];
+
+        const optionalHabits = [
+            'Nouvelle recette',
+            'Pratique guitare ou piano',
+            'Rangement-menage'
+        ];
+
+        const uniqueHabits = [...essentialHabits, ...optionalHabits];
 
         function formatDate(date) {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -268,6 +290,11 @@
             uniqueHabits.forEach((habit, index) => {
                 const div = document.createElement('div');
                 div.className = 'habit-item';
+                if (optionalHabits.includes(habit)) {
+                    div.classList.add('optional');
+                } else {
+                    div.classList.add('essential');
+                }
                 div.id = `habit-${index}`;
 
                 const checkbox = document.createElement('input');
