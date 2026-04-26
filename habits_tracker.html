@@ -5,393 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Habits Tracker</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7ff; padding: 20px; line-height: 1.6; }
+        .container { max-width: 700px; margin: 0 auto; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .header { margin-bottom: 30px; border-bottom: 3px solid #667eea; padding-bottom: 15px; }
+        .date-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .date-nav button { padding: 8px 12px; font-size: 13px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; }
+        .date-nav input { padding: 8px 12px; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; }
+        .date { font-size: 14px; color: #666; margin-bottom: 8px; }
+        .title { font-size: 28px; font-weight: 700; color: #333; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f7ff;
-            padding: 20px;
-            line-height: 1.6;
-        }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; }
+        .tab-button { padding: 12px 20px; background: none; border: none; border-bottom: 3px solid transparent; font-size: 14px; font-weight: 600; color: #666; cursor: pointer; }
+        .tab-button.active { color: #667eea; border-bottom-color: #667eea; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+        .habits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .habit-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: #f9fafb; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; border: 2px solid transparent; }
+        .habit-item:hover { background: #f0f2ff; border-color: #667eea; }
+        .habit-item.done { background: #e8f5e9; border-color: #2e7d32; }
+        .habit-item.done label { color: #2e7d32; font-weight: 600; }
+        .habit-item input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: #667eea; }
+        .habit-item label { cursor: pointer; font-size: 14px; color: #333; flex: 1; user-select: none; }
+        .habit-item.optional label::after { content: ' (opt)'; font-size: 12px; color: #999; font-weight: 400; }
+        .habit-item.essential label::before { content: '★ '; color: #ff9800; }
 
-        .header {
-            margin-bottom: 30px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 15px;
-        }
+        .progress { margin: 20px 0; font-size: 14px; color: #666; text-align: center; }
+        .progress-bar { background: #f0f0f0; height: 8px; margin: 8px 0; border-radius: 4px; overflow: hidden; }
+        .progress-fill { background: #667eea; height: 100%; transition: width 0.3s ease; }
 
-        .date-nav {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
+        .actions { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
+        button { padding: 12px 24px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; }
+        .btn-save { background: #667eea; color: white; flex: 1; }
+        .btn-save:hover { background: #764ba2; }
+        .btn-reset { background: #f0f0f0; color: #333; }
+        .btn-reset:hover { background: #e0e0e0; }
 
-        .date-nav button {
-            padding: 8px 12px;
-            font-size: 13px;
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
+        .status { margin-top: 20px; padding: 12px; border-radius: 6px; text-align: center; font-size: 14px; display: none; }
+        .status.success { background: #e8f5e9; color: #2e7d32; display: block; }
 
-        .date-nav button:hover {
-            background: #e0e0e0;
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: #f9fafb; padding: 15px; border-radius: 6px; border-left: 4px solid #667eea; }
+        .stat-label { font-size: 12px; color: #999; text-transform: uppercase; margin-bottom: 5px; }
+        .stat-value { font-size: 24px; font-weight: 700; color: #333; }
+        .stat-detail { font-size: 12px; color: #666; margin-top: 5px; }
 
-        .date-nav input {
-            padding: 8px 12px;
-            font-size: 13px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+        .day-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .day-box { padding: 8px 12px; background: #f9fafb; border-radius: 4px; font-size: 12px; border-left: 3px solid #e0e0e0; text-align: center; }
+        .day-box.high { background: #e8f5e9; border-left-color: #2e7d32; }
+        .day-box.medium { background: #fff3e0; border-left-color: #ff9800; }
+        .day-box.low { background: #ffe8e8; border-left-color: #d32f2f; }
 
-        .date-nav .current-date {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            min-width: 150px;
-        }
+        .habit-stats { display: flex; flex-direction: column; gap: 12px; }
+        .habit-stat-row { display: flex; align-items: center; gap: 12px; padding: 10px; background: #f9fafb; border-radius: 4px; font-size: 13px; }
+        .habit-stat-row.essential::before { content: '★'; color: #ff9800; margin-right: 5px; }
+        .habit-stat-row.optional::before { content: '◦'; color: #999; margin-right: 5px; }
+        .habit-name { flex: 0 0 140px; font-weight: 500; color: #333; }
+        .habit-bar-container { flex: 1; height: 20px; background: #f0f0f0; border-radius: 3px; overflow: hidden; }
+        .habit-bar { height: 100%; background: #667eea; transition: width 0.3s ease; }
+        .habit-rate { flex: 0 0 50px; text-align: right; font-weight: 600; color: #333; }
 
-        .date {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .habits-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .habit-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: #f9fafb;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 2px solid transparent;
-        }
-
-        .habit-item:hover {
-            background: #f0f2ff;
-            border-color: #667eea;
-        }
-
-        .habit-item.done {
-            background: #e8f5e9;
-            border-color: #2e7d32;
-        }
-
-        .habit-item.done label {
-            color: #2e7d32;
-            font-weight: 600;
-        }
-
-        .habit-item input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: #667eea;
-        }
-
-        .habit-item label {
-            cursor: pointer;
-            font-size: 14px;
-            color: #333;
-            flex: 1;
-            user-select: none;
-        }
-
-        .habit-item.optional label::after {
-            content: ' (opt)';
-            font-size: 12px;
-            color: #999;
-            font-weight: 400;
-        }
-
-        .habit-item.essential label::before {
-            content: '★ ';
-            color: #ff9800;
-        }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        button {
-            padding: 12px 24px;
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-save {
-            background: #667eea;
-            color: white;
-            flex: 1;
-        }
-
-        .btn-save:hover {
-            background: #764ba2;
-        }
-
-        .btn-save:active {
-            transform: scale(0.98);
-        }
-
-        .btn-reset {
-            background: #f0f0f0;
-            color: #333;
-        }
-
-        .btn-reset:hover {
-            background: #e0e0e0;
-        }
-
-        .status {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 6px;
-            text-align: center;
-            font-size: 14px;
-            display: none;
-        }
-
-        .status.success {
-            background: #e8f5e9;
-            color: #2e7d32;
-            display: block;
-        }
-
-        .status.error {
-            background: #ffe8e8;
-            color: #d32f2f;
-            display: block;
-        }
-
-        .footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
-            font-size: 12px;
-            color: #999;
-            text-align: center;
-        }
-
-        .progress {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #666;
-            text-align: center;
-        }
-
-        .progress-bar {
-            background: #f0f0f0;
-            border-radius: 4px;
-            height: 8px;
-            margin-top: 8px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background: #667eea;
-            height: 100%;
-            transition: width 0.3s ease;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .tab-button {
-            padding: 12px 20px;
-            background: none;
-            border: none;
-            border-bottom: 3px solid transparent;
-            font-size: 14px;
-            font-weight: 600;
-            color: #666;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .tab-button.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .stat-card {
-            background: #f9fafb;
-            padding: 15px;
-            border-radius: 6px;
-            border-left: 4px solid #667eea;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
-        }
-
-        .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .stat-detail {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        .habit-stats {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .habit-stat-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px;
-            background: #f9fafb;
-            border-radius: 4px;
-            font-size: 13px;
-        }
-
-        .habit-stat-row.essential::before {
-            content: '★';
-            color: #ff9800;
-            font-weight: 700;
-            width: 15px;
-        }
-
-        .habit-stat-row.optional::before {
-            content: '◦';
-            color: #999;
-            font-weight: 700;
-            width: 15px;
-        }
-
-        .habit-name {
-            flex: 0 0 150px;
-            font-weight: 500;
-            color: #333;
-        }
-
-        .habit-bar-container {
-            flex: 1;
-            height: 20px;
-            background: #f0f0f0;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .habit-bar {
-            height: 100%;
-            background: #667eea;
-            transition: width 0.3s ease;
-        }
-
-        .habit-rate {
-            flex: 0 0 60px;
-            text-align: right;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .day-summary {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-
-        .day-box {
-            padding: 8px 12px;
-            background: #f9fafb;
-            border-radius: 4px;
-            font-size: 12px;
-            border-left: 3px solid #e0e0e0;
-        }
-
-        .day-box.high {
-            background: #e8f5e9;
-            border-left-color: #2e7d32;
-        }
-
-        .day-box.medium {
-            background: #fff3e0;
-            border-left-color: #ff9800;
-        }
-
-        .day-box.low {
-            background: #ffe8e8;
-            border-left-color: #d32f2f;
-        }
-
-        .no-data {
-            padding: 20px;
-            text-align: center;
-            color: #999;
-            font-size: 14px;
-        }
+        .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0; font-size: 12px; color: #999; text-align: center; }
+        h3 { font-size: 16px; font-weight: 700; color: #333; margin: 20px 0 15px; }
     </style>
 </head>
 <body>
@@ -408,86 +84,35 @@
         </div>
 
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('tracker')">Tracker</button>
-            <button class="tab-button" onclick="switchTab('stats')">Stats</button>
+            <button class="tab-button active" onclick="switchTab(event, 'tracker')">Tracker</button>
+            <button class="tab-button" onclick="switchTab(event, 'stats')">Stats</button>
         </div>
 
-        <div id="tracker-tab" class="tab-content active">
+        <div id="tracker" class="tab-content active">
             <div class="habits-grid" id="habitsGrid"></div>
-
             <div class="progress">
                 <div id="progressText">0 of 19 completed</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-                </div>
+                <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
             </div>
-
             <div class="actions">
                 <button class="btn-save" onclick="saveToDatabase()">Save to Database</button>
                 <button class="btn-reset" onclick="resetCheckboxes()">Clear All</button>
             </div>
         </div>
 
-        <div id="stats-tab" class="tab-content">
+        <div id="stats" class="tab-content">
             <div id="statsContainer"></div>
         </div>
 
         <div class="status" id="status"></div>
-
-        <div class="footer">
-            Tracker started: 2026-04-25 | Updated: 2026-04-25 | Data saved to PKA.db<br>
-            <small>★ = Essential | (opt) = Optional</small>
-        </div>
+        <div class="footer">Tracker started: 2026-04-25 | <small>★ = Essential | (opt) = Optional</small></div>
     </div>
 
     <script>
         let currentDate = new Date();
 
-        const habits = [
-            'Sommeil',
-            'Méditation',
-            'Plan',
-            'Journal',
-            'Lecture',
-            'Étirements',
-            'Cardio',
-            'Weightlifting',
-            'Protéines/Bouffe',
-            'Big P',
-            'Big W',
-            'QT Friends',
-            'QT Matteo',
-            'QT Felix',
-            'QT Girlfriend',
-            'Plan'
-        ];
-
-        // Remove duplicate 'Plan' from the list
-        const essentialHabits = [
-            'Sommeil',
-            'Méditation',
-            'Plan',
-            'Journal',
-            'Lecture',
-            'Étirements',
-            'Cardio',
-            'Weightlifting',
-            'Protéines/Bouffe',
-            'Consommation eau',
-            'Big P',
-            'Big W',
-            'QT Friends',
-            'QT Matteo',
-            'QT Felix',
-            'QT Girlfriend'
-        ];
-
-        const optionalHabits = [
-            'Nouvelle recette',
-            'Pratique guitare ou piano',
-            'Rangement-menage'
-        ];
-
+        const essentialHabits = ['Sommeil', 'Méditation', 'Plan', 'Journal', 'Lecture', 'Étirements', 'Cardio', 'Weightlifting', 'Protéines/Bouffe', 'Consommation eau', 'Big P', 'Big W', 'QT Friends', 'QT Matteo', 'QT Felix', 'QT Girlfriend'];
+        const optionalHabits = ['Nouvelle recette', 'Pratique guitare ou piano', 'Rangement-menage'];
         const uniqueHabits = [...essentialHabits, ...optionalHabits];
 
         function formatDate(date) {
@@ -503,123 +128,78 @@
             const dateKey = getDateKey(currentDate);
             const today = getDateKey(new Date());
             let displayText = formatDate(currentDate);
-
-            if (dateKey === today) {
-                displayText += ' (Today)';
-            } else if (dateKey < today) {
+            if (dateKey === today) displayText += ' (Today)';
+            else if (dateKey < today) {
                 const daysAgo = Math.floor((new Date() - currentDate) / (1000 * 60 * 60 * 24));
-                displayText += ` (${daysAgo} ${daysAgo === 1 ? 'day' : 'days'} ago)`;
+                displayText += ` (${daysAgo} days ago)`;
             }
-
             document.getElementById('dateDisplay').textContent = displayText;
             document.getElementById('dateInput').value = dateKey;
         }
 
-        function previousDay() {
-            currentDate.setDate(currentDate.getDate() - 1);
-            updateDateDisplay();
-            loadDay();
-        }
+        function previousDay() { currentDate.setDate(currentDate.getDate() - 1); updateDateDisplay(); loadDay(); }
+        function nextDay() { currentDate.setDate(currentDate.getDate() + 1); updateDateDisplay(); loadDay(); }
+        function todayButton() { currentDate = new Date(); updateDateDisplay(); loadDay(); }
+        function goToDate() { const dateInput = document.getElementById('dateInput').value; if (dateInput) { currentDate = new Date(dateInput + 'T00:00:00'); updateDateDisplay(); loadDay(); } }
 
-        function nextDay() {
-            currentDate.setDate(currentDate.getDate() + 1);
-            updateDateDisplay();
-            loadDay();
-        }
-
-        function todayButton() {
-            currentDate = new Date();
-            updateDateDisplay();
-            loadDay();
-        }
-
-        function goToDate() {
-            const dateInput = document.getElementById('dateInput').value;
-            if (dateInput) {
-                currentDate = new Date(dateInput + 'T00:00:00');
-                updateDateDisplay();
-                loadDay();
-            }
+        function switchTab(e, tabName) {
+            e.preventDefault();
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            e.target.classList.add('active');
+            if (tabName === 'stats') generateStats();
         }
 
         function loadDay() {
             const dateKey = getDateKey(currentDate);
             document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
-                const savedValue = localStorage.getItem(`${dateKey}-habit-${index}`);
-                checkbox.checked = savedValue === 'true';
+                checkbox.checked = localStorage.getItem(`${dateKey}-habit-${index}`) === 'true';
                 toggleHabitStyle(index);
             });
             updateProgress();
         }
 
         function initializeUI() {
-            // Initialize current date
             updateDateDisplay();
-
-            // Create habit checkboxes
             const grid = document.getElementById('habitsGrid');
             grid.innerHTML = '';
-
             uniqueHabits.forEach((habit, index) => {
                 const div = document.createElement('div');
-                div.className = 'habit-item';
-                if (optionalHabits.includes(habit)) {
-                    div.classList.add('optional');
-                } else {
-                    div.classList.add('essential');
-                }
-                div.id = `habit-${index}`;
-
+                div.className = 'habit-item ' + (optionalHabits.includes(habit) ? 'optional' : 'essential');
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.id = `check-${index}`;
-                checkbox.onchange = () => {
-                    updateProgress();
-                    toggleHabitStyle(index);
-                };
-
+                checkbox.onchange = () => { updateProgress(); toggleHabitStyle(index); };
                 const label = document.createElement('label');
                 label.htmlFor = `check-${index}`;
                 label.textContent = habit;
-
                 div.appendChild(checkbox);
                 div.appendChild(label);
                 grid.appendChild(div);
             });
-
             loadDay();
         }
 
         function toggleHabitStyle(index) {
-            const item = document.getElementById(`habit-${index}`);
+            const item = document.getElementById(`habit-${index}`) || document.querySelectorAll('.habit-item')[index];
             const checkbox = document.getElementById(`check-${index}`);
-
-            if (checkbox.checked) {
-                item.classList.add('done');
-            } else {
-                item.classList.remove('done');
-            }
+            if (checkbox.checked) item.classList.add('done');
+            else item.classList.remove('done');
         }
 
         function updateProgress() {
             const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
             const total = uniqueHabits.length;
             const percentage = (checked / total) * 100;
-
             document.getElementById('progressText').textContent = `${checked} of ${total} completed`;
             document.getElementById('progressFill').style.width = `${percentage}%`;
         }
 
         function resetCheckboxes() {
-            const dateKey = getDateKey(currentDate);
-            const confirmMsg = dateKey === getDateKey(new Date())
-                ? 'Clear all checkboxes for today?'
-                : `Clear all checkboxes for ${formatDate(currentDate)}?`;
-
-            if (confirm(confirmMsg)) {
+            if (confirm('Clear all checkboxes?')) {
                 document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
                     checkbox.checked = false;
-                    localStorage.removeItem(`${dateKey}-habit-${index}`);
                     toggleHabitStyle(index);
                 });
                 updateProgress();
@@ -629,68 +209,19 @@
         function saveToDatabase() {
             const dateKey = getDateKey(currentDate);
             const data = {};
-
             uniqueHabits.forEach((habit, index) => {
                 const checkbox = document.getElementById(`check-${index}`);
                 data[habit] = checkbox.checked ? 1 : 0;
-                // Save to localStorage with date key
                 localStorage.setItem(`${dateKey}-habit-${index}`, checkbox.checked);
             });
-
-            // Send data to server (would be the Python backend)
-            const today = getDateKey(new Date());
-            const isTodaysData = dateKey === today;
-            const message = isTodaysData
-                ? '✓ Saved today'
-                : `✓ Saved ${formatDate(currentDate)}`;
-
-            fetch('/api/save-habits', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    date: dateKey,
-                    habits: data
-                })
-            })
-            .then(response => {
-                if (response.ok) {
-                    showStatus(message, 'success');
-                } else {
-                    showStatus(`⚠ ${message} (offline)`, 'success');
-                }
-            })
-            .catch(error => {
-                // Gracefully degrade to localStorage only
-                showStatus(message, 'success');
-            });
+            showStatus(`✓ Saved ${formatDate(currentDate)}`);
         }
 
-        function showStatus(message, type) {
+        function showStatus(message) {
             const status = document.getElementById('status');
             status.textContent = message;
-            status.className = `status ${type}`;
-            setTimeout(() => {
-                status.classList.remove('success', 'error');
-            }, 3000);
-        }
-
-        function switchTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Show selected tab
-            document.getElementById(tabName + '-tab').classList.add('active');
-            event.target.classList.add('active');
-
-            // Generate stats if switching to stats tab
-            if (tabName === 'stats') {
-                generateStats();
-            }
+            status.className = 'status success';
+            setTimeout(() => { status.classList.remove('success'); }, 3000);
         }
 
         function getLastNDays(n) {
@@ -709,140 +240,67 @@
             let totalCompleted = 0;
             let totalPossible = 0;
 
-            // Initialize habit stats
-            uniqueHabits.forEach(habit => {
-                habitStats[habit] = { completed: 0, days: 0 };
-            });
-
-            // Calculate stats for last 7 days
+            uniqueHabits.forEach(habit => { habitStats[habit] = { completed: 0, days: 0 }; });
             lastDays.forEach(dateKey => {
-                let dayCompleted = 0;
                 uniqueHabits.forEach((habit, index) => {
                     const value = localStorage.getItem(`${dateKey}-habit-${index}`);
-                    if (value === 'true') {
-                        habitStats[habit].completed++;
-                        dayCompleted++;
-                    }
                     habitStats[habit].days++;
                     totalPossible++;
                     if (value === 'true') {
+                        habitStats[habit].completed++;
                         totalCompleted++;
                     }
                 });
             });
 
-            // Build stats HTML
             let html = '<div class="stats-grid">';
-
-            // Overview cards
             const avgPerDay = (totalCompleted / 7).toFixed(1);
             const overallRate = ((totalCompleted / totalPossible) * 100).toFixed(0);
 
-            html += `
-                <div class="stat-card">
-                    <div class="stat-label">Last 7 Days Average</div>
-                    <div class="stat-value">${avgPerDay}/19</div>
-                    <div class="stat-detail">habits per day</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Overall Success Rate</div>
-                    <div class="stat-value">${overallRate}%</div>
-                    <div class="stat-detail">of all habits</div>
-                </div>
-            `;
+            html += `<div class="stat-card"><div class="stat-label">Last 7 Days Avg</div><div class="stat-value">${avgPerDay}/19</div></div>`;
+            html += `<div class="stat-card"><div class="stat-label">Success Rate</div><div class="stat-value">${overallRate}%</div></div>`;
 
-            // Best/worst days
             let bestDay = { date: '', count: 0 };
             let worstDay = { date: '', count: 19 };
-
             lastDays.forEach(dateKey => {
                 let dayCount = 0;
                 uniqueHabits.forEach((habit, index) => {
-                    if (localStorage.getItem(`${dateKey}-habit-${index}`) === 'true') {
-                        dayCount++;
-                    }
+                    if (localStorage.getItem(`${dateKey}-habit-${index}`) === 'true') dayCount++;
                 });
-                if (dayCount > bestDay.count) {
-                    bestDay = { date: dateKey, count: dayCount };
-                }
-                if (dayCount < worstDay.count) {
-                    worstDay = { date: dateKey, count: dayCount };
-                }
+                if (dayCount > bestDay.count) bestDay = { date: dateKey, count: dayCount };
+                if (dayCount < worstDay.count) worstDay = { date: dateKey, count: dayCount };
             });
 
-            html += `
-                <div class="stat-card">
-                    <div class="stat-label">Best Day</div>
-                    <div class="stat-value">${bestDay.count}/19</div>
-                    <div class="stat-detail">${formatDate(new Date(bestDay.date))}</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Lowest Day</div>
-                    <div class="stat-value">${worstDay.count}/19</div>
-                    <div class="stat-detail">${formatDate(new Date(worstDay.date))}</div>
-                </div>
-            `;
-
+            html += `<div class="stat-card"><div class="stat-label">Best Day</div><div class="stat-value">${bestDay.count}/19</div></div>`;
+            html += `<div class="stat-card"><div class="stat-label">Lowest Day</div><div class="stat-value">${worstDay.count}/19</div></div>`;
             html += '</div>';
 
-            // Daily breakdown
-            html += '<h3 style="font-size: 16px; font-weight: 700; color: #333; margin: 20px 0 15px;">Last 7 Days</h3>';
-            html += '<div class="day-summary">';
-
+            html += '<h3>Last 7 Days</h3><div class="day-summary">';
             lastDays.forEach(dateKey => {
                 let dayCount = 0;
                 uniqueHabits.forEach((habit, index) => {
-                    if (localStorage.getItem(`${dateKey}-habit-${index}`) === 'true') {
-                        dayCount++;
-                    }
+                    if (localStorage.getItem(`${dateKey}-habit-${index}`) === 'true') dayCount++;
                 });
-
                 const rate = (dayCount / 19) * 100;
-                let boxClass = '';
-                if (rate >= 60) boxClass = 'high';
-                else if (rate >= 40) boxClass = 'medium';
-                else boxClass = 'low';
-
+                let boxClass = rate >= 60 ? 'high' : (rate >= 40 ? 'medium' : 'low');
                 const dayDate = new Date(dateKey);
                 const dayName = dayDate.toLocaleDateString('en-US', { weekday: 'short' });
-                html += `<div class="day-box ${boxClass}">${dayName} ${dayDate.getDate()}<br>${dayCount}/19</div>`;
+                html += `<div class="day-box ${boxClass}">${dayName}<br>${dayCount}/19</div>`;
             });
-
             html += '</div>';
 
-            // Habit breakdown
-            html += '<h3 style="font-size: 16px; font-weight: 700; color: #333; margin: 20px 0 15px;">Success Rates</h3>';
-            html += '<div class="habit-stats">';
-
-            // Sort habits by success rate
-            const sortedHabits = uniqueHabits.sort((a, b) => {
-                const rateA = habitStats[a].completed / habitStats[a].days;
-                const rateB = habitStats[b].completed / habitStats[b].days;
-                return rateB - rateA;
-            });
-
-            sortedHabits.forEach(habit => {
+            html += '<h3>Success Rates</h3><div class="habit-stats">';
+            const sorted = uniqueHabits.sort((a, b) => (habitStats[b].completed / habitStats[b].days) - (habitStats[a].completed / habitStats[a].days));
+            sorted.forEach(habit => {
                 const stats = habitStats[habit];
                 const rate = (stats.completed / stats.days) * 100;
                 const isEssential = essentialHabits.includes(habit);
-
-                html += `
-                    <div class="habit-stat-row ${isEssential ? 'essential' : 'optional'}">
-                        <div class="habit-name">${habit}</div>
-                        <div class="habit-bar-container">
-                            <div class="habit-bar" style="width: ${rate}%"></div>
-                        </div>
-                        <div class="habit-rate">${rate.toFixed(0)}%</div>
-                    </div>
-                `;
+                html += `<div class="habit-stat-row ${isEssential ? 'essential' : 'optional'}"><div class="habit-name">${habit}</div><div class="habit-bar-container"><div class="habit-bar" style="width: ${rate}%"></div></div><div class="habit-rate">${rate.toFixed(0)}%</div></div>`;
             });
-
             html += '</div>';
-
             document.getElementById('statsContainer').innerHTML = html;
         }
 
-        // Initialize on page load
         window.onload = initializeUI;
     </script>
 </body>
