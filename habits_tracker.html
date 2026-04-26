@@ -15,9 +15,13 @@
         .date { font-size: 14px; color: #666; margin-bottom: 8px; }
         .title { font-size: 28px; font-weight: 700; color: #333; }
 
-        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; flex-wrap: wrap; }
         .tab-button { padding: 12px 20px; background: none; border: none; border-bottom: 3px solid transparent; font-size: 14px; font-weight: 600; color: #666; cursor: pointer; }
         .tab-button.active { color: #667eea; border-bottom-color: #667eea; }
+
+        .period-selector { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .period-button { padding: 8px 16px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; font-weight: 600; color: #333; cursor: pointer; transition: all 0.2s ease; }
+        .period-button.active { background: #667eea; color: white; border-color: #667eea; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
@@ -101,6 +105,7 @@
         </div>
 
         <div id="stats" class="tab-content">
+            <div class="period-selector" id="periodSelector"></div>
             <div id="statsContainer"></div>
         </div>
 
@@ -142,13 +147,41 @@
         function todayButton() { currentDate = new Date(); updateDateDisplay(); loadDay(); }
         function goToDate() { const dateInput = document.getElementById('dateInput').value; if (dateInput) { currentDate = new Date(dateInput + 'T00:00:00'); updateDateDisplay(); loadDay(); } }
 
+        let currentPeriod = 7;
+
         function switchTab(e, tabName) {
             e.preventDefault();
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
             e.target.classList.add('active');
-            if (tabName === 'stats') generateStats();
+            if (tabName === 'stats') {
+                initPeriodSelector();
+                generateStats(7);
+            }
+        }
+
+        function initPeriodSelector() {
+            const periods = [
+                { days: 7, label: '7 Days' },
+                { days: 14, label: '14 Days' },
+                { days: 28, label: '28 Days' },
+                { days: 90, label: '90 Days' },
+                { days: 180, label: '180 Days' },
+                { days: 360, label: '360 Days' }
+            ];
+            let html = '';
+            periods.forEach(p => {
+                const isActive = p.days === currentPeriod ? 'active' : '';
+                html += `<button class="period-button ${isActive}" onclick="selectPeriod(${p.days})">${p.label}</button>`;
+            });
+            document.getElementById('periodSelector').innerHTML = html;
+        }
+
+        function selectPeriod(days) {
+            currentPeriod = days;
+            initPeriodSelector();
+            generateStats(days);
         }
 
         function loadDay() {
@@ -234,8 +267,8 @@
             return days;
         }
 
-        function generateStats() {
-            const lastDays = getLastNDays(7);
+        function generateStats(days = 7) {
+            const lastDays = getLastNDays(days);
             const habitStats = {};
             let totalCompleted = 0;
             let totalPossible = 0;
@@ -254,11 +287,13 @@
             });
 
             let html = '<div class="stats-grid">';
-            const avgPerDay = (totalCompleted / 7).toFixed(1);
+            const avgPerDay = (totalCompleted / days).toFixed(1);
             const overallRate = ((totalCompleted / totalPossible) * 100).toFixed(0);
 
-            html += `<div class="stat-card"><div class="stat-label">Last 7 Days Avg</div><div class="stat-value">${avgPerDay}/19</div></div>`;
+            html += `<div class="stat-card"><div class="stat-label">Average per Day</div><div class="stat-value">${avgPerDay}/19</div></div>`;
             html += `<div class="stat-card"><div class="stat-label">Success Rate</div><div class="stat-value">${overallRate}%</div></div>`;
+            html += `<div class="stat-card"><div class="stat-label">Total Completed</div><div class="stat-value">${totalCompleted}</div></div>`;
+            html += `<div class="stat-card"><div class="stat-label">Period</div><div class="stat-value">${days}</div><div class="stat-detail">days</div></div>`;
 
             let bestDay = { date: '', count: 0 };
             let worstDay = { date: '', count: 19 };
@@ -275,7 +310,7 @@
             html += `<div class="stat-card"><div class="stat-label">Lowest Day</div><div class="stat-value">${worstDay.count}/19</div></div>`;
             html += '</div>';
 
-            html += '<h3>Last 7 Days</h3><div class="day-summary">';
+            html += `<h3>Last ${days} Days</h3><div class="day-summary">`;
             lastDays.forEach(dateKey => {
                 let dayCount = 0;
                 uniqueHabits.forEach((habit, index) => {
