@@ -25,7 +25,9 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        .habits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .habit-group { margin-bottom: 25px; }
+        .group-title { font-size: 13px; font-weight: 700; color: #667eea; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #667eea; }
+        .habits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .habit-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: #f9fafb; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; border: 2px solid transparent; }
         .habit-item:hover { background: #f0f2ff; border-color: #667eea; }
         .habit-item.done { background: #e8f5e9; border-color: #2e7d32; }
@@ -116,9 +118,20 @@
     <script>
         let currentDate = new Date();
 
+        const habitGroups = {
+            'Santé': ['Sommeil', 'Protéines/Bouffe', 'Consommation eau'],
+            'Relations': ['QT Friends', 'QT Felix', 'QT Matteo', 'QT Girlfriend'],
+            'Entrainement': ['Étirements', 'Cardio', 'Weightlifting'],
+            'GTD': ['Plan', 'Big P', 'Big W'],
+            'Mental': ['Méditation', 'Journal', 'Lecture'],
+            'Autres': ['Nouvelle recette', 'Pratique guitare ou piano', 'Rangement-menage']
+        };
+
         const essentialHabits = ['Sommeil', 'Méditation', 'Plan', 'Journal', 'Lecture', 'Étirements', 'Cardio', 'Weightlifting', 'Protéines/Bouffe', 'Consommation eau', 'Big P', 'Big W', 'QT Friends', 'QT Matteo', 'QT Felix', 'QT Girlfriend'];
         const optionalHabits = ['Nouvelle recette', 'Pratique guitare ou piano', 'Rangement-menage'];
         const uniqueHabits = [...essentialHabits, ...optionalHabits];
+
+        const groupOrder = ['Santé', 'Relations', 'Entrainement', 'GTD', 'Mental', 'Autres'];
 
         function formatDate(date) {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -195,22 +208,42 @@
 
         function initializeUI() {
             updateDateDisplay();
-            const grid = document.getElementById('habitsGrid');
-            grid.innerHTML = '';
-            uniqueHabits.forEach((habit, index) => {
-                const div = document.createElement('div');
-                div.className = 'habit-item ' + (optionalHabits.includes(habit) ? 'optional' : 'essential');
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = `check-${index}`;
-                checkbox.onchange = () => { updateProgress(); toggleHabitStyle(index); };
-                const label = document.createElement('label');
-                label.htmlFor = `check-${index}`;
-                label.textContent = habit;
-                div.appendChild(checkbox);
-                div.appendChild(label);
-                grid.appendChild(div);
+            const habitsContainer = document.getElementById('habitsGrid').parentElement;
+            habitsContainer.innerHTML = '';
+
+            groupOrder.forEach(groupName => {
+                const habits = habitGroups[groupName];
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'habit-group';
+
+                const groupTitle = document.createElement('div');
+                groupTitle.className = 'group-title';
+                groupTitle.textContent = groupName;
+                groupDiv.appendChild(groupTitle);
+
+                const grid = document.createElement('div');
+                grid.className = 'habits-grid';
+
+                habits.forEach(habit => {
+                    const index = uniqueHabits.indexOf(habit);
+                    const div = document.createElement('div');
+                    div.className = 'habit-item ' + (optionalHabits.includes(habit) ? 'optional' : 'essential');
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = `check-${index}`;
+                    checkbox.onchange = () => { updateProgress(); toggleHabitStyle(index); };
+                    const label = document.createElement('label');
+                    label.htmlFor = `check-${index}`;
+                    label.textContent = habit;
+                    div.appendChild(checkbox);
+                    div.appendChild(label);
+                    grid.appendChild(div);
+                });
+
+                groupDiv.appendChild(grid);
+                habitsContainer.appendChild(groupDiv);
             });
+
             loadDay();
         }
 
@@ -308,6 +341,22 @@
 
             html += `<div class="stat-card"><div class="stat-label">Best Day</div><div class="stat-value">${bestDay.count}/19</div></div>`;
             html += `<div class="stat-card"><div class="stat-label">Lowest Day</div><div class="stat-value">${worstDay.count}/19</div></div>`;
+            html += '</div>';
+
+            // Group performance
+            html += '<h3>Performance by Group</h3><div class="habit-stats">';
+            groupOrder.forEach(groupName => {
+                const groupHabits = habitGroups[groupName];
+                let groupCompleted = 0;
+                let groupTotal = 0;
+                groupHabits.forEach(habit => {
+                    const idx = uniqueHabits.indexOf(habit);
+                    groupTotal += habitStats[habit].days;
+                    groupCompleted += habitStats[habit].completed;
+                });
+                const groupRate = (groupCompleted / groupTotal) * 100;
+                html += `<div class="habit-stat-row essential"><div class="habit-name">${groupName}</div><div class="habit-bar-container"><div class="habit-bar" style="width: ${groupRate}%"></div></div><div class="habit-rate">${groupRate.toFixed(0)}%</div></div>`;
+            });
             html += '</div>';
 
             html += `<h3>Last ${days} Days</h3><div class="day-summary">`;
