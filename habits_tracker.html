@@ -37,9 +37,12 @@
         .habit-item.optional label::after { content: ' (opt)'; font-size: 12px; color: #999; font-weight: 400; }
         .habit-item.essential label::before { content: '★ '; color: #ff9800; }
 
-        .progress { margin: 20px 0; font-size: 14px; color: #666; text-align: center; }
-        .progress-bar { background: #f0f0f0; height: 8px; margin: 8px 0; border-radius: 4px; overflow: hidden; }
+        .progress { margin: 20px 0; text-align: center; }
+        .daily-score { font-size: 36px; font-weight: 700; color: #667eea; margin: 15px 0; }
+        .daily-score-label { font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 5px; }
+        .progress-bar { background: #f0f0f0; height: 8px; margin: 8px 0 15px 0; border-radius: 4px; overflow: hidden; }
         .progress-fill { background: #667eea; height: 100%; transition: width 0.3s ease; }
+        .progress-text { font-size: 13px; color: #666; margin-top: 8px; }
 
         .actions { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
         button { padding: 12px 24px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; }
@@ -97,8 +100,10 @@
         <div id="tracker" class="tab-content active">
             <div class="habits-grid" id="habitsGrid"></div>
             <div class="progress">
-                <div id="progressText">0 of 19 completed</div>
+                <div class="daily-score" id="dailyScore">0/100</div>
+                <div class="daily-score-label">Today's Score</div>
                 <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+                <div class="progress-text" id="progressText"></div>
             </div>
             <div class="actions">
                 <button class="btn-save" onclick="saveToDatabase()">Save to Database</button>
@@ -133,11 +138,11 @@
 
         const groupOrder = ['Santé', 'Relations', 'Entrainement', 'GTD', 'Mental', 'Autres'];
 
-        // Scoring: 16 essential habits = 100 points (6.25 each), 3 optional = 5 points each
+        // Scoring: 16 essential habits = 100 points (6.25 each), optional habits don't count
         const habitScores = {};
         const pointPerEssential = 100 / essentialHabits.length; // 6.25
         essentialHabits.forEach(habit => { habitScores[habit] = pointPerEssential; });
-        optionalHabits.forEach(habit => { habitScores[habit] = 5; });
+        optionalHabits.forEach(habit => { habitScores[habit] = 0; });
 
         function formatDate(date) {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -274,9 +279,9 @@
             const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
             const total = uniqueHabits.length;
             const score = calculateDailyScore();
-            const maxScore = 100 + (3 * 5); // 115 total possible
-            const percentage = (score / maxScore) * 100;
-            document.getElementById('progressText').textContent = `${score.toFixed(1)}/115 points (${checked}/${total} habits)`;
+            const percentage = (score / 100) * 100;
+            document.getElementById('dailyScore').textContent = `${score.toFixed(1)}/100`;
+            document.getElementById('progressText').textContent = `${checked}/${total} habits completed (${essentialHabits.length} essential + ${optionalHabits.length} optional)`;
             document.getElementById('progressFill').style.width = `${percentage}%`;
         }
 
@@ -304,7 +309,7 @@
             });
             score = Math.round(score * 100) / 100;
             localStorage.setItem(`${dateKey}-score`, score);
-            showStatus(`✓ Saved ${formatDate(currentDate)} (${score.toFixed(1)} pts)`);
+            showStatus(`✓ Saved ${formatDate(currentDate)} — Score: ${score.toFixed(1)}/100`);
         }
 
         function showStatus(message) {
@@ -331,7 +336,7 @@
             let totalPossible = 0;
             let totalScore = 0;
             let bestScore = 0;
-            let worstScore = 115;
+            let worstScore = 100;
             const dailyScores = [];
 
             uniqueHabits.forEach(habit => { habitStats[habit] = { completed: 0, days: 0 }; });
@@ -359,10 +364,10 @@
             const avgScore = (totalScore / days).toFixed(1);
             const overallRate = ((totalCompleted / totalPossible) * 100).toFixed(0);
 
-            html += `<div class="stat-card"><div class="stat-label">Average Score</div><div class="stat-value">${avgScore}/115</div></div>`;
+            html += `<div class="stat-card"><div class="stat-label">Average Score</div><div class="stat-value">${avgScore}/100</div></div>`;
             html += `<div class="stat-card"><div class="stat-label">Success Rate</div><div class="stat-value">${overallRate}%</div></div>`;
-            html += `<div class="stat-card"><div class="stat-label">Best Day</div><div class="stat-value">${bestScore.toFixed(1)}</div><div class="stat-detail">points</div></div>`;
-            html += `<div class="stat-card"><div class="stat-label">Lowest Day</div><div class="stat-value">${worstScore.toFixed(1)}</div><div class="stat-detail">points</div></div>`;
+            html += `<div class="stat-card"><div class="stat-label">Best Day</div><div class="stat-value">${bestScore.toFixed(0)}</div><div class="stat-detail">out of 100</div></div>`;
+            html += `<div class="stat-card"><div class="stat-label">Lowest Day</div><div class="stat-value">${worstScore.toFixed(0)}</div><div class="stat-detail">out of 100</div></div>`;
 
             let bestDay = { date: '', count: 0 };
             let worstDay = { date: '', count: 19 };
@@ -398,11 +403,11 @@
             html += `<h3>Last ${days} Days</h3><div class="day-summary">`;
             dailyScores.forEach(dayData => {
                 const score = dayData.score;
-                const scoreRate = (score / 115) * 100;
+                const scoreRate = (score / 100) * 100;
                 let boxClass = scoreRate >= 70 ? 'high' : (scoreRate >= 50 ? 'medium' : 'low');
                 const dayDate = new Date(dayData.date);
                 const dayName = dayDate.toLocaleDateString('en-US', { weekday: 'short' });
-                html += `<div class="day-box ${boxClass}">${dayName}<br>${score.toFixed(0)}pts</div>`;
+                html += `<div class="day-box ${boxClass}">${dayName}<br>${score.toFixed(0)}/100</div>`;
             });
             html += '</div>';
 
