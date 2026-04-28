@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>90-Minute Morning Routine (5:00–7:30)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 3px solid #667eea;
+    }
+
+    header h1 {
+      font-size: 2.2em;
+      color: #1f2937;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 1.1em;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 0.95em;
+      color: #9ca3af;
+      font-style: italic;
+    }
+
+    .phases-grid {
+      display: grid;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .phase {
+      background: white;
+      border-left: 5px solid #667eea;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .phase.boys {
+      border-left-color: #ec4899;
+      background: linear-gradient(135deg, #fff5f8 0%, #ffffff 100%);
+    }
+
+    .phase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .phase-number {
+      font-size: 2em;
+      font-weight: 700;
+      color: #667eea;
+      width: 50px;
+      text-align: center;
+    }
+
+    .phase.boys .phase-number {
+      color: #ec4899;
+    }
+
+    .phase-title {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: #1f2937;
+      flex: 1;
+    }
+
+    .phase-time {
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.9em;
+      font-weight: 600;
+      color: #667eea;
+      background: #f3f4f6;
+      padding: 6px 12px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .phase.boys .phase-time {
+      color: #ec4899;
+      background: #fce7f3;
+    }
+
+    .phase-duration {
+      font-size: 0.85em;
+      color: #9ca3af;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .activities {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .activities li {
+      padding: 10px 0;
+      padding-left: 28px;
+      position: relative;
+      color: #374151;
+    }
+
+    .activities li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: bold;
+    }
+
+    .phase.boys .activities li:before {
+      color: #ec4899;
+    }
+
+    .why-box {
+      background: #f3f4f6;
+      border-left: 3px solid #667eea;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: #4b5563;
+      font-style: italic;
+    }
+
+    .phase.boys .why-box {
+      background: #fce7f3;
+      border-left-color: #ec4899;
+    }
+
+    .timeline {
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline h2 {
+      font-size: 1.4em;
+      color: #1f2937;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .timeline-item {
+      padding: 16px;
+      margin-bottom: 12px;
+      background: #f9fafb;
+      border-radius: 6px;
+      font-size: 0.95em;
+    }
+
+    .timeline-time {
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-weight: 600;
+      color: #667eea;
+      margin-bottom: 4px;
+    }
+
+    .timeline-activity {
+      color: #374151;
+    }
+
+    .rules-section {
+      background: linear-gradient(135deg, #667eea 0%, #5568d3 100%);
+      color: white;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .rules-section h2 {
+      font-size: 1.4em;
+      margin-bottom: 20px;
+    }
+
+    .rules-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .rules-section li {
+      padding: 12px 0;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    .rules-section li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .notes-section {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+
+    .notes-section h3 {
+      color: #d97706;
+      margin-bottom: 12px;
+      font-size: 1.1em;
+    }
+
+    .notes-section p {
+      color: #92400e;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+
+    .notes-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .printable-tip {
+      background: #dbeafe;
+      border: 1px solid #93c5fd;
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #1e40af;
+    }
+
+    .printable-tip strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 100%;
+      }
+
+      .printable-tip {
+        display: none;
+      }
+
+      header {
+        page-break-after: avoid;
+      }
+
+      .phase {
+        page-break-inside: avoid;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+
+      .phase-header {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .phase-time {
+        align-self: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>90-Minute Morning Routine</h1>
+      <div class="subtitle">5:00 AM — 7:30 AM</div>
+      <div class="tagline">Personal foundation + Boys integration</div>
+    </header>
+
+    <!-- Quick Timeline -->
+    <div class="timeline">
+      <h2>Quick Timeline</h2>
+      <div class="timeline-item">
+        <div class="timeline-time">5:00–6:30</div>
+        <div class="timeline-activity"><strong>Personal Foundation</strong> — Breathwork → Movement → Fuel → Reading → Reflection</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">6:30–7:30</div>
+        <div class="timeline-activity"><strong>Parenting Integration</strong> — Prepare & get ready, then breakfast and connection with boys</div>
+      </div>
+    </div>
+
+    <!-- Phase Breakdown -->
+    <div class="phases-grid">
+
+      <!-- Phase 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">1</div>
+          <div class="phase-title">Nervous System Reset</div>
+          <div class="phase-time">5:00–5:15</div>
+        </div>
+        <div class="phase-duration">15 minutes</div>
+        <ul class="activities">
+          <li>Cold water on face + 2 min breathwork (Kai)</li>
+          <li>10 min meditation (Noa) — no app, no pressure, just breath</li>
+        </ul>
+        <div class="why-box"><strong>Why:</strong> Clears grogginess, activates parasympathetic nervous system. Morning mind is quietest — less negotiation with yourself.</div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">2</div>
+          <div class="phase-title">Movement & Embodiment</div>
+          <div class="phase-time">5:15–5:40</div>
+        </div>
+        <div class="phase-duration">25 minutes</div>
+        <ul class="activities">
+          <li>5 min dynamic stretching</li>
+          <li>15 min strength or cardio (Blake's sustainable circuit, not maximum effort)</li>
+          <li>5 min static stretching</li>
+        </ul>
+        <div class="why-box"><strong>Why:</strong> Long enough to feel real, short enough to protect consistency. Not hero-mode training — sustainable for life.</div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">3</div>
+          <div class="phase-title">Nourishment</div>
+          <div class="phase-time">5:40–5:50</div>
+        </div>
+        <div class="phase-duration">10 minutes</div>
+        <ul class="activities">
+          <li>Simple breakfast (protein + carbs, boring and repeatable)</li>
+          <li>Water + hydration</li>
+        </ul>
+        <div class="why-box"><strong>Why:</strong> Stabilizes blood sugar before planning. Keep it boring — no decision-making in AM.</div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">4</div>
+          <div class="phase-title">Reading</div>
+          <div class="phase-time">5:50–6:10</div>
+        </div>
+        <div class="phase-duration">20 minutes</div>
+        <ul class="activities">
+          <li>Non-fiction only (focused learning, no phone, no news)</li>
+          <li>One specific book in one specific chair</li>
+          <li>Book on table before bed as anchor</li>
+        </ul>
+        <div class="why-box"><strong>Why:</strong> Replaces doomscroll habit. 20 min/day = 2 hours/week of actual learning. Early placement before resistance builds.</div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">5</div>
+          <div class="phase-title">Reflection</div>
+          <div class="phase-time">6:10–6:25</div>
+        </div>
+        <div class="phase-duration">15 minutes</div>
+        <ul class="activities">
+          <li>10 min journal (Anaïs) — 10 lines max, not performance</li>
+          <li>Journal prompt: "What am I avoiding right now?" or "What's one thing I want to show the boys today?"</li>
+          <li>5 min today's 3 tasks (Jordan) — quick capture</li>
+        </ul>
+        <div class="why-box"><strong>Why:</strong> Surfaces avoidance before it hijacks your day. Removes decision paralysis later — you already know what matters.</div>
+      </div>
+
+      <!-- Phase 6 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">6</div>
+          <div class="phase-title">Presence Reset</div>
+          <div class="phase-time">6:25–6:30</div>
+        </div>
+        <div class="phase-duration">5 minutes</div>
+        <ul class="activities">
+          <li>Shower or clean up from routine</li>
+          <li>One deep breath — check in with yourself</li>
+          <li>Mental question: "Am I present or scattered?"</li>
+        </ul>
+        <div class="why-box"><strong>Why:</strong> Bridges from internal work to external world. You're grounded when the boys wake.</div>
+      </div>
+
+      <!-- Phase 7: Boys -->
+      <div class="phase boys">
+        <div class="phase-header">
+          <div class="phase-number">7</div>
+          <div class="phase-title">With the Boys</div>
+          <div class="phase-time">6:30–7:30</div>
+        </div>
+        <div class="phase-duration">60 minutes (30 min prep + 30 min with boys)</div>
+
+        <div style="margin-bottom: 16px;">
+          <strong style="color: #ec4899; display: block; margin-bottom: 8px;">6:30–7:00 — Prepare & Presence</strong>
+          <ul class="activities">
+            <li>Shower or get ready (if needed)</li>
+            <li>Make their breakfast or prep something simple</li>
+            <li>No phone, no emails — you're grounded</li>
+          </ul>
+        </div>
+
+        <div>
+          <strong style="color: #ec4899; display: block; margin-bottom: 8px;">7:00–7:30 — Breakfast & Connection</strong>
+          <ul class="activities">
+            <li><strong>Matteo (13):</strong> Ask what he's reading or thinking about. Listen.</li>
+            <li><strong>Felix (11):</strong> Play one game, chat, or offer a shoulder massage</li>
+            <li>No rush — just presence. Last words: "I love you, have a good day"</li>
+          </ul>
+        </div>
+
+        <div class="why-box"><strong>Why:</strong> Post-separation, this 30 minutes is where they feel secure. Consistency > intensity. They're watching to see if you're stable, present, not scattered.</div>
+      </div>
+
+    </div>
+
+    <!-- Rules Section -->
+    <div class="rules-section">
+      <h2>The Non-Negotiable Rule</h2>
+      <ul>
+        <li>You do all 6 phases (personal) or none. The routine works because it's a sequence.</li>
+        <li>Each piece unlocks the next — meditation → movement → fuel → reading → reflection</li>
+        <li>On hard mornings, do the micro version (see below), but do all phases.</li>
+        <li>Reading must happen before the boys wake — no skipping ahead, no "I'll read later"</li>
+      </ul>
+    </div>
+
+    <!-- Micro Version -->
+    <div class="notes-section">
+      <h3>📌 Micro Version (Bad Mornings)</h3>
+      <p>When you oversleep or things are chaotic:</p>
+      <ul style="margin-left: 20px; margin-bottom: 16px;">
+        <li>Breathwork: 3 min</li>
+        <li>Movement: 10 min</li>
+        <li>Food: 5 min</li>
+        <li>Reading: 5 min</li>
+        <li>Journal: 2 min</li>
+        <li>Presence check: 2 min</li>
+      </ul>
+      <p>This condenses to ~30 minutes but still hits all phases. Still do the full boys time at 6:30–7:30.</p>
+    </div>
+
+    <!-- Boys Notes -->
+    <div class="notes-section">
+      <h3>👨‍👦‍👦 Boys Integration Notes</h3>
+      <p><strong>Matteo (13, analytical):</strong> He's processing the separation intellectually. Morning questions validate his mind and show you're interested in what he thinks.</p>
+      <p><strong>Felix (11, social/creative):</strong> He feels the family disruption emotionally. A quick game or massage says "you matter, things are okay."</p>
+      <p><strong>Both:</strong> They're watching to see if you're stable, present, not scattered. This 30 minutes teaches them more than any explanation.</p>
+    </div>
+
+    <!-- Implementation Notes -->
+    <div class="notes-section">
+      <h3>🚀 Getting Started</h3>
+      <p><strong>Start Monday.</strong> Two weeks to lock it in.</p>
+      <p><strong>Reading will be the last habit to stick.</strong> That's normal. The avoidance will show up here first — that's where you learn the most.</p>
+      <p><strong>Track it:</strong> Put a small checkmark for each day you complete all 6 phases (before 6:30). See the pattern.</p>
+      <p><strong>One book:</strong> Start with something you're genuinely curious about, not "should" reading. Curiosity beats discipline.</p>
+    </div>
+
+    <div class="printable-tip">
+      <strong>💡 Print this page and post it in your kitchen or by your coffee maker</strong>
+      <div>Use keyboard shortcut Cmd+P (Mac) or Ctrl+P (Windows) to print</div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Routine Selector</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #f9fafb 0%, #f0f9ff 100%);
+      color: #1f2937;
+      line-height: 1.6;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: #1f2937;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      font-size: 1.1em;
+      color: #6b7280;
+    }
+
+    .selector-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .routine-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .routine-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .routine-header {
+      padding: 30px;
+      text-align: center;
+      border-bottom: 3px solid #e5e7eb;
+    }
+
+    .routine-header.early {
+      background: linear-gradient(135deg, #667eea 0%, #5568d3 100%);
+      color: white;
+    }
+
+    .routine-header.realistic {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+
+    .routine-header h2 {
+      font-size: 1.8em;
+      margin-bottom: 8px;
+    }
+
+    .routine-time {
+      font-size: 1.3em;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .routine-duration {
+      font-size: 0.9em;
+      opacity: 0.9;
+    }
+
+    .routine-content {
+      padding: 30px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .routine-highlight {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .routine-highlight strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #1f2937;
+    }
+
+    .routine-highlight ul {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.9em;
+    }
+
+    .routine-highlight li {
+      padding: 4px 0;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .routine-highlight li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      color: #10b981;
+    }
+
+    .routine-card.early .routine-highlight li:before {
+      color: #667eea;
+    }
+
+    .compare-section {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 50px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .compare-section h3 {
+      font-size: 1.5em;
+      color: #1f2937;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .compare-table th {
+      background: #f9fafb;
+      padding: 16px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid #e5e7eb;
+      color: #1f2937;
+    }
+
+    .compare-table td {
+      padding: 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table .aspect {
+      font-weight: 500;
+      color: #1f2937;
+    }
+
+    .compare-table .early-col {
+      color: #667eea;
+    }
+
+    .compare-table .realistic-col {
+      color: #10b981;
+    }
+
+    .cta-section {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 16px 32px;
+      font-size: 1em;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      margin: 0 12px;
+    }
+
+    .button.early {
+      background: linear-gradient(135deg, #667eea 0%, #5568d3 100%);
+      color: white;
+    }
+
+    .button.early:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .button.realistic {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+
+    .button.realistic:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    }
+
+    .recommendation {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .recommendation h4 {
+      color: #d97706;
+      margin-bottom: 8px;
+    }
+
+    .recommendation p {
+      color: #92400e;
+      line-height: 1.8;
+    }
+
+    .notes {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .notes h4 {
+      color: #1e40af;
+      margin-bottom: 8px;
+    }
+
+    .notes ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .notes li {
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      color: #1e40af;
+    }
+
+    .notes li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+    }
+
+    @media (max-width: 900px) {
+      .selector-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 1.8em;
+      }
+
+      .compare-table {
+        font-size: 0.9em;
+      }
+
+      .compare-table th,
+      .compare-table td {
+        padding: 12px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .button {
+        display: none;
+      }
+
+      .selector-grid {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Choose Your Morning Routine</h1>
+      <p>Two paths to the same destination — consistency, presence, and sustainable growth</p>
+    </header>
+
+    <div class="recommendation">
+      <h4>🎯 Recommendation for You</h4>
+      <p><strong>Start with 120 minutes (6:00–8:00).</strong> It's more realistic for long-term consistency. A 5:00 AM start feels achievable but often breaks when life gets hard. Once the 6:00 AM routine is solid (3+ weeks), you can always shift earlier if you want more solo time. The real win is not the wake time — it's the consistency.</p>
+    </div>
+
+    <div class="selector-grid">
+      <!-- 90 Minute Card -->
+      <div class="routine-card">
+        <div class="routine-header early">
+          <h2>The Early Start</h2>
+          <div class="routine-time">5:00 AM — 7:30 AM</div>
+          <div class="routine-duration">90 minutes personal + 60 minutes with boys</div>
+        </div>
+        <div class="routine-content">
+          <div class="routine-highlight">
+            <strong>The Flow</strong>
+            <ul>
+              <li>5:00–6:30: Personal foundation (90 min)</li>
+              <li>6:30–7:30: Prepare & get ready</li>
+              <li>6:30–7:30: Breakfast & connection with boys</li>
+            </ul>
+          </div>
+
+          <div class="routine-highlight">
+            <strong>Best For</strong>
+            <ul>
+              <li>You're naturally an early riser</li>
+              <li>You love solo time before the world wakes</li>
+              <li>You want maximum personal foundation time</li>
+              <li>Work doesn't start until 9am or later</li>
+            </ul>
+          </div>
+
+          <div style="flex: 1;"></div>
+
+          <a href="morning-routine-90min.html" class="button early">View Full Routine</a>
+        </div>
+      </div>
+
+      <!-- 120 Minute Card -->
+      <div class="routine-card">
+        <div class="routine-header realistic">
+          <h2>The Realistic Start</h2>
+          <div class="routine-time">6:00 AM — 8:00 AM</div>
+          <div class="routine-duration">90 minutes personal + 30 minutes with boys</div>
+        </div>
+        <div class="routine-content">
+          <div class="routine-highlight">
+            <strong>The Flow</strong>
+            <ul>
+              <li>6:00–7:30: Personal foundation (90 min)</li>
+              <li>7:30–8:00: Breakfast & full connection</li>
+              <li>8:00+: Day begins, already flowing</li>
+            </ul>
+          </div>
+
+          <div class="routine-highlight">
+            <strong>Best For</strong>
+            <ul>
+              <li>You're human and sleep matters</li>
+              <li>More sustainable long-term</li>
+              <li>Less pressure to compress phases</li>
+              <li>Boys integration feels abundant, not rushed</li>
+            </ul>
+          </div>
+
+          <div style="flex: 1;"></div>
+
+          <a href="morning-routine-120min.html" class="button realistic">View Full Routine</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Section -->
+    <div class="compare-section">
+      <h3>Head-to-Head Comparison</h3>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Aspect</th>
+            <th class="early-col">90 Min (5:00–7:30)</th>
+            <th class="realistic-col">120 Min (6:00–8:00)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="aspect">Wake Time</td>
+            <td class="early-col">5:00 AM</td>
+            <td class="realistic-col">6:00 AM</td>
+          </tr>
+          <tr>
+            <td class="aspect">Solo Time</td>
+            <td class="early-col">90 minutes (6:00–7:30 if you skip boys prep)</td>
+            <td class="realistic-col">90 minutes (6:00–7:30)</td>
+          </tr>
+          <tr>
+            <td class="aspect">Personal Phases</td>
+            <td class="early-col">All 6 phases fit cleanly (5:00–6:30)</td>
+            <td class="realistic-col">All 6 phases fit cleanly (6:00–7:30)</td>
+          </tr>
+          <tr>
+            <td class="aspect">Boys Time</td>
+            <td class="early-col">60 min (includes prep + connection)</td>
+            <td class="realistic-col">30 min (breakfast + connection, pure)</td>
+          </tr>
+          <tr>
+            <td class="aspect">Realistic Consistency</td>
+            <td class="early-col">Harder in winter, chaos, or bad sleep</td>
+            <td class="realistic-col">More sustainable year-round</td>
+          </tr>
+          <tr>
+            <td class="aspect">Sleep Quality</td>
+            <td class="early-col">Requires strict 9pm bedtime</td>
+            <td class="realistic-col">Flexible, more forgiving</td>
+          </tr>
+          <tr>
+            <td class="aspect">Reading Time</td>
+            <td class="early-col">20 min (5:50–6:10)</td>
+            <td class="realistic-col">20 min (6:50–7:10)</td>
+          </tr>
+          <tr>
+            <td class="aspect">School/Work Start</td>
+            <td class="early-col">Earlier departure possible</td>
+            <td class="realistic-col">8:00 AM with boys, then work</td>
+          </tr>
+          <tr>
+            <td class="aspect">Best Season</td>
+            <td class="early-col">Spring/Summer (longer daylight)</td>
+            <td class="realistic-col">Year-round</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Implementation Section -->
+    <div class="compare-section">
+      <h3>How to Decide</h3>
+
+      <div class="notes">
+        <h4>Choose 90 minutes if:</h4>
+        <ul>
+          <li>You naturally wake early (even on weekends)</li>
+          <li>You're willing to protect a consistent 9pm bedtime</li>
+          <li>You crave solo time before anyone else wakes</li>
+          <li>Work or personal preference pulls you toward early hours</li>
+          <li>You've had success with early routines before</li>
+        </ul>
+      </div>
+
+      <div class="notes">
+        <h4>Choose 120 minutes if:</h4>
+        <ul>
+          <li>You value sleep and recovery (you should)</li>
+          <li>You want a routine that survives winter, illness, and chaos</li>
+          <li>You prefer "realistic" over "heroic"</li>
+          <li>You want boys integration to feel abundant, not squeezed</li>
+          <li>You're building this habit from scratch and need it to stick</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h3 style="margin-bottom: 20px;">Ready to Start?</h3>
+      <a href="morning-routine-90min.html" class="button early">View 90-Minute Routine</a>
+      <a href="morning-routine-120min.html" class="button realistic">View 120-Minute Routine</a>
+    </div>
+
+    <div class="compare-section" style="background: #f0fdf4; border-left: 4px solid #10b981;">
+      <h3 style="color: #166534;">The Universal Rules (Both Routines)</h3>
+      <ul style="list-style: none; padding-left: 0; color: #166534;">
+        <li style="padding: 12px 0; padding-left: 24px; position: relative;">
+          <span style="position: absolute; left: 0;">✓</span> Do all 6 personal phases or none — the sequence matters
+        </li>
+        <li style="padding: 12px 0; padding-left: 24px; position: relative;">
+          <span style="position: absolute; left: 0;">✓</span> Reading happens before the boys wake — no exceptions
+        </li>
+        <li style="padding: 12px 0; padding-left: 24px; position: relative;">
+          <span style="position: absolute; left: 0;">✓</span> Boys time is sacred — no phone, no email, full presence
+        </li>
+        <li style="padding: 12px 0; padding-left: 24px; position: relative;">
+          <span style="position: absolute; left: 0;">✓</span> On hard mornings, use the micro version but hit all phases
+        </li>
+        <li style="padding: 12px 0; padding-left: 24px; position: relative;">
+          <span style="position: absolute; left: 0;">✓</span> Give it 2 weeks minimum before deciding it's not working
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
