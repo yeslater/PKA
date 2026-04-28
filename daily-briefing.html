@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Briefing — Leadership Advisory</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid #475569;
+    }
+
+    header h1 {
+      font-size: 2.2em;
+      color: #f1f5f9;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .date-time {
+      color: #94a3b8;
+      font-size: 0.95em;
+      margin-bottom: 4px;
+    }
+
+    .briefing-meta {
+      color: #64748b;
+      font-size: 0.9em;
+      font-style: italic;
+    }
+
+    .overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .metric-card {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .metric-label {
+      color: #94a3b8;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .metric-value {
+      font-size: 1.8em;
+      color: #60a5fa;
+      font-weight: 700;
+    }
+
+    .clusters {
+      display: grid;
+      gap: 30px;
+    }
+
+    .cluster {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid #334155;
+      border-left: 4px solid #60a5fa;
+      border-radius: 8px;
+      padding: 30px;
+    }
+
+    .cluster.mind {
+      border-left-color: #a78bfa;
+    }
+
+    .cluster.health {
+      border-left-color: #34d399;
+    }
+
+    .cluster.productivity {
+      border-left-color: #fbbf24;
+    }
+
+    .cluster.work {
+      border-left-color: #f87171;
+    }
+
+    .cluster.relationships {
+      border-left-color: #fb7185;
+    }
+
+    .cluster.parenting {
+      border-left-color: #06b6d4;
+    }
+
+    .cluster.identity {
+      border-left-color: #8b5cf6;
+    }
+
+    .cluster-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .cluster-icon {
+      font-size: 2em;
+    }
+
+    .cluster h2 {
+      font-size: 1.5em;
+      color: #f1f5f9;
+      margin: 0;
+    }
+
+    .cluster-subtitle {
+      color: #94a3b8;
+      font-size: 0.9em;
+      margin-top: 4px;
+    }
+
+    .status {
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 20px;
+      border-left: 3px solid #64748b;
+    }
+
+    .status-label {
+      color: #94a3b8;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .status-text {
+      color: #cbd5e1;
+      font-size: 1em;
+    }
+
+    .recommendations {
+      margin-bottom: 20px;
+    }
+
+    .rec-title {
+      color: #64748b;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .rec-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .rec-item {
+      background: rgba(15, 23, 42, 0.8);
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border-left: 3px solid #94a3b8;
+      color: #cbd5e1;
+      font-size: 0.95em;
+    }
+
+    .rec-item strong {
+      color: #f1f5f9;
+    }
+
+    .priority-action {
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.15) 0%, rgba(34, 197, 94, 0.15) 100%);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .priority-label {
+      color: #60a5fa;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .priority-text {
+      color: #e0f2fe;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #334155;
+      color: #64748b;
+      font-size: 0.9em;
+    }
+
+    .warning {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      padding: 16px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+    }
+
+    .warning-label {
+      color: #fca5a5;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .warning-text {
+      color: #fecaca;
+    }
+
+    @media print {
+      body {
+        background: white;
+        color: #1f2937;
+      }
+      .cluster, .metric-card, .status, .rec-item, .priority-action {
+        background: white !important;
+        color: #1f2937 !important;
+        border: 1px solid #d1d5db !important;
+      }
+      header {
+        border-bottom: 2px solid #d1d5db;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Daily Leadership Briefing</h1>
+      <div class="date-time" id="currentDate"></div>
+      <div class="briefing-meta">Personalized insights across 7 life domains • 2-minute read</div>
+    </header>
+
+    <!-- Quick Metrics -->
+    <div class="overview">
+      <div class="metric-card">
+        <div class="metric-label">Focus Priority</div>
+        <div class="metric-value">3</div>
+        <div class="briefing-meta">daily tasks</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Habit Consistency</div>
+        <div class="metric-value" id="habitScore">—</div>
+        <div class="briefing-meta">today's score</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Active Projects</div>
+        <div class="metric-value" id="projectCount">—</div>
+        <div class="briefing-meta">in flight</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Phase</div>
+        <div class="metric-value">Post-Separation</div>
+        <div class="briefing-meta">context</div>
+      </div>
+    </div>
+
+    <!-- Cluster 1: Mind & Inner Life -->
+    <div class="clusters">
+      <div class="cluster mind">
+        <div class="cluster-header">
+          <div class="cluster-icon">🧠</div>
+          <div>
+            <h2>Mind & Inner Life</h2>
+            <div class="cluster-subtitle">Emotional foundation and meaning</div>
+          </div>
+        </div>
+
+        <div class="status">
+          <div class="status-label">Current Insight</div>
+          <div class="status-text">You're in active emotional reconstruction following the separation. This is not a weakness — it's the most important work you're doing. Your weekly work with Rachel is the anchor. The avoidance/doomscrolling pattern shows that when emotions feel overwhelming, you reach for escape rather than presence.</div>
+        </div>
+
+        <div class="warning">
+          <div class="warning-label">⚠ Emotional Regulation Pattern</div>
+          <div class="warning-text">When overwhelmed, you avoid instead of lean in. This pattern shows up in skipped meditation, unstarted journal entries, and scrolling. The solution isn't willpower — it's noticing the moment of avoidance and choosing presence instead, even for 5 minutes.</div>
+        </div>
+
+        <div class="recommendations">
+          <div class="rec-title">Today's Guidance</div>
+          <ul class="rec-list">
+            <li class="rec-item"><strong>One feeling, named:</strong> Before bed, identify one specific emotion you experienced today and name it. Not "stressed" — the actual texture. "Frustrated with Matteo," "proud of myself," "lonely." This single practice rewires your emotional awareness.</li>
+            <li class="rec-item"><strong>Meditation as permission:</strong> Your meditation resistance signals avoidance of difficult emotions, not laziness. Start with 3 minutes as an experiment: "What am I avoiding feeling right now?" Breathwork + naming is your pattern-breaking move.</li>
+            <li class="rec-item"><strong>Journal as conversation:</strong> Not performance. Write 10 sentences, not 2 pages. Treat it like talking to Rachel, not writing for an audience. Speed matters more than perfection here.</li>
+          </ul>
+        </div>
+
+        <div class="priority-action">
+          <div class="priority-label">🎯 Today's Priority</div>
+          <div class="priority-text">Schedule your reflection practice (meditation + journal) immediately after one of your meals. Anchor it to something you already do. This removes decision-making when you're depleted.</div>
+        </div>
+      </div>
+
+      <!-- Cluster 2: Physical Health & Performance -->
+      <div class="cluster health">
+        <div class="cluster-header">
+          <div class="cluster-icon">💪</div>
+          <div>
+            <h2>Physical Health & Performance</h2>
+            <div class="cluster-subtitle">Training, recovery, and vitality</div>
+          </div>
+        </div>
+
+        <div class="status">
+          <div class="status-label">Current Insight</div>
+          <div class="status-text">You're strong and athletic — this is not your weakness. Your pattern is the same as with meditation and journal: high initial enthusiasm, then postponement sets in. You know exactly what training and stretching look like; the friction is showing up consistently, not knowing what to do.</div>
+        </div>
+
+        <div class="recommendations">
+          <div class="rec-title">Today's Guidance</div>
+          <ul class="rec-list">
+            <li class="rec-item"><strong>Micro-commitment:</strong> Instead of "train today," commit to 15 minutes + stretching. Low bar, high adherence. You'll often do more once you start, but the commitment is only 15.</li>
+            <li class="rec-item"><strong>Anchor to routine:</strong> Link training to a non-negotiable daily event (post-work, before breakfast, Saturday morning). The when matters more than the willpower.</li>
+            <li class="rec-item"><strong>Sleep as foundation:</strong> You can't out-train poor sleep. If sleep is inconsistent, prioritize that over heroic training sessions. Sleep → training → strength.</li>
+          </ul>
+        </div>
+
+        <div class="priority-action">
+          <div class="priority-label">🎯 Today's Priority</div>
+          <div class="priority-text">One 15-minute session + 5 minutes stretching. Pick the time now, before decision fatigue hits. Even a walk counts if it moves your body and gets morning sun (which you need).</div>
+        </div>
+      </div>
+
+      <!-- Cluster 3: Productivity & Knowledge -->
+      <div class="cluster productivity">
+        <div class="cluster-header">
+          <div class="cluster-icon">📚</div>
+          <div>
+            <h2>Productivity & Knowledge</h2>
+            <div class="cluster-subtitle">Systems, consistency, and learning</div>
+          </div>
+        </div>
+
+        <div class="status">
+          <div class="status-label">Current Insight</div>
+          <div class="status-text">You built a GTD system. Good. It won't work if you skip the three daily decisions: (1) What are my 3 tasks today? (2) Did I do them? (3) What was hard? The system fails when you treat it as a capture tool but skip the "decide what matters" step.</div>
+        </div>
+
+        <div class="warning">
+          <div class="warning-label">⚠ Consistency Blocker</div>
+          <div class="warning-text">The reading/doomscrolling habit is stealing your evening. You're avoiding the work (in your head) by scrolling instead of processing. This also prevents journal writing and planning for tomorrow, which creates tomorrow's avoidance.</div>
+        </div>
+
+        <div class="recommendations">
+          <div class="rec-title">Today's Guidance</div>
+          <ul class="rec-list">
+            <li class="rec-item"><strong>3 tasks only:</strong> Visit Today's Focus right now. Pick your 3 non-negotiable tasks. If your inbox is empty, go capture what's actually on your mind first. Then pick 3.</li>
+            <li class="rec-item"><strong>Block scrolling time:</strong> Set a specific 30-minute window for news/reading after dinner. Before that window, no phone. This works because you're not denying yourself — you're *scheduling* permission.</li>
+            <li class="rec-item"><strong>Plan tonight for tomorrow:</strong> Spend 3 minutes at 8pm choosing tomorrow's 3 tasks. This kills morning decision paralysis and gives your brain time to process overnight.</li>
+          </ul>
+        </div>
+
+        <div class="priority-action">
+          <div class="priority-label">🎯 Today's Priority</div>
+          <div class="priority-text">Choose your 3 tasks right now. Check them off as you go. At day's end, reflect: which was hardest, and why? Capture that learning.</div>
+        </div>
+      </div>
+
+      <!-- Cluster 4: Work & Career -->
+      <div class="cluster work">
+        <div class="cluster-header">
+          <div class="cluster-icon">🎯</div>
+          <div>
+            <h2>Work & Career</h2>
+            <div class="cluster-subtitle">Leadership growth and visibility</div>
+          </div>
+        </div>
+
+        <div class="status">
+          <div class="status-label">Current Insight</div>
+          <div class="status-text">Your goal is clear: move from advisor to team leader on AI and process improvement. You have the technical credibility. The gap is visibility and influence with management. Every project you ship, every decision you help management make, moves you toward that title.</div>
+        </div>
+
+        <div class="recommendations">
+          <div class="rec-title">Today's Guidance</div>
+          <ul class="rec-list">
+            <li class="rec-item"><strong>Visibility through delivery:</strong> One high-stakes project should get your best thinking this quarter. Make it undeniable that this team improvement saves money and time. Document it so management sees the impact.</li>
+            <li class="rec-item"><strong>Influence in the room:</strong> When you're in meetings, speak to the business outcome, not just the technical solution. "This saves X hours/month for the finance team" lands harder than "this is a better architecture."</li>
+            <li class="rec-item"><strong>Build your team narrative:</strong> Start articulating what a dedicated AI/process improvement team would do for the firm. Have this conversation with at least two managers before asking for the role officially.</li>
+          </ul>
+        </div>
+
+        <div class="priority-action">
+          <div class="priority-label">🎯 Today's Priority</div>
+          <div class="priority-text">Identify one person in management who could champion your transition to team leader. Schedule a coffee (real or virtual) this week to talk about the roadmap — not to ask for the job, just to align on vision.</div>
+        </div>
+      </div>
+
+      <!-- Cluster 5: Relationships & Connection -->
+      <div class="cluster relationships">
+        <div class="cluster-header">
+          <div class="cluster-icon">💕</div>
+          <div>
+            <h2>Relationships & Connection</h2>
+            <div class="cluster-subtitle">Intimacy, communication, and partnership readiness</div>
+          </div>
+        </div>
+
+        <div class="status">
+          <div class="status-label">Current Insight</div>
+          <div class="status-text">You're not in a relationship, and that's intentional — you're doing the emotional work first. Your friendships are solid and supportive. The next phase is learning to be emotionally available and reliable in a partnership. That skill builds by noticing it in your current relationships (with friends, with your boys, with Rachel).</div>
+        </div>
+
+        <div class="recommendations">
+          <div class="rec-title">Today's Guidance</div>
+          <ul class="rec-list">
+            <li class="rec-item"><strong>Connection as practice:</strong> Tonight with Matteo or Felix: have one real conversation where you ask a real question and listen without fixing or advising. "What was hard today?" not "did you finish homework?" This is your future-partner skill building in practice.</li>
+            <li class="rec-item"><strong>Reliability as love:</strong> If you said you'd text a friend, text them. If you said you'd be present for your boys, put the phone away. Small promises kept build the trust that makes you a good partner later.</li>
+            <li class="rec-item"><strong>Sensuality as attention:</strong> You want to be better at touch and intimacy. Start with the boys: offer a real massage, learn what their shoulders feel like, what pressure they like. This rewires you toward attunement, not performance.</li>
+          </ul>
+        </div>
+
+        <div class="priority-action">
+          <div class="priority-label">🎯 Today's Priority</div>
+          <div class="priority-text">One 10-minute quality conversation with one person you care about. No agenda. Just presence. This is the foundation of everything else.</div>
+        </div>
+      </div>
+
+      <!-- Cluster 6: Parenting & Family -->
+      <div class="cluster parenting">
+        <div class="cluster-header">
+          <div class="cluster-icon">👨‍👦‍👦</div>
+          <div>
+            <h2>Parenting & Family</h2>
+            <div class="cluster-subtitle">Matteo and Felix through the transition</div>
+          </div>
+        </div>
+
+        <div class="status">
+          <div class="status-label">Current Insight</div>
+          <div class="status-text">Both boys are in a hard period post-separation. Matteo (intense, analytical) may be intellectualizing to avoid emotions. Felix (social, creative) may be feeling the family disruption deeply. Your job is not to fix their emotions — it's to show them that you're stable, present, and that the separation is not their fault or responsibility.</div>
+        </div>
+
+        <div class="warning">
+          <div class="warning-label">⚠ Anxiety Watch</div>
+          <div class="warning-text">Watch for changes in school performance, sleep, or social withdrawal. These aren't character flaws — they're signals that the boys need more reassurance or connection. This is a marathon, not a sprint. Consistency matters more than intensity.</div>
+        </div>
+
+        <div class="recommendations">
+          <div class="rec-title">Today's Guidance</div>
+          <ul class="rec-list">
+            <li class="rec-item"><strong>Matteo (13 / analytical):</strong> Validate his need to understand. "I know you're trying to figure out why this happened. It's not because of anything you did. Want to talk about it?" Give him space to intellectualize while also noticing if he's avoiding feelings underneath.</li>
+            <li class="rec-item"><strong>Felix (11 / social):</strong> He feels the disruption relationally. Quality time together (Lego, chess, walks) gives him the reassurance words sometimes can't. A massage tonight might be more healing than any explanation.</li>
+            <li class="rec-item"><strong>Both boys:</strong> Remind them weekly that both parents love them and are present. Don't wait for them to ask. Simple: "I love you and this separation has nothing to do with you." Repeat as needed.</li>
+          </ul>
+        </div>
+
+        <div class="priority-action">
+          <div class="priority-label">🎯 Today's Priority</div>
+          <div class="priority-text">One dedicated moment with each boy today. Matteo: ask what he's been reading or thinking about. Felix: play one game or build something together. Presence > productivity.</div>
+        </div>
+      </div>
+
+      <!-- Cluster 7: Personal Life & Identity -->
+      <div class="cluster identity">
+        <div class="cluster-header">
+          <div class="cluster-icon">✨</div>
+          <div>
+            <h2>Personal Life & Identity</h2>
+            <div class="cluster-subtitle">Joy, hobbies, and long-term vision</div>
+          </div>
+        </div>
+
+        <div class="status">
+          <div class="status-label">Current Insight</div>
+          <div class="status-text">You love the outdoors in all seasons — ultimate frisbee, skiing, mountain biking. This isn't a luxury; it's essential to who you are. You're also rebuilding your financial vision toward retirement at 60 with a home that fits a future partnership. These aren't competing — they support each other. Fun and health fund longevity.</div>
+        </div>
+
+        <div class="recommendations">
+          <div class="rec-title">Today's Guidance</div>
+          <ul class="rec-list">
+            <li class="rec-item"><strong>Schedule joy:</strong> If you want to play ultimate, ski, or bike this season, put it on the calendar now. Don't leave it to impulse. Yvé's pattern is high initial energy that fades — protect joy by scheduling it like a work meeting.</li>
+            <li class="rec-item"><strong>Music as identity:</strong> You wanted to play guitar or piano. You have two musically-inclined sons. Start small: 10 minutes, 3x/week. Not to become a virtuoso, but to stay connected to that part of yourself.</li>
+            <li class="rec-item"><strong>Financial clarity:</strong> Retirement at 60 is achievable and worth planning toward. One conversation with your financial advisor this quarter: "Here's my life plan — does the math work?" Knowing the answer reduces money anxiety.</li>
+          </ul>
+        </div>
+
+        <div class="priority-action">
+          <div class="priority-label">🎯 Today's Priority</div>
+          <div class="priority-text">Schedule one thing you love this week. One outdoor activity, one music session, one moment of pure fun. Put it on the calendar so it actually happens.</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>This briefing synthesizes insights from your complete support system. The advice is actionable only if you act on 1-2 items, not all of them. Pick the one priority that landed hardest and do that today.</p>
+      <p style="margin-top: 12px; color: #475569;">Last generated: <span id="footerDate"></span> • Personal Knowledge Archive</p>
+    </footer>
+  </div>
+
+  <script>
+    // Load metrics from localStorage
+    function initBriefing() {
+      const today = new Date();
+      const dateStr = today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+      const timeStr = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+      document.getElementById('currentDate').textContent = `${dateStr} at ${timeStr}`;
+      document.getElementById('footerDate').textContent = dateStr;
+
+      // Load habit score
+      loadHabitScore();
+
+      // Load project count
+      loadProjectCount();
+    }
+
+    function loadHabitScore() {
+      try {
+        const today = new Date().toISOString().split('T')[0];
+        let totalScore = 0;
+        let completedHabits = 0;
+
+        const essentialHabits = ['Sommeil', 'Méditation', 'Plan', 'Journal', 'Lecture', 'Étirements', 'Cardio', 'Weightlifting', 'Protéines/Bouffe', 'Consommation eau', 'Soleil matinal', 'Marche midi', 'Big P', 'Big W', 'QT Friends', 'QT Matteo', 'QT Felix', 'QT Girlfriend'];
+
+        essentialHabits.forEach((habit, index) => {
+          const key = `${today}-habit-${index}`;
+          const value = localStorage.getItem(key);
+          if (value === '1') completedHabits++;
+        });
+
+        const score = Math.round((completedHabits / essentialHabits.length) * 100);
+        document.getElementById('habitScore').textContent = score + '%';
+      } catch (e) {
+        document.getElementById('habitScore').textContent = '—';
+      }
+    }
+
+    function loadProjectCount() {
+      try {
+        const projects = JSON.parse(localStorage.getItem('gtd_projects') || '[]');
+        const activeProjects = projects.filter(p => p.status !== 'completed' && p.status !== 'archived');
+        document.getElementById('projectCount').textContent = activeProjects.length;
+      } catch (e) {
+        document.getElementById('projectCount').textContent = '—';
+      }
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', initBriefing);
+  </script>
+</body>
+</html>

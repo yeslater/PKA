@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PKA Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1em;
+      color: #6b7280;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+      border-color: #667eea;
+      transform: translateY(-5px);
+    }
+
+    .card-icon {
+      font-size: 3em;
+      margin-bottom: 15px;
+    }
+
+    .card h2 {
+      font-size: 1.5em;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #6b7280;
+      font-size: 0.95em;
+      line-height: 1.6;
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: #667eea;
+      color: white;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95em;
+      transition: background 0.3s ease;
+    }
+
+    .card:hover .card-link {
+      background: #5568d3;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid #e5e7eb;
+      color: #9ca3af;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>PKA Hub</h1>
+      <p>Your personal system at a glance</p>
+    </header>
+
+    <div class="grid">
+      <a href="inbox.html" class="card">
+        <div class="card-icon">📥</div>
+        <h2>Inbox</h2>
+        <p>Capture tasks, ideas, and notes. Process them into action.</p>
+        <div class="card-link" id="inboxLink">Open Inbox</div>
+      </a>
+
+      <a href="dashboard.html" class="card">
+        <div class="card-icon">📊</div>
+        <h2>Dashboard</h2>
+        <p>At-a-glance view of today's tasks, habits, and weekly progress.</p>
+        <div class="card-link">View Dashboard</div>
+      </a>
+
+      <a href="today-focus.html" class="card">
+        <div class="card-icon">🎯</div>
+        <h2>Today's Focus</h2>
+        <p>Your 3 most important tasks for today. Nothing else.</p>
+        <div class="card-link">Focus Now</div>
+      </a>
+
+      <a href="tasks-projects.html" class="card">
+        <div class="card-icon">✓</div>
+        <h2>Tasks & Projects</h2>
+        <p>Track active work, projects in progress, and what you're waiting on.</p>
+        <div class="card-link">View Tasks</div>
+      </a>
+
+      <a href="journal.html" class="card">
+        <div class="card-icon">📓</div>
+        <h2>Journal</h2>
+        <p>Reflect on your day, process thoughts, and track emotional growth.</p>
+        <div class="card-link">Open Journal</div>
+      </a>
+
+      <a href="habits_tracker.html" class="card">
+        <div class="card-icon">✓</div>
+        <h2>Daily Habits</h2>
+        <p>Track your daily practices across health, mind, and productivity.</p>
+        <div class="card-link">Track Habits</div>
+      </a>
+
+      <a href="knowledge_base.html" class="card">
+        <div class="card-icon">🧠</div>
+        <h2>Knowledge Base</h2>
+        <p>Browse your collected insights, summaries, and learning resources.</p>
+        <div class="card-link">Explore Knowledge</div>
+      </a>
+
+      <a href="weekly-review.html" class="card">
+        <div class="card-icon">📋</div>
+        <h2>Weekly Review</h2>
+        <p>Reflect on the week, celebrate wins, and plan ahead.</p>
+        <div class="card-link">Review Week</div>
+      </a>
+
+      <a href="daily-briefing.html" class="card">
+        <div class="card-icon">📑</div>
+        <h2>Daily Briefing</h2>
+        <p>Leadership insights across all 7 life domains with actionable priorities.</p>
+        <div class="card-link">Read Briefing</div>
+      </a>
+    </div>
+
+    <div style="background: #f0f1ff; border-radius: 8px; padding: 24px; margin-top: 40px;">
+      <h3 style="color: #667eea; margin-bottom: 16px; font-size: 1.1em;">How It Works</h3>
+      <ol style="color: #6b7280; line-height: 1.8; padding-left: 20px;">
+        <li><strong>Inbox:</strong> Capture anything that needs attention</li>
+        <li><strong>Process:</strong> Answer 3 questions → Next action? When? Area?</li>
+        <li><strong>Tasks:</strong> Items land in your active task list</li>
+        <li><strong>Today:</strong> Pick 3 tasks to focus on</li>
+        <li><strong>Execute:</strong> Check them off as you go</li>
+        <li><strong>Reflect:</strong> Journal what you learned</li>
+      </ol>
+    </div>
+
+    <footer>
+      <p>Personal Knowledge Archive — built for clarity, consistency, and growth</p>
+    </footer>
+  </div>
+
+  <script>
+    // Update inbox count on landing page
+    function updateInboxCount() {
+      const inbox = JSON.parse(localStorage.getItem('gtd_inbox') || '[]');
+      const link = document.getElementById('inboxLink');
+      if (inbox.length > 0) {
+        link.textContent = `Open Inbox (${inbox.length})`;
+      } else {
+        link.textContent = 'Open Inbox';
+      }
+    }
+
+    // Check count on load and every few seconds
+    updateInboxCount();
+    setInterval(updateInboxCount, 2000);
+  </script>
+</body>
+</html>
