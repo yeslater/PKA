@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résumé du Livre</title>
+<style>
+:root { --bg: #121212; --surface: #1e1e2e; --primary: #ff4757; --primary-hover: #ff6b81; --text: #f1f2f6; --text-muted: #ced6e0; --accent: #3742fa; --success: #2ed573; --error: #ff4757; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+h1, h2, h3 { color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.container { max-width: 800px; margin: auto; }
+.header { text-align: center; margin-bottom: 40px; background: linear-gradient(135deg, var(--surface), #2d3436); padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--primary); }
+.header h1 { font-size: 2.5em; margin: 0; color: white; }
+.section { margin-bottom: 40px; background: var(--surface); padding: 25px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+details { background: rgba(55, 66, 250, 0.1); border: 2px solid var(--accent); border-radius: 10px; margin-bottom: 15px; overflow: hidden; transition: all 0.3s; }
+summary { padding: 15px 20px; font-weight: bold; cursor: pointer; list-style: none; display: flex; align-items: center; font-size: 1.1em; color: #fff; }
+summary:hover { background: rgba(55, 66, 250, 0.2); }
+summary::-webkit-details-marker { display: none; }
+.details-content { padding: 20px; background: var(--surface); border-top: 1px solid var(--accent); }
+.action-box { background: rgba(255, 71, 87, 0.1); border-left: 4px solid var(--primary); padding: 15px; margin-top: 15px; border-radius: 0 10px 10px 0; }
+.lesson { display: flex; margin-bottom: 20px; }
+.lesson-num { font-size: 2em; font-weight: 900; color: var(--primary); margin-right: 15px; opacity: 0.8; }
+.quiz-question { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.quiz-btn { background: var(--accent); color: white; border: none; padding: 12px 20px; margin: 8px 0; border-radius: 8px; cursor: pointer; width: 100%; text-align: left; font-size: 1em; font-weight: bold; transition: background 0.2s; }
+.quiz-btn:hover { background: #5352ed; }
+.feedback { margin-top: 10px; padding: 15px; border-radius: 8px; display: none; font-weight: bold; }
+.vocab-word { color: var(--primary); font-weight: bold; font-size: 1.1em; }
+.challenge { background: rgba(46, 213, 115, 0.1); border-left: 4px solid var(--success); padding: 15px; margin-bottom: 15px; border-radius: 0 10px 10px 0; }
+.theme-box { background: rgba(55, 66, 250, 0.1); border-left: 4px solid var(--accent); padding: 15px; margin-bottom: 20px; border-radius: 0 10px 10px 0; }
+.theme-title { display: flex; align-items: center; margin-bottom: 10px; }
+.theme-title h3 { margin: 0; font-size: 1.3em; }
+.theme-emoji { margin-right: 10px; font-size: 1.5em; }
+.quote-box { background: rgba(255, 255, 255, 0.05); padding: 10px 15px; border-left: 3px solid var(--text-muted); margin: 10px 0; font-style: italic; }
+.quote-author { font-size: 0.9em; text-align: right; color: var(--text-muted); }
+</style>
+<script>
+window.quizScore = 0;
+window.quizAnswered = 0;
+function checkAnswer(btn, isCorrect, explanation) {
+  let parent = btn.parentElement;
+  let feedback = parent.querySelector('.feedback');
+  let buttons = parent.querySelectorAll('.quiz-btn');
+  if(buttons[0].disabled) return; // Prevent multiple answers
+  buttons.forEach(b => b.disabled = true);
+  feedback.style.display = 'block';
+  feedback.innerHTML = explanation;
+  if(isCorrect) {
+    btn.style.background = 'var(--success)';
+    feedback.style.background = 'rgba(46, 213, 115, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--success)';
+    window.quizScore++;
+  } else {
+    btn.style.background = 'var(--error)';
+    feedback.style.background = 'rgba(255, 71, 87, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--error)';
+  }
+  window.quizAnswered++;
+  if(window.quizAnswered === 20) {
+    document.getElementById('final-score').innerHTML = '<h3>Score final : ' + window.quizScore + '/20 !</h3>';
+    document.getElementById('final-score').style.background = 'var(--surface)';
+    document.getElementById('final-score').style.padding = '20px';
+    document.getElementById('final-score').style.borderRadius = '10px';
+    document.getElementById('final-score').style.textAlign = 'center';
+    document.getElementById('final-score').style.marginTop = '30px';
+  }
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Booster mon intelligence émotionnelle</h1>
+    <p>Le résumé pour toi, Félix !</p>
+  </div>
+
+  <div class="section">
+    <h2>1. C'est quoi ce livre ?</h2>
+    <p>Hé Félix ! Imagine que tu aies un super-pouvoir secret qui t'aide à comprendre non seulement tes propres émotions, mais aussi celles des autres. Ce livre est ton guide pour découvrir ce super-pouvoir : l'intelligence émotionnelle ! Il t'apprend à gérer tes sentiments pour être plus créatif, moins stressé, et avoir des relations encore plus géniales avec tout le monde, que ce soit pour une partie d'échecs passionnante ou une sortie de ski de fond. Prépare-toi à devenir un maître de tes émotions et à transformer chaque défi en une opportunité de t'amuser encore plus dans la vie !</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Les Grands Thèmes</h2>
+
+    <div class="theme-box">
+      <div class="theme-title">
+        <span class="theme-emoji">🧠❤️</span>
+        <h3>Ton cerveau et ton cœur : une équipe de choc !</h3>
+      </div>
+      <p>Tes émotions, ce n'est pas seulement ce que tu ressens. C'est un mélange de tes pensées, des sensations de ton corps (comme ton ventre qui gargouille ou ton cœur qui bat vite) et de ce que tu fais ou ne fais pas. C'est comme un combo gagnant, et chaque partie influence les autres, créant une danse complexe mais fascinante.</p>
+      <div class="quote-box">
+        <p>« Les émotions sont des réactions complexes dans lesquelles sont impliqués notre corps et notre esprit. Elles influent sur ce que nous ressentons, sur notre manière de penser et d’agir. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Vous découvrirez alors que les émotions sont constituées de trois composantes: les pensées, les sensations physiques et les comportements. Chacune, peu importe laquelle, peut en déclencher une autre. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« En démêlant les éléments embrouillés d’une émotion et en identifiant ce qui la provoque (les pensées, les sensations physiques ou les comportements), vous parviendrez à comprendre une émotion "juste pour ce qu’elle est" et éviterez ainsi de vous sentir piégé et submergé par elle. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="action-box">
+        <h4>Ce que ça veut dire pour toi, Félix :</h4>
+        <p>Quand tu construis un Lego super complexe et que ça ne marche pas, tu peux sentir de la frustration (pensée), ton corps se crispe (sensation), et tu as envie de jeter la pièce (comportement). Remarque ces trois choses, ça t'aidera à mieux comprendre pourquoi tu réagis comme ça !</p>
+      </div>
+    </div>
+
+    <div class="theme-box">
+      <div class="theme-title">
+        <span class="theme-emoji">🦸‍♀️🌟</span>
+        <h3>Toutes tes émotions sont des super-héros !</h3>
+      </div>
+      <p>On pense souvent qu'il y a des "bonnes" émotions et des "mauvaises" émotions. Mais non ! Toutes tes émotions ont un rôle super important. La peur peut te protéger d'un danger, la colère peut te montrer que quelque chose n'est pas juste, et la joie te donne envie de partager. Apprendre à les écouter, c'est comme avoir une équipe de super-héros dans ta tête !</p>
+      <div class="quote-box">
+        <p>« Il faut vous rendre à l’évidence, toutes les émotions ont une fonction positive: assurer votre sécurité, vous aider à prendre des décisions, nouer des liens sociaux, vous permettre d’éprouver du bonheur et stimuler votre processus créatif. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Toutes les émotions ont une fonction positive. Si la peur, la tristesse, la culpabilité et les regrets ne sont pas agréables à vivre, ces émotions ont cependant des aspects bénéfiques. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« La fonction positive du regret est précisément de vous apprendre à tirer les leçons d’une erreur pour éviter de retomber dans le même piège à l’avenir. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="action-box">
+        <h4>Ce que ça veut dire pour toi, Félix :</h4>
+        <p>Même si tu es déçu d'avoir perdu une partie d'échecs, cette déception te montre que tu as envie de t'améliorer. C'est une bonne chose ! Elle te pousse à analyser tes mouvements et à apprendre pour la prochaine fois. Tes émotions te donnent des indices, pas des punitions.</p>
+      </div>
+    </div>
+
+    <div class="theme-box">
+      <div class="theme-title">
+        <span class="theme-emoji">🧭💡</span>
+        <h3>Ton intuition : ta boussole intérieure secrète !</h3>
+      </div>
+      <p>Parfois, tu sens juste que quelque chose "cloche" ou, au contraire, que c'est la bonne chose à faire, sans savoir pourquoi. C'est ton intuition ! C'est une partie super rapide de ton cerveau qui te donne des messages immédiats, comme une petite voix. Apprendre à l'écouter et à la développer peut t'aider à prendre de meilleures décisions, surtout quand tu dois réagir vite.</p>
+      <div class="quote-box">
+        <p>« S’il vous est déjà arrivé d’avoir le sentiment que quelque chose cloche, que les choses ne semblent pas claires, alors vous avez déjà expérimenté l’intuition. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« L’intuition fait brusquement cesser toutes vos réflexions et vous conduit directement à la réponse adéquate. On fait parfois référence à elle en parlant d’instinct ou de pressentiment. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Le système limbique [une partie du cerveau] se manifeste également lorsque, en l’espace d’une seconde, vous avez conscience d’une “voix intérieure” qui vous murmure brièvement quelque chose à l’oreille. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="action-box">
+        <h4>Ce que ça veut dire pour toi, Félix :</h4>
+        <p>Quand tu es en train de créer un nouveau modèle de Lego et que tu sens qu'une pièce ne va pas au bon endroit, même si ça semble logique, c'est ton intuition ! Fais-lui confiance. Ou quand tu joues aux échecs et que tu as un "pressentiment" pour un coup, écoute cette petite voix. Elle a souvent raison !</p>
+      </div>
+    </div>
+
+    <div class="theme-box">
+      <div class="theme-title">
+        <span class="theme-emoji">🗣️🤫</span>
+        <h3>Parler sans les mots : le langage secret du corps</h3>
+      </div>
+      <p>Tu sais, on ne communique pas seulement avec des mots. Le corps parle tout le temps ! Tes gestes, tes expressions de visage, la façon dont tu te tiens, même la distance entre toi et quelqu'un d'autre, tout ça envoie des messages. Apprendre à "lire" ces signaux chez les autres et à utiliser les tiens consciemment, c'est super utile pour mieux te connecter avec les gens et comprendre ce qu'ils ressentent vraiment.</p>
+      <div class="quote-box">
+        <p>« Les émotions se communiquent par la parole (7%), par le ton de la voix (38%) et par le langage du corps (55%); cela signifie que vos émotions, et celles des autres, se transmettent à 93% par la communication non verbale. »</p>
+        <p class="quote-author">Professeur Albert Mehrabian, chercheur en psychologie.</p>
+      </div>
+      <div class="quote-box">
+        <p>« L’immobilité envoie le message que vous êtes calme et en confiance. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Le fait de sourire influe directement sur la façon dont les personnes vous répondent. Quand vous souriez à quelqu’un, normalement, il vous rend la pareille. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="action-box">
+        <h4>Ce que ça veut dire pour toi, Félix :</h4>
+        <p>Quand tu racontes une blague à tes amis, regarde leurs visages et leurs corps. S'ils rient mais croisent les bras, peut-être qu'ils ne sont pas si détendus. Quand tu discutes avec Matteo, essaie de ne pas gigoter et de le regarder dans les yeux, ça montre que tu l'écoutes vraiment. C'est comme une partie de ton langage social secret !</p>
+      </div>
+    </div>
+
+    <div class="theme-box">
+      <div class="theme-title">
+        <span class="theme-emoji">🏆💪</span>
+        <h3>Sois un champion de l'affirmation !</h3>
+      </div>
+      <p>L'affirmation, c'est quand tu es capable de dire ce que tu penses, ce que tu veux (ou ne veux pas) et ce que tu ressens, de manière directe et honnête, tout en respectant les autres. Ce n'est pas être agressif, ni se laisser faire. C'est trouver le juste milieu pour défendre tes droits et tes idées, ce qui t'aide à te sentir plus fort et à avoir de meilleures relations.</p>
+      <div class="quote-box">
+        <p>« L’assurance implique d’exprimer ses sentiments, ses pensées, ses opinions, ses besoins et ses désirs. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Être émotionnellement intelligent, cela signifie aussi savoir quand éviter de partager une émotion ou une opinion avec les autres; cette connaissance repose sur d’autres qualités, comme la sensibilité, l’empathie et le respect. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Ayez bien à l’esprit que faire preuve d’assurance signifie énoncer clairement et sincèrement ce que vous voulez et ne voulez pas, tout en prenant en considération les sentiments de l’autre personne, ses besoins et ses désirs. C’est cela, être émotionnellement intelligent! »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="action-box">
+        <h4>Ce que ça veut dire pour toi, Félix :</h4>
+        <p>Quand tes amis veulent jouer à un jeu qui ne t'intéresse pas, au lieu de dire "Ok" en boudant ou de crier "Non, c'est nul !", tu peux dire calmement : "J'ai vraiment envie de jouer aux échecs aujourd'hui, mais je pourrais vous rejoindre plus tard pour ça." C'est t'affirmer avec respect, un peu comme un bon coup aux échecs qui respecte l'adversaire mais reste stratégique !</p>
+      </div>
+    </div>
+
+    <div class="theme-box">
+      <div class="theme-title">
+        <span class="theme-emoji">☀️😊</span>
+        <h3>La pensée positive : le super-pouvoir de l'optimisme</h3>
+      </div>
+      <p>La pensée positive, ce n'est pas ignorer les problèmes, c'est choisir de les regarder sous un angle qui te donne de l'énergie et des solutions. C'est comme voir le verre à moitié plein. En changeant tes pensées négatives en pensées positives, tu peux changer la façon dont tu te sens et dont tu agis, et créer de nouveaux "chemins" plus joyeux dans ton cerveau !</p>
+      <div class="quote-box">
+        <p>« La pensée positive n’est pas simplement le sentiment que vous éprouvez quand des choses positives vous arrivent dans la vie – lorsqu’il est facile d’être optimiste. C’est être justement capable de maintenir le sentiment d’espoir et de motivation, quoi qu’il se passe autour de vous. »</p>
+        <p class="quote-author">Sue HADFIELD, auteure.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Vivez votre vie comme si les dés étaient pipés en votre faveur. »</p>
+        <p class="quote-author">Arianna HUFFINGTON, femme d'affaires et auteure.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Le fait de percevoir les erreurs, les difficultés et les déceptions comme des éléments toujours présents dans votre vie peut avoir un effet déterminant sur votre état d’esprit. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="action-box">
+        <h4>Ce que ça veut dire pour toi, Félix :</h4>
+        <p>Si tu as une mauvaise chute en ski de fond, au lieu de te dire "Je suis nul", essaie "Ouf, ça, c'était une surprise ! Mais j'ai appris comment ne pas refaire cette erreur et je suis encore capable de continuer." C'est comme transformer un obstacle en un coup de maître pour l'avenir, et ça, c'est le pouvoir de ton esprit !</p>
+      </div>
+    </div>
+
+    <div class="theme-box">
+      <div class="theme-title">
+        <span class="theme-emoji">🚀🌌</span>
+        <h3>Le "Flow" : la zone de génie où le temps disparaît</h3>
+      </div>
+      <p>As-tu déjà été tellement absorbé par un jeu de Lego ou une partie d'échecs que tu as oublié le temps ? C'est ça, le "Flow" ! C'est un état où ton esprit est tellement concentré sur une activité agréable et un peu difficile, que les pensées négatives ne peuvent pas entrer. Trouver et pratiquer des activités de "flow" est une super façon de te sentir heureux, créatif et plein d'énergie positive.</p>
+      <div class="quote-box">
+        <p>« L’esprit “qui est désœuvré se met à emprunter des schémas de hasard et s’arrête souvent sur des considérations quelque peu douloureuses ou dérangeantes”. À l’inverse, un esprit qui se trouve dans un état de flux est tellement absorbé qu’il n’a pas de place pour des pensées négatives. »</p>
+        <p class="quote-author">Mihaly CSIKSZENTMIHALYI, psychologue hongrois et inventeur du concept de "flow".</p>
+      </div>
+      <div class="quote-box">
+        <p>« Le flow est une source d’énergie mentale qui donne accès à des chemins neuronaux positifs. Avec les activités de flow, votre esprit est absorbé par une activité agréable; les pensées négatives n’y entrent plus. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« C’est par choix que l’on porte un regard positif sur les choses. Vous pouvez décider de laisser vos pensées jeter un éclairage positif sur une situation ordinaire du quotidien, comme sur les situations difficiles. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="action-box">
+        <h4>Ce que ça veut dire pour toi, Félix :</h4>
+        <p>Pense à tes parties d'échecs, à la construction de tes Legos ou à tes sorties de ski de fond. Ces moments où tu es "à fond" sont tes activités de "flow". Cherche à en avoir plus ! Quand tu te sens un peu grognon, plonge dans une de ces activités pour faire le plein de bonnes ondes.</p>
+      </div>
+    </div>
+
+    <div class="theme-box">
+      <div class="theme-title">
+        <span class="theme-emoji">🚧🛡️</span>
+        <h3>Maîtriser les tempêtes émotionnelles</h3>
+      </div>
+      <p>L'anxiété, la colère et la déception sont des émotions difficiles, mais tu peux apprendre à les gérer ! Au lieu de les laisser te submerger, tu peux utiliser des techniques simples pour "ralentir" ton cerveau (comme respirer calmement), trouver des solutions aux problèmes, ou même faire du sport pour évacuer l'énergie. Apprendre à les maîtriser te rendra plus fort et plus serein.</p>
+      <div class="quote-box">
+        <p>« Si vous vous montrez patient dans un moment de colère, vous échapperez à 100 jours de tristesse. »</p>
+        <p class="quote-author">Proverbe chinois.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Quand vous vous sentez angoissé ou stressé, votre corps libère les hormones du stress – l’adrénaline et le cortisol – qui contribuent à générer des symptômes physiques comme l’accélération cardiaque. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Il faut accepter les déceptions passagères, mais conserver l’espoir pour l’éternité. »</p>
+        <p class="quote-author">Martin Luther KING, militant pour les droits civiques.</p>
+      </div>
+      <div class="action-box">
+        <h4>Ce que ça veut dire pour toi, Félix :</h4>
+        <p>Quand tu es fâché après Matteo parce qu'il n'a pas rangé ses affaires, au lieu de crier, respire profondément cinq fois. Si tu es inquiet avant un examen d'échecs, visualise-toi en train de réussir. Si tu es déçu, comme quand tu perds une partie, pense aux prochaines que tu vas gagner ! C'est comme une stratégie de défense pour ton bien-être.</p>
+      </div>
+    </div>
+
+    <div class="theme-box">
+      <div class="theme-title">
+        <span class="theme-emoji">🗣️👂</span>
+        <h3>Motiver et inspirer : allumer l'étincelle chez les autres</h3>
+      </div>
+      <p>Tu peux aider les autres à donner le meilleur d'eux-mêmes, pas en leur donnant des ordres, mais en allumant une étincelle en eux ! Motiver, c'est leur donner un coup de pouce pour faire quelque chose précis. Inspirer, c'est les aider à rêver et à vouloir accomplir de grandes choses à long terme, en faisant appel à leurs émotions et leur imagination. Pour y arriver, sois clair, mets l'accent sur le positif et partage tes propres expériences.</p>
+      <div class="quote-box">
+        <p>« La motivation est un moteur incitatif, qui nous entraîne à accomplir quelque chose de précis. Cependant, si vous voulez susciter chez eux des aspirations et des engagements à long terme, il faut les inspirer. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« L’inspiration vous permet d’exercer une influence sur les autres en leur communiquant votre enthousiasme. »</p>
+        <p class="quote-author">Gill Hasson, auteure et formatrice en développement personnel.</p>
+      </div>
+      <div class="quote-box">
+        <p>« Le désir le plus profond de chacun d’entre nous est de rencontrer quelqu’un qui nous inspire et nous permette d’être la personne que nous nous sentons capables d’être. »</p>
+        <p class="quote-author">Ralph Waldo EMERSON, écrivain et philosophe américain.</p>
+      </div>
+      <div class="action-box">
+        <h4>Ce que ça veut dire pour toi, Félix :</h4>
+        <p>Si tu veux motiver Matteo à venir faire du ski de fond avec toi, ne lui dis pas juste "Viens, il faut y aller !". Dis plutôt : "Imagine la sensation de vitesse en glissant sur la neige fraîche, ça te donnera une énergie de fou !" Et si tu partages tes blagues et tes jeux de mots, tu peux inspirer tes amis à être plus créatifs aussi !</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section">
+    <h2>3. Les 5 Leçons les Plus Importantes</h2>
+
+    <div class="lesson">
+      <div class="lesson-num">01</div>
+      <div>
+        <h3><b>Tes émotions, c'est un message, pas un problème !</b></h3>
+        <p>Le livre t'apprend que toutes tes émotions, même celles qui ne sont pas agréables comme la colère ou l'anxiété, ont une raison d'être positive. Elles ne sont pas "bonnes" ou "mauvaises", mais plutôt des messagers. Par exemple, si tu ressens de la frustration en ski de fond parce que tu n'avances pas comme tu veux, cette émotion te dit peut-être que tu as besoin de changer ta technique ou de te reposer. L'idée est de les écouter pour comprendre ce qu'elles essaient de te dire, au lieu de les ignorer ou de les combattre.</p>
+        <p><strong>Pour toi, Félix :</strong> Imagine une pièce de Lego qui ne s'emboîte pas. Au lieu de la jeter, tu analyses ce qui ne va pas. C'est pareil pour tes émotions ! Elles sont là pour t'aider à comprendre la situation et à trouver de nouvelles stratégies, que ce soit pour une construction Lego ou une interaction avec tes amis.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">02</div>
+      <div>
+        <h3><b>Tu es le chef d'orchestre de tes émotions !</b></h3>
+        <p>Une des grandes leçons, c'est que tu es responsable de tes propres émotions. Personne ne peut te "rendre" fâché ou triste ; c'est ta réaction à ce qui se passe qui crée cette émotion. Le livre explique que reconnaître tes "déclencheurs" (ce qui te met en colère ou t'inquiète) te donne le pouvoir de choisir comment réagir, au lieu de laisser tes émotions te contrôler. Tu peux "changer le cours" de tes émotions en utilisant des astuces simples, comme respirer calmement ou changer ton attention.</p>
+        <p><strong>Pour toi, Félix :</strong> Quand tu sens que la colère monte parce que quelqu'un a triché aux échecs, tu peux choisir de respirer profondément pendant quelques secondes (comme un petit exercice de pleine conscience entre deux coups !) avant de dire quelque chose. C'est toi qui décides si tu laisses ton "tigre agressif" ou ton "tigre calme" prendre le dessus.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">03</div>
+      <div>
+        <h3><b>L'écoute active : ton super-pouvoir pour comprendre les autres !</b></h3>
+        <p>Le livre insiste sur l'importance de l'écoute active, surtout pour comprendre les émotions des autres. Ce n'est pas juste entendre les mots, c'est aussi observer le langage corporel, le ton de la voix, et poser des questions ouvertes pour que l'autre se sente vraiment compris. Par exemple, si ton ami semble triste, au lieu de dire "Ne t'inquiète pas", tu peux lui demander "Comment te sens-tu par rapport à ça ?". Cela renforce tes relations et te permet de mieux aider.</p>
+        <p><strong>Pour toi, Félix :</strong> Quand Matteo est super intense à propos d'un documentaire d'histoire, essaie de vraiment l'écouter. Regarde-le, hoche la tête, et dis "Ah, je comprends, ça te frustre quand les gens ne retiennent pas ces dates importantes ?" Ça va l'aider à se sentir écouté, même si tu ne partages pas sa passion pour l'histoire avec la même intensité.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">04</div>
+      <div>
+        <h3><b>La posture de pouvoir : deviens plus sûr de toi en un clin d'œil !</b></h3>
+        <p>Une technique fascinante que le livre aborde est la "posture de pouvoir". Des études montrent que la façon dont tu te tiens peut réellement changer ce que tu ressens à l'intérieur. Par exemple, te tenir droit, les épaules détendues et les mains ouvertes peut augmenter ta confiance et réduire le stress. Ce n'est pas juste faire semblant, ton corps envoie des messages à ton cerveau pour qu'il se sente plus puissant.</p>
+        <p><strong>Pour toi, Félix :</strong> Avant une compétition de ski de fond, au lieu de te recroqueviller, tiens-toi droit, les mains sur les hanches (comme un super-héros !) pendant deux minutes. Tu verras, tu te sentiras plus fort et plus prêt à affronter la course. C'est une super astuce pour te donner un coup de "boost" mental avant un grand défi ou même avant de raconter une blague devant tout le monde !</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">05</div>
+      <div>
+        <h3><b>Le pouvoir de "l'esprit du débutant" pour transformer l'ennui en aventure !</b></h3>
+        <p>Le livre t'invite à cultiver "l'esprit du débutant", c'est-à-dire aborder chaque situation ou personne comme si c'était la première fois, sans idées préconçues. C'est une façon de rester ouvert, curieux et positif, même face à des choses qui pourraient t'ennuyer ou te paraître répétitives. Cela t'aide à découvrir de nouvelles possibilités et à développer ton empathie.</p>
+        <p><strong>Pour toi, Félix :</strong> Si tu dois faire une tâche répétitive avec tes Legos, au lieu de te dire "Encore ça...", essaie de regarder les briques comme si c'était la première fois que tu les voyais. "Quelles nouvelles formes je peux inventer avec ça ?". Même en ski de fond, si un parcours te semble répétitif, observe la neige, les arbres, l'air comme si c'était une nouvelle découverte. Ça rend l'expérience beaucoup plus intéressante et te permet d'être plus créatif !</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section">
+    <h2>4. Grand Quiz — 20 Questions</h2>
+    <div class="quiz-question">
+      <h3>Question 1 : Selon le livre, l'intelligence émotionnelle, c'est la capacité à...</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas tout à fait ça ! L\'intelligence émotionnelle va au-delà de la seule logique.')">A. Résoudre des problèmes mathématiques très difficiles.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bravo ! L\'intelligence émotionnelle te permet de comprendre et de gérer tes émotions pour mieux vivre.')">B. Comprendre et gérer ses propres émotions et celles des autres.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas le but principal de l\'intelligence émotionnelle. La productivité est une conséquence, pas l\'objectif central.')">C. Être le plus productif au travail et à la maison.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 2 : Quelles sont les trois composantes d'une émotion selon le livre ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, les souvenirs et les amis ne sont pas les composantes directes d\'une émotion.')">A. Les souvenirs, les amis et les rêves.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! Nos émotions se manifestent à travers nos pensées, notre corps et nos actions.')">B. Les pensées, les sensations physiques et les comportements.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, même si les couleurs sont jolies, elles ne sont pas une composante directe des émotions.')">C. Les couleurs, les sons et les odeurs.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 3 : Le livre dit que toutes les émotions ont une fonction positive. Que signifie cela ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, au contraire ! Même les émotions difficiles sont utiles.')">A. Il faut ignorer les émotions désagréables.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bien joué ! Chaque émotion est un message qui nous aide à comprendre une situation et à y réagir.')">B. Chaque émotion, même la peur ou la colère, nous aide à quelque chose (sécurité, décision, etc.).</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas réaliste de n\'avoir que des émotions agréables.')">C. On ne devrait ressentir que des émotions agréables.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 4 : L'intuition est souvent décrite comme...</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'intuition est un processus rapide et instinctif.')">A. Un long processus de réflexion logique.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! C\'est ce sentiment rapide et immédiat qui te guide sans que tu saches toujours pourquoi.')">B. Un savoir immédiat, un pressentiment sans avoir à réfléchir longtemps.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'intuition n\'est pas un secret qu\'on te cache !')">C. Un secret que seulement quelques personnes connaissent.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 5 : Pourquoi est-il important de développer ton intuition ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, même si c\'est bien, ce n\'est pas la raison principale.')">A. Pour gagner plus facilement aux jeux de société.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! L\'intuition t\'aide à réagir rapidement et à sentir ce qui est juste, comme un sixième sens.')">B. Pour agir rapidement en cas de besoin et mieux comprendre les situations.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'intuition est naturelle, pas magique.')">C. Pour faire de la magie avec tes émotions.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 6 : Qu'est-ce que l'empathie ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'empathie, c\'est plus que juste regarder.')">A. La capacité de mémoriser beaucoup de choses.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'C\'est ça ! C\'est pouvoir te mettre à la place des autres pour comprendre ce qu\'ils vivent.')">B. La capacité à comprendre ce que quelqu'un d'autre ressent ou vit.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas un concours !')">C. La capacité de gagner toutes les disputes.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 7 : Comment la communication non verbale (ton corps, tes gestes) influence-t-elle tes émotions ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le corps parle sans même que tu parles !')">A. Seulement quand tu parles très fort.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! Ton corps envoie des messages à ton cerveau et aux autres, même sans un mot.')">B. Elle transmet tes sentiments et peut même changer la façon dont tu te sens.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est un mélange des deux.')">C. Elle est moins importante que les mots que tu dis.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 8 : Qu'est-ce que "faire preuve d'assurance" ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas du tout ça ! L\'assurance, c\'est le respect.')">A. Crier plus fort que tout le monde pour avoir raison.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! C\'est exprimer tes idées et besoins de manière respectueuse et directe.')">B. Exprimer ses pensées et besoins de manière directe et honnête, tout en respectant les autres.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'assurance, ce n\'est pas se cacher.')">C. Éviter de parler pour ne pas créer de problèmes.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 9 : Quel est un exemple de comportement passif-agressif ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est un comportement direct.')">A. Dire clairement à quelqu\'un qu\'on est en colère.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! Le traitement silencieux est une manière indirecte d\'exprimer sa colère.')">B. Faire la tête à quelqu'un sans lui dire pourquoi on est fâché.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est un comportement passif.')">C. Accepter de faire quelque chose qu\'on ne veut pas sans rien dire.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 10 : Selon Sue Hadfield, la pensée positive, c'est...</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, la pensée positive n\'ignore pas les défis.')">A. Ignorer tous les problèmes et faire semblant d\'être heureux.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bravo ! C\'est savoir garder l\'espoir et la motivation même quand c\'est difficile.')">B. Maintenir l'espoir et la motivation, peu importe ce qui se passe.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est une erreur de se mentir à soi-même.')">C. Se mentir à soi-même pour se sentir mieux.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 11 : Qu'est-ce qu'un "style explicatif" positif selon Martin Seligman ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas se plaindre !')">A. Blâmer toujours les autres pour ses problèmes.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bien dit ! C\'est voir les défis comme temporaires et gérables, et les succès comme durables.')">B. Penser que les difficultés sont passagères et qu'on a le pouvoir de changer les choses.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est une vision négative.')">C. Croire que les échecs sont permanents et que rien ne peut changer.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 12 : Qu'est-ce que "l'état de flow" décrit par Mihaly Csikszentmihalyi ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le flow est lié à une absorption intense.')">A. Le fait de s\'ennuyer beaucoup et de regarder l\'horloge.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! C\'est quand tu es tellement concentré que tu oublies le temps et te sens super bien.')">B. Une concentration intense où le temps disparaît et on se sent heureux.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le flow est un état mental.')">C. Une activité physique très facile qui ne demande aucun effort.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 13 : Quel est un bon moyen de provoquer le "flow" pour Félix ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ça peut être bien, mais pas forcément pour le flow.')">A. Regarder la télévision sans réfléchir.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'C\'est ça ! Construire un Lego complexe ou jouer aux échecs demande une concentration intense, parfait pour le flow !')">B. Construire un Lego complexe ou jouer une partie d\'échecs difficile.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le flow doit être agréable et un peu stimulant.')">C. Faire une tâche super ennuyeuse qu\'on n\'aime pas.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 14 : Comment gérer l'anxiété (le stress, l'angoisse) selon le livre ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est une mauvaise stratégie qui ne résout rien.')">A. Faire comme si elle n\'existait pas et l\'ignorer.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! Respirer, bouger et planifier sont d\'excellentes stratégies pour calmer ton esprit.')">B. Contrôler sa respiration, faire de l'exercice physique, et planifier des solutions.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ça risque d\'aggraver l\'anxiété.')">C. Rester seul dans sa chambre et y penser sans arrêt.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 15 : Quand tu es en colère, le livre te conseille de...</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ça risque d\'aggraver la situation et de faire du mal.')">A. Crier très fort et frapper sur la table.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! Calmer son corps et son esprit aide à réagir de manière plus constructive.')">B. Ralentir ta respiration, faire du sport ou parler à un ami pour évacuer la pression.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ignorer la colère ne la fait pas disparaître, elle peut ressortir autrement.')">C. Faire semblant que tout va bien et ne rien dire.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 16 : Qu'est-ce qui différencie la déception du regret ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, la déception n\'est pas toujours plus forte.')">A. La déception est toujours plus forte que le regret.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'C\'est ça ! La déception est liée à un résultat, le regret à un choix que tu as fait.')">B. La déception vient d'un résultat non obtenu, le regret d\'un mauvais choix personnel.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, les deux peuvent être difficiles.')">C. Le regret est facile à vivre, la déception est difficile.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 17 : Selon Ralph Waldo Emerson, le désir le plus profond de chacun est de...</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas l\'idée centrale.')">A. Devenir le plus riche du monde.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! C\'est trouver des personnes qui nous aident à croire en nous et à devenir meilleurs.')">B. Rencontrer quelqu\'un qui nous inspire et nous permette d\'être la personne que nous nous sentons capables d\'être.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'inspiration est plus profonde qu\'une simple instruction.')">C. Recevoir des ordres clairs pour savoir quoi faire.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 18 : Que faire si quelqu'un te harcèle ou t'intimide ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ça risque de t\'isoler et de l\'encourager.')">A. Rester silencieux et ne rien dire à personne.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bien dit ! Il est essentiel de demander de l\'aide et de s\'affirmer pour stopper le harcèlement.')">B. Demander de l'aide à une personne de confiance et s'affirmer calmement.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ça n\'est pas toujours la bonne solution et peut même être dangereux.')">C. Devenir soi-même un harceleur pour se venger.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 19 : Quand tu veux motiver Matteo à faire quelque chose, que devrais-tu faire ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, les ordres ne motivent pas toujours.')">A. Lui donner un ordre direct sans explication.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! Être précis sur l\'objectif et lui montrer l\'intérêt pour lui, c\'est plus efficace.')">B. Être clair et précis sur ce que tu attends, et expliquer ce qu'il a à gagner.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ça peut être interprété comme une manipulation.')">C. Le manipuler pour qu\'il fasse ce que tu veux sans qu\'il le sache.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 20 : Qu'est-ce que "l'esprit du débutant" t'encourage à faire ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'esprit du débutant vise l\'ouverture.')">A. Rester sur tes idées habituelles et ne pas changer.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Excellent ! C\'est une super façon de découvrir de nouvelles choses et de rester positif.')">B. Aborder chaque situation et personne comme si c'était la première fois, avec curiosité.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ça peut être bien, mais l\'esprit du débutant est plus large.')">C. Ne penser qu\'à une seule solution pour un problème.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div id="final-score"></div>
+  </div>
+
+  <div class="section">
+    <h2>5. Mots à Connaître</h2>
+    <ul>
+      <li><span class="vocab-word">Intelligence Émotionnelle :</span> C'est comme avoir un décodeur magique pour tes propres émotions et celles des autres, pour mieux comprendre et mieux agir.</li>
+      <li><span class="vocab-word">Composantes Émotionnelles :</span> Ce sont les trois parties d'une émotion : tes pensées (ce que tu te dis), tes sensations physiques (ce que ton corps ressent) et tes comportements (ce que tu fais).</li>
+      <li><span class="vocab-word">Intuition :</span> C'est ta "petite voix intérieure" ou ton "pressentiment", une idée rapide qui te vient sans que tu saches pourquoi, comme un éclair de génie aux échecs.</li>
+      <li><span class="vocab-word">Empathie :</span> C'est la capacité de "mettre les chaussures de l'autre" pour comprendre ce qu'il ressent, sans pour autant marcher à sa place.</li>
+      <li><span class="vocab-word">Assurance (s'affirmer) :</span> C'est dire clairement ce que tu penses, ce que tu veux, tout en étant respectueux. C'est comme défendre ta position aux échecs avec force, mais aussi avec fair-play.</li>
+      <li><span class="vocab-word">Pensée Positive :</span> Ce n'est pas faire semblant que tout va bien, c'est choisir de voir le côté "solution" et "opportunité" dans chaque situation, même quand c'est difficile.</li>
+      <li><span class="vocab-word">Flow (état de) :</span> C'est quand tu es tellement absorbé par une activité que tu adores (comme construire un Lego ou skier !) que tu oublies tout le reste et te sens super bien.</li>
+      <li><span class="vocab-word">Déclencheur Émotionnel :</span> C'est ce qui "allume" une émotion en toi, comme un mot, une situation ou une personne qui te fait réagir fortement.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Défis de la Semaine</h2>
+    <div class="challenge">
+      <h3>Défi 1 : Le Détective Émotionnel des Legos 🔍🧱</h3>
+      <p>Quand tu construis avec tes Legos cette semaine, choisis un moment où tu ressens une émotion forte (frustration, joie d'avoir réussi, impatience...). Essaie d'être un détective :</p>
+      <ol>
+        <li>Quelles pensées te traversent la tête ? ("Je n'y arriverai jamais !", "C'est génial !")</li>
+        <li>Quelles sensations as-tu dans ton corps ? (Ventre serré, mains moites, sourire ?)</li>
+        <li>Quels comportements as-tu ? (Tu jettes une pièce ? Tu sautes de joie ?)</li>
+      </ol>
+      <p>Note ça dans ta tête ou sur un petit papier. Tu verras comment tes émotions sont un vrai "kit" !</p>
+    </div>
+
+    <div class="challenge">
+      <h3>Défi 2 : La Posture de la Victoire des Échecs ♟️💪</h3>
+      <p>Avant chaque partie d'échecs (même contre Papa ou Matteo !), ou avant de commencer une activité que tu trouves un peu stressante (un contrôle à l'école, par exemple), essaie la "posture de pouvoir" pendant deux minutes. Tiens-toi droit, les épaules en arrière, les mains sur les hanches ou les bras ouverts (comme un champion de ski de fond qui vient de franchir la ligne d'arrivée !). Vois si ça change la façon dont tu te sens et si tu te sens plus sûr de toi.</p>
+    </div>
+
+    <div class="challenge">
+      <h3>Défi 3 : L'Observateur Silencieux du Ski de Fond 🤫🎿</h3>
+      <p>Quand tu fais du ski de fond (ou une autre activité dehors), essaie de ne pas parler pendant 5-10 minutes. Concentre-toi sur ce que tu vois, entends et ressens autour de toi. Écoute le bruit du vent, la sensation de la neige sous tes skis, les odeurs des sapins. Puis, observe les personnes autour de toi : que dit leur corps ? Sont-ils joyeux, fatigués ? Cela aiguisera ton intuition et ton empathie, un peu comme repérer les stratégies cachées de ton adversaire aux échecs !</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. On en Parle ?</h2>
+    <p>Voici quelques questions pour discuter avec Papa ou Matteo cette semaine :</p>
+    <ol>
+      <li>Quand as-tu ressenti une émotion forte récemment (joie, colère, déception...) ? Qu'est-ce que ton corps, tes pensées et tes actions t'ont dit à ce moment-là ?</li>
+      <li>Qu'est-ce qui t'inspire le plus ? Une personne, une activité (comme les échecs ou le ski de fond), un film ? Qu'est-ce qui fait que ça t'allume cette étincelle ?</li>
+      <li>Si tu pouvais inventer un nouveau mot pour décrire une émotion "mixte" (comme la "frustration joyeuse" quand un Lego difficile finit par s'assembler), ce serait quoi et ça voudrait dire quoi ?</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

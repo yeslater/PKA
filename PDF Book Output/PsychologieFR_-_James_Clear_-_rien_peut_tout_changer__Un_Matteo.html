@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résumé du Livre</title>
+<style>
+:root { --bg: #121212; --surface: #1e1e2e; --primary: #ff4757; --primary-hover: #ff6b81; --text: #f1f2f6; --text-muted: #ced6e0; --accent: #3742fa; --success: #2ed573; --error: #ff4757; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+h1, h2, h3 { color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.container { max-width: 800px; margin: auto; }
+.header { text-align: center; margin-bottom: 40px; background: linear-gradient(135deg, var(--surface), #2d3436); padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--primary); }
+.header h1 { font-size: 2.5em; margin: 0; color: white; }
+.section { margin-bottom: 40px; background: var(--surface); padding: 25px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+details { background: rgba(55, 66, 250, 0.1); border: 2px solid var(--accent); border-radius: 10px; margin-bottom: 15px; overflow: hidden; transition: all 0.3s; }
+summary { padding: 15px 20px; font-weight: bold; cursor: pointer; list-style: none; display: flex; align-items: center; font-size: 1.1em; color: #fff; }
+summary:hover { background: rgba(55, 66, 250, 0.2); }
+summary::-webkit-details-marker { display: none; }
+.details-content { padding: 20px; background: var(--surface); border-top: 1px solid var(--accent); }
+.action-box { background: rgba(255, 71, 87, 0.1); border-left: 4px solid var(--primary); padding: 15px; margin-top: 15px; border-radius: 0 10px 10px 0; }
+.lesson { display: flex; margin-bottom: 20px; }
+.lesson-num { font-size: 2em; font-weight: 900; color: var(--primary); margin-right: 15px; opacity: 0.8; }
+.quiz-question { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.quiz-btn { background: var(--accent); color: white; border: none; padding: 12px 20px; margin: 8px 0; border-radius: 8px; cursor: pointer; width: 100%; text-align: left; font-size: 1em; font-weight: bold; transition: background 0.2s; }
+.quiz-btn:hover { background: #5352ed; }
+.feedback { margin-top: 10px; padding: 15px; border-radius: 8px; display: none; font-weight: bold; }
+.vocab-word { color: var(--primary); font-weight: bold; font-size: 1.1em; }
+.challenge { background: rgba(46, 213, 115, 0.1); border-left: 4px solid var(--success); padding: 15px; margin-bottom: 15px; border-radius: 0 10px 10px 0; }
+</style>
+<script>
+window.quizScore = 0;
+window.quizAnswered = 0;
+function checkAnswer(btn, isCorrect, explanation) {
+  let parent = btn.parentElement;
+  let feedback = parent.querySelector('.feedback');
+  let buttons = parent.querySelectorAll('.quiz-btn');
+  if(buttons[0].disabled) return;
+  buttons.forEach(b => b.disabled = true);
+  feedback.style.display = 'block';
+  feedback.innerHTML = explanation;
+  if(isCorrect) {
+    btn.style.background = 'var(--success)';
+    feedback.style.background = 'rgba(46, 213, 115, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--success)';
+    window.quizScore++;
+  } else {
+    btn.style.background = 'var(--error)';
+    feedback.style.background = 'rgba(255, 71, 87, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--error)';
+  }
+  window.quizAnswered++;
+  if(window.quizAnswered === 3) {
+    document.getElementById('final-score').innerHTML = '<h3>Score final : ' + window.quizScore + '/3 !</h3>';
+  }
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Salut Matteo ! J'ai lu ce livre pour toi !</h1>
+  </div>
+
+  <div class="section">
+    <h2>1. C'est quoi ce livre ?</h2>
+    <p>Imagine que tu as un super-pouvoir caché pour devenir plus fort, plus intelligent ou meilleur à la guitare, mais que tu ne sais pas comment l'activer. Ce livre, "Un rien peut tout changer !", te donne le mode d'emploi pour activer ce pouvoir incroyable ! Il t'explique comment de toutes petites actions, si tu les répètes intelligemment, peuvent transformer ta vie de manière ÉNORME. C'est comme construire un Lego géant, pièce par pièce, jusqu'à avoir une œuvre d'art super cool, sans même t'en rendre compte !</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Les Grands Thèmes — Rends-le Interactif</h2>
+
+    <details>
+      <summary>✨ Le pouvoir des petits gains : 1% d'amélioration, ça change tout !</summary>
+      <div class="details-content">
+        <p>C'est comme l'intérêt composé en maths, mais pour tes habitudes ! Chaque jour, si tu t'améliores de juste 1%, au bout d'un an, tu seras 37 fois meilleur ! C'est dingue, non ? Le livre explique que les grands succès ne viennent pas d'un seul coup, mais de milliers de petits efforts que tu répètes. Ne sous-estime jamais la puissance des petites étapes.</p>
+        <p><strong>Citations clés :</strong></p>
+        <ul>
+          <li>« On part d’un postulat simple : si on envisage la compétition cycliste en la décomposant par élément, si on améliore chaque élément de 1 %, on obtiendra une augmentation globale considérable des performances. » — <strong>Dave Brailsford</strong>, directeur de la performance de British Cycling, transformant une équipe médiocre en championne olympique.</li>
+          <li>« Le score se fait tout seul. » — <strong>Bill Walsh</strong>, triple vainqueur du Super Bowl en tant qu'entraîneur de football américain, soulignant l'importance du processus sur le résultat.</li>
+          <li>« Quand rien ne semble fonctionner, je vais observer un tailleur de pierres abattant sa masse sur un rocher une bonne centaine de fois sans lui infliger la moindre fissure apparente. Mais au cent unième coup, le rocher se fendra en deux, et je sais que ce n’est pas seulement le dernier coup qui a fendu le rocher, mais les cent qui l’ont précédé. » — <strong>Jacob Riis</strong>, réformateur social, illustrant la persévérance.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Matteo :</h3>
+          <p>Tes efforts à la guitare ou en histoire, même s'ils te semblent petits chaque jour, s'accumulent comme de l'énergie dans la Terre avant un tremblement de terre. Si tu pratiques un peu chaque jour, même juste 5 minutes, ces "petits 1%" s'additionnent et un jour, BOOM, tu joueras comme un pro sans t'en rendre compte ! C'est une question de patience et de régularité, pas de coups de génie isolés. Regarde les changements à long terme dans l'histoire, ce sont souvent de petites actions répétées qui ont eu un impact énorme.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🦸‍♀️ Deviens qui tu veux être : l'identité, c'est ton super-pouvoir !</summary>
+      <div class="details-content">
+        <p>Le livre dit que le vrai changement, ce n'est pas ce que tu fais, mais qui tu deviens. Si tu veux jouer de la guitare tous les jours, ne dis pas "je vais pratiquer la guitare", dis "je suis un guitariste". Chaque fois que tu agis comme la personne que tu veux être, tu renforces cette nouvelle identité. C'est comme si chaque action était un "vote" pour le nouveau toi.</p>
+        <p><strong>Citations clés :</strong></p>
+        <ul>
+          <li>« L’objectif n’est pas de lire un livre, mais de devenir lecteur. L’objectif n’est pas de courir un marathon, mais de devenir coureur. L’objectif n’est pas d’apprendre à jouer d’un instrument, mais de devenir musicien. » — <strong>James Clear</strong>, auteur de ce livre, expliquant la différence entre résultats et identité.</li>
+          <li>« Votre identité est littéralement votre “être répété” ». — <strong>James Clear</strong>, soulignant que nos actions régulières façonnent notre perception de nous-mêmes.</li>
+          <li>« Vous devenez vos habitudes. » — <strong>James Clear</strong>, résumant l'idée que nos comportements quotidiens définissent qui nous sommes.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Matteo :</h3>
+          <p>Tu es déjà un lecteur vorace, un passionné d'histoire et de géographie. Ces identités, tu les as construites en lisant et en explorant. Pour la guitare, dis-toi : "Je suis un musicien" au lieu de "Je dois pratiquer la guitare". Pour l'autocontrôle, dis-toi : "Je suis quelqu'un de calme et maître de mes émotions". Chaque fois que tu agis en accord avec cette identité, tu deviens plus fort dans ce rôle. C'est un processus scientifique de renforcement de ton "moi" !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🔍 Rend les bonnes habitudes évidentes et les mauvaises invisibles !</summary>
+      <div class="details-content">
+        <p>Notre environnement est super puissant ! Si tu laisses ta guitare à portée de main, tu auras plus de chances d'en jouer. Si les biscuits sont cachés, tu en mangeras moins. Le livre te donne des astuces géniales pour transformer ton espace pour qu'il te pousse vers les bonnes actions et t'éloigne des mauvaises. C'est comme organiser ton laboratoire pour que les expériences se passent bien.</p>
+        <p><strong>Citations clés :</strong></p>
+        <ul>
+          <li>« Tant que vous n’aurez pas rendu l’inconscient conscient, il dirigera votre vie et vous appellerez cela le destin. » — <strong>Carl Jung</strong>, psychologue suisse, montrant l'importance de la prise de conscience.</li>
+          <li>« L’environnement est la main invisible qui façonne le comportement humain. » — <strong>James Clear</strong>, auteur, insistant sur le rôle majeur de notre cadre de vie.</li>
+          <li>« Rendez les déclencheurs de bonnes habitudes évidents et visibles. » — <strong>James Clear</strong>, offrant une règle pratique pour faciliter les bons comportements.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Matteo :</h3>
+          <p>Si tu veux lire plus de livres d'histoire ou de géographie, laisse-les sur ta table de nuit au lieu de les ranger dans une bibliothèque lointaine. Pour ta guitare, ne la laisse pas dans sa housse au fond du placard ! Mets-la dans le salon. Si tu as du mal avec l'autocontrôle face aux jeux vidéo, range la console dans un placard après chaque utilisation. Fais de ton environnement un allié, pas un piège !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🍬 Rends tes habitudes irrésistibles et l'attente excitante !</summary>
+      <div class="details-content">
+        <p>Notre cerveau adore les récompenses immédiates ! La dopamine, une molécule du cerveau, nous pousse à agir quand on anticipe quelque chose de cool. Le secret est d'associer ce que tu DOIS faire à ce que tu VEUX faire. C'est le "regroupement de tentations". Si tu veux pratiquer la guitare (ce que tu dois faire), regarde ton documentaire préféré EN MÊME TEMPS (ce que tu veux faire).</p>
+        <p><strong>Citations clés :</strong></p>
+        <ul>
+          <li>« Lorsque la dopamine augmente, notre motivation à agir augmente également. » — <strong>James Clear</strong>, auteur, expliquant le rôle de la dopamine dans la motivation.</li>
+          <li>« C’est l’attente d’une récompense, et non son accomplissement, qui nous pousse à agir. » — <strong>James Clear</strong>, auteur, soulignant le pouvoir de l'anticipation.</li>
+          <li>« Les habitudes sont attrayantes lorsque nous les associons à des sentiments positifs et peu attrayantes lorsque nous les associons à des sentiments négatifs. » — <strong>James Clear</strong>, auteur, expliquant comment modeler l'attractivité des habitudes.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Matteo :</h3>
+          <p>Imagine que tu associes tes révisions d'histoire-géo (le "dois faire") à l'écoute d'un nouvel album de ton groupe de guitare préféré (le "veux faire"). Pour ton autocontrôle, si tu réussis à ne pas réagir impulsivement pendant 10 minutes, tu peux te récompenser avec un petit plaisir immédiat, comme une minute de lecture d'un livre passionnant. Fais en sorte que les choses difficiles à faire soient le chemin vers les choses que tu aimes vraiment.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🚀 Commence petit (la règle des 2 minutes) : Deviens un maître en te facilitant la vie !</summary>
+      <div class="details-content">
+        <p>Souvent, on veut faire plein de choses géniales, mais on commence trop fort et on abandonne. Le livre propose la "règle des deux minutes" : quand tu commences une nouvelle habitude, fais-la durer moins de deux minutes. "Lire un livre" devient "lire une page". "Faire du sport" devient "enfiler mes chaussures de sport". L'idée est de rendre le démarrage si facile que tu ne peux pas dire non. C'est comme quand tu étudies une nouvelle technique à la guitare, tu commences par le plus simple pour ensuite construire.</p>
+        <p><strong>Citations clés :</strong></p>
+        <ul>
+          <li>« Le mieux est l’ennemi du bien. » — <strong>Voltaire</strong>, philosophe et écrivain, conseillant d'agir même imparfaitement plutôt que de chercher la perfection et ne rien faire.</li>
+          <li>« Lorsque vous démarrez une nouvelle habitude, ce processus doit durer moins de deux minutes. » — <strong>James Clear</strong>, auteur, présentant sa célèbre "règle des deux minutes".</li>
+          <li>« Normalisez avant d’optimiser. Vous ne pouvez pas améliorer une habitude si elle n’est pas établie. » — <strong>James Clear</strong>, auteur, expliquant qu'il faut d'abord rendre une habitude régulière avant de la perfectionner.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Matteo :</h3>
+          <p>Si tu as du mal à commencer tes devoirs d'histoire-géo, dis-toi que tu vas juste "ouvrir ton manuel pendant 2 minutes". Pour la guitare, "prends ta guitare et joue un accord pendant 2 minutes". La plus grande menace à ton autocontrôle et à ta patience, c'est de ne pas commencer du tout. En rendant le début super facile, tu te mets sur la bonne voie et tu construis l'identité de quelqu'un qui finit ce qu'il commence.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🎯 Ne brise pas la chaîne : la satisfaction te fait continuer !</summary>
+      <div class="details-content">
+        <p>On est plus motivé à faire quelque chose si c'est satisfaisant. Pour les habitudes, c'est crucial. Suivre tes progrès, c'est comme marquer des points dans un jeu ! Le livre suggère de suivre tes habitudes (comme cocher un calendrier) pour voir tes "séries" et ne pas vouloir les briser. Ça crée une petite victoire immédiate qui te pousse à continuer. Et si tu "dérailles" un jour, la règle est de ne jamais manquer deux fois de suite. C'est la clé pour construire la persévérance.</p>
+        <p><strong>Citations clés :</strong></p>
+        <ul>
+          <li>« Le cerveau humain a évolué pour donner la priorité aux récompenses immédiates plutôt qu’aux récompenses différées. » — <strong>James Clear</strong>, auteur, expliquant notre préférence naturelle pour la gratification instantanée.</li>
+          <li>« Une action recevant une récompense immédiate est répétée. Une action recevant une sanction immédiate est évitée. » — <strong>James Clear</strong>, auteur, la règle fondamentale du changement de comportement.</li>
+          <li>« Ne manquez jamais une habitude deux fois de suite. » — <strong>James Clear</strong>, auteur, une règle simple pour rebondir après un accroc.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Matteo :</h3>
+          <p>Prends un calendrier et marque un "X" chaque jour où tu pratiques la guitare ou lis ton documentaire. Vois combien de jours tu peux enchaîner sans briser la chaîne ! Si un jour tu as une crise d'impatience ou que tu ne parviens pas à t'autocontrôler, ce n'est pas grave, mais promets-toi de ne pas laisser cela arriver deux jours de suite. C'est comme quand tu joues aux échecs, si tu fais une erreur, tu apprends et tu te corriges pour le coup suivant.</p>
+        </div>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="section">
+    <h2>3. Les 5 Leçons les Plus Importantes</h2>
+
+    <div class="lesson">
+      <div class="lesson-num">01</div>
+      <div>
+        <h3><strong>Tes habitudes te transforment en secret, comme la géologie !</strong></h3>
+        <p>Le livre explique que des micro-changements quotidiens, même invisibles au début, s'accumulent pour créer des résultats massifs. C'est le principe des "intérêts composés" appliqués à tes actions. Par exemple, si une plaque tectonique bouge d'un tout petit millimètre chaque année, après des millions d'années, ça crée des montagnes ou des continents. De la même manière, lire une page de livre tous les soirs ne te rendra pas savant en un jour, mais après des années, tu auras cumulé une connaissance incroyable. C'est pour ça que la patience est si importante pour toi, Matteo, même quand tu as l'impression que rien ne bouge.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">02</div>
+      <div>
+        <h3><strong>Choisis ton "identité" avant tes "objectifs" !</strong></h3>
+        <p>Le livre nous pousse à ne pas juste viser un résultat (comme "avoir de bonnes notes" ou "être un bon guitariste"), mais à choisir de devenir la personne qui obtient ces résultats ("je suis un étudiant appliqué", "je suis un musicien"). Si tu te dis "je suis un scientifique curieux", tu seras naturellement porté à faire des recherches, à lire des documentaires et à comprendre le monde. C'est une manière plus profonde et durable de changer, car cela transforme tes croyances sur toi-même, un peu comme les grands navigateurs et explorateurs de l'histoire qui se voyaient avant tout comme des découvreurs.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">03</div>
+      <div>
+        <h3><strong>Ton environnement est ton meilleur ami (ou ton pire ennemi) !</strong></h3>
+        <p>C'est une idée très concrète : la motivation est souvent surestimée, l'environnement l'est moins. Si tu veux pratiquer la guitare, laisse-la visible dans ta chambre ou le salon. Si tu veux lire, mets tes livres d'histoire ou tes revues de sciences à portée de main. Inversement, si tu luttes avec l'autocontrôle pour les jeux vidéo, range la console dans un tiroir. C'est comme un scientifique qui organise son laboratoire pour qu'il soit facile de faire les bonnes expériences et difficile de faire les mauvaises.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">04</div>
+      <div>
+        <h3><strong>La règle des deux minutes : le secret des impatients !</strong></h3>
+        <p>Pour toi qui es impatient, Matteo, c'est la leçon PARFAITE ! Le livre propose de démarrer n'importe quelle nouvelle habitude en moins de deux minutes. "Pratiquer la guitare" devient "prendre ma guitare et jouer un accord". "Étudier la géographie" devient "ouvrir mon atlas pendant 2 minutes". L'idée est de ritualiser le début de l'action pour qu'il soit impossible de ne pas la faire. Une fois que tu es lancé, c'est beaucoup plus facile de continuer. C'est comme quand tu dois monter un kit Lego très complexe, tu commences par le tout premier petit assemblage, et le reste suit.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">05</div>
+      <div>
+        <h3><strong>Ne manque jamais deux fois : la persévérance, c'est rebondir !</strong></h3>
+        <p>Le livre te dit que la perfection n'existe pas, et c'est normal de déraper de temps en temps. Mais la clé, c'est de ne jamais manquer une habitude deux fois de suite. Si tu manques ta session de guitare un jour, assure-toi d'en faire une le lendemain. Si tu as du mal avec l'autocontrôle une fois, prends une note mentale et sois encore plus attentif la prochaine fois. C'est ce qui distingue les "professionnels" des "amateurs" : les professionnels trouvent toujours un moyen de revenir sur le bon chemin rapidement. C'est un peu comme les stratégies militaires que tu aimes tant : une défaite n'est pas la fin, c'est une occasion de réajuster le tir.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section">
+    <h2>4. Quiz Rapide — 3 Questions</h2>
+
+    <div class="quiz-question">
+      <h3>Question 1 : Selon le livre, pourquoi les "petits changements" sont-ils si puissants à long terme ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas tout à fait ça. Les résultats ne sont pas toujours visibles immédiatement, mais ils s\'accumulent en secret.')">Parce qu'ils donnent des résultats visibles tout de suite.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bravo ! C\'est exactement ça ! Comme l\'intérêt composé en finance, les petites améliorations s\'additionnent pour créer un impact énorme avec le temps.')">Parce qu'ils s'accumulent comme un "intérêt composé" pour des résultats géants.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, la motivation est importante, mais les petits changements agissent d\'une manière plus profonde que la simple motivation.')">Parce qu'ils augmentent instantanément notre motivation à faire de grands efforts.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 2 : La "règle des deux minutes" suggère de faire quoi pour commencer une nouvelle habitude ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est trop ambitieux au début ! La règle des deux minutes est là pour faciliter le démarrage, pas pour tout faire d\'un coup.')">Faire l'habitude entière, mais en la divisant en plusieurs petites étapes de deux minutes chacune.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui, c\'est ça ! Rendre le début super facile est la clé pour s\'engager et construire une série d\'actions.')">Réduire l'habitude à une version si simple qu'elle prend moins de deux minutes à commencer.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'environnement est important, mais la règle des deux minutes se concentre sur l\'action elle-même.')">Préparer l'environnement de sorte que l'habitude puisse être faite en moins de deux minutes.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 3 : Quelle est la meilleure approche pour changer une mauvaise habitude, comme passer trop de temps sur les écrans ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, résister à la tentation est une stratégie à court terme qui demande trop d\'énergie. Mieux vaut agir sur l\'environnement.')">Compter sur ta seule volonté pour résister à la tentation chaque fois qu'elle se présente.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! En rendant les déclencheurs invisibles, tu rends la mauvaise habitude plus difficile à faire et tu économises ton énergie mentale.')">Rendre le déclencheur de cette mauvaise habitude invisible ou difficile à atteindre (par exemple, ranger ton téléphone dans une autre pièce).</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas la meilleure approche. Se sentir coupable ne t\'aide pas à modifier ton comportement de manière durable.')">Te sentir coupable chaque fois que tu passes trop de temps devant un écran.</button>
+      <div class="feedback"></div>
+    </div>
+    <div id="final-score"></div>
+  </div>
+
+  <div class="section">
+    <h2>5. Mots à Connaître</h2>
+    <ul>
+      <li><span class="vocab-word">Habitude atomique :</span> C'est une toute petite action, super facile à faire, qui fait partie d'un grand système et qui, répétée, a un impact ÉNORME. Comme un atome invisible qui construit quelque chose de géant !</li>
+      <li><span class="vocab-word">Déclencheur :</span> C'est un signal, une chose que tu vois, entends ou ressens, qui te donne envie de faire une habitude. Comme la cloche de l'école qui te dit qu'il est temps de ranger ton sac.</li>
+      <li><span class="vocab-word">Dopamine :</span> C'est une substance chimique dans ton cerveau qui te fait te sentir motivé(e) et joyeux(se) quand tu t'attends à une récompense. C'est elle qui te pousse à l'action !</li>
+      <li><span class="vocab-word">Plateau du Potentiel latent :</span> C'est la période où tu fais des efforts, mais tu ne vois pas de résultats tout de suite. C'est normal ! Les progrès s'accumulent en secret, puis soudain, ça décolle. Comme le bambou qui pousse sous terre avant de surgir d'un coup.</li>
+      <li><span class="vocab-word">Système d'habitudes :</span> Ce n'est pas un seul objectif, mais toutes les petites règles et routines que tu mets en place dans ta vie pour t'améliorer. C'est comme un moteur bien huilé.</li>
+      <li><span class="vocab-word">Effet Diderot :</span> C'est l'idée qu'un nouvel achat ou une nouvelle habitude peut en entraîner d'autres. Si tu as une nouvelle guitare super cool, tu auras peut-être envie d'acheter de nouveaux accessoires pour aller avec !</li>
+      <li><span class="vocab-word">Regroupement de tentations :</span> C'est une astuce pour lier une chose que tu VEUX faire (comme regarder un documentaire) à une chose que tu DOIS faire (comme étudier). Tu fais les deux en même temps !</li>
+      <li><span class="vocab-word">Dispositif d'engagement :</span> C'est un choix que tu fais maintenant pour t'assurer de faire quelque chose de bien plus tard, même si tu n'as pas envie. C'est comme une promesse que tu te fais à toi-même (et que tu rends difficile à briser).</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Défis de la Semaine</h2>
+    <div class="challenge">
+      <h3>Défis pour la Guitare 🎸 : La Règle des Deux Minutes</h3>
+      <p>Cette semaine, chaque jour où tu dois pratiquer la guitare, ne te dis pas "je dois faire une heure de guitare". Dis-toi plutôt "je vais prendre ma guitare et jouer un accord (ou une petite mélodie) pendant <strong>deux minutes</strong>". Fais-le juste pour commencer. Si tu as envie de continuer après ces deux minutes, super ! Sinon, c'est déjà une victoire ! Tu vas construire l'habitude de commencer, c'est le plus important.</p>
+    </div>
+    <div class="challenge">
+      <h3>Défis pour la Lecture & la Curiosité 🗺️ : Superposition d'Habitudes</h3>
+      <p>Matteo, toi qui adores la géographie et l'histoire, essaie la superposition d'habitudes. Choisis un moment que tu fais déjà tous les jours, par exemple : "Après avoir pris mon petit-déjeuner, je vais lire une page de mon livre d'histoire ou de géographie". Ou "Après avoir fini mes devoirs de sciences, je vais regarder 5 minutes d'un documentaire sur un sujet qui m'intrigue". Rends ta curiosité encore plus facile à nourrir.</p>
+    </div>
+    <div class="challenge">
+      <h3>Défis pour l'Autocontrôle 🧠 : Rend l'Invisible... invisible !</h3>
+      <p>Si tu sais que certains jeux vidéo ou réseaux sociaux te font perdre le contrôle du temps, essaie de rendre leurs déclencheurs invisibles. Par exemple, après tes devoirs, range ta console de jeux dans un placard pendant quelques heures, ou supprime temporairement une application de ton téléphone. Le simple fait d'avoir plus d'étapes pour y accéder t'aidera à y penser à deux fois et à mieux choisir ce que tu veux vraiment faire.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. On en Parle ?</h2>
+    <p>Matteo, voici quelques questions pour discuter avec ton père ou ton frère. Ça peut être super intéressant d'échanger vos idées !</p>
+    <ul>
+      <li>Quand on regarde les choses qu'on fait tous les jours (comme ta guitare ou les documentaires), est-ce que tu vois des "petites habitudes" qui s'additionnent pour créer de grands résultats ?</li>
+      <li>Penses-tu que changer la façon dont tu te définis ("je suis un musicien" au lieu de "je joue de la guitare") pourrait t'aider à être plus persévérant ? Comment ?</li>
+      <li>Quelle est une mauvaise habitude que tu aimerais changer ? Comment pourrais-tu la rendre "invisible" ou "difficile" en changeant ton environnement, comme le livre le suggère ?</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

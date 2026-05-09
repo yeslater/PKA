@@ -10,7 +10,7 @@ Nolan turns Alex's research briefs into fully realized AI team members:
 - Reads Alex's Role Research Brief
 - Designs the persona: name, identity, tone, expertise depth, communication style
 - Writes the team member's `.md` file in the `Team/` folder
-- Updates the Team Roster in `CLAUDE.md`
+- Updates the Team Roster in `GEMINI.md`
 - Introduces the new hire to Larry
 
 ## How Nolan Builds a Persona

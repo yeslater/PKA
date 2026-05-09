@@ -53,7 +53,7 @@ When Larry receives a task, he identifies the relevant cluster(s) and activates 
 
 ## Cluster 3 — Productivity & Knowledge
 **Anchor:** Jordan
-**Members:** Jordan · Orion · Finn · Owen · Nico · Hugo · Sage
+**Members:** Jordan · Orion · Finn · Owen · Nico · Hugo · Sage · Iris · Wren
 
 | Task type | Who to activate |
 |---|---|
@@ -64,12 +64,30 @@ When Larry receives a task, he identifies the relevant cluster(s) and activates 
 | Explaining an idea to others | Hugo + Owen |
 | Systems and process design | Orion + Jordan |
 | Book summary | Sage → Owen (retention) → Nico (storage) → Hugo (sharing) |
+| Inbox triage / email cleanup | Iris |
+| Email-driven tasks landing in the system | Iris + Finn + Marcus |
+| Sensitive email reply (tone-critical) | Iris + Claire (+ Anaïs if long-form) |
+| Co-parenting email from Chloé | Iris + Diane |
+| Recurring morning inbox digest | Iris (with scheduled task) |
+| Habit not sticking / consistency failing | Wren (+ the relevant domain coach) |
+| Designing the architecture around any new habit | Wren first, then domain coach |
+| Auditing daily routines and defaults | Wren |
+| Friction analysis (digital + physical environment) | Wren + Nico (digital) + Max (physical) |
+| Habit recovery after a streak break | Wren + Leo |
+| "Why do I keep failing at X" diagnostic | Wren + Camille |
 
 **Cross-cluster links:**
 - Orion → Work (process improvement in professional context)
 - Owen → Work (learning for professional development)
 - Nico → Personal Identity (digital life organization)
 - Quinn → Mind (intellectual provocation, reading curation)
+- Iris → Relationships (sensitive correspondence with Chloé, the boys, Rachel)
+- Iris → Work (work inbox triage in Outlook, separate logic from personal Gmail)
+- Iris → Parenting (school communications about Matteo and Felix surface immediately)
+- **Wren → all clusters with a habit component** (Wren is a horizontal — Physical Health, Mind, Relationships, Parenting, Personal Identity, and Work all run habits she co-designs)
+- Wren ↔ Leo (Wren designs the structural layer; Leo handles the motivational layer underneath — partners, not substitutes)
+- Wren ↔ Camille (when a habit fails, they diagnose together: design flaw or emotional avoidance — often both)
+- Wren ↔ Finn (Wren designs the system; Finn ships the tool that supports it)
 
 ---
 
@@ -210,3 +228,9 @@ Sage (summary) → Owen (retention design) → Nico (stored in second brain) →
 
 **Injury and return to sport:**
 Simon (assess + rehab) → Blake (training modification) → Vera (mobility work) → Mara (anti-inflammatory nutrition) → Luna (sleep for recovery) → Gabriel (clinical oversight if needed)
+
+**Installing a new habit so it actually sticks:**
+Wren (diagnose cue, friction, competing behavior, on/off-week rhythm → design the architecture) → domain coach (Blake / Mara / Luna / Noa / Vera / Anaïs etc., owns the *content* of the habit) → Finn (builds any tool the system needs) → Leo (motivation layer underneath) → Camille (loops in if avoidance pattern is emotional, not structural)
+
+**Diagnosing a chronic consistency failure:**
+Wren (system diagnostic — what's the cue, the friction, the competing behavior?) → Camille (emotional layer — what is the avoidance protecting?) → Leo (motivational layer — is the why still alive?) → Jordan (productivity layer — does the broader system have room for this?)

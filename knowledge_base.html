@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Base</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      background: #ffffff;
+      border-right: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      padding: 20px;
+      border-bottom: 2px solid #667eea;
+    }
+
+    .sidebar-header h2 {
+      font-size: 1.2em;
+      color: #667eea;
+      margin-bottom: 12px;
+    }
+
+    .add-btn {
+      width: 100%;
+      padding: 10px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .add-btn:hover {
+      background: #5568d3;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 0.9em;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: #f3f4f6;
+      padding: 2px 4px;
+      border-radius: 2px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 0.85em;
+    }
+
+    .filter-section {
+      padding: 16px;
+      border-bottom: 1px solid #e5e7eb;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .filter-title {
+      font-size: 0.85em;
+      font-weight: 700;
+      color: #667eea;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .filter-item {
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      background: #f3f4f6;
+      border-left: 3px solid #e5e7eb;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.9em;
+      transition: all 0.2s;
+    }
+
+    .filter-item:hover {
+      background: #e5e7eb;
+      border-left-color: #667eea;
+    }
+
+    .filter-item.active {
+      background: #667eea;
+      color: white;
+      border-left-color: #667eea;
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-header {
+      padding: 24px 32px;
+      border-bottom: 2px solid #667eea;
+      background: white;
+    }
+
+    .main-header h1 {
+      font-size: 2em;
+      color: #667eea;
+      margin-bottom: 4px;
+    }
+
+    .header-stats {
+      font-size: 0.9em;
+      color: #6b7280;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 24px 32px;
+      overflow-y: auto;
+    }
+
+    /* Entry Grid */
+    .entries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .entry-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .entry-card:hover {
+      border-color: #667eea;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+    }
+
+    .entry-type {
+      display: inline-block;
+      font-size: 0.75em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #667eea;
+      background: #f0f1ff;
+      padding: 4px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+
+    .entry-title {
+      font-size: 1.1em;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 8px;
+      word-break: break-word;
+    }
+
+    .entry-category {
+      display: inline-block;
+      font-size: 0.8em;
+      color: #6b7280;
+      background: #f3f4f6;
+      padding: 4px 8px;
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+
+    .entry-preview {
+      font-size: 0.9em;
+      color: #4b5563;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      max-height: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .entry-preview p {
+      margin: 8px 0;
+    }
+
+    .entry-preview ul,
+    .entry-preview ol {
+      margin: 8px 0 8px 20px;
+      padding: 0;
+    }
+
+    .entry-preview li {
+      margin: 4px 0;
+    }
+
+    .entry-preview a {
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    .entry-preview a:hover {
+      text-decoration: underline;
+    }
+
+    .entry-preview strong,
+    .entry-preview b {
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .entry-preview code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 0.85em;
+    }
+
+    .entry-preview blockquote {
+      border-left: 3px solid #667eea;
+      padding-left: 12px;
+      margin: 8px 0;
+      color: #6b7280;
+      font-style: italic;
+    }
+
+    .entry-preview img {
+      max-width: 100%;
+      height: auto;
+      margin: 8px 0;
+      border-radius: 4px;
+    }
+
+    .entry-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      font-size: 0.8em;
+      background: #e5e7eb;
+      color: #4b5563;
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+
+    .entry-url {
+      font-size: 0.85em;
+      color: #667eea;
+      text-decoration: none;
+      word-break: break-all;
+      margin-bottom: 12px;
+    }
+
+    .entry-actions {
+      display: flex;
+      gap: 8px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 12px;
+    }
+
+    .btn-small {
+      flex: 1;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 3px;
+      font-size: 0.85em;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-edit {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-edit:hover {
+      background: #5568d3;
+    }
+
+    .btn-delete {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .btn-delete:hover {
+      background: #fecaca;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 40px 20px;
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 8px;
+      padding: 32px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      font-size: 1.8em;
+      color: #667eea;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1f2937;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.95em;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      padding: 12px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1em;
+    }
+
+    .btn-primary:hover {
+      background: #5568d3;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 12px;
+      background: #e5e7eb;
+      color: #1f2937;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-secondary:hover {
+      background: #d1d5db;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 40px;
+      color: #9ca3af;
+    }
+
+    .empty-state h3 {
+      font-size: 1.3em;
+      margin-bottom: 12px;
+      color: #6b7280;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .sidebar {
+        width: 240px;
+      }
+
+      .entries-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        max-height: 200px;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .filter-section {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+
+      .filter-item {
+        flex-shrink: 0;
+      }
+
+      .entries-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .main-header {
+        padding: 16px;
+      }
+
+      .main-content {
+        padding: 16px;
+      }
+
+      .modal-content {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" style="display: inline-block; margin-bottom: 12px; font-size: 0.9em; color: #667eea; text-decoration: none; font-weight: 600;">← Back to Hub</a>
+        <h2>Knowledge Base</h2>
+        <button class="add-btn" onclick="openAddModal()">+ Add Entry</button>
+        <input type="text" class="search-box" id="searchBox" placeholder="Search (try: ai -old title:learn)">
+        <div style="font-size: 0.75em; color: #6b7280; margin-top: 8px; line-height: 1.4;">
+          <strong>Search tips:</strong><br>
+          • <code>"phrase"</code> exact<br>
+          • <code>-word</code> exclude<br>
+          • <code>title:ai</code> in title<br>
+          • <code>tag:urgent</code> by tag<br>
+          • <code>type:quote</code> by type
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-title">PARA Framework</div>
+        <div class="filter-item active" onclick="filterByPara('')">All Entries</div>
+        <div class="filter-item" onclick="filterByPara('projects')">Projects</div>
+        <div class="filter-item" onclick="filterByPara('areas')">Areas</div>
+        <div class="filter-item" onclick="filterByPara('resources')">Resources</div>
+        <div class="filter-item" onclick="filterByPara('archives')">Archives</div>
+
+        <div class="filter-title" style="margin-top: 24px;">Types</div>
+        <div class="filter-item" onclick="filterByType('')">All Types</div>
+        <div class="filter-item" onclick="filterByType('quote')">Quotes</div>
+        <div class="filter-item" onclick="filterByType('idea')">Ideas</div>
+        <div class="filter-item" onclick="filterByType('website')">Websites</div>
+        <div class="filter-item" onclick="filterByType('video')">Videos</div>
+        <div class="filter-item" onclick="filterByType('article')">Articles</div>
+        <div class="filter-item" onclick="filterByType('book')">Books</div>
+        <div class="filter-item" onclick="filterByType('other')">Other</div>
+
+        <div class="filter-title" style="margin-top: 24px;">Categories</div>
+        <div id="categoryFilter"></div>
+
+        <div class="filter-title" style="margin-top: 24px;">Tags</div>
+        <div id="tagFilter"></div>
+
+        <div style="padding-top: 24px; border-top: 1px solid #e5e7eb; margin-top: 24px;">
+          <button class="add-btn" style="background: #10b981;" onclick="exportData()">📥 Export</button>
+          <button class="add-btn" style="background: #06b6d4; margin-top: 8px;" onclick="openImportModal()">📤 Import CSV/Excel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+      <div class="main-header">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div>
+            <h1>Knowledge Base</h1>
+            <div class="header-stats" id="stats">0 entries</div>
+          </div>
+          <div style="display: none; gap: 12px; align-items: center;" id="batchToolbar">
+            <button class="btn-small" style="background: #667eea; color: white;" onclick="selectAllVisible(window.currentFilteredEntries)">Select All</button>
+            <button class="btn-small" style="background: #10b981; color: white;" onclick="deselectAll()">Clear</button>
+            <button class="btn-small" style="background: #dc2626; color: white;" onclick="batchDelete()">Delete Selected</button>
+            <span id="selectionCount" style="color: #6b7280; font-size: 0.9em;">0 selected</span>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="display: flex; gap: 6px; border: 1px solid #d1d5db; border-radius: 4px; padding: 4px;">
+              <button class="view-btn active" data-view="card-compact" onclick="switchView('card-compact')" style="padding: 4px 10px; font-size: 0.85em; border: none; background: transparent; cursor: pointer; border-radius: 3px;" title="Card (Compact)">⬜</button>
+              <button class="view-btn" data-view="card-full" onclick="switchView('card-full')" style="padding: 4px 10px; font-size: 0.85em; border: none; background: transparent; cursor: pointer; border-radius: 3px;" title="Card (Full)">▪️</button>
+              <button class="view-btn" data-view="list-minimal" onclick="switchView('list-minimal')" style="padding: 4px 10px; font-size: 0.85em; border: none; background: transparent; cursor: pointer; border-radius: 3px;" title="List (Minimal)">☰</button>
+              <button class="view-btn" data-view="list-detailed" onclick="switchView('list-detailed')" style="padding: 4px 10px; font-size: 0.85em; border: none; background: transparent; cursor: pointer; border-radius: 3px;" title="List (Detailed)">≡</button>
+            </div>
+            <label style="font-size: 0.85em; color: #6b7280; font-weight: 600;">Sort:</label>
+            <select id="sortBy" style="padding: 6px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.9em;" onchange="applySortChange()">
+              <option value="created-desc">Newest First</option>
+              <option value="created-asc">Oldest First</option>
+              <option value="title-asc">Title (A-Z)</option>
+              <option value="title-desc">Title (Z-A)</option>
+              <option value="type-asc">By Type</option>
+              <option value="category-asc">By Category</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="entries-grid" id="entriesGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Modal -->
+  <div class="modal" id="importModal">
+    <div class="modal-content">
+      <div class="modal-header">Import Entries from CSV/Excel</div>
+
+      <div class="form-group">
+        <label class="form-label">Select file to import (CSV or Excel)</label>
+        <input type="file" id="importFile" class="form-input" accept=".csv,.xlsx,.xls" style="padding: 6px 12px; cursor: pointer;">
+      </div>
+
+      <div style="background: #f0f1ff; padding: 12px; border-radius: 4px; margin-bottom: 20px; font-size: 0.9em; color: #4b5563;">
+        <strong>CSV/Excel Format:</strong><br>
+        Headers: title, type, category, url, description, tags, para, relatedProject, relatedArea<br>
+        Para values: projects, areas, resources, archives<br>
+        <br>
+        <strong>Example CSV:</strong><br>
+        <code style="display: block; white-space: pre-wrap; background: white; padding: 8px; border-radius: 3px; margin-top: 8px;">title,type,category,url,description,tags,para,relatedProject,relatedArea
+"AI Mastery Plan",idea,Learning,,Build AI expertise,ai learning,projects,AI Implementation Roadmap,
+"Sleep Optimization",quote,Health,,Excellence requires rest,health sleep,areas,,Health</code>
+      </div>
+
+      <div id="importProgress" style="display: none; margin-bottom: 16px;">
+        <div style="font-size: 0.9em; color: #6b7280; margin-bottom: 8px;" id="importStatus"></div>
+        <div style="width: 100%; height: 4px; background: #e5e7eb; border-radius: 2px; overflow: hidden;">
+          <div id="importProgressBar" style="width: 0%; height: 100%; background: #667eea; transition: width 0.3s;"></div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-primary" onclick="importEntries()">Import</button>
+        <button type="button" class="btn-secondary" onclick="closeImportModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="modal-header" id="modalTitle">Add New Entry</div>
+
+      <form onsubmit="saveEntry(event)">
+        <div class="form-group">
+          <label class="form-label">Title *</label>
+          <input type="text" id="entryTitle" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Type</label>
+          <select id="entryType" class="form-select">
+            <option value="idea">Idea</option>
+            <option value="quote">Quote</option>
+            <option value="website">Website</option>
+            <option value="video">Video</option>
+            <option value="article">Article</option>
+            <option value="book">Book</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <input type="text" id="entryCategory" class="form-input" placeholder="e.g., Business, Life, AI">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">URL/Link (optional)</label>
+          <input type="url" id="entryUrl" class="form-input" placeholder="https://example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Description/Content</label>
+          <textarea id="entryDescription" class="form-textarea" placeholder="Your notes, quote, or content..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Tags (comma-separated)</label>
+          <input type="text" id="entryTags" class="form-input" placeholder="e.g., important, learning, reference">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">PARA Framework</label>
+          <select id="entryPara" class="form-select" onchange="updateParaOptions(this.value)">
+            <option value="projects">Projects</option>
+            <option value="areas">Areas</option>
+            <option value="resources" selected>Resources</option>
+            <option value="archives">Archives</option>
+          </select>
+          <div style="font-size: 0.75em; color: #6b7280; margin-top: 6px;">
+            <strong>Projects:</strong> Active goals with deadlines<br>
+            <strong>Areas:</strong> Ongoing responsibilities<br>
+            <strong>Resources:</strong> Reference materials & information<br>
+            <strong>Archives:</strong> Completed or inactive items
+          </div>
+        </div>
+
+        <div class="form-group" id="paraSpecificGroup">
+          <label class="form-label">Related Project/Area</label>
+          <select id="entryParaSpecific" class="form-select"></select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Attach Files (optional)</label>
+          <input type="file" id="entryFiles" class="form-input" multiple accept="*" style="padding: 6px 12px; cursor: pointer;">
+          <div id="filesList" style="margin-top: 8px; font-size: 0.9em; color: #6b7280;"></div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Save Entry</button>
+          <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let entries = [];
+    let currentFilter = { type: '', search: '', category: '', tags: [], para: '' };
+    let editingId = null;
+    let selectedEntries = new Set();
+    let currentSort = { field: 'created', direction: 'desc' }; // desc = newest first
+    let currentView = 'card-compact'; // card-compact, card-full, list-minimal, list-detailed
+
+    const paraOptions = {
+      projects: [
+        'AI Implementation Roadmap',
+        'Parenting Through Separation',
+        'Meditation Practice',
+        'Personal Reconstruction',
+        'Training Program',
+        'Dating Readiness',
+        'AI Mastery'
+      ],
+      areas: [
+        'Work',
+        'Parenting',
+        'Health',
+        'Relationships',
+        'Personal Growth',
+        'Home & Life'
+      ]
+    };
+
+    // Load entries from localStorage
+    function loadEntries() {
+      const stored = localStorage.getItem('knowledge_base');
+      entries = stored ? JSON.parse(stored) : [];
+      // Ensure all entries have attachments and PARA fields
+      entries = entries.map(e => ({
+        ...e,
+        attachments: e.attachments || [],
+        para: e.para || 'resources', // Default to resources if not set
+        relatedProject: e.relatedProject || null,
+        relatedArea: e.relatedArea || null
+      }));
+      updateCategories();
+      renderEntries();
+    }
+
+    // Save entries to localStorage
+    function saveEntries() {
+      localStorage.setItem('knowledge_base', JSON.stringify(entries));
+      updateCategories();
+    }
+
+    // Update category and tag filters
+    function updateCategories() {
+      const categories = [...new Set(entries.map(e => e.category).filter(c => c))];
+      const filter = document.getElementById('categoryFilter');
+      filter.innerHTML = categories.map(cat =>
+        `<div class="filter-item ${currentFilter.category === cat ? 'active' : ''}" onclick="filterByCategory('${cat}')">${cat}</div>`
+      ).join('');
+
+      updateTags();
+    }
+
+    function updateTags() {
+      const allTags = [];
+      entries.forEach(e => {
+        e.tags.forEach(tag => {
+          if (!allTags.includes(tag)) {
+            allTags.push(tag);
+          }
+        });
+      });
+      allTags.sort();
+
+      const filter = document.getElementById('tagFilter');
+      if (filter) {
+        filter.innerHTML = allTags.map(tag =>
+          `<div class="filter-item ${currentFilter.tags.includes(tag) ? 'active' : ''}" onclick="filterByTag('${tag}')">#${tag}</div>`
+        ).join('');
+      }
+    }
+
+    // Filter functions
+    function filterByPara(para) {
+      currentFilter.para = para;
+      document.querySelectorAll('.filter-item').forEach(el => el.classList.remove('active'));
+      event.target.classList.add('active');
+      renderEntries();
+    }
+
+    function filterByType(type) {
+      currentFilter.type = type;
+      // Don't clear PARA filter when changing type
+      renderEntries();
+    }
+
+    function filterByCategory(category) {
+      currentFilter.category = currentFilter.category === category ? '' : category;
+      renderEntries();
+    }
+
+    function filterByTag(tag) {
+      if (currentFilter.tags.includes(tag)) {
+        currentFilter.tags = currentFilter.tags.filter(t => t !== tag);
+      } else {
+        currentFilter.tags.push(tag);
+      }
+      renderEntries();
+    }
+
+    // Fuzzy search - check if text is similar to query
+    function fuzzyMatch(text, query) {
+      text = text.toLowerCase();
+      query = query.toLowerCase();
+
+      // Exact match
+      if (text.includes(query)) return true;
+
+      // Levenshtein distance for typos (up to 2 character differences)
+      if (levenshteinDistance(text, query) <= 2) return true;
+
+      return false;
+    }
+
+    // Calculate Levenshtein distance (how different two strings are)
+    function levenshteinDistance(a, b) {
+      const matrix = [];
+      for (let i = 0; i <= b.length; i++) {
+        matrix[i] = [i];
+      }
+      for (let j = 0; j <= a.length; j++) {
+        matrix[0][j] = j;
+      }
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          if (b.charAt(i - 1) === a.charAt(j - 1)) {
+            matrix[i][j] = matrix[i - 1][j - 1];
+          } else {
+            matrix[i][j] = Math.min(
+              matrix[i - 1][j - 1] + 1,
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j] + 1
+            );
+          }
+        }
+      }
+      return matrix[b.length][a.length];
+    }
+
+    // Parse advanced search operators
+    function parseSearchQuery(query) {
+      const operators = {
+        must: [],        // words that MUST be present
+        mustNot: [],     // words that MUST NOT be present
+        exact: [],       // exact phrases
+        titleOnly: [],   // search in title only
+        descOnly: [],    // search in description only
+        tagOnly: [],     // search in tags only
+        typeFilter: '',  // filter by type
+        catFilter: ''    // filter by category
+      };
+
+      const parts = query.match(/"[^"]+"|[^\s]+/g) || [];
+
+      parts.forEach(part => {
+        // Exact phrase: "word1 word2"
+        if (part.startsWith('"') && part.endsWith('"')) {
+          operators.exact.push(part.slice(1, -1).toLowerCase());
+        }
+        // Exclude: -word
+        else if (part.startsWith('-')) {
+          operators.mustNot.push(part.slice(1).toLowerCase());
+        }
+        // Title search: title:word
+        else if (part.startsWith('title:')) {
+          operators.titleOnly.push(part.slice(6).toLowerCase());
+        }
+        // Description search: desc:word
+        else if (part.startsWith('desc:')) {
+          operators.descOnly.push(part.slice(5).toLowerCase());
+        }
+        // Tag search: tag:word
+        else if (part.startsWith('tag:')) {
+          operators.tagOnly.push(part.slice(4).toLowerCase());
+        }
+        // Type filter: type:quote
+        else if (part.startsWith('type:')) {
+          operators.typeFilter = part.slice(5).toLowerCase();
+        }
+        // Category filter: cat:business
+        else if (part.startsWith('cat:')) {
+          operators.catFilter = part.slice(4).toLowerCase();
+        }
+        // Regular word (must contain)
+        else if (part.length > 0) {
+          operators.must.push(part.toLowerCase());
+        }
+      });
+
+      return operators;
+    }
+
+    // Basic HTML sanitizer - removes script tags and dangerous attributes
+    function sanitizeHtml(html) {
+      let sanitized = html;
+
+      // Remove script tags and content
+      sanitized = sanitized.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+
+      // Remove event handlers (onclick, onerror, etc)
+      sanitized = sanitized.replace(/\s*on\w+\s*=\s*["'][^"']*["']/gi, '');
+      sanitized = sanitized.replace(/\s*on\w+\s*=\s*[^\s>]*/gi, '');
+
+      // Remove javascript: protocol
+      sanitized = sanitized.replace(/javascript:/gi, '');
+
+      return sanitized;
+    }
+
+    // Check if entry matches search criteria
+    function matchesSearch(entry, operators) {
+      const title = entry.title.toLowerCase();
+      const desc = entry.description.toLowerCase();
+      const tags = entry.tags.map(t => t.toLowerCase());
+      const type = entry.type.toLowerCase();
+      const category = entry.category.toLowerCase();
+
+      // Type filter
+      if (operators.typeFilter && type !== operators.typeFilter) {
+        return false;
+      }
+
+      // Category filter
+      if (operators.catFilter && !category.includes(operators.catFilter)) {
+        return false;
+      }
+
+      // Must NOT contain any excluded words
+      for (const word of operators.mustNot) {
+        if (title.includes(word) || desc.includes(word) || tags.some(t => t.includes(word))) {
+          return false;
+        }
+      }
+
+      // Exact phrases must match
+      for (const phrase of operators.exact) {
+        if (!title.includes(phrase) && !desc.includes(phrase)) {
+          return false;
+        }
+      }
+
+      // Title-only searches
+      for (const word of operators.titleOnly) {
+        if (!fuzzyMatch(title, word)) {
+          return false;
+        }
+      }
+
+      // Description-only searches
+      for (const word of operators.descOnly) {
+        if (!fuzzyMatch(desc, word)) {
+          return false;
+        }
+      }
+
+      // Tag-only searches
+      for (const word of operators.tagOnly) {
+        if (!tags.some(t => fuzzyMatch(t, word))) {
+          return false;
+        }
+      }
+
+      // All must-have words must be in title, desc, or tags
+      for (const word of operators.must) {
+        const matchesAny = fuzzyMatch(title, word) ||
+                          fuzzyMatch(desc, word) ||
+                          tags.some(t => fuzzyMatch(t, word));
+        if (!matchesAny) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // Search - attach after page loads
+    function attachSearchListener() {
+      const searchBox = document.getElementById('searchBox');
+      if (searchBox) {
+        searchBox.addEventListener('input', (e) => {
+          currentFilter.search = e.target.value.toLowerCase();
+          renderEntries();
+        });
+
+        // Show help text
+        searchBox.title = 'Search operators: "phrase" | -exclude | title:word | desc:word | tag:word | type:quote | cat:business';
+      }
+    }
+
+    // Helper to render attachments
+    function renderAttachments(entry) {
+      if (!entry.attachments || entry.attachments.length === 0) return '';
+
+      return `
+        <div style="margin-bottom: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
+          <div style="font-size: 0.8em; font-weight: 600; color: #667eea; margin-bottom: 6px;">📎 Attachments (${entry.attachments.length})</div>
+          ${entry.attachments.map(att => `
+            <div style="display: flex; justify-content: space-between; align-items: center; background: #f3f4f6; padding: 6px 8px; border-radius: 3px; margin-bottom: 4px; font-size: 0.85em;">
+              <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${att.name}</span>
+              <div style="display: flex; gap: 4px; flex-shrink: 0;">
+                <button onclick="downloadAttachment('${att.id}', '${entry.id}')" style="background: none; border: none; color: #667eea; cursor: pointer; padding: 2px 4px; font-weight: 600;">↓</button>
+                <button onclick="removeAttachment('${att.id}', '${entry.id}')" style="background: none; border: none; color: #dc2626; cursor: pointer; padding: 2px 4px; font-weight: 600;">✕</button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // View rendering functions
+    function renderCardCompact(entry) {
+      const paraBadge = {
+        'projects': '📌',
+        'areas': '🎯',
+        'resources': '📚',
+        'archives': '📦'
+      }[entry.para] || '📚';
+
+      return `
+        <div class="entry-card" style="position: relative;">
+          <input type="checkbox" style="position: absolute; top: 12px; right: 12px; width: 18px; height: 18px; cursor: pointer;"
+            ${selectedEntries.has(entry.id) ? 'checked' : ''}
+            onchange="toggleSelectEntry('${entry.id}')">
+          <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+            <div class="entry-type">${entry.type}</div>
+            <span style="display: inline-block; font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #667eea; background: #f0f1ff; padding: 4px 8px; border-radius: 3px;">${paraBadge} ${entry.para}</span>
+          </div>
+          <div class="entry-title">${entry.title}</div>
+          <div style="font-size: 0.75em; color: #9ca3af; margin-bottom: 8px;">
+            Added: ${formatDate(entry.created)}
+          </div>
+          ${entry.category ? `<div class="entry-category">${entry.category}</div>` : ''}
+          ${entry.url ? `<a href="${entry.url}" target="_blank" class="entry-url">${new URL(entry.url).hostname}</a>` : ''}
+          <div class="entry-preview" id="preview-${entry.id}" style="overflow: auto;"></div>
+          ${entry.tags.length > 0 ? `
+            <div class="entry-tags">
+              ${entry.tags.map(tag => `<span class="tag" onclick="filterByTag('${tag}'); event.stopPropagation();" style="cursor: pointer;">#${tag}</span>`).join('')}
+            </div>
+          ` : ''}
+          ${renderAttachments(entry)}
+          <div class="entry-actions">
+            <button class="btn-small btn-edit" onclick="editEntry('${entry.id}')">Edit</button>
+            <button class="btn-small" style="background: #667eea; color: white;" onclick="duplicateEntry('${entry.id}'); event.stopPropagation();">Duplicate</button>
+            <button class="btn-small btn-delete" onclick="deleteEntry('${entry.id}')">Delete</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCardFull(entry) {
+      const paraBadge = {
+        'projects': '📌',
+        'areas': '🎯',
+        'resources': '📚',
+        'archives': '📦'
+      }[entry.para] || '📚';
+
+      return `
+        <div class="entry-card" style="position: relative;">
+          <input type="checkbox" style="position: absolute; top: 12px; right: 12px; width: 18px; height: 18px; cursor: pointer;"
+            ${selectedEntries.has(entry.id) ? 'checked' : ''}
+            onchange="toggleSelectEntry('${entry.id}')">
+          <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+            <div class="entry-type">${entry.type}</div>
+            <span style="display: inline-block; font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #667eea; background: #f0f1ff; padding: 4px 8px; border-radius: 3px;">${paraBadge} ${entry.para}</span>
+          </div>
+          <div class="entry-title">${entry.title}</div>
+          <div style="font-size: 0.75em; color: #9ca3af; margin-bottom: 8px;">
+            Added: ${formatDate(entry.created)} • Modified: ${formatDate(entry.updated)}
+          </div>
+          ${entry.category ? `<div class="entry-category">${entry.category}</div>` : ''}
+          ${entry.url ? `<a href="${entry.url}" target="_blank" class="entry-url">${new URL(entry.url).hostname}</a>` : ''}
+          <div class="entry-preview" id="preview-${entry.id}" style="overflow: auto; max-height: 200px;"></div>
+          ${entry.tags.length > 0 ? `
+            <div class="entry-tags">
+              ${entry.tags.map(tag => `<span class="tag" onclick="filterByTag('${tag}'); event.stopPropagation();" style="cursor: pointer;">#${tag}</span>`).join('')}
+            </div>
+          ` : ''}
+          ${renderAttachments(entry)}
+          <div class="entry-actions">
+            <button class="btn-small btn-edit" onclick="editEntry('${entry.id}')">Edit</button>
+            <button class="btn-small" style="background: #667eea; color: white;" onclick="duplicateEntry('${entry.id}'); event.stopPropagation();">Duplicate</button>
+            <button class="btn-small btn-delete" onclick="deleteEntry('${entry.id}')">Delete</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderListMinimal(entry) {
+      const paraBadge = {
+        'projects': '📌',
+        'areas': '🎯',
+        'resources': '📚',
+        'archives': '📦'
+      }[entry.para] || '📚';
+
+      return `
+        <div style="display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: white; border: 1px solid #e5e7eb; border-radius: 4px; margin-bottom: 8px;">
+          <input type="checkbox" style="width: 18px; height: 18px; cursor: pointer;"
+            ${selectedEntries.has(entry.id) ? 'checked' : ''}
+            onchange="toggleSelectEntry('${entry.id}')">
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-weight: 700; color: #1f2937;">${entry.title}</div>
+            <div style="font-size: 0.85em; color: #9ca3af;">
+              ${entry.type} • ${paraBadge} ${entry.para} • Added: ${formatDate(entry.created)}
+            </div>
+          </div>
+          <div style="display: flex; gap: 6px;">
+            <button class="btn-small btn-edit" onclick="editEntry('${entry.id}')" style="padding: 4px 8px; font-size: 0.8em;">Edit</button>
+            <button class="btn-small btn-delete" onclick="deleteEntry('${entry.id}')" style="padding: 4px 8px; font-size: 0.8em;">Delete</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderListDetailed(entry) {
+      const preview = entry.description.substring(0, 80) + (entry.description.length > 80 ? '...' : '');
+      const paraBadge = {
+        'projects': '📌',
+        'areas': '🎯',
+        'resources': '📚',
+        'archives': '📦'
+      }[entry.para] || '📚';
+
+      return `
+        <div style="padding: 16px; background: white; border: 1px solid #e5e7eb; border-radius: 4px; margin-bottom: 12px;">
+          <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+            <input type="checkbox" style="width: 18px; height: 18px; cursor: pointer; flex-shrink: 0;"
+              ${selectedEntries.has(entry.id) ? 'checked' : ''}
+              onchange="toggleSelectEntry('${entry.id}')">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 700; font-size: 1.05em; color: #1f2937; margin-bottom: 4px;">${entry.title}</div>
+              <div style="font-size: 0.85em; color: #6b7280; margin-bottom: 8px;">
+                <span style="display: inline-block; background: #f3f4f6; padding: 2px 8px; border-radius: 3px; margin-right: 8px;">${entry.type}</span>
+                <span style="display: inline-block; background: #f0f1ff; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: #667eea; font-weight: 600;">${paraBadge} ${entry.para}</span>
+                ${entry.category ? `<span style="display: inline-block; background: #f3f4f6; padding: 2px 8px; border-radius: 3px; margin-right: 8px;">${entry.category}</span>` : ''}
+              </div>
+              <div style="font-size: 0.9em; color: #4b5563; margin-bottom: 8px; line-height: 1.4;">${preview}</div>
+              ${entry.tags.length > 0 ? `
+                <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px;">
+                  ${entry.tags.map(tag => `<span style="font-size: 0.8em; background: #e5e7eb; color: #4b5563; padding: 2px 6px; border-radius: 12px;">#${tag}</span>`).join('')}
+                </div>
+              ` : ''}
+              ${entry.attachments && entry.attachments.length > 0 ? `
+                <div style="font-size: 0.8em; color: #667eea; margin-bottom: 8px;">📎 ${entry.attachments.length} attachment(s)</div>
+              ` : ''}
+              <div style="font-size: 0.8em; color: #9ca3af; border-top: 1px solid #e5e7eb; padding-top: 8px;">
+                Added: ${formatDate(entry.created)} • Modified: ${formatDate(entry.updated)}
+                ${entry.url ? ` • <a href="${entry.url}" target="_blank" style="color: #667eea; text-decoration: none;">View source</a>` : ''}
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px; flex-shrink: 0;">
+              <button class="btn-small btn-edit" onclick="editEntry('${entry.id}')" style="padding: 4px 8px; font-size: 0.8em;">Edit</button>
+              <button class="btn-small" style="background: #667eea; color: white; padding: 4px 8px; font-size: 0.8em; border: none; border-radius: 3px; cursor: pointer;" onclick="duplicateEntry('${entry.id}');">Dup</button>
+              <button class="btn-small btn-delete" onclick="deleteEntry('${entry.id}')" style="padding: 4px 8px; font-size: 0.8em;">Delete</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render entries
+    function renderEntries() {
+      let filtered = entries;
+
+      if (currentFilter.para) {
+        filtered = filtered.filter(e => e.para === currentFilter.para);
+      }
+
+      if (currentFilter.type) {
+        filtered = filtered.filter(e => e.type === currentFilter.type);
+      }
+
+      if (currentFilter.category) {
+        filtered = filtered.filter(e => e.category === currentFilter.category);
+      }
+
+      if (currentFilter.tags.length > 0) {
+        filtered = filtered.filter(e =>
+          currentFilter.tags.some(tag => e.tags.includes(tag))
+        );
+      }
+
+      if (currentFilter.search) {
+        const operators = parseSearchQuery(currentFilter.search);
+        filtered = filtered.filter(e => matchesSearch(e, operators));
+      }
+
+      // Apply sorting
+      filtered = applySorting(filtered);
+
+      const grid = document.getElementById('entriesGrid');
+      const stats = document.getElementById('stats');
+
+      stats.textContent = `${filtered.length} ${filtered.length === 1 ? 'entry' : 'entries'}`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="empty-state"><h3>No entries found</h3><p>Create your first entry or adjust your filters</p></div>';
+        return;
+      }
+
+      // Render based on view type
+      if (currentView === 'card-compact' || currentView === 'card-full') {
+        grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+      } else {
+        grid.style.gridTemplateColumns = '1fr';
+      }
+
+      let gridHtml = '';
+
+      if (currentView === 'card-compact') {
+        gridHtml = filtered.map(entry => renderCardCompact(entry)).join('');
+      } else if (currentView === 'card-full') {
+        gridHtml = filtered.map(entry => renderCardFull(entry)).join('');
+      } else if (currentView === 'list-minimal') {
+        gridHtml = filtered.map(entry => renderListMinimal(entry)).join('');
+      } else if (currentView === 'list-detailed') {
+        gridHtml = filtered.map(entry => renderListDetailed(entry)).join('');
+      }
+
+      grid.innerHTML = gridHtml;
+
+      // Store filtered for batch operations
+      window.currentFilteredEntries = filtered;
+
+      // Update batch toolbar
+      const toolbar = document.getElementById('batchToolbar');
+      const counter = document.getElementById('selectionCount');
+      if (selectedEntries.size > 0) {
+        toolbar.style.display = 'flex';
+        counter.textContent = `${selectedEntries.size} selected`;
+      } else {
+        toolbar.style.display = 'none';
+      }
+
+      // Render descriptions with HTML support
+      filtered.forEach(entry => {
+        const preview = document.getElementById(`preview-${entry.id}`);
+        if (preview) {
+          // Check if content contains HTML tags
+          if (/<[^>]+>/.test(entry.description)) {
+            // Sanitize and render as HTML
+            const sanitized = sanitizeHtml(entry.description);
+            preview.innerHTML = sanitized;
+          } else {
+            // Plain text - render as text
+            preview.textContent = entry.description;
+          }
+        }
+      });
+    }
+
+    // Modal functions
+    function openAddModal() {
+      editingId = null;
+      document.getElementById('modalTitle').textContent = 'Add New Entry';
+      document.getElementById('entryTitle').value = '';
+      document.getElementById('entryType').value = 'idea';
+      document.getElementById('entryCategory').value = '';
+      document.getElementById('entryUrl').value = '';
+      document.getElementById('entryDescription').value = '';
+      document.getElementById('entryTags').value = '';
+      document.getElementById('entryFiles').value = '';
+      document.getElementById('filesList').textContent = '';
+
+      // Set PARA fields
+      updateParaOptions('resources');
+      document.getElementById('entryPara').value = 'resources';
+      document.getElementById('entryParaSpecific').value = '';
+
+      document.getElementById('modal').classList.add('active');
+
+      const fileInput = document.getElementById('entryFiles');
+      fileInput.addEventListener('change', handleFileSelection);
+
+      // Focus on title field
+      document.getElementById('entryTitle').focus();
+    }
+
+    function updateParaOptions(para) {
+      const specificSelect = document.getElementById('entryParaSpecific');
+      specificSelect.innerHTML = '<option value="">-- Select --</option>';
+
+      if (para === 'projects') {
+        paraOptions.projects.forEach(p => {
+          specificSelect.innerHTML += `<option value="${p}">${p}</option>`;
+        });
+      } else if (para === 'areas') {
+        paraOptions.areas.forEach(a => {
+          specificSelect.innerHTML += `<option value="${a}">${a}</option>`;
+        });
+      }
+    }
+
+    function editEntry(id) {
+      const entry = entries.find(e => e.id === id);
+      if (!entry) return;
+
+      editingId = id;
+      document.getElementById('modalTitle').textContent = 'Edit Entry';
+      document.getElementById('entryTitle').value = entry.title;
+      document.getElementById('entryType').value = entry.type;
+      document.getElementById('entryCategory').value = entry.category;
+      document.getElementById('entryUrl').value = entry.url;
+      document.getElementById('entryDescription').value = entry.description;
+      document.getElementById('entryTags').value = entry.tags.join(', ');
+      document.getElementById('entryFiles').value = '';
+
+      // Set PARA fields
+      document.getElementById('entryPara').value = entry.para || 'resources';
+      updateParaOptions(entry.para || 'resources');
+      document.getElementById('entryParaSpecific').value = entry.relatedProject || entry.relatedArea || '';
+
+      // Show existing attachments
+      const filesList = document.getElementById('filesList');
+      if (entry.attachments && entry.attachments.length > 0) {
+        filesList.innerHTML = `<div style="margin-bottom: 8px;"><strong>Existing attachments:</strong></div>` +
+          entry.attachments.map(att => `
+            <div style="background: #f3f4f6; padding: 6px 8px; border-radius: 3px; margin-bottom: 4px; font-size: 0.85em; display: flex; justify-content: space-between;">
+              <span>${att.name} (${(att.size / 1024).toFixed(1)} KB)</span>
+              <button type="button" onclick="removeAttachment('${att.id}', '${id}')" style="background: none; border: none; color: #dc2626; cursor: pointer; padding: 0; font-weight: 600;">Remove</button>
+            </div>
+          `).join('');
+      } else {
+        filesList.textContent = '';
+      }
+
+      const fileInput = document.getElementById('entryFiles');
+      fileInput.addEventListener('change', handleFileSelection);
+      document.getElementById('modal').classList.add('active');
+
+      // Focus on title field
+      document.getElementById('entryTitle').focus();
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+
+    function saveEntry(e) {
+      e.preventDefault();
+
+      const fileInput = document.getElementById('entryFiles');
+      const existingEntry = editingId ? entries.find(e => e.id === editingId) : null;
+      const existingAttachments = existingEntry?.attachments || [];
+
+      const saveWithAttachments = (newAttachments) => {
+        const para = document.getElementById('entryPara').value;
+        const paraSpecific = document.getElementById('entryParaSpecific').value;
+
+        const entry = {
+          id: editingId || Date.now().toString(),
+          title: document.getElementById('entryTitle').value,
+          type: document.getElementById('entryType').value,
+          category: document.getElementById('entryCategory').value,
+          url: document.getElementById('entryUrl').value,
+          description: document.getElementById('entryDescription').value,
+          tags: document.getElementById('entryTags').value.split(',').map(t => t.trim()).filter(t => t),
+          para: para,
+          relatedProject: para === 'projects' ? paraSpecific : null,
+          relatedArea: para === 'areas' ? paraSpecific : null,
+          created: editingId ? entries.find(e => e.id === editingId)?.created : new Date().toISOString(),
+          updated: new Date().toISOString(),
+          attachments: [...existingAttachments, ...newAttachments]
+        };
+
+        if (editingId) {
+          const index = entries.findIndex(e => e.id === editingId);
+          entries[index] = entry;
+        } else {
+          entries.unshift(entry);
+        }
+
+        saveEntries();
+        renderEntries();
+        closeModal();
+      };
+
+      if (fileInput.files.length > 0) {
+        saveAttachments(fileInput.files, saveWithAttachments);
+      } else {
+        saveWithAttachments([]);
+      }
+    }
+
+    function deleteEntry(id) {
+      if (confirm('Delete this entry?')) {
+        entries = entries.filter(e => e.id !== id);
+        selectedEntries.delete(id);
+        saveEntries();
+        renderEntries();
+      }
+    }
+
+    function duplicateEntry(id) {
+      const entry = entries.find(e => e.id === id);
+      if (!entry) return;
+
+      const newEntry = {
+        ...entry,
+        id: Date.now().toString(),
+        title: entry.title + ' (copy)',
+        created: new Date().toISOString(),
+        updated: new Date().toISOString(),
+        attachments: entry.attachments || []
+      };
+
+      entries.unshift(newEntry);
+      saveEntries();
+      renderEntries();
+    }
+
+    function toggleSelectEntry(id) {
+      if (selectedEntries.has(id)) {
+        selectedEntries.delete(id);
+      } else {
+        selectedEntries.add(id);
+      }
+      renderEntries();
+    }
+
+    function selectAllVisible(filtered) {
+      filtered.forEach(e => selectedEntries.add(e.id));
+      renderEntries();
+    }
+
+    function deselectAll() {
+      selectedEntries.clear();
+      renderEntries();
+    }
+
+    function batchDelete() {
+      if (selectedEntries.size === 0) return;
+      if (!confirm(`Delete ${selectedEntries.size} entries?`)) return;
+
+      entries = entries.filter(e => !selectedEntries.has(e.id));
+      selectedEntries.clear();
+      saveEntries();
+      renderEntries();
+    }
+
+    function sortEntries(field, direction) {
+      currentSort = { field, direction };
+      renderEntries();
+    }
+
+    function applySorting(filtered) {
+      const sorted = [...filtered];
+
+      sorted.sort((a, b) => {
+        let aVal, bVal;
+
+        switch (currentSort.field) {
+          case 'title':
+            aVal = a.title.toLowerCase();
+            bVal = b.title.toLowerCase();
+            break;
+          case 'type':
+            aVal = a.type;
+            bVal = b.type;
+            break;
+          case 'category':
+            aVal = a.category || '';
+            bVal = b.category || '';
+            break;
+          case 'created':
+            aVal = new Date(a.created);
+            bVal = new Date(b.created);
+            break;
+          default:
+            return 0;
+        }
+
+        if (aVal < bVal) return currentSort.direction === 'asc' ? -1 : 1;
+        if (aVal > bVal) return currentSort.direction === 'asc' ? 1 : -1;
+        return 0;
+      });
+
+      return sorted;
+    }
+
+    function applySortChange() {
+      const select = document.getElementById('sortBy');
+      const [field, direction] = select.value.split('-');
+      currentSort = { field, direction };
+      renderEntries();
+    }
+
+    function switchView(view) {
+      currentView = view;
+      // Update active button
+      document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`[data-view="${view}"]`).classList.add('active');
+      renderEntries();
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function formatDateWithTime(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    function exportData() {
+      const dataStr = JSON.stringify(entries, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `knowledge-base-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+    }
+
+    // Import functions
+    function openImportModal() {
+      document.getElementById('importModal').classList.add('active');
+      document.getElementById('importFile').value = '';
+      document.getElementById('importProgress').style.display = 'none';
+    }
+
+    function closeImportModal() {
+      document.getElementById('importModal').classList.remove('active');
+    }
+
+    function parseCSV(text) {
+      const lines = text.split('\n');
+      const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/"/g, ''));
+      const data = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+
+        const values = [];
+        let current = '';
+        let inQuotes = false;
+
+        for (let j = 0; j < lines[i].length; j++) {
+          const char = lines[i][j];
+          if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            values.push(current.trim().replace(/^"|"$/g, ''));
+            current = '';
+          } else {
+            current += char;
+          }
+        }
+        values.push(current.trim().replace(/^"|"$/g, ''));
+
+        const row = {};
+        headers.forEach((header, index) => {
+          row[header] = values[index] || '';
+        });
+        data.push(row);
+      }
+
+      return data;
+    }
+
+    function parseExcel(arrayBuffer) {
+      // Simple Excel parser - reads first sheet
+      const view = new Uint8Array(arrayBuffer);
+      let text = '';
+      for (let i = 0; i < view.length; i++) {
+        text += String.fromCharCode(view[i]);
+      }
+
+      // For now, show message to convert to CSV
+      throw new Error('Excel support requires converting to CSV first. Use Google Sheets or Excel to export as CSV.');
+    }
+
+    function importEntries() {
+      const file = document.getElementById('importFile').files[0];
+      if (!file) {
+        alert('Please select a file');
+        return;
+      }
+
+      const reader = new FileReader();
+      const progress = document.getElementById('importProgress');
+      const status = document.getElementById('importStatus');
+
+      reader.onload = (e) => {
+        progress.style.display = 'block';
+        status.textContent = 'Parsing file...';
+
+        try {
+          let data = [];
+
+          if (file.name.endsWith('.csv')) {
+            data = parseCSV(e.target.result);
+          } else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+            data = parseExcel(e.target.result);
+          } else {
+            throw new Error('Unsupported file format. Please use CSV or Excel.');
+          }
+
+          status.textContent = `Creating ${data.length} entries...`;
+          document.getElementById('importProgressBar').style.width = '50%';
+
+          const newEntries = data.map((row, index) => ({
+            id: Date.now().toString() + index,
+            title: row.title || 'Untitled',
+            type: row.type || 'other',
+            category: row.category || '',
+            url: row.url || '',
+            description: row.description || '',
+            tags: row.tags ? row.tags.split(',').map(t => t.trim()).filter(t => t) : [],
+            para: row.para || 'resources',
+            relatedProject: row.relatedProject || null,
+            relatedArea: row.relatedArea || null,
+            created: new Date().toISOString(),
+            updated: new Date().toISOString(),
+            attachments: []
+          }));
+
+          entries = [...newEntries, ...entries];
+          saveEntries();
+
+          document.getElementById('importProgressBar').style.width = '100%';
+          status.textContent = `✓ Successfully imported ${newEntries.length} entries`;
+
+          setTimeout(() => {
+            closeImportModal();
+            renderEntries();
+          }, 1500);
+        } catch (error) {
+          status.textContent = `✗ Error: ${error.message}`;
+          document.getElementById('importProgressBar').style.width = '0%';
+          document.getElementById('importProgressBar').style.background = '#ef4444';
+        }
+      };
+
+      reader.readAsText(file);
+    }
+
+    // File attachment handling
+    function handleFileSelection() {
+      const fileInput = document.getElementById('entryFiles');
+      const filesList = document.getElementById('filesList');
+
+      if (fileInput.files.length === 0) {
+        filesList.innerHTML = '';
+        return;
+      }
+
+      const fileInfo = Array.from(fileInput.files).map(f => {
+        const size = (f.size / 1024).toFixed(1);
+        return `${f.name} (${size} KB)`;
+      }).join(', ');
+
+      filesList.textContent = `${fileInput.files.length} file(s) selected: ${fileInfo}`;
+    }
+
+    function saveAttachments(files, callback) {
+      const attachments = [];
+      let processed = 0;
+
+      if (files.length === 0) {
+        callback(attachments);
+        return;
+      }
+
+      Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          attachments.push({
+            id: Date.now().toString() + processed,
+            name: file.name,
+            size: file.size,
+            type: file.type,
+            data: e.target.result, // base64
+            uploadedAt: new Date().toISOString()
+          });
+          processed++;
+          if (processed === files.length) {
+            callback(attachments);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function downloadAttachment(attachmentId, entryId) {
+      const entry = entries.find(e => e.id === entryId);
+      if (!entry) return;
+
+      const attachment = entry.attachments?.find(a => a.id === attachmentId);
+      if (!attachment) return;
+
+      const link = document.createElement('a');
+      link.href = attachment.data;
+      link.download = attachment.name;
+      link.click();
+    }
+
+    function removeAttachment(attachmentId, entryId) {
+      const entry = entries.find(e => e.id === entryId);
+      if (!entry) return;
+
+      entry.attachments = entry.attachments?.filter(a => a.id !== attachmentId) || [];
+      saveEntries();
+      renderEntries();
+    }
+
+    // Close modal on background click
+    document.getElementById('modal')?.addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modal')) {
+        closeModal();
+      }
+    });
+
+    document.getElementById('importModal')?.addEventListener('click', (e) => {
+      if (e.target === document.getElementById('importModal')) {
+        closeImportModal();
+      }
+    });
+
+    // Initialize
+    loadEntries();
+    attachSearchListener();
+  </script>
+</body>
+</html>

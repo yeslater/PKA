@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Review</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .header h1 {
+      font-size: 2em;
+      color: #667eea;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      background: white;
+      color: #667eea;
+      border: 2px solid #667eea;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .week-selector {
+      background: white;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .week-selector label {
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .week-selector select {
+      padding: 8px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+
+    .week-info {
+      background: #f0f1ff;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: #667eea;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f0f1ff;
+    }
+
+    .section-title {
+      font-size: 0.95em;
+      font-weight: 700;
+      color: #667eea;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 20px;
+      margin-bottom: 12px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    .task-item {
+      padding: 12px;
+      background: #f9fafb;
+      border-left: 3px solid #667eea;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .task-item.completed {
+      background: #f0fdf4;
+      border-left-color: #10b981;
+      opacity: 0.75;
+    }
+
+    .task-item.completed .task-title {
+      text-decoration: line-through;
+      color: #6b7280;
+    }
+
+    .task-title {
+      font-weight: 600;
+      color: #1f2937;
+      word-break: break-word;
+    }
+
+    .task-meta {
+      font-size: 0.8em;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    .area-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #f0f1ff;
+      color: #667eea;
+      border-radius: 3px;
+      font-size: 0.75em;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    .area-badge.work { background: #dbeafe; color: #1e40af; }
+    .area-badge.parenting { background: #fce7f3; color: #831843; }
+    .area-badge.health { background: #dcfce7; color: #166534; }
+    .area-badge.relationships { background: #fef3c7; color: #92400e; }
+    .area-badge.personal { background: #f3e8ff; color: #5b21b6; }
+    .area-badge.home { background: #fed7aa; color: #92400e; }
+
+    .empty-section {
+      padding: 16px;
+      text-align: center;
+      color: #9ca3af;
+      background: #f9fafb;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    .area-section {
+      margin-bottom: 24px;
+    }
+
+    .area-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: #f9fafb;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      border-left: 4px solid #667eea;
+    }
+
+    .area-name {
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .area-stats {
+      font-size: 0.85em;
+      color: #6b7280;
+    }
+
+    .reflection-box {
+      margin-top: 16px;
+      padding: 16px;
+      background: #f9fafb;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .reflection-label {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 8px;
+      font-size: 0.9em;
+    }
+
+    .reflection-textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.95em;
+      resize: vertical;
+    }
+
+    .reflection-textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: #f9fafb;
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2em;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.85em;
+      color: #6b7280;
+      font-weight: 600;
+    }
+
+    .save-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background 0.2s;
+    }
+
+    .save-btn:hover {
+      background: #5568d3;
+    }
+
+    .save-success {
+      display: none;
+      padding: 12px;
+      background: #f0fdf4;
+      color: #166534;
+      border-radius: 4px;
+      margin-top: 12px;
+      font-size: 0.9em;
+    }
+
+    .blocked-item {
+      padding: 12px;
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .blocked-title {
+      font-weight: 600;
+      color: #991b1b;
+    }
+
+    .blocked-reason {
+      font-size: 0.85em;
+      color: #991b1b;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .week-selector {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-buttons {
+        width: 100%;
+      }
+
+      .btn {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1>Weekly Review</h1>
+        <p style="color: #6b7280; font-size: 0.95em; margin-top: 4px;">Reflect, celebrate, and plan ahead</p>
+      </div>
+      <div class="nav-buttons">
+        <a href="dashboard.html" class="btn">📊 Dashboard</a>
+        <a href="index.html" class="btn">← Back to Hub</a>
+      </div>
+    </div>
+
+    <div class="week-selector">
+      <label for="weekSelect">Review week of:</label>
+      <select id="weekSelect" onchange="loadReview()">
+        <option value="current">This Week</option>
+        <option value="last">Last Week</option>
+        <option value="custom">Custom Date...</option>
+      </select>
+      <div class="week-info" id="weekInfo"></div>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="card">
+      <div class="card-title">📊 Weekly Summary</div>
+      <div class="stats-grid" id="statsGrid"></div>
+    </div>
+
+    <!-- Completed Tasks by Area -->
+    <div class="card">
+      <div class="card-title">✅ Completed This Week</div>
+      <div id="completedContainer"></div>
+    </div>
+
+    <!-- Stuck/Blocked Tasks -->
+    <div class="card" id="blockedCard" style="display: none;">
+      <div class="card-title">🚧 Blocked or Stuck</div>
+      <div id="blockedContainer"></div>
+    </div>
+
+    <!-- In Progress -->
+    <div class="card">
+      <div class="card-title">⏳ Still In Progress</div>
+      <div id="inProgressContainer"></div>
+    </div>
+
+    <!-- Weekly Reflection -->
+    <div class="card">
+      <div class="card-title">📝 Reflection Notes</div>
+      <div class="reflection-box">
+        <div class="reflection-label">What went well this week?</div>
+        <textarea class="reflection-textarea" id="reflectionWell" placeholder="What are you proud of? What worked?"></textarea>
+
+        <div class="reflection-label" style="margin-top: 16px;">What could be better?</div>
+        <textarea class="reflection-textarea" id="reflectionImprove" placeholder="What challenged you? What would you change?"></textarea>
+
+        <div class="reflection-label" style="margin-top: 16px;">Focus areas for next week</div>
+        <textarea class="reflection-textarea" id="reflectionNext" placeholder="What's your priority next week?"></textarea>
+
+        <button class="save-btn" onclick="saveReflection()">💾 Save Reflection</button>
+        <div class="save-success" id="saveSuccess">✓ Reflection saved</div>
+      </div>
+    </div>
+
+    <!-- Next Week Preview -->
+    <div class="card">
+      <div class="card-title">🔮 Next Week's Preview</div>
+      <div id="nextWeekContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    let currentWeekStart = null;
+
+    function getWeekStart(date = new Date()) {
+      const d = new Date(date);
+      const day = d.getDay();
+      const diff = d.getDate() - day;
+      return new Date(d.setDate(diff));
+    }
+
+    function getWeekEnd(weekStart) {
+      const end = new Date(weekStart);
+      end.setDate(end.getDate() + 6);
+      return end;
+    }
+
+    function formatDateRange(weekStart) {
+      const weekEnd = getWeekEnd(weekStart);
+      return `${weekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${weekEnd.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+    }
+
+    function loadReview() {
+      const select = document.getElementById('weekSelect').value;
+      const today = new Date();
+
+      if (select === 'current') {
+        currentWeekStart = getWeekStart(today);
+      } else if (select === 'last') {
+        const lastWeek = new Date(today);
+        lastWeek.setDate(lastWeek.getDate() - 7);
+        currentWeekStart = getWeekStart(lastWeek);
+      }
+
+      document.getElementById('weekInfo').textContent = formatDateRange(currentWeekStart);
+
+      const allTasks = JSON.parse(localStorage.getItem('gtd_tasks') || '[]');
+      const weekEnd = getWeekEnd(currentWeekStart);
+
+      // Load sections
+      loadStats(allTasks, currentWeekStart, weekEnd);
+      loadCompleted(allTasks, currentWeekStart, weekEnd);
+      loadBlocked(allTasks);
+      loadInProgress(allTasks);
+      loadReflectionNotes();
+      loadNextWeekPreview(allTasks, weekEnd);
+    }
+
+    function loadStats(allTasks, weekStart, weekEnd) {
+      const completed = allTasks.filter(t => {
+        if (t.status !== 'completed' || !t.completedDate) return false;
+        const completed = new Date(t.completedDate);
+        return completed >= weekStart && completed <= weekEnd;
+      }).length;
+
+      const startedThisWeek = allTasks.filter(t => {
+        if (!t.created) return false;
+        const created = new Date(t.created);
+        return created >= weekStart && created <= weekEnd;
+      }).length;
+
+      const stillActive = allTasks.filter(t => t.status !== 'completed').length;
+
+      const areas = ['Work', 'Parenting', 'Health', 'Relationships', 'Personal Growth', 'Home & Life'];
+      const areasWithActivity = areas.filter(area => {
+        const hasCompleted = allTasks.some(t => t.area === area && t.status === 'completed');
+        const hasActive = allTasks.some(t => t.area === area && t.status !== 'completed');
+        return hasCompleted || hasActive;
+      }).length;
+
+      const html = `
+        <div class="stat-card">
+          <div class="stat-number">${completed}</div>
+          <div class="stat-label">Completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">${startedThisWeek}</div>
+          <div class="stat-label">Started</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">${stillActive}</div>
+          <div class="stat-label">Still Active</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">${areasWithActivity}</div>
+          <div class="stat-label">Areas Active</div>
+        </div>
+      `;
+
+      document.getElementById('statsGrid').innerHTML = html;
+    }
+
+    function loadCompleted(allTasks, weekStart, weekEnd) {
+      const completed = allTasks.filter(t => {
+        if (t.status !== 'completed' || !t.completedDate) return false;
+        const completedDate = new Date(t.completedDate);
+        return completedDate >= weekStart && completedDate <= weekEnd;
+      });
+
+      const areas = ['Work', 'Parenting', 'Health', 'Relationships', 'Personal Growth', 'Home & Life'];
+      let html = '';
+
+      areas.forEach(area => {
+        const areaTasks = completed.filter(t => t.area === area);
+        if (areaTasks.length === 0) return;
+
+        html += `
+          <div class="area-section">
+            <div class="area-header">
+              <div class="area-name">${area}</div>
+              <div class="area-stats">${areaTasks.length} completed</div>
+            </div>
+            ${areaTasks.map(task => `
+              <div class="task-item completed">
+                <div class="task-text">
+                  <div class="task-title">✓ ${task.title}</div>
+                  <div class="task-meta">${task.nextAction ? `Next action: ${task.nextAction}` : ''}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+
+      if (completed.length === 0) {
+        html = '<div class="empty-section">No completed tasks this week yet. Keep pushing!</div>';
+      }
+
+      document.getElementById('completedContainer').innerHTML = html;
+    }
+
+    function loadBlocked(allTasks) {
+      const blocked = allTasks.filter(t =>
+        t.status !== 'completed' && (t.blockedOnWhat || t.blockedOnWho)
+      );
+
+      const card = document.getElementById('blockedCard');
+      const container = document.getElementById('blockedContainer');
+
+      if (blocked.length === 0) {
+        card.style.display = 'none';
+        return;
+      }
+
+      card.style.display = 'block';
+
+      let html = '';
+      blocked.forEach(task => {
+        html += `
+          <div class="blocked-item">
+            <div class="blocked-title">${task.title}</div>
+            <div class="blocked-reason">
+              ${task.blockedOnWhat ? `⏸️ Waiting on: ${task.blockedOnWhat}` : ''}
+              ${task.blockedOnWho ? ` (from ${task.blockedOnWho})` : ''}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function loadInProgress(allTasks) {
+      const inProgress = allTasks.filter(t => t.status === 'active' || t.status === 'in-progress');
+
+      const areas = ['Work', 'Parenting', 'Health', 'Relationships', 'Personal Growth', 'Home & Life'];
+      let html = '';
+
+      areas.forEach(area => {
+        const areaTasks = inProgress.filter(t => t.area === area);
+        if (areaTasks.length === 0) return;
+
+        html += `
+          <div class="area-section">
+            <div class="area-header">
+              <div class="area-name">${area}</div>
+              <div class="area-stats">${areaTasks.length} in progress</div>
+            </div>
+            ${areaTasks.map(task => `
+              <div class="task-item">
+                <div class="task-text">
+                  <div class="task-title">${task.title}</div>
+                  <div class="task-meta">
+                    ${task.nextAction ? `Next: ${task.nextAction}` : ''}
+                    ${task.dueDate ? ` • Due: ${new Date(task.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}` : ''}
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+
+      if (inProgress.length === 0) {
+        html = '<div class="empty-section">All tasks completed or on someday list</div>';
+      }
+
+      document.getElementById('inProgressContainer').innerHTML = html;
+    }
+
+    function loadReflectionNotes() {
+      const stored = JSON.parse(localStorage.getItem('weekly_reflections') || '{}');
+      const key = currentWeekStart.toISOString().split('T')[0];
+      const reflection = stored[key] || {};
+
+      document.getElementById('reflectionWell').value = reflection.well || '';
+      document.getElementById('reflectionImprove').value = reflection.improve || '';
+      document.getElementById('reflectionNext').value = reflection.next || '';
+    }
+
+    function saveReflection() {
+      const stored = JSON.parse(localStorage.getItem('weekly_reflections') || '{}');
+      const key = currentWeekStart.toISOString().split('T')[0];
+
+      stored[key] = {
+        well: document.getElementById('reflectionWell').value,
+        improve: document.getElementById('reflectionImprove').value,
+        next: document.getElementById('reflectionNext').value
+      };
+
+      localStorage.setItem('weekly_reflections', JSON.stringify(stored));
+
+      const success = document.getElementById('saveSuccess');
+      success.style.display = 'block';
+      setTimeout(() => {
+        success.style.display = 'none';
+      }, 3000);
+    }
+
+    function loadNextWeekPreview(allTasks, currentWeekEnd) {
+      const nextWeekStart = new Date(currentWeekEnd);
+      nextWeekStart.setDate(nextWeekStart.getDate() + 1);
+      const nextWeekEnd = getWeekEnd(nextWeekStart);
+
+      const duringNextWeek = allTasks.filter(t => {
+        if (t.status === 'completed' || t.status === 'someday') return false;
+        if (!t.dueDate) return false;
+        const due = new Date(t.dueDate);
+        return due >= nextWeekStart && due <= nextWeekEnd;
+      });
+
+      if (duringNextWeek.length === 0) {
+        document.getElementById('nextWeekContainer').innerHTML =
+          '<div class="empty-section">No tasks scheduled for next week. Time to plan! 🎯</div>';
+        return;
+      }
+
+      const areas = ['Work', 'Parenting', 'Health', 'Relationships', 'Personal Growth', 'Home & Life'];
+      let html = '';
+
+      areas.forEach(area => {
+        const areaTasks = duringNextWeek.filter(t => t.area === area);
+        if (areaTasks.length === 0) return;
+
+        html += `
+          <div class="area-section">
+            <div class="area-header">
+              <div class="area-name">${area}</div>
+              <div class="area-stats">${areaTasks.length} due</div>
+            </div>
+            ${areaTasks.map(task => `
+              <div class="task-item">
+                <div class="task-text">
+                  <div class="task-title">${task.title}</div>
+                  <div class="task-meta">Due: ${new Date(task.dueDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+
+      document.getElementById('nextWeekContainer').innerHTML = html;
+    }
+
+    // Initialize
+    loadReview();
+  </script>
+</body>
+</html>

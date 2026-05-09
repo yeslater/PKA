@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résumé du Livre</title>
+<style>
+:root { --bg: #121212; --surface: #1e1e2e; --primary: #ff4757; --primary-hover: #ff6b81; --text: #f1f2f6; --text-muted: #ced6e0; --accent: #3742fa; --success: #2ed573; --error: #ff4757; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+h1, h2, h3 { color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.container { max-width: 800px; margin: auto; }
+.header { text-align: center; margin-bottom: 40px; background: linear-gradient(135deg, var(--surface), #2d3436); padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--primary); }
+.header h1 { font-size: 2.5em; margin: 0; color: white; }
+.section { margin-bottom: 40px; background: var(--surface); padding: 25px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+details { background: rgba(55, 66, 250, 0.1); border: 2px solid var(--accent); border-radius: 10px; margin-bottom: 15px; overflow: hidden; transition: all 0.3s; }
+summary { padding: 15px 20px; font-weight: bold; cursor: pointer; list-style: none; display: flex; align-items: center; font-size: 1.1em; color: #fff; }
+summary:hover { background: rgba(55, 66, 250, 0.2); }
+summary::-webkit-details-marker { display: none; }
+.details-content { padding: 20px; background: var(--surface); border-top: 1px solid var(--accent); }
+.action-box { background: rgba(255, 71, 87, 0.1); border-left: 4px solid var(--primary); padding: 15px; margin-top: 15px; border-radius: 0 10px 10px 0; }
+.lesson { display: flex; margin-bottom: 20px; }
+.lesson-num { font-size: 2em; font-weight: 900; color: var(--primary); margin-right: 15px; opacity: 0.8; }
+.quiz-question { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.quiz-btn { background: var(--accent); color: white; border: none; padding: 12px 20px; margin: 8px 0; border-radius: 8px; cursor: pointer; width: 100%; text-align: left; font-size: 1em; font-weight: bold; transition: background 0.2s; }
+.quiz-btn:hover { background: #5352ed; }
+.feedback { margin-top: 10px; padding: 15px; border-radius: 8px; display: none; font-weight: bold; }
+.vocab-word { color: var(--primary); font-weight: bold; font-size: 1.1em; }
+.challenge { background: rgba(46, 213, 115, 0.1); border-left: 4px solid var(--success); padding: 15px; margin-bottom: 15px; border-radius: 0 10px 10px 0; }
+</style>
+<script>
+window.quizScore = 0;
+window.quizAnswered = 0;
+function checkAnswer(btn, isCorrect, explanation) {
+  let parent = btn.parentElement;
+  let feedback = parent.querySelector('.feedback');
+  let buttons = parent.querySelectorAll('.quiz-btn');
+  if(buttons[0].disabled) return;
+  buttons.forEach(b => b.disabled = true);
+  feedback.style.display = 'block';
+  feedback.innerHTML = explanation;
+  if(isCorrect) {
+    btn.style.background = 'var(--success)';
+    feedback.style.background = 'rgba(46, 213, 115, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--success)';
+    window.quizScore++;
+  } else {
+    btn.style.background = 'var(--error)';
+    feedback.style.background = 'rgba(255, 71, 87, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--error)';
+  }
+  window.quizAnswered++;
+  if(window.quizAnswered === 3) {
+    document.getElementById('final-score').innerHTML = '<h3>Score final : ' + window.quizScore + '/3 !</h3>';
+  }
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>La Psychologie au Quotidien</h1>
+    <p>Le guide super cool pour comprendre comment on fonctionne!</p>
+  </div>
+
+  <div class="section">
+    <h2>1. C'est quoi ce livre ?</h2>
+    <p>Hé Félix, imagine un livre qui te dit comment ton cerveau fonctionne et pourquoi tu ressens ce que tu ressens, un peu comme un mode d'emploi de super-héros ! Ce bouquin, écrit par des experts de l'Université Laval, te donne des astuces concrètes pour mieux gérer les situations de tous les jours.</p>
+    <p>Il ne s'agit pas de théories compliquées, mais de vrais conseils pour comprendre pourquoi on agit comme on agit, pourquoi on est stressé ou pourquoi on dort mal. C'est comme avoir une loupe magique pour observer le monde de l'intérieur et déjouer les pièges de nos propres pensées.</p>
+    <p>Prêt à explorer les secrets de la psychologie et à devenir un champion de la vie ? Ce livre est ton billet pour une aventure incroyable au cœur de toi-même et de tes relations !</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Les Grands Thèmes — Rends-le Interactif</h2>
+
+    <details>
+      <summary>👶 L'attachement, c'est comme ton super bouclier !</summary>
+      <div class="details-content">
+        <p>L'attachement, c'est ce lien spécial et super important que tu as avec tes parents ou les personnes qui prennent soin de toi depuis que tu es tout petit. C'est ce lien qui te donne confiance en toi pour explorer le monde, savoir que tu peux toujours revenir vers eux si tu as besoin d'aide ou de réconfort. Un bon attachement, c'est la base pour devenir un adulte confiant et capable d'avoir de belles relations avec les autres, un peu comme les fondations solides d'une tour Lego géante.</p>
+        <p>Ce lien est tellement puissant qu'il influence comment tu réagis aux problèmes et comment tu te sens avec tes amis, et même plus tard dans tes relations amoureuses. Il ne s'agit pas juste de te nourrir ou de te protéger physiquement, mais de te donner une sécurité émotionnelle qui te permet de grandir fort et équilibré.</p>
+        <p>Les experts disent que ce lien, bien que parfois invisible, est l'un des plus importants pour ton développement social et émotionnel, dès ton plus jeune âge et pour toute ta vie. C'est ton port d'attattache sûr dans un monde qui bouge vite.</p>
+        
+        <h3>Citations du livre :</h3>
+        <ul>
+          <li>« La partie la plus importante de l’éducation de l’enfant est ce qu’il apprend à la pouponnière. »<br/>– **Platon**, philosophe grec dont les idées influencent encore notre compréhension de l'éducation.</li>
+          <li>« Mon fils, garde les commandements de ton père et n’abandonne pas les enseignements de ta mère. »<br/>– **Proverbes 6 :20**, extrait d'un texte ancien soulignant l'importance des conseils parentaux.</li>
+          <li>« L’enfant devenait soudainement un agent actif dans les interactions avec son environnement et le lien émotif tissé avec les parents tôt durant l’enfance était désormais un des principaux déterminants de la qualité du développement social et affectif. »<br/>– **George M. Tarabulsy, Simon Larose et André Plamondon**, professeurs en psychologie à l'Université Laval et experts en développement de l'enfant.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Félix :</h3>
+          <p>Imagine que ton attachement est comme le terrain de jeu de ton cerveau. Plus il est sûr et solide, plus tu te sens en confiance pour essayer de nouvelles tactiques aux échecs, dévaler une pente de ski de fond, ou inventer des blagues sans craindre de ne pas être compris. Pense à un moment où tu as eu besoin d'un massage ou d'une grosse étreinte de ton père après une journée difficile : cette connexion, c'est ça, le super pouvoir de l'attachement ! Ça te donne l'énergie de persévérer.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🤝 La thérapie de couple, c'est comme réaligner des pièces de Lego qui se sont mélangées !</summary>
+      <div class="details-content">
+        <p>Même les couples qui s'aiment très fort peuvent avoir des moments difficiles, un peu comme quand deux joueurs d'échecs se retrouvent bloqués dans une partie. La thérapie de couple, c'est un moyen d'apprendre de nouvelles façons de parler ensemble, d'exprimer ce qu'on ressent sans se blesser, et de résoudre les problèmes. C'est comme apprendre un nouveau langage secret pour mieux se comprendre.</p>
+        <p>Cette thérapie aide à augmenter les moments agréables et à diminuer les disputes, ce qui rend la vie à deux beaucoup plus douce et amusante. Elle ne sert pas juste à "réparer" ce qui est cassé, mais aussi à rendre une relation déjà bonne encore meilleure, un peu comme construire un nouveau module génial pour ton vaisseau spatial Lego.</p>
+        <p>En apprenant à mieux communiquer, les partenaires peuvent aussi améliorer leurs relations avec d'autres personnes, pas seulement entre eux. C'est un entraînement à l'empathie et à la collaboration, des compétences utiles partout, que ce soit à la maison, à l'école ou au travail.</p>
+        
+        <h3>Citations du livre :</h3>
+        <ul>
+          <li>« Les principaux comportements qu’on veut encourager dans cet exercice sont l’écoute active et l’expression non accusatrice des sentiments dans des situations conflictuelles de même que l’application d’une procédure de résolution des problèmes. »<br/>– **Jean-Marie Boisvert**, professeur en psychologie et spécialiste de la thérapie de couple.</li>
+          <li>« L’amélioration de la qualité de la communication semble donc un point très important pour augmenter la satisfaction dans le couple. »<br/>– **Jean-Marie Boisvert**, professeur en psychologie et spécialiste de la thérapie de couple.</li>
+          <li>« L’absence de sentiments positifs [est] un des éléments qui entraîne le plus de risques de conduire au divorce ou à la séparation. »<br/>– **J.M. Gottman**, psychologue renommé pour ses recherches sur les relations de couple.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Félix :</h3>
+          <p>La communication, c'est la clé de tes blagues ! Quand tu racontes une blague, tu attends une réaction. Si tu vois que la personne n'a pas compris, tu essaies une autre approche, n'est-ce pas ? C'est pareil en famille ou avec tes amis. Si tu peux t'exprimer clairement quand tu es fâché (sans accuser), ou si tu essaies de bien comprendre ce que ton frère Matteo te dit quand il est impatient, c'est déjà un grand pas. Aux échecs, comprendre l'intention de ton adversaire est crucial. C'est de l'écoute active !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🎲 Les jeux de hasard, attention aux pièges de ton cerveau !</summary>
+      <div class="details-content">
+        <p>Les jeux de hasard, comme la loterie ou les machines à sous, sont faits pour que tu croies pouvoir influencer le résultat, mais c'est une illusion ! Ton cerveau adore trouver des explications et des patterns, même quand il n'y en a pas. C'est pourquoi tu peux penser que tes "chiffres chanceux" ou le fait de changer d'endroit pour acheter un billet augmentent tes chances, alors que c'est le pur hasard qui décide.</p>
+        <p>Plus tu joues, plus tu risques de perdre de l'argent car, à long terme, ces jeux sont toujours faits pour que la maison gagne. Le livre explique comment ces "fausses croyances" peuvent te pousser à jouer encore plus, surtout si tu as déjà gagné une fois et que tu veux "te refaire" après des pertes. C'est un peu comme vouloir forcer une pièce de Lego à s'emboîter là où elle ne va pas naturellement.</p>
+        <p>Il est important de comprendre que chaque tirage de loterie ou chaque coup sur une machine est un événement indépendant : ce qui s'est passé avant n'influence absolument pas ce qui va se passer après. C'est crucial pour ne pas tomber dans le piège et garder le contrôle sur tes décisions et ton argent.</p>
+        
+        <h3>Citations du livre :</h3>
+        <ul>
+          <li>« Le hasard est défini [...] comme « une cause fictive de ce qui arrive sans raison apparente ou explicable […] ». »<br/>– Le **Petit Robert (édition 2011)**, dictionnaire de référence de la langue française.</li>
+          <li>« Aux jeux de hasard et d’argent, il est impossible de deviner quelle sera la prochaine carte, quel sera le prochain numéro ou le prochain tour gagnant. »<br/>– **Isabelle Giroux, Annie Goulet et Christian Jacques**, spécialistes en psychologie des jeux de hasard et d'argent.</li>
+          <li>« Plus le joueur prend une part active au jeu, plus il est sujet aux illusions de contrôle. »<br/>– **Isabelle Giroux, Annie Goulet et Christian Jacques**, spécialistes en psychologie des jeux de hasard et d'argent.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Félix :</h3>
+          <p>Aux échecs, chaque coup est lié au précédent, ta stratégie est importante. Mais dans un jeu de hasard, c'est comme un lancer de dés, pure chance ! Tes "numéros chanceux" à la loterie ou ton porte-bonheur ne changeront rien. C'est important de comprendre ça pour ne pas gaspiller ton argent ou ton temps, que tu pourrais utiliser pour acheter de nouveaux Lego, t'entraîner au ski de fond, ou affiner tes stratégies aux échecs, où tes actions comptent vraiment !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>😨 Stress et anxiété : apprivoise tes monstres de peur !</summary>
+      <div class="details-content">
+        <p>Le stress et l'anxiété sont des émotions normales, tout le monde en ressent. C'est comme le système d'alarme de ton corps qui se déclenche quand il perçoit un danger, réel ou imaginaire. Parfois, cette alarme est très utile, comme quand tu dois te préparer pour un match d'échecs important ou une compétition de ski de fond : un peu de stress te donne de l'énergie et t'aide à être plus performant.</p>
+        <p>Mais parfois, l'alarme se déclenche trop fort ou pour des choses qui ne sont pas vraiment dangereuses. On appelle ça l'anxiété pathologique. Cela peut t'empêcher de faire ce que tu aimes, de bien dormir ou de te concentrer. Le livre explique que nos pensées et nos comportements créent un "cercle vicieux" qui entretient cette anxiété. Si tu penses toujours au pire, tu te sentiras plus anxieux, même si le danger n'est pas si grand.</p>
+        <p>La bonne nouvelle, c'est qu'on peut apprendre à désamorcer cette alarme en changeant nos pensées et nos actions. C'est comme apprendre à contrôler tes pièces d'échecs pour construire une défense solide contre tes propres peurs, plutôt que de les laisser t'attaquer sans que tu puisses rien faire.</p>
+        
+        <h3>Citations du livre :</h3>
+        <ul>
+          <li>« L’anxiété est un état général d’alerte, d’alarme ou de tension, et cet état est perçu de façon désagréable par la personne qui le vit. »<br/>– **Geneviève Belleville**, professeure en psychologie et spécialiste des troubles anxieux.</li>
+          <li>« L’anxiété devient pathologique lorsqu’elle est provoquée par une situation où le danger n’est pas présent ou la perception de danger est exagérée. »<br/>– **Geneviève Belleville**, professeure en psychologie et spécialiste des troubles anxieux.</li>
+          <li>« Ce n’est pas tant une situation particulière qui provoquera une émotion précise chez une personne, mais plutôt la manière dont cette personne interprète la situation. »<br/>– **Geneviève Belleville**, professeure en psychologie et spécialiste des troubles anxieux.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Félix :</h3>
+          <p>Quand tu as peur de mal jouer aux échecs, ou que tu as un peu le trac avant une descente à ski de fond, tes pensées peuvent t'aider ou te nuire. Si tu penses "je vais rater, c'est sûr", tu te sens plus stressé. Mais si tu te dis "je suis prêt, j'ai pratiqué, je vais faire de mon mieux", ça change tout ! C'est comme ça qu'on apprivoise ses peurs. Ton papa travaille avec sa psychologue Rachel pour mieux gérer ses émotions, et c'est un excellent exemple à suivre.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>😴 Le sommeil : ton pouvoir secret de champion !</summary>
+      <div class="details-content">
+        <p>Le sommeil, c'est comme recharger les batteries de ton corps et de ton cerveau après une longue journée. C'est super important pour être en forme, avoir de l'énergie, être attentif en classe et bien performer dans tes activités, que ce soit aux échecs ou en ski de fond. Si tu manques de sommeil, tu risques d'être plus irritable, d'avoir du mal à te concentrer et même de moins bien apprendre.</p>
+        <p>Le livre nous explique que le sommeil n'est pas juste "dormir", il a plusieurs stades (léger, profond, paradoxal avec les rêves) qui ont chacun leur rôle. Le sommeil profond aide ton corps à récupérer, et le sommeil paradoxal aide ton cerveau à consolider les apprentissages de la journée. C'est pourquoi une bonne nuit de sommeil est essentielle pour tes performances scolaires et sportives.</p>
+        <p>L'insomnie, c'est quand on a du mal à s'endormir, à rester endormi, ou qu'on se réveille trop tôt et qu'on ne se sent pas reposé. Le livre propose des astuces concrètes, comme avoir des horaires de sommeil réguliers et une routine relaxante avant de te coucher, pour t'aider à devenir un maître du sommeil.</p>
+        
+        <h3>Citations du livre :</h3>
+        <ul>
+          <li>« Le sommeil est essentiel à la survie. Il occupe près du tiers de notre vie et joue un rôle capital pour la santé physique et mentale. »<br/>– **Charles M. Morin, Émilie Fortier-Brochu et Simon Beaulieu-Bonneau**, experts des troubles du sommeil.</li>
+          <li>« La privation de sommeil engendre de la somnolence, perturbe l’humeur, compromet la vigilance et interfère avec la capacité de mener à bien plusieurs tâches cognitives. »<br/>– **Charles M. Morin, Émilie Fortier-Brochu et Simon Beaulieu-Bonneau**.</li>
+          <li>« Le processus homéostatique cherche à préserver un équilibre entre ces deux forces que sont l’éveil et le sommeil. Ainsi, une bonne nuit de sommeil assure un état d’alerte et de vigilance pour les 12 à 16 heures qui suivent. »<br/>– **Charles M. Morin, Émilie Fortier-Brochu et Simon Beaulieu-Bonneau**.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Félix :</h3>
+          <p>Un bon sommeil, c'est comme avoir un super entraînement pour tes échecs ou ton ski de fond, mais pendant que tu dors ! Quand tu as bien dormi, tu es plus rapide pour trouver des solutions, tes réflexes sont au top pour descendre la piste, et tu as plein d'idées pour tes constructions Lego. C'est ton atout secret pour être un champion au quotidien. Fixe-toi une routine, même la fin de semaine, pour te lever à la même heure, c'est magique !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🌈 L'optimisme réaliste : le super-pouvoir de voir clair !</summary>
+      <div class="details-content">
+        <p>Tu sais, parfois, on nous dit qu'il faut toujours être positif, quoi qu'il arrive. Mais le livre nous dit que ce n'est pas toujours la meilleure idée ! L'optimisme réaliste, c'est comme porter des lunettes claires : ça veut dire que tu vois les choses telles qu'elles sont, avec leurs côtés difficiles ET leurs côtés positifs, sans exagérer ni l'un ni l'autre. Tu n'es pas obligé de faire semblant que tout est rose quand ce n'est pas le cas.</p>
+        <p>Cette approche t'aide à te préparer aux défis, tout en gardant l'espoir que le meilleur peut arriver. C'est beaucoup plus efficace que de s'obliger à penser positif, car quand la réalité te rattrape, tu peux te sentir encore plus déçu. En voyant les choses clairement, tu peux mieux agir et trouver de vraies solutions, un peu comme aux échecs où il faut analyser toutes les possibilités, bonnes ou mauvaises, pour gagner.</p>
+        <p>L'optimisme réaliste, c'est un outil puissant pour s'adapter aux situations difficiles de la vie, en reconnaissant ses émotions (même la tristesse ou la colère) sans se sentir coupable. C'est une façon honnête et courageuse d'affronter les obstacles, en sachant que tu as les ressources pour y faire face.</p>
+        
+        <h3>Citations du livre :</h3>
+        <ul>
+          <li>« L’optimisme réaliste, qui consiste à percevoir tous les risques réels d’une situation et les différents scénarios possibles, tout en espérant que le meilleur survienne. »<br/>– **Josée Savard**, professeure et psychologue clinicienne spécialisée dans l'adaptation au cancer.</li>
+          <li>« Il suffit simplement de porter des lunettes claires et de voir la réalité telle qu’elle est, sans en amplifier les aspects négatifs ni adopter un optimisme aveugle. »<br/>– **Josée Savard**.</li>
+          <li>« L’important est que les sentiments négatifs diminuent d’intensité de manière à moins affecter le bien-être psychologique et la capacité à fonctionner dans chaque sphère de sa vie. »<br/>– **Josée Savard**.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Félix :</h3>
+          <p>Quand tu construis une grande tour Lego, parfois une pièce tombe. Au lieu de te dire "Tout est cassé, je suis nul !", l'optimisme réaliste, c'est dire "Mince, cette pièce est tombée. C'est frustrant, mais je peux la remettre en place ou trouver une autre solution". C'est comme en ski de fond, si tu rencontres une bosse inattendue, tu la prends comme elle est, tu ajustes ta posture, et tu continues ta course sans te laisser déstabiliser. Ça te rend plus fort pour les prochaines aventures !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🧠 La démence : aider ceux qui ont des difficultés avec leurs souvenirs</summary>
+      <div class="details-content">
+        <p>La démence est une maladie qui affecte le cerveau et rend difficile de se souvenir de choses récentes, de parler, ou même de planifier. C'est comme si une partie de la "bibliothèque" du cerveau était désorganisée, et il devient difficile de retrouver les bonnes informations. Le chapitre nous aide à comprendre comment les personnes atteintes de démence peuvent avoir des comportements qui semblent étranges, mais qui sont souvent une façon d'exprimer un besoin non comblé (faim, froid, ennui).</p>
+        <p>Le livre souligne l'importance des "aidants naturels" (souvent la famille) qui aident ces personnes au quotidien. C'est un rôle exigeant, mais qui peut être une occasion de croissance personnelle et de rapprochement. Comprendre pourquoi ces comportements surviennent et comment y réagir avec douceur et patience est essentiel.</p>
+        <p>L'approche recommandée est de bien observer la personne pour comprendre ses besoins, d'adapter l'environnement pour qu'elle se sente plus en sécurité, et de planifier des activités qui lui plaisent. C'est comme construire un environnement Lego adapté, où chaque pièce a sa place et aide la personne à se sentir bien, même si elle ne comprend pas tout.</p>
+        
+        <h3>Citations du livre :</h3>
+        <ul>
+          <li>« Une démence est un trouble caractérisé par un déclin progressif du fonctionnement cognitif à un point tel que la personne atteinte perd la capacité d’accomplir les activités courantes de la vie quotidienne et d’entretenir des relations sociales. »<br/>– **Philippe Landreville et Véronique Boudreault**, professeurs en psychologie et experts de la démence.</li>
+          <li>« Les aidants familiaux sont bien placés pour jouer un rôle dans la prévention des SCPD. Comme on a pu le voir plus haut, ceux-ci sont en partie attribuables à des facteurs modifiables tels que les besoins non comblés de la personne et le stress. »<br/>– **Philippe Landreville et Véronique Boudreault**.</li>
+          <li>« L’agitation verbale peut être une façon d’exprimer des besoins non comblés que la personne ne peut formuler autrement. »<br/>– **Philippe Landreville et Véronique Boudreault**.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Félix :</h3>
+          <p>C'est comme quand tu vois quelqu'un avoir du mal à expliquer ce qu'il veut : au lieu de t'impatienter, tu peux essayer de comprendre ce qu'il ressent vraiment. Avec tes grands-parents ou des personnes âgées que tu connais, tu peux utiliser ton super-pouvoir social : être patient, écouter attentivement et leur proposer des activités qu'ils aiment, comme regarder des photos ou écouter de la musique. Les massages que ton papa te donne sont un excellent exemple de soin et de connexion pour les personnes âgées, qui en ont encore plus besoin.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>😴 Apnée du sommeil : quand ta respiration fait la sieste !</summary>
+      <div class="details-content">
+        <p>L'apnée du sommeil, c'est quand ta respiration s'arrête ou devient très faible pendant que tu dors. C'est comme si ton corps oubliait de respirer pendant quelques secondes, ce qui te réveille un peu (même si tu ne t'en souviens pas) et perturbe ton sommeil. Du coup, même si tu penses avoir dormi toute la nuit, tu te sens quand même fatigué et somnolent le lendemain, ce qui rend difficile de te concentrer ou d'être de bonne humeur.</p>
+        <p>Il existe différents types d'apnée, mais le plus courant est l'apnée obstructive, où un blocage physique empêche l'air de passer. Les ronflements très bruyants sont souvent un signe ! Le manque d'oxygène pendant la nuit peut aussi avoir des effets sur ta santé et ta mémoire. C'est un peu comme un tuyau de ton Lego qui est bloqué et empêche le courant de passer.</p>
+        <p>Heureusement, il existe des traitements efficaces, souvent avec un masque spécial qui aide à respirer la nuit. Savoir si tu en souffres (ou si un de tes proches en souffre) est le premier pas pour retrouver un sommeil réparateur et avoir plus d'énergie le jour. La prévention est aussi importante, comme éviter l'alcool ou dormir sur le côté.</p>
+        
+        <h3>Citations du livre :</h3>
+        <ul>
+          <li>« L’apnée du sommeil se manifeste principalement par des diminutions répétées de la respiration, pouvant aller jusqu’à un arrêt de celle-ci durant le sommeil. »<br/>– **Célyne H. Bastien, Alexandra Duchesne-Pérusse et Tijana Ceklic**, expertes des troubles du sommeil.</li>
+          <li>« Les personnes souffrant d’apnée ont davantage d’éveils, elles bougent plus souvent que la moyenne des gens. Ces éveils affectent évidemment la qualité du sommeil et expliquent pourquoi la plupart des personnes atteintes d’apnée rapportent un sommeil non récupérateur, un sentiment de fatigue au réveil et une somnolence importante durant le jour. »<br/>– **Célyne H. Bastien, Alexandra Duchesne-Pérusse et Tijana Ceklic**.</li>
+          <li>« La désaturation en oxygène peut aussi mener à une diminution de la testostérone causant, conséquemment, une réduction de la libido. »<br/>– **Célyne H. Bastien, Alexandra Duchesne-Pérusse et Tijana Ceklic**.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Félix :</h3>
+          <p>Si tu te sens souvent fatigué, même après avoir dormi longtemps, ou si ton papa te dit que tu ronfles beaucoup, ça pourrait être l'apnée. Bien dormir, c'est la base pour avoir l'énergie de skier toute une journée ou de jouer des heures aux échecs. Si tu as l'impression de moins bien récupérer, parles-en à ton père. Il est très actif et sait l'importance d'une bonne récupération pour ses propres sports !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🌙 Les parasomnies : quand ton corps fait des choses bizarres la nuit !</summary>
+      <div class="details-content">
+        <p>Les parasomnies, ce sont tous les comportements un peu étranges qui peuvent arriver pendant que tu dors, comme le somnambulisme (te promener sans t'en rendre compte), les terreurs nocturnes (te réveiller en pleine peur sans savoir pourquoi) ou les cauchemars (des rêves effrayants). C'est comme si ton cerveau et ton corps ne se mettaient pas bien d'accord sur ce qu'il faut faire pendant le sommeil.</p>
+        <p>Le somnambulisme arrive souvent dans la première partie de la nuit, quand ton sommeil est le plus profond. Il est important que les parents sécurisent l'environnement pour éviter les accidents, mais il ne faut pas réveiller brusquement la personne. Les terreurs nocturnes sont aussi dans le sommeil profond et sont souvent accompagnées de cris, et la personne est difficile à consoler.</p>
+        <p>Les cauchemars, eux, se passent pendant le sommeil paradoxal (quand tu rêves le plus intensément). Ils sont souvent très vifs et effrayants, et tu t'en souviens au réveil. Pour les enfants qui en font souvent, une technique est de dessiner le cauchemar et d'imaginer une fin différente pour reprendre le contrôle. Ces troubles montrent à quel point le sommeil est complexe et qu'il faut en prendre soin.</p>
+        
+        <h3>Citations du livre :</h3>
+        <ul>
+          <li>« Le somnambulisme est un trouble spécifique aux stades de sommeil profond (stades 3 et 4). Il se manifeste donc généralement dans le premier tiers de la nuit où les épisodes de stades de sommeil profond sont plus nombreux. »<br/>– **Célyne H. Bastien, Alexandra Duchesne-Pérusse et Tijana Ceklic**.</li>
+          <li>« Les terreurs nocturnes se déroulent lors des stades de sommeil profond, soit les stades 3 et 4. Il est donc plus fréquent que les terreurs nocturnes surviennent au cours de la première moitié de la nuit. »<br/>– **Célyne H. Bastien, Alexandra Duchesne-Pérusse et Tijana Ceklic**.</li>
+          <li>« Chez les enfants qui font des cauchemars ou encore des terreurs nocturnes avec souvenir du contenu effrayant, les parents peuvent demander aux enfants de dessiner le contenu de leurs rêves tout en leur demandant d’élaborer une façon de contrer le rêve effrayant. »<br/>– **Célyne H. Bastien, Alexandra Duchesne-Pérusse et Tijana Ceklic**.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi, Félix :</h3>
+          <p>Si tu as des cauchemars, c'est comme une histoire que ton cerveau invente la nuit. Tu pourrais essayer de dessiner tes "monstres" et de créer un bouclier ou une cape antidouleur, ou même de réécrire la fin de l'histoire pour la rendre moins effrayante. C'est une façon créative de reprendre le contrôle de tes rêves, un peu comme inventer une nouvelle histoire avec tes Lego pour que tout finisse bien !</p>
+        </div>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="section">
+    <h2>3. Les 5 Leçons les Plus Importantes</h2>
+
+    <div class="lesson">
+      <div class="lesson-num">01</div>
+      <div>
+        <h3><b>Ton lien avec ta famille est ta super-force !</b></h3>
+        <p>Le livre insiste sur l'importance cruciale de l'attachement avec tes parents. Ce lien, c'est la base de tout ce que tu deviendras. Il te donne la sécurité pour explorer le monde, pour apprendre et pour développer tes émotions. C'est comme le moteur de tes réussites, qu'il s'agisse d'apprendre une nouvelle ouverture aux échecs ou de maîtriser une nouvelle technique de ski de fond. Si tu te sens en sécurité et soutenu, tu oseras davantage.</p>
+        <p>Par exemple, quand tu as une question difficile en échecs ou que tu as besoin de réconfort, le fait de pouvoir te tourner vers ton papa te donne une grande force. Le livre explique que même les adultes s'appuient sur des liens forts pour affronter les défis de la vie. Ce lien, c'est ton "port d'attache" pour te sentir toujours bien.</p>
+        <p>Pour toi, Félix, qui aimes les massages de ton père, ces moments de connexion physique et affective sont super importants. Ils renforcent ce lien, te montrant que tu es aimé et en sécurité, ce qui t'aide à être créatif, social et joyeux.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">02</div>
+      <div>
+        <h3><b>Parler, c'est mieux que s'énerver : la communication efficace !</b></h3>
+        <p>Une des leçons clés est que savoir bien communiquer peut transformer les conflits en opportunités de se comprendre. Le livre explique que les couples heureux ne sont pas ceux qui n'ont jamais de problèmes, mais ceux qui savent en parler sans s'accuser. Utiliser des phrases qui commencent par "Je ressens..." plutôt que "Tu as fait..." aide énormément.</p>
+        <p>Pense à quand toi et Matteo vous chicanez. Au lieu de juste vous crier dessus, si l'un de vous dit "Je me sens triste quand tu prends mes Lego sans demander", l'autre comprend mieux. C'est comme aux échecs : si tu peux anticiper le coup de ton adversaire et comprendre pourquoi il le fait, tu es déjà en avance. Une bonne communication, c'est un peu comme un système de jeu bien rodé où chacun sait écouter et s'exprimer clairement.</p>
+        <p>Ton papa, qui souhaite améliorer sa communication, trouve dans ce livre des outils concrets. Pour toi, Félix, développer ces habiletés t'aidera dans tes relations sociales, à exprimer tes blagues encore mieux, et même à mieux "lire" les réactions de tes amis quand tu inventes de nouveaux jeux de mots.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">03</div>
+      <div>
+        <h3><b>Tes pensées peuvent te jouer des tours : apprends à voir la réalité !</b></h3>
+        <p>Le livre nous montre que nos pensées influencent énormément nos émotions. Parfois, on a des "pensées catastrophiques" qui nous font voir le pire, même quand ce n'est pas la réalité. Par exemple, penser que tu vas tomber en ski de fond et te casser une jambe t'empêche de profiter de la descente. Ou croire qu'une machine de loterie est "due pour payer" te fait perdre de l'argent. C'est ce que les psychologues appellent des "biais cognitifs".</p>
+        <p>L'idée, c'est d'apprendre à reconnaître ces pensées et à les remettre en question. Est-ce que cette pensée est vraiment vraie ? Y a-t-il une autre explication plus réaliste ? C'est comme un détective qui cherche des preuves pour ou contre une idée. Cela t'aide à ne pas te laisser piéger par tes propres peurs ou par des illusions, que ce soit dans un jeu de hasard ou face à un défi de ski de fond.</p>
+        <p>Pour toi, Félix, qui aimes inventer, tu peux aussi inventer des pensées plus réalistes et aidantes. Quand tu es bloqué dans une construction Lego, au lieu de penser "je n'y arriverai jamais", tu peux te dire "je vais essayer une autre approche, peut-être qu'il y a une pièce cachée qui va m'aider". C'est un super entraînement pour ton cerveau créatif !</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">04</div>
+      <div>
+        <h3><b>Dors bien, deviens puissant !</b></h3>
+        <p>Le sommeil n'est pas une perte de temps, Félix, c'est une super-activité de récupération ! Le livre explique que le manque de sommeil affecte ta capacité à te concentrer, ton humeur et même tes réflexes. Imagine devoir jouer aux échecs avec un cerveau à moitié endormi, ou skier une piste compliquée sans être alerte ! C'est difficile, n'est-ce pas ?</p>
+        <p>Des problèmes comme l'insomnie ou l'apnée du sommeil peuvent rendre ton sommeil moins efficace. Le livre donne des conseils pratiques pour améliorer ton sommeil, comme avoir une routine régulière, éviter les écrans avant de dormir, et faire de l'exercice (mais pas trop tard le soir). Ces habitudes aident ton corps à se préparer à un sommeil réparateur.</p>
+        <p>Pour ton papa qui veut bâtir une routine d'entraînement constante et bien vieillir, un bon sommeil est essentiel. Pour toi, Félix, c'est la même chose ! Un bon repos te donne l'énergie de sauter, de courir, de penser vite pour tes échecs et d'avoir de nouvelles idées pour tes Lego et tes blagues. C'est une habitude de champion !</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">05</div>
+      <div>
+        <h3><b>L'équilibre dans la vie, c'est la recette du bonheur !</b></h3>
+        <p>Le livre souligne qu'il est important de trouver un bon équilibre entre tes activités (école, sport, loisirs, amis, famille). Si tu passes trop de temps sur une seule chose, même si tu l'adores, tu risques de te sentir stressé ou de manquer d'énergie pour d'autres choses. C'est comme dans un jeu d'échecs : si tu ne penses qu'à attaquer et que tu oublies de défendre, tu risques de perdre. Il faut un équilibre entre l'attaque et la défense.</p>
+        <p>Les activités sociales et les loisirs sont comme des "antidotes" au stress. Passer du temps avec tes amis, faire du ski de fond, construire des Lego ou faire des blagues avec ton frère Matteo te donne de l'énergie et t'aide à te changer les idées. Ce sont des moments importants qui contribuent à ton bien-être émotionnel et à ta résilience, la capacité à surmonter les difficultés.</p>
+        <p>Ton papa, qui est très actif et cherche la constance, sait qu'il doit maintenir cet équilibre. Pour toi, Félix, continue de jongler avec tes passions : échecs, ski de fond, Lego, blagues, et ces moments précieux avec ton père. C'est ça, la vraie richesse et la clé pour grandir heureux et fort !</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. Quiz Rapide — 3 Questions</h2>
+
+    <div class="quiz-question">
+      <h3>Question 1 : Selon le livre, quel est l'un des rôles les plus importants de l'attachement parent-enfant ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas la réponse principale. L\'attachement va au-delà des besoins physiques.')">A. Nourrir l'enfant et lui donner des vêtements.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bravo ! Le lien d\'attachement offre une base de sécurité essentielle pour que l\'enfant explore le monde avec confiance.')">B. Fournir une base de sécurité émotionnelle pour l'exploration et le développement.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est un effet de l\'attachement, mais pas son rôle le plus fondamental selon le livre.')">C. Lui enseigner à jouer aux échecs.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 2 : Quand on joue à un jeu de hasard comme la loterie, qu'est-ce qui détermine le résultat ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, tes numéros chanceux n\'ont aucune influence sur le hasard. C\'est une illusion de contrôle !')">A. Le choix de tes numéros "chanceux".</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, même si tu joues souvent, cela ne te rend pas meilleur à un jeu de hasard.')">B. L'expérience du joueur.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! Le hasard est imprévisible et aucun de tes efforts ne peut changer le résultat d\'un jeu de pur hasard.')">C. Un processus aléatoire, totalement imprévisible.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 3 : Pour mieux gérer l'anxiété et le stress, le livre recommande de faire quoi avec tes pensées négatives ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, les ignorer ne les fait pas disparaître. Il faut les affronter !')">A. Les ignorer et faire comme si elles n'existaient pas.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! Apprendre à reconnaître tes pensées négatives et à les remettre en question pour voir la réalité de façon plus juste est très efficace.')">B. Les reconnaître et les remettre en question pour des pensées plus réalistes.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'idée est de trouver un équilibre réaliste, pas d\'exagérer le positif.')">C. Les transformer en pensées ultra-positives, même si tu n'y crois pas.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div id="final-score"></div>
+  </div>
+
+  <div class="section">
+    <h2>5. Mots à Connaître</h2>
+    <ul>
+      <li><span class="vocab-word">Psychologie :</span> C'est la science qui étudie comment les gens pensent, ressentent et agissent. Un peu comme la notice d'utilisation de ton cerveau !</li>
+      <li><span class="vocab-word">Attachement :</span> C'est le lien fort et spécial que tu as avec tes parents. C'est comme le fil invisible qui te relie à eux et te donne un sentiment de sécurité, comme ta forteresse Lego incassable.</li>
+      <li><span class="vocab-word">Cognition :</span> Ce sont toutes tes activités mentales : penser, se souvenir, comprendre. C'est ce qui se passe dans ton cerveau quand tu joues aux échecs ou que tu inventes une blague.</li>
+      <li><span class="vocab-word">Éthologie :</span> C'est l'étude du comportement des animaux dans leur milieu naturel. Imagine observer un aigle voler pour comprendre comment il chasse, c'est de l'éthologie !</li>
+      <li><span class="vocab-word">Homéostatique :</span> C'est la capacité de ton corps à garder un équilibre, comme ta température ou ton besoin de dormir. Si tu es éveillé trop longtemps, ton corps te pousse à dormir pour retrouver son équilibre.</li>
+      <li><span class="vocab-word">Susceptibilité différentielle :</span> C'est l'idée que certaines personnes sont plus sensibles que d'autres à leur environnement, que ce soit pour le meilleur ou pour le pire. C'est comme certains matériaux Lego qui sont plus fragiles ou plus solides face aux chocs.</li>
+      <li><span class="vocab-word">Désorganisation de l'attachement :</span> C'est quand le lien d'attachement est un peu "mélangé" ou imprévisible. L'enfant ne sait pas toujours comment le parent va réagir, ce qui peut rendre les choses plus difficiles pour lui, un peu comme des règles de jeu qui changent tout le temps.</li>
+      <li><span class="vocab-word">Restructuration cognitive :</span> C'est une technique pour apprendre à changer tes pensées négatives en pensées plus réalistes. Comme si tu reprogrammais ton cerveau pour qu'il te donne de meilleurs conseils !</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Défis de la Semaine</h2>
+    <div class="challenge">
+      <h3>Défis de l'Écoute Active et des Blagues ! 👂😂</h3>
+      <p>Pendant la semaine, quand quelqu'un te parle (surtout Matteo !), essaie de l'écouter très attentivement, sans l'interrompre. Après, reformule ce qu'il a dit pour vérifier que tu as bien compris. Par exemple, "Si j'ai bien compris, tu veux dire que...". Ça va renforcer vos liens, comme quand tu construis des ponts solides avec tes Lego pour relier deux îles. Et observe si tu trouves de nouvelles inspirations pour tes blagues en étant plus attentif !</p>
+    </div>
+    <div class="challenge">
+      <h3>Ma routine de champion du sommeil 😴🏆</h3>
+      <p>Crée ta propre "routine de sommeil de champion". Chaque soir, une heure avant d'aller te coucher, range tes écrans. Tu peux lire un livre, construire tranquillement des Lego, ou demander à ton papa un petit massage des pieds. Essaie de te coucher et de te lever à peu près à la même heure tous les jours, même la fin de semaine. Vois si tu as plus d'énergie pour tes parties d'échecs ou tes sorties de ski de fond !</p>
+    </div>
+    <div class="challenge">
+      <h3>Le carnet de mes super-pensées réalistes 🧠✨</h3>
+      <p>Choisis une situation qui t'a un peu stressé ou énervé cette semaine (ça peut être une partie d'échecs perdue, un devoir compliqué, ou une chicane). Écris la pensée négative que tu as eue, puis demande-toi : "Est-ce que c'est vraiment vrai ? Quelle est la preuve ?" Ensuite, essaie d'écrire une pensée plus réaliste. Par exemple, "J'ai perdu aux échecs" (négatif) peut devenir "J'ai perdu aux échecs, mais j'ai appris une nouvelle tactique que j'utiliserai la prochaine fois" (réaliste). C'est ton entraînement de super-héros mental !</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. On en Parle ?</h2>
+    <p>Ces questions sont pour discuter avec ton papa ou Matteo. Il n'y a pas de bonnes ou de mauvaises réponses, juste des idées à explorer ensemble !</p>
+    <ul>
+      <li>Quand tu te sens inquiet ou stressé, est-ce que tu penses à des choses qui empirent la situation ? Comment pourrais-tu transformer ces pensées en pensées plus "claires" (réalistes), comme des stratégies d'échecs ?</li>
+      <li>Ton papa aime te faire des massages. Comment ces moments de connexion physique et affective t'aident-ils à te sentir en sécurité et à mieux affronter tes défis, comme une longue sortie de ski de fond ou une situation sociale ?</li>
+      <li>Si tu avais le choix de construire un immense château Lego pour quelqu'un qui a des problèmes de mémoire, comment ferais-tu pour que cette personne puisse toujours retrouver son chemin et se sentir bien dans son château ? Quelles pièces spéciales ajouterais-tu ?</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

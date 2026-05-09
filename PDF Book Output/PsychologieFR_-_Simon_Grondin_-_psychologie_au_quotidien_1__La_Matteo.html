@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résumé du Livre</title>
+<style>
+:root { --bg: #121212; --surface: #1e1e2e; --primary: #ff4757; --primary-hover: #ff6b81; --text: #f1f2f6; --text-muted: #ced6e0; --accent: #3742fa; --success: #2ed573; --error: #ff4757; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+h1, h2, h3 { color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.container { max-width: 800px; margin: auto; }
+.header { text-align: center; margin-bottom: 40px; background: linear-gradient(135deg, var(--surface), #2d3436); padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--primary); }
+.header h1 { font-size: 2.5em; margin: 0; color: white; }
+.section { margin-bottom: 40px; background: var(--surface); padding: 25px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+details { background: rgba(55, 66, 250, 0.1); border: 2px solid var(--accent); border-radius: 10px; margin-bottom: 15px; overflow: hidden; transition: all 0.3s; }
+summary { padding: 15px 20px; font-weight: bold; cursor: pointer; list-style: none; display: flex; align-items: center; font-size: 1.1em; color: #fff; }
+summary:hover { background: rgba(55, 66, 250, 0.2); }
+summary::-webkit-details-marker { display: none; }
+.details-content { padding: 20px; background: var(--surface); border-top: 1px solid var(--accent); }
+.action-box { background: rgba(255, 71, 87, 0.1); border-left: 4px solid var(--primary); padding: 15px; margin-top: 15px; border-radius: 0 10px 10px 0; }
+.lesson { display: flex; margin-bottom: 20px; }
+.lesson-num { font-size: 2em; font-weight: 900; color: var(--primary); margin-right: 15px; opacity: 0.8; }
+.quiz-question { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.quiz-btn { background: var(--accent); color: white; border: none; padding: 12px 20px; margin: 8px 0; border-radius: 8px; cursor: pointer; width: 100%; text-align: left; font-size: 1em; font-weight: bold; transition: background 0.2s; }
+.quiz-btn:hover { background: #5352ed; }
+.feedback { margin-top: 10px; padding: 15px; border-radius: 8px; display: none; font-weight: bold; }
+.vocab-word { color: var(--primary); font-weight: bold; font-size: 1.1em; }
+.challenge { background: rgba(46, 213, 115, 0.1); border-left: 4px solid var(--success); padding: 15px; margin-bottom: 15px; border-radius: 0 10px 10px 0; }
+</style>
+<script>
+window.quizScore = 0;
+window.quizAnswered = 0;
+function checkAnswer(btn, isCorrect, explanation) {
+  let parent = btn.parentElement;
+  let feedback = parent.querySelector('.feedback');
+  let buttons = parent.querySelectorAll('.quiz-btn');
+  if(buttons[0].disabled) return;
+  buttons.forEach(b => b.disabled = true);
+  feedback.style.display = 'block';
+  feedback.innerHTML = explanation;
+  if(isCorrect) {
+    btn.style.background = 'var(--success)';
+    feedback.style.background = 'rgba(46, 213, 115, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--success)';
+    window.quizScore++;
+  } else {
+    btn.style.background = 'var(--error)';
+    feedback.style.background = 'rgba(255, 71, 87, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--error)';
+  }
+  window.quizAnswered++;
+  if(window.quizAnswered === 3) {
+    document.getElementById('final-score').innerHTML = '<h3>Score final : ' + window.quizScore + '/3 !</h3>';
+  }
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>La Psychologie au Quotidien : Ton Guide !</h1>
+    <p>Salut Matteo ! Prêt à explorer la psychologie comme un pro ? Ce résumé est fait pour toi !</p>
+  </div>
+
+  <div class="section">
+    <h2>1. C'est quoi ce livre ?</h2>
+    <p>Imagine avoir une carte au trésor pour comprendre comment notre cerveau et nos émotions fonctionnent ! Ce livre, "La psychologie au quotidien", c'est exactement ça : un super guide pour déchiffrer les mystères du comportement humain, rédigé par des experts de l'Université Laval. Il te donne des outils concrets, basés sur la science, pour mieux gérer le stress, améliorer tes relations, mieux dormir et même te faire réfléchir sur des sujets complexes comme les jeux de hasard ou comment faire face aux grandes épreuves de la vie. Prépare-toi à découvrir des super-pouvoirs pour mieux comprendre le monde et toi-même !</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Les Grands Thèmes — Rends-le Interactif</h2>
+
+    <details>
+      <summary>🫂 L'Attachement : Ton Super-Pouvoir Relationnel</summary>
+      <div class="details-content">
+        <p>L'attachement, c'est comme le fil invisible qui te lie à tes parents et à tes proches dès que tu es bébé. Ce lien est super important car il influence comment tu te sens en sécurité, comment tu explores le monde et comment tu construis tes relations futures, même avec tes amis ou dans ton groupe de musique. C'est la base de tout ce que tu ressens et apprends sur les relations.</p>
+        <p><strong>Citations du livre :</strong></p>
+        <ul>
+          <li>« La façon dont nous concevons le développement des émotions, de la compétence sociale, des relations d’amitié et des relations conjugales [...] est, d’une manière ou d’une autre, influencée par les connaissances dans le domaine de l’attachement. » — George M. Tarabulsy, Simon Larose et André Plamondon, chercheurs sur l'attachement parent-enfant.</li>
+          <li>« La partie la plus importante de l’éducation de l’enfant est ce qu’il apprend à la pouponnière. » — Platon, philosophe grec antique, soulignant l'importance des premières expériences.</li>
+          <li>« Contrairement aux approches de l’époque, Bowlby suggérait que la relation précède les soins; elle donne le contexte pour les soins et contribue à la qualité du développement dans les sphères sociales, émotionnelles et cognitives. » — John Bowlby, psychanalyste et éthologiste, pionnier de la théorie de l'attachement.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi</h3>
+          <p>Tes relations avec ton père, Felix et tes amis de groupe sont super importantes. Comprendre comment tu te sens en sécurité avec eux t'aide à mieux réagir quand il y a des disputes ou des moments difficiles. Essaie de remarquer quand tu te sens le plus à l'aise d'être toi-même et d'explorer de nouvelles idées, c'est souvent quand tu te sens vraiment en sécurité avec les autres.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🗣️ La Communication : La Magie des Mots pour Éviter les Conflits</summary>
+      <div class="details-content">
+        <p>Apprendre à bien communiquer, c'est comme maîtriser un instrument : ça demande de la pratique ! Le livre explique que savoir exprimer ce que tu ressens sans accuser l'autre est une compétence clé pour éviter les disputes. Quand on écoute vraiment et qu'on essaie de comprendre l'autre, même si on n'est pas d'accord, les relations deviennent beaucoup plus fluides et agréables. C'est un outil puissant pour ton groupe de musique ou pour la famille.</p>
+        <p><strong>Citations du livre :</strong></p>
+        <ul>
+          <li>« L’amélioration de la qualité de la communication semble donc un point très important pour augmenter la satisfaction dans le couple. » — Jean-Marie Boisvert, professeur de psychologie, spécialiste en thérapie de couple.</li>
+          <li>« Les couples qui communiquent le mieux présentent les caractéristiques non verbales suivantes : le contact des yeux [...] l’expression faciale [...] les mouvements du corps. » — H. Joanning, J. Brewster et J. Koval, chercheurs en communication.</li>
+          <li>« Quand tu poses telle action précise dans telle situation précise, je ressens tel sentiment. » — Jean-Marie Boisvert et Madeleine Beaudry, principes de communication.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi</h3>
+          <p>Toi qui est impatient et intense, tu peux t'entraîner à dire ce que tu ressens en utilisant des phrases qui commencent par "Je" au lieu de "Tu". Par exemple, "Je me sens frustré quand tu ne m'écoutes pas" plutôt que "Tu ne m'écoutes jamais !". Cela peut transformer une chicane en une discussion où tout le monde se sent compris, même dans ton groupe quand vous discutez d'une partition.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🎲 Les Pièges du Hasard : Le Cerveau Mystifié</summary>
+      <div class="details-content">
+        <p>Les jeux de hasard, comme la loterie, sont conçus pour te faire croire que tu peux influencer la chance. Mais la science est claire : le hasard, c'est totalement imprévisible, chaque tirage est indépendant des précédents. Le livre explique comment notre cerveau tombe dans le panneau de "l'illusion de contrôle" et des "fausses croyances", ce qui peut nous faire dépenser plus d'argent que prévu. Comprendre ça, c'est super important pour ne pas se faire avoir.</p>
+        <p><strong>Citations du livre :</strong></p>
+        <ul>
+          <li>« L’issue du jeu, le résultat, doit reposer partiellement ou complètement sur le hasard. Cette notion de hasard est au cœur des jeux de hasard et d’argent. » — Isabelle Giroux, Annie Goulet et Christian Jacques, spécialistes du jeu pathologique.</li>
+          <li>« L’espérance de gains est dite négative parce qu’à long terme, les jeux redonnent aux joueurs moins d’argent qu’ils n’en collectent. » — Référence générale aux données sur les jeux de hasard.</li>
+          <li>« Plus le joueur prend une part active au jeu, plus il est sujet aux illusions de contrôle. » — Référence générale aux recherches sur les illusions de contrôle.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi</h3>
+          <p>Toi qui es analytique et adore comprendre comment le monde fonctionne, c'est une mine d'or ! Pense à la science : si tu lances une pièce de monnaie 10 fois, chaque lancer est indépendant. Il n'y a pas de "chance" qui s'accumule. Utilise ta logique de scientifique pour démasquer ces illusions et mieux comprendre les probabilités dans la vie, pas seulement aux jeux.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>⚡ Stress et Anxiété : Tes Super-Alertes Internes</summary>
+      <div class="details-content">
+        <p>Le stress et l'anxiété sont des alarmes naturelles de ton corps, utiles pour te préparer à des défis. Mais parfois, cette alarme sonne trop fort ou pour rien, ce qui peut devenir un "trouble anxieux". Le livre t'apprend à faire la différence et à comprendre que ce n'est pas la situation elle-même qui te rend anxieux, mais la façon dont tu l'interprètes. C'est comme si tu portais des "lunettes rouges" qui te font voir le danger partout.</p>
+        <p><strong>Citations du livre :</strong></p>
+        <ul>
+          <li>« L’anxiété est une réaction normale, généralement bénéfique et adaptée. [...] ressentir une anxiété normale permet généralement de mobiliser ses énergies pour bien se préparer en fonction de la tâche qui nous attend. » — Geneviève Belleville, professeure de psychologie, spécialiste des troubles anxieux.</li>
+          <li>« Ce n’est pas tant une situation particulière qui provoquera une émotion précise chez une personne, mais plutôt la manière dont cette personne interprète la situation. » — Geneviève Belleville, spécialiste des troubles anxieux.</li>
+          <li>« Les personnes anxieuses, elles, portent des lunettes rouges, des lunettes qui ne font voir que le danger ou la menace. » — Geneviève Belleville, spécialiste des troubles anxieux.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi</h3>
+          <p>Toi qui luttes parfois avec l'autocontrôle et l'impatience, comprendre l'anxiété peut t'aider. Quand tu te sens frustré ou en colère (des émotions intenses), demande-toi si tu ne vois pas la situation avec des "lunettes rouges". Essaie de changer ta façon de penser à la situation pour calmer ton alarme intérieure. C'est un peu comme lire un documentaire sur ton propre cerveau !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>😴 Le Sommeil : Le Rechargeur Ultime du Cerveau</summary>
+      <div class="details-content">
+        <p>Le sommeil n'est pas du temps perdu, c'est le moment où ton cerveau se recharge et consolide tout ce que tu as appris pendant la journée. C'est essentiel pour ta mémoire, ta concentration, tes émotions et même ta capacité à jouer de la guitare. Le manque de sommeil peut rendre irritable et diminuer ta performance. Le livre explore les cycles du sommeil et les troubles comme l'insomnie, montrant comment avoir de bonnes habitudes de sommeil est crucial.</p>
+        <p><strong>Citations du livre :</strong></p>
+        <ul>
+          <li>« Le sommeil est essentiel à la survie. Il occupe près du tiers de notre vie et joue un rôle capital pour la santé physique et mentale. » — Charles M. Morin, professeur de psychologie, directeur du Centre d'étude des troubles du sommeil.</li>
+          <li>« La privation de sommeil entraîne également des effets délétères pour les fonctions cognitives. » — Référence générale aux études sur la privation de sommeil.</li>
+          <li>« Les besoins individuels de sommeil semblent déterminés biologiquement, selon l’âge de chacun. » — Charles M. Morin, spécialiste du sommeil.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi</h3>
+          <p>Toi qui es un lecteur vorace et qui apprends beaucoup, ton cerveau a besoin de recharger ses batteries. Imagine que c'est comme recharger ta tablette ou ton téléphone. Un bon sommeil t'aidera à mieux mémoriser les faits historiques, à être plus concentré pendant tes solos de guitare et à mieux gérer ton impatience.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>👓 Pensée Réaliste : Tes Lunettes "Ultra-Claires"</summary>
+      <div class="details-content">
+        <p>Face aux difficultés, il est facile de tomber dans la pensée négative ("lunettes noires") ou l'optimisme aveugle ("lunettes roses"). Le livre propose une "pensée réaliste", c'est-à-dire voir la situation telle qu'elle est, avec ses bons et ses mauvais côtés, sans exagérer. Cette approche permet de mieux s'adapter aux défis et de trouver des solutions durables, au lieu de juste se sentir mieux temporairement.</p>
+        <p><strong>Citations du livre :</strong></p>
+        <ul>
+          <li>« Les recherches scientifiques sont notre seul moyen de vérifier rigoureusement la validité d’une théorie. » — Josée Savard, psychologue clinicienne, spécialiste de l'adaptation psychologique au cancer.</li>
+          <li>« L’optimisme réaliste, qui consiste à percevoir tous les risques réels d’une situation et les différents scénarios possibles, tout en espérant que le meilleur survienne. » — Josée Savard, auteure du livre "Faire face au cancer avec la pensée réaliste".</li>
+          <li>« La pensée réaliste permet de voir la situation de façon plus nuancée, en considérant les deux côtés de la médaille. Cette approche permet à la personne de se mettre en action et apporte un soulagement émotionnel plus durable dans le temps. » — Josée Savard, psychologue clinicienne.</li>
+        </ul>
+        <div class="action-box">
+          <h3>Ce que ça veut dire pour toi</h3>
+          <p>Toi qui aimes les faits et l'analyse, cette approche est faite pour toi. Plutôt que de te sentir impatient ou frustré devant un problème, essaie de mettre tes "lunettes claires". Identifie ce qui est vraiment difficile (les faits) et ce qui est sous ton contrôle (tes actions). C'est une compétence qui t'aidera pour tout, de la composition musicale à la planification de tes études.</p>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="section">
+    <h2>3. Les 5 Leçons les Plus Importantes</h2>
+
+    <div class="lesson">
+      <div class="lesson-num">01</div>
+      <div>
+        <h3><b>Tes pensées ne sont pas toujours la réalité, elles sont tes lunettes !</b></h3>
+        <p>Le livre nous montre que nos émotions sont souvent le résultat de la façon dont on interprète une situation, et non de la situation elle-même. Si tu penses "c'est la fin du monde", tu te sentiras mal. Mais si tu te dis "c'est un défi à relever", tu te sentiras plus fort. C'est comme un scientifique qui ne se fie pas à sa première intuition mais vérifie les faits.</p>
+        <p><strong>Pour toi, Matteo :</strong> Quand tu te sens super impatient ou frustré (par exemple, si une nouvelle chanson à la guitare est plus difficile que prévu), pause ! Demande-toi : est-ce que mes pensées sont des "lunettes noires" ou des "lunettes claires" ? Quel serait le scénario le plus réaliste ? Cette technique, issue de la thérapie cognitive, t'aide à ne pas te laisser emporter par tes premières réactions.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">02</div>
+      <div>
+        <h3><b>L'écoute active, un super-pouvoir pour comprendre le monde (et les autres)</b></h3>
+        <p>Apprendre à écouter vraiment, c'est bien plus que juste entendre des mots. Ça veut dire montrer que tu es intéressé, reformuler ce que l'autre a dit pour être sûr d'avoir bien compris et te concentrer sur son message sans préparer ta réponse. Le livre explique que les couples qui communiquent le mieux utilisent l'écoute active pour renforcer leur lien et éviter les conflits qui montent en flèche.</p>
+        <p><strong>Pour toi, Matteo :</strong> Dans ton groupe de guitare, quand quelqu'un donne une idée, essaie de la reformuler avant de donner ton avis. Ou quand Felix se chamaille avec toi, écoute-le attentivement et essaie de comprendre son point de vue, comme si tu étudiais une carte de géographie complexe. C'est une habileté essentielle pour un bon leader ou un bon ami, et ça t'aidera à mieux gérer ton impatience quand tu veux juste que les choses avancent.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">03</div>
+      <div>
+        <h3><b>Le Hasard, c'est le Hasard : Ne te fais pas avoir !</b></h3>
+        <p>Un des thèmes fascinants du livre est comment le cerveau humain est programmé pour voir des motifs et du contrôle là où il n'y en a pas, surtout avec les jeux de hasard. On croit pouvoir prédire les résultats ou que la "chance" va tourner, mais c'est une illusion. Chaque événement de hasard est indépendant des précédents, et à long terme, on perd toujours plus qu'on gagne.</p>
+        <p><strong>Pour toi, Matteo :</strong> Toi qui aimes la science et la logique, c'est une leçon fondamentale sur les probabilités. Pense à ça comme à une expérience scientifique : les données ne mentent pas ! Ne laisse pas tes intuitions te tromper. Cela t'apprend la patience et l'importance de l'analyse rationnelle, des qualités précieuses pour un scientifique en herbe ou pour comprendre les événements historiques.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">04</div>
+      <div>
+        <h3><b>Ton Cerveau a Besoin de Sommeil pour Performer comme un Champion</b></h3>
+        <p>Le sommeil n'est pas un luxe, c'est une nécessité vitale. Le livre insiste sur le fait qu'un sommeil suffisant et de qualité est crucial pour tes capacités cognitives (mémoire, concentration, résolution de problèmes) et pour ton humeur. Un manque de sommeil peut te rendre irritable, moins efficace et même te faire commettre plus d'erreurs, au travail ou dans la vie de tous les jours.</p>
+        <p><strong>Pour toi, Matteo :</strong> Imagine que ton cerveau est comme un superordinateur qui a besoin d'être éteint et redémarré régulièrement pour fonctionner à son plein potentiel. Si tu veux exceller à la guitare, comprendre la géographie ou te concentrer sur tes documentaires, assure-toi de dormir suffisamment. C'est une forme d'autocontrôle et de discipline qui paie vraiment pour ta performance quotidienne.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">05</div>
+      <div>
+        <h3><b>L'Autocontrôle : Un Muscle à Entraîner pour Ta Vie Quotidienne</b></h3>
+        <p>Que ce soit pour gérer l'anxiété, ne pas se laisser piéger par les jeux de hasard, ou améliorer ses relations, le livre revient souvent sur l'importance de l'autocontrôle. Il ne s'agit pas d'être parfait, mais de reconnaître ses vulnérabilités et de développer des stratégies pour changer ses comportements et ses pensées négatives. C'est un processus continu qui demande de la persévérance.</p>
+        <p><strong>Pour toi, Matteo :</strong> Toi qui luttes parfois avec l'impatience et l'autocontrôle, ce livre te donne des pistes concrètes. Chaque fois que tu ressens une forte envie d'agir impulsivement (que ce soit pour une frustration à la guitare ou une dispute avec Felix), essaie de faire une pause, d'analyser la situation (comme dans un docu !) et de choisir une réaction plus calme. C'est comme t'entraîner pour une compétition de vélo de montagne : la régularité et les petits efforts mènent aux grands progrès.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. Quiz Rapide — 3 Questions</h2>
+
+    <div class="quiz-question">
+      <h3>Question 1 : Selon le livre, quel est l'un des principaux rôles de l'attachement parent-enfant ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, la nourriture est un besoin de base, mais l\'attachement va au-delà !')">Assurer seulement la nourriture de l'enfant.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bravo ! L\'attachement est la base pour se sentir en sécurité et explorer le monde.')">Donner un contexte de sécurité pour le développement social et émotionnel.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'attachement est un processus dynamique, pas une chose fixe qui apparaît d\'un coup.')">Se manifester uniquement à l'adolescence.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 2 : Une bonne technique de communication pour exprimer un sentiment négatif sans accuser l'autre est de commencer ses phrases par :</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, commencer par « Tu » peut sonner comme une accusation et créer un conflit.')">« Tu devrais... »</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui, c\'est ça ! Les phrases en « Je » permettent d\'exprimer tes sentiments sans juger l\'autre.')">« Je me sens... »</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas la meilleure façon. On veut exprimer ce que nous ressentons, pas ce que l\'autre fait mal.')">« Ce que tu as fait est... »</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 3 : Dans les jeux de hasard, pourquoi les "illusions de contrôle" sont-elles dangereuses ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! Elles te font croire que tu peux influencer le hasard, ce qui t\'incite à jouer plus et à perdre.')">Elles font croire au joueur qu'il peut influencer le hasard, l'incitant à jouer davantage.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'espérance de gains est toujours négative à long terme, qu\'il y ait illusion ou non.')">Elles garantissent au joueur des gains importants à long terme.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'illusion de contrôle n\'a rien à voir avec le partage d\'informations.')">Elles empêchent le joueur de partager ses gains avec d'autres.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div id="final-score"></div>
+  </div>
+
+  <div class="section">
+    <h2>5. Mots à Connaître</h2>
+    <ul>
+      <li><span class="vocab-word">Psychologie :</span> C'est la science qui étudie comment on pense, on ressent et on agit. C'est comme être un détective de l'esprit humain !</li>
+      <li><span class="vocab-word">Attachement :</span> Le lien émotionnel fort qui nous unit aux personnes importantes de notre vie, comme nos parents. C'est ce qui nous fait nous sentir en sécurité.</li>
+      <li><span class="vocab-word">Cognition :</span> Toutes les activités de ton cerveau quand tu penses, tu apprends, tu te souviens ou tu résous des problèmes. C'est comme le moteur de tes pensées.</li>
+      <li><span class="vocab-word">Hasard :</span> Quand quelque chose arrive par pure chance, sans qu'on puisse le prévoir ou l'influencer. C'est imprévisible, comme un lancer de dé.</li>
+      <li><span class="vocab-word">Anxiété :</span> C'est une émotion où tu ressens de l'inquiétude ou de la peur. C'est normal d'en avoir un peu, mais si ça devient trop fort, c'est un problème.</li>
+      <li><span class="vocab-word">Sommeil paradoxal :</span> C'est le moment de la nuit où ton cerveau est super actif et où tu rêves le plus. C'est important pour ta mémoire et tes émotions.</li>
+      <li><span class="vocab-word">Optimisme réaliste :</span> C'est voir les défis de la vie de manière honnête, en acceptant les difficultés, mais en gardant l'espoir et en cherchant des solutions concrètes. Ni lunettes noires, ni lunettes roses, mais des lunettes claires !</li>
+      <li><span class="vocab-word">Vulnérabilité :</span> C'est être plus fragile ou sensible à une situation difficile. On peut être vulnérable au stress, par exemple, si on a un tempérament plus réactif.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Défis de la Semaine</h2>
+    <div class="challenge">
+      <h3>Défi 1 : Deviens le "Détective de tes Pensées" 🧠</h3>
+      <p>Pendant la semaine, quand tu te sens impatient ou super frustré (par exemple, si tu as du mal avec un passage à la guitare ou un problème de géo/histoire), arrête-toi un instant. Identifie la pensée exacte qui te traverse l'esprit. Est-elle vraiment vraie ? Y a-t-il une autre façon plus réaliste de voir la situation ? Note tes pensées "automatiques" et essaie de les "reformuler" de manière plus neutre. C'est un exercice de "pensée réaliste" pour mieux comprendre ton propre cerveau !</p>
+    </div>
+    <div class="challenge">
+      <h3>Défi 2 : L'Expérience du Sommeil du "Guitar Hero" 😴🎸</h3>
+      <p>Choisis trois soirs cette semaine où tu vas t'assurer de te coucher à une heure fixe (par exemple, 21h30 ou 22h) et de te réveiller à la même heure. Évite les écrans une heure avant de dormir et fais une activité calme (comme lire un de tes romans ou écouter de la musique douce à la guitare acoustique). Note comment tu te sens le lendemain : plus d'énergie, meilleure concentration en classe ou pendant ta pratique de guitare ? Est-ce que ça t'aide avec ton autocontrôle ?</p>
+    </div>
+    <div class="challenge">
+      <h3>Défi 3 : Le "Test de l'Écoute Active" avec Felix ou ton père 🗣️👂</h3>
+      <p>Quand Felix ou ton père te parle de quelque chose qui lui tient à cœur, essaie l'écoute active. Concentre-toi vraiment sur ce qu'il dit. Une fois qu'il a fini, au lieu de donner ton avis tout de suite, reformule ce que tu as compris. Tu peux dire "Si j'ai bien compris, tu te sens X à cause de Y, c'est ça ?". Tu verras, non seulement ça aide l'autre à se sentir écouté, mais ça t'aide aussi à mieux comprendre les situations, un peu comme quand tu étudies une situation historique complexe pour avoir tous les détails.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. On en Parle ?</h2>
+    <p>Ces questions sont faites pour réfléchir avec ton père ou Felix, ou même avec tes amis !</p>
+    <ul>
+      <li>1. Le livre parle de "l'attachement", ce lien spécial qu'on a avec nos proches. Comment penses-tu que ce lien t'aide à te sentir en sécurité et à explorer de nouvelles choses (comme jouer de la guitare dans un groupe ou découvrir de nouveaux sujets en géographie) ?</li>
+      <li>2. On a vu que nos pensées peuvent nous faire nous sentir stressés ou anxieux, même pour des choses pas si graves. Est-ce que ça t'arrive de te sentir très impatient ou frustré à cause de tes pensées ? Comment pourrions-nous essayer de "changer de lunettes" pour voir les choses différemment ?</li>
+      <li>3. L'écoute est un super-pouvoir ! En dehors de ton groupe de musique, dans quelles situations penses-tu que tu pourrais utiliser l'écoute active pour mieux comprendre les autres et éviter des disputes ?</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
+

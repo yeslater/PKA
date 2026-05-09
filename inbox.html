@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inbox — GTD Processing</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 20px;
+    }
+
+    .header a {
+      font-size: 0.9em;
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .header a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #667eea;
+      flex: 1;
+    }
+
+    .inbox-count {
+      background: #667eea;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: 600;
+    }
+
+    .inbox-count.empty {
+      background: #10b981;
+    }
+
+    /* Quick Capture Section */
+    .capture-section {
+      background: white;
+      border: 2px solid #667eea;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 30px;
+    }
+
+    .capture-section h2 {
+      font-size: 1.2em;
+      color: #1f2937;
+      margin-bottom: 16px;
+    }
+
+    .capture-form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    #captureInput {
+      flex: 1;
+      min-width: 200px;
+      padding: 12px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1em;
+      font-family: inherit;
+    }
+
+    #captureInput:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    #captureCategory {
+      padding: 12px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1em;
+      font-family: inherit;
+      background: white;
+    }
+
+    #captureCategory:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .btn-capture {
+      padding: 12px 24px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.2s;
+    }
+
+    .btn-capture:hover {
+      background: #5568d3;
+    }
+
+    .capture-hint {
+      font-size: 0.85em;
+      color: #6b7280;
+      margin-top: 12px;
+    }
+
+    /* Inbox List */
+    .inbox-section {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .inbox-section h2 {
+      font-size: 1.2em;
+      color: #1f2937;
+      margin-bottom: 16px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #9ca3af;
+    }
+
+    .empty-state h3 {
+      font-size: 1.1em;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    /* Inbox Items */
+    .inbox-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .inbox-item {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .inbox-item:hover {
+      border-color: #667eea;
+      background: #f0f1ff;
+    }
+
+    .inbox-item.expanded {
+      background: white;
+      border-color: #667eea;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .item-title {
+      font-weight: 600;
+      color: #1f2937;
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .item-category {
+      font-size: 0.75em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: #667eea;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .item-date {
+      font-size: 0.8em;
+      color: #9ca3af;
+      margin-top: 8px;
+    }
+
+    /* Processing Form */
+    .processing-form {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .inbox-item.expanded .processing-form {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1f2937;
+      font-size: 0.95em;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 0.95em;
+      font-family: inherit;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn-process {
+      flex: 1;
+      padding: 10px 16px;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95em;
+      transition: background 0.2s;
+    }
+
+    .btn-process:hover {
+      background: #059669;
+    }
+
+    .btn-cancel {
+      flex: 1;
+      padding: 10px 16px;
+      background: #f0f0f0;
+      color: #1f2937;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95em;
+      transition: background 0.2s;
+    }
+
+    .btn-cancel:hover {
+      background: #e5e7eb;
+    }
+
+    .btn-delete {
+      flex: 1;
+      padding: 10px 16px;
+      background: #fee2e2;
+      color: #dc2626;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95em;
+      transition: background 0.2s;
+    }
+
+    .btn-delete:hover {
+      background: #fecaca;
+    }
+
+    /* Feedback */
+    .feedback {
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .feedback.success {
+      background: #ecfdf5;
+      color: #10b981;
+      border-left: 4px solid #10b981;
+    }
+
+    .feedback.info {
+      background: #f0f1ff;
+      color: #667eea;
+      border-left: 4px solid #667eea;
+    }
+
+    .feedback.error {
+      background: #fee2e2;
+      color: #dc2626;
+      border-left: 4px solid #dc2626;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .capture-form {
+        flex-direction: column;
+      }
+
+      .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .form-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="index.html">← Back to Hub</a>
+      <h1>Inbox</h1>
+      <div class="inbox-count" id="inboxCount">0</div>
+    </div>
+
+    <div id="feedback" class="feedback"></div>
+
+    <!-- Quick Capture -->
+    <div class="capture-section">
+      <h2>✓ Capture</h2>
+      <div class="capture-form">
+        <input
+          type="text"
+          id="captureInput"
+          placeholder="What needs to be done, learned, or tracked?"
+          autocomplete="off"
+        >
+        <select id="captureCategory">
+          <option value="Task">Task</option>
+          <option value="Idea">Idea</option>
+          <option value="Article">Article</option>
+          <option value="Note">Note</option>
+        </select>
+        <button class="btn-capture" onclick="captureItem()">Add to Inbox</button>
+      </div>
+      <div class="capture-hint">Press Enter to capture quickly</div>
+    </div>
+
+    <!-- Inbox List -->
+    <div class="inbox-section">
+      <h2>Process Inbox</h2>
+      <div id="inboxList" class="inbox-items"></div>
+    </div>
+  </div>
+
+  <script>
+    const INBOX_KEY = 'gtd_inbox';
+    const TASKS_KEY = 'gtd_tasks';
+    const PROJECTS_KEY = 'gtd_projects';
+    const WAITING_KEY = 'gtd_waiting';
+    const SOMEDAY_KEY = 'gtd_someday';
+
+    // Initialize
+    loadInbox();
+
+    // Listen for Enter key on capture input
+    document.getElementById('captureInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        captureItem();
+      }
+    });
+
+    function captureItem() {
+      const input = document.getElementById('captureInput');
+      const category = document.getElementById('captureCategory');
+      const text = input.value.trim();
+
+      if (!text) return;
+
+      const item = {
+        id: Date.now().toString(),
+        title: text,
+        category: category.value,
+        captured: new Date().toISOString(),
+        status: 'inbox'
+      };
+
+      let inbox = JSON.parse(localStorage.getItem(INBOX_KEY) || '[]');
+      inbox.unshift(item);
+      localStorage.setItem(INBOX_KEY, JSON.stringify(inbox));
+
+      input.value = '';
+      category.value = 'Task';
+      showFeedback('✓ Added to inbox', 'success');
+      loadInbox();
+    }
+
+    function loadInbox() {
+      const inbox = JSON.parse(localStorage.getItem(INBOX_KEY) || '[]');
+      const list = document.getElementById('inboxList');
+      const count = document.getElementById('inboxCount');
+
+      count.textContent = inbox.length;
+      count.classList.toggle('empty', inbox.length === 0);
+
+      if (inbox.length === 0) {
+        list.innerHTML = '<div class="empty-state"><h3>Inbox is clear</h3><p>Capture something to get started</p></div>';
+        return;
+      }
+
+      list.innerHTML = inbox.map(item => `
+        <div class="inbox-item" id="item-${item.id}">
+          <div class="item-header">
+            <div class="item-title">${escapeHtml(item.title)}</div>
+            <div class="item-category">${item.category}</div>
+          </div>
+          <div class="item-date">${formatDate(item.captured)}</div>
+
+          <div class="processing-form">
+            <div class="form-group">
+              <label class="form-label">What's the next action?</label>
+              <input type="text" class="form-input next-action-${item.id}" placeholder="e.g., Email Sarah, Review the proposal, Call Matteo's teacher">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">When?</label>
+              <select class="form-select when-${item.id}">
+                <option value="today">Today</option>
+                <option value="this-week">This week</option>
+                <option value="this-month">This month</option>
+                <option value="someday">Someday/Maybe</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Area of life?</label>
+              <select class="form-select area-${item.id}">
+                <option value="Work">Work</option>
+                <option value="Health">Health</option>
+                <option value="Parenting">Parenting</option>
+                <option value="Relationships">Relationships</option>
+                <option value="Growth">Growth</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn-process" onclick="processItem('${item.id}')">✓ Route to Task</button>
+              <button class="btn-delete" onclick="deleteItem('${item.id}')">Delete</button>
+              <button class="btn-cancel" onclick="toggleExpanded('${item.id}')">Close</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Add click handlers to expand items
+      inbox.forEach(item => {
+        document.getElementById(`item-${item.id}`).addEventListener('click', (e) => {
+          if (!e.target.closest('button') && !e.target.closest('input') && !e.target.closest('select')) {
+            toggleExpanded(item.id);
+          }
+        });
+      });
+    }
+
+    function toggleExpanded(itemId) {
+      const item = document.getElementById(`item-${itemId}`);
+      item.classList.toggle('expanded');
+    }
+
+    function processItem(itemId) {
+      try {
+        console.log('Processing item:', itemId);
+
+        const nextActionEl = document.querySelector(`.next-action-${itemId}`);
+        const whenEl = document.querySelector(`.when-${itemId}`);
+        const areaEl = document.querySelector(`.area-${itemId}`);
+
+        console.log('Found elements:', { nextActionEl, whenEl, areaEl });
+
+        if (!nextActionEl || !whenEl || !areaEl) {
+          console.error('Could not find form elements');
+          showFeedback('Error: Form elements not found', 'error');
+          return;
+        }
+
+        const nextAction = nextActionEl.value.trim();
+        const when = whenEl.value;
+        const area = areaEl.value;
+
+        console.log('Form values:', { nextAction, when, area });
+
+        if (!nextAction) {
+          showFeedback('Please describe the next action', 'info');
+          return;
+        }
+
+        const inbox = JSON.parse(localStorage.getItem(INBOX_KEY) || '[]');
+        const item = inbox.find(i => i.id === itemId);
+        if (!item) {
+          console.error('Item not found in inbox');
+          return;
+        }
+
+        // Determine due date based on "when"
+        let dueDate = null;
+        if (when === 'today') {
+          dueDate = new Date().toISOString().split('T')[0];
+        } else if (when === 'this-week') {
+          const d = new Date();
+          d.setDate(d.getDate() + 3);
+          dueDate = d.toISOString().split('T')[0];
+        } else if (when === 'this-month') {
+          const d = new Date();
+          d.setDate(d.getDate() + 14);
+          dueDate = d.toISOString().split('T')[0];
+        }
+
+        const task = {
+          id: itemId,
+          title: item.title,
+          nextAction: nextAction,
+          area: area,
+          created: item.captured,
+          dueDate: dueDate,
+          status: when === 'someday' ? 'someday' : 'active',
+          projectId: null,
+          blockedOnWhat: null,
+          blockedOnWho: null,
+          completedDate: null
+        };
+
+        console.log('Creating task:', task);
+
+        // Store the task
+        let tasks = JSON.parse(localStorage.getItem(TASKS_KEY) || '[]');
+        tasks.push(task);
+        localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
+
+        console.log('Tasks saved. Total tasks:', tasks.length);
+
+        // Remove from inbox
+        const updatedInbox = inbox.filter(i => i.id !== itemId);
+        localStorage.setItem(INBOX_KEY, JSON.stringify(updatedInbox));
+
+        console.log('Item removed from inbox. Remaining:', updatedInbox.length);
+
+        if (when === 'someday') {
+          showFeedback('✓ Saved to Someday/Maybe', 'success');
+        } else {
+          showFeedback('✓ Task created', 'success');
+        }
+
+        setTimeout(() => loadInbox(), 500);
+      } catch (error) {
+        console.error('Error processing item:', error);
+        showFeedback('Error: ' + error.message, 'error');
+      }
+    }
+
+    function deleteItem(itemId) {
+      if (!confirm('Delete this item?')) return;
+
+      let inbox = JSON.parse(localStorage.getItem(INBOX_KEY) || '[]');
+      inbox = inbox.filter(i => i.id !== itemId);
+      localStorage.setItem(INBOX_KEY, JSON.stringify(inbox));
+      showFeedback('✓ Item deleted', 'success');
+      loadInbox();
+    }
+
+    function showFeedback(message, type) {
+      const feedback = document.getElementById('feedback');
+      feedback.textContent = message;
+      feedback.className = `feedback ${type} show`;
+      setTimeout(() => feedback.classList.remove('show'), 3000);
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const today = new Date();
+      const yesterday = new Date(today);
+      yesterday.setDate(yesterday.getDate() - 1);
+
+      if (date.toDateString() === today.toDateString()) {
+        return 'Today at ' + date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      } else if (date.toDateString() === yesterday.toDateString()) {
+        return 'Yesterday at ' + date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      } else {
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      }
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>

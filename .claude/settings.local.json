@@ -11,7 +11,17 @@
       "Bash(grep -v \"ParentsFR - Paul Axtell\" \"/Users/yves-erikslater/Desktop/PKA/.processed_pdfs.txt\")",
       "Bash(mv /tmp/processed_tmp.txt \"/Users/yves-erikslater/Desktop/PKA/.processed_pdfs.txt\")",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "mcp__claude_ai_Gmail__create_draft",
+      "Bash(grep -E \"\\\\.\\(html|py\\)$\")",
+      "Bash(crontab -)",
+      "Bash(crontab -l)",
+      "Bash(pip3 install *)",
+      "Bash(brew install *)",
+      "Bash(grep -v \"Effortless\" /Users/yves-erikslater/Desktop/PKA/.processed_pdfs.txt)",
+      "Bash(mv /tmp/processed_tmp.txt /Users/yves-erikslater/Desktop/PKA/.processed_pdfs.txt)",
+      "Bash(xargs ls *)"
     ]
   }
 }

@@ -4,7 +4,7 @@ JOURNAL_DIR="/Users/yves-erikslater/Desktop/PKA/Journal/entries"
 RESPONSES_DIR="/Users/yves-erikslater/Desktop/PKA/Journal/responses"
 PROCESSED_LOG="/Users/yves-erikslater/Desktop/PKA/.processed_journal.txt"
 WORK_DIR="/Users/yves-erikslater/Desktop/PKA"
-CLAUDE="/Users/yves-erikslater/.local/bin/claude"
+GEMINI="/Users/yves-erikslater/.local/bin/gemini"
 LOG="/Users/yves-erikslater/Desktop/PKA/.larry_log.txt"
 
 touch "$PROCESSED_LOG"
@@ -69,7 +69,7 @@ Produis une réponse de journal en français selon ta structure habituelle :
 
 Écris ta réponse dans le fichier : $RESPONSES_DIR/${entry_date}_camille.md"
 
-    cd "$WORK_DIR" && "$CLAUDE" -p "$PROMPT" --dangerously-skip-permissions >> "$LOG" 2>&1
+    cd "$WORK_DIR" && "$GEMINI" -p "$PROMPT" --dangerously-skip-permissions >> "$LOG" 2>&1
 
     echo "[$(date)] Camille response written for: $filename" >> "$LOG"
 

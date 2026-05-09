@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résumé du Livre</title>
+<style>
+:root { --bg: #121212; --surface: #1e1e2e; --primary: #ff4757; --primary-hover: #ff6b81; --text: #f1f2f6; --text-muted: #ced6e0; --accent: #3742fa; --success: #2ed573; --error: #ff4757; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+h1, h2, h3 { color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.container { max-width: 800px; margin: auto; }
+.header { text-align: center; margin-bottom: 40px; background: linear-gradient(135deg, var(--surface), #2d3436); padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--primary); }
+.header h1 { font-size: 2.5em; margin: 0; color: white; }
+.section { margin-bottom: 40px; background: var(--surface); padding: 25px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+details { background: rgba(55, 66, 250, 0.1); border: 2px solid var(--accent); border-radius: 10px; margin-bottom: 15px; overflow: hidden; transition: all 0.3s; }
+summary { padding: 15px 20px; font-weight: bold; cursor: pointer; list-style: none; display: flex; align-items: center; font-size: 1.1em; color: #fff; }
+summary:hover { background: rgba(55, 66, 250, 0.2); }
+summary::-webkit-details-marker { display: none; }
+.details-content { padding: 20px; background: var(--surface); border-top: 1px solid var(--accent); }
+.action-box { background: rgba(255, 71, 87, 0.1); border-left: 4px solid var(--primary); padding: 15px; margin-top: 15px; border-radius: 0 10px 10px 0; }
+.lesson { display: flex; margin-bottom: 20px; }
+.lesson-num { font-size: 2em; font-weight: 900; color: var(--primary); margin-right: 15px; opacity: 0.8; }
+.quiz-question { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.quiz-btn { background: var(--accent); color: white; border: none; padding: 12px 20px; margin: 8px 0; border-radius: 8px; cursor: pointer; width: 100%; text-align: left; font-size: 1em; font-weight: bold; transition: background 0.2s; }
+.quiz-btn:hover { background: #5352ed; }
+.feedback { margin-top: 10px; padding: 15px; border-radius: 8px; display: none; font-weight: bold; }
+.vocab-word { color: var(--primary); font-weight: bold; font-size: 1.1em; }
+.challenge { background: rgba(46, 213, 115, 0.1); border-left: 4px solid var(--success); padding: 15px; margin-bottom: 15px; border-radius: 0 10px 10px 0; }
+</style>
+<script>
+window.quizScore = 0;
+window.quizAnswered = 0;
+function checkAnswer(btn, isCorrect, explanation) {
+  let parent = btn.parentElement;
+  let feedback = parent.querySelector('.feedback');
+  let buttons = parent.querySelectorAll('.quiz-btn');
+  if(buttons[0].disabled) return;
+  buttons.forEach(b => b.disabled = true);
+  feedback.style.display = 'block';
+  feedback.innerHTML = explanation;
+  if(isCorrect) {
+    btn.style.background = 'var(--success)';
+    feedback.style.background = 'rgba(46, 213, 115, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--success)';
+    window.quizScore++;
+  } else {
+    btn.style.background = 'var(--error)';
+    feedback.style.background = 'rgba(255, 71, 87, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--error)';
+  }
+  window.quizAnswered++;
+  if(window.quizAnswered === 20) {
+    document.getElementById('final-score').innerHTML = '<h3>Score final : ' + window.quizScore + '/20 !</h3>';
+  }
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Dix phrases positives à dire aux enfants</h1>
+    <p>Un résumé interactif pour Matteo</p>
+  </div>
+
+  <div class="section">
+    <h2>1. C'est quoi ce livre ?</h2>
+    <p>Salut Matteo ! Imagine que tu as un super-pouvoir caché, celui de changer les conversations et de renforcer tes liens avec papa, Felix, tes amis ou même les gars de ton groupe de guitare. Ce livre, "Dix phrases positives à dire aux enfants", c'est comme le manuel secret pour activer ce pouvoir ! Il te montre comment les mots que tu utilises (et ceux que tu n'utilises pas !) peuvent transformer tes relations, te rendre plus confiant et t'aider à mieux comprendre le monde, un peu comme un guide pour explorer une nouvelle carte de géographie, mais celle des relations humaines !</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Les Grands Thèmes</h2>
+
+    <div class="theme-section section">
+        <h3>💬 La Puissance des Mots : Tes paroles créent ta réalité !</h3>
+        <p>Ce livre te montre que chaque mot que tu prononces a un impact énorme. Ce que tu dis aux autres, et surtout la façon dont tu parles de toi, façonne ta vie. Penser avant de parler, c'est comme réfléchir à la structure d'un morceau de musique avant de le jouer ; ça change tout le résultat. Ne sous-estime jamais l'énergie que tu mets dans tes phrases, car elles sont le point de départ de tout ce qui t'arrive.</p>
+        <h4>Citations du livre :</h4>
+        <ul>
+            <li>« Les mots sont puissants alors, les choisir sagement est très important, spécialement lorsque nous nous adressons à nos enfants. » <br>— Jim Barnes, éditeur, IndependantPublisher.com (p. 2)</li>
+            <li>« Si vous traitez un individu tel qu’il est, il restera le même. Si vous le traitez comme il pourrait être, il deviendra la personne qu’il pouvait être. » <br>— Johann Wolfgang von Goethe, écrivain allemand (p. 27)</li>
+            <li>« Ne vous inquiétez pas du fait que vos enfants ne vous écoutent jamais; inquiétez-vous plutôt du fait qu’ils vous observent continuellement. » <br>— Robert Fulghum, auteur américain (p. 20)</li>
+        </ul>
+        <div class="action-box">
+            <h4>Ce que ça veut dire pour toi :</h4>
+            <p>Matteo, en tant que passionné d'histoire et de documentaires, tu sais que les grands leaders utilisent les mots pour inspirer ou diviser. Observe comment les mots précis peuvent influencer le monde. Utilise cette puissance pour construire, pas pour démolir, surtout avec Felix. Tes mots peuvent l'encourager ou le frustrer. Pense à un instrument : une note mal jouée peut altérer toute la mélodie. C'est pareil avec les mots, alors choisis tes notes pour une harmonie parfaite.</p>
+        </div>
+    </div>
+
+    <div class="theme-section section">
+        <h3>👂 L'Art d'Écouter Vraiment : Donne toute ton attention !</h3>
+        <p>Écouter, ce n'est pas juste entendre. C'est donner toute ton attention, sans juger, sans chercher à résoudre tout de suite. C'est un cadeau immense que tu peux offrir. Quand tu écoutes vraiment, tu montres à l'autre personne qu'elle est importante et que ses pensées comptent. Cela crée un espace où les gens se sentent en sécurité pour s'exprimer pleinement.</p>
+        <h4>Citations du livre :</h4>
+        <ul>
+            <li>« Le cadeau le plus précieux que nous pouvons offrir à une autre personne est notre attention absolue. » <br>— Thich Nhat Hanh, moine bouddhiste (p. 68)</li>
+            <li>« L’écoute nécessite de se mettre sérieusement à la place de l’autre en faisant appel à notre imagination et en essayant de comprendre des valeurs et des attitudes différentes des nôtres. » <br>— Samuel I. Hayakawa, sénateur américain (p. 78)</li>
+            <li>« Alors, la plupart du temps, tout ce dont nos enfants ont besoin, c’est d’être écoutés. » <br>— Paul Axtell, l'auteur (p. 73)</li>
+        </ul>
+        <div class="action-box">
+            <h4>Ce que ça veut dire pour toi :</h4>
+            <p>Matteo, ton côté analytique te pousse à chercher des solutions. Mais parfois, il faut d'abord écouter sans intervenir, un peu comme un scientifique qui observe un phénomène avant de tirer des conclusions. Quand Felix te parle, essaie juste d'écouter sans lui donner de solution tout de suite. Concentre-toi sur ce qu'il ressent, comme tu te concentrerais pour analyser une partition difficile à la guitare.</p>
+        </div>
+    </div>
+
+    <div class="theme-section section">
+        <h3>🚀 Apprendre des Erreurs : Les échecs sont des leçons !</h3>
+        <p>Personne n'est parfait, et c'est une super nouvelle ! Les erreurs ne sont pas des échecs, mais des occasions d'apprendre plus vite. Le livre t'encourage à assumer tes responsabilités quand tu fais une erreur, sans te blâmer. En montrant que tu apprends de tes propres bévues, tu encourages les autres à faire de même et à ne pas avoir peur de prendre des risques.</p>
+        <h4>Citations du livre :</h4>
+        <ul>
+            <li>« Faire des erreurs veut tout simplement dire que vous apprenez plus rapidement. » <br>— Weston H. Agor, auteur américain (p. 91)</li>
+            <li>« Un bon jugement vient de l’expérience, et souvent, l’expérience vient d’un mauvais jugement. » <br>— Rita Mae Brown, auteure américaine (p. 92)</li>
+            <li>« J’ai raté plus de 9 000 paniers au cours de ma carrière... J’ai connu des échecs successifs dans ma vie, voilà pourquoi j’ai réussi. » <br>— Michael Jordan, joueur étoile au basketball (p. 98)</li>
+        </ul>
+        <div class="action-box">
+            <h4>Ce que ça veut dire pour toi :</h4>
+            <p>Matteo, toi qui adores les documentaires historiques, tu sais que les grandes découvertes ou inventions sont souvent le fruit de milliers d'erreurs. Pour ta guitare, chaque fausse note est un pas vers la maîtrise. Quand tu butes sur un problème de géographie ou que ton autocontrôle te fait défaut, rappelle-toi que c'est une étape normale du processus d'apprentissage. Ne te décourage pas, persévère !</p>
+        </div>
+    </div>
+
+    <div class="theme-section section">
+        <h3>🤝 Bâtir des Relations Solides : Le temps, l'attention et les ententes !</h3>
+        <p>Les relations, c'est comme des assiettes qui tournent : il faut les faire tourner constamment avec de l'attention et du temps pour qu'elles ne tombent pas. Ça veut dire passer du temps avec les gens, écouter leurs histoires, et créer des "ententes" claires qui aident à éviter les malentendus. Ces ententes sont comme des règles de jeu pour que tout le monde se sente respecté et écouté.</p>
+        <h4>Citations du livre :</h4>
+        <ul>
+            <li>« La vie de chaque personne se vit à travers une série de conversations. » <br>— Deborah Tannen, professeure de linguistique (p. 29)</li>
+            <li>« Lorsque nous tenons nos êtres chers pour acquis ou que nous ne préservons pas nos relations avec eux, non seulement nous n’encourageons pas les échanges de politesse, mais nous prononçons des paroles que nous regrettons par la suite. » <br>— Paul Axtell, l'auteur (p. 57)</li>
+            <li>« Souvenez-vous alors qu’il n’y a qu’un seul moment important et que ce moment est maintenant. La personne la plus importante est toujours celle avec qui vous êtes maintenant. » <br>— Jon J. Muth, auteur (p. 88)</li>
+        </ul>
+        <div class="action-box">
+            <h4>Ce que ça veut dire pour toi :</h4>
+            <p>Pour toi, Matteo, un lecteur vorace et analytique, c'est l'occasion d'appliquer la logique à tes relations. Pense aux "ententes" comme à des protocoles : clairs, utiles pour anticiper et résoudre les chamailleries avec Felix. Le temps passé ensemble, même silencieux à faire du vélo de montagne avec papa, est une façon de faire tourner ces "assiettes" de la relation.</p>
+        </div>
+    </div>
+
+    <div class="theme-section section">
+        <h3>🗣️ Encourager l'Autonomie et la Participation : Tes idées sont importantes !</h3>
+        <p>Ce thème t'invite à exprimer ce que tu penses et à participer aux décisions. C'est en demandant "Qu'en penses-tu ?" qu'on te donne des ailes pour influencer ton environnement, que ce soit à la maison ou dans ton groupe d'amis. Cela développe ta résilience, ta capacité à choisir et à te sentir valorisé, comme un membre essentiel de l'équipe familiale.</p>
+        <h4>Citations du livre :</h4>
+        <ul>
+            <li>« Il y a deux héritages que nous devons donner à nos enfants. L’un étant des racines et l’autre, des ailes. » <br>— Hodding Carter Jr., journaliste lauréat d’un prix Pulitzer (p. 107)</li>
+            <li>« La question qui permet de concrétiser tout cela est : « Qu’en penses-tu? » » <br>— Paul Axtell, l'auteur (p. 108)</li>
+            <li>« Permettez-leur de prendre une décision concernant quelque chose qui a de l’importance pour eux. » <br>— Paul Axtell, l'auteur (p. 112)</li>
+        </ul>
+        <div class="action-box">
+            <h4>Ce que ça veut dire pour toi :</h4>
+            <p>Matteo, ton esprit analytique et ta passion pour la géographie et l'histoire te donnent une perspective unique. N'hésite pas à partager tes idées et opinions. Quand il s'agit de décisions familiales, même si tu es impatient, prends le temps d'exprimer ton point de vue. C'est en participant activement que tu deviens un acteur du changement, comme un explorateur qui trace sa propre carte plutôt que de suivre un chemin déjà établi.</p>
+        </div>
+    </div>
+
+    <div class="theme-section section">
+        <h3>✅ Changer le "Non" en "Oui" : Trouver des solutions positives !</h3>
+        <p>Il est trop facile de dire "Non" par habitude. Ce thème t'apprend à faire une pause avant de refuser, à chercher des options et des alternatives. L'idée est de montrer que la vie est pleine de choix et de possibilités, et de t'aider à développer cette pensée positive. En expliquant tes raisons quand tu dois refuser, tu enseignes le respect et la résolution de problèmes.</p>
+        <h4>Citations du livre :</h4>
+        <ul>
+            <li>« Les enfants ont davantage besoin de modèles que de critiques. » <br>— Carolyn Coats, auteure (p. 118)</li>
+            <li>« Pour apprendre à dire oui, il vous faut suer, retrousser vos manches et plonger vos deux mains dans la vie jusqu’aux coudes. Il est si facile de dire non. » <br>— Jean Anouilh, dramaturge français (p. 117)</li>
+            <li>« Ma première réaction serait de dire non, mais parlons-en, nous pourrions peut-être nous entendre. » <br>— Paul Axtell, l'auteur (p. 120)</li>
+        </ul>
+        <div class="action-box">
+            <h4>Ce que ça veut dire pour toi :</h4>
+            <p>Matteo, toi qui es impatient, tu as peut-être tendance à rejeter une idée si elle ne te convient pas tout de suite. Mais le livre t'encourage à chercher le "oui" caché. Quand papa te propose quelque chose qui ne te plaît pas d'emblée, au lieu de dire "non" direct, essaie de voir s'il y a une condition qui rendrait ça possible. C'est comme quand tu étudies une partition : parfois, une petite modification peut rendre le morceau jouable et intéressant.</p>
+        </div>
+    </div>
+
+    <div class="theme-section section">
+        <h3>🌟 Le Rôle du Parent comme Modèle : L'exemple est la meilleure leçon !</h3>
+        <p>Tes parents t'influencent bien plus par leurs actions et leur façon de communiquer que par ce qu'ils te disent directement. Ce thème souligne l'importance pour les adultes d'être conscients de leurs propres comportements et de leurs paroles, car les enfants observent tout. C'est en montrant le bon exemple de communication, de respect et de gestion des erreurs que les adultes t'aident à grandir en confiance.</p>
+        <h4>Citations du livre :</h4>
+        <ul>
+            <li>« Ne vous inquiétez pas du fait que vos enfants ne vous écoutent jamais; inquiétez-vous plutôt du fait qu’ils vous observent continuellement. » <br>— Robert Fulghum, auteur américain (p. 20)</li>
+            <li>« La portée de nos actions est limitée par ce que nous n’avons pas remarqué et, parce que nous n’avons pas remarqué, nous pouvons faire très peu pour changer jusqu’à ce que nous remarquions à quel point n’avoir rien remarqué forme nos pensées et nos actions. » <br>— Daniel Jay Goleman, psychologue américain (p. 37)</li>
+            <li>« Tous ceux qui ont une influence sur les enfants devraient lire ce livre. Les parents, grands-parents, professeurs en bénéficieront tous et, plus important encore, les enfants qu’ils influencent. » <br>— Phil Eckman, Président et CEO Transamerica (p. 4-5)</li>
+        </ul>
+        <div class="action-box">
+            <h4>Ce que ça veut dire pour toi :</h4>
+            <p>Matteo, toi qui adores les documentaires, tu sais que l'histoire est pleine d'exemples de leaders et de figures qui ont influencé leur époque par leurs actions et leurs comportements, parfois bien plus que par leurs discours. En observant papa, tu peux voir comment il gère les situations difficiles. N'oublie pas que tes propres actions, même dans ton groupe de musique ou à l'école, sont aussi un modèle pour Felix. Sois le leader par l'exemple que tu voudrais voir.</p>
+        </div>
+    </div>
+
+  </div>
+
+  <div class="section">
+    <h2>3. Les 5 Leçons les Plus Importantes</h2>
+
+    <div class="lesson">
+      <div class="lesson-num">01</div>
+      <div>
+        <h3><b>Tes mots sont des bâtisseurs de mondes.</b></h3>
+        <p>Chaque phrase que tu prononces, Matteo, a le pouvoir de construire ou de détruire. Le livre insiste sur le fait que nos paroles ne sont pas juste des sons, mais des outils qui façonnent notre réalité et nos relations. Si tu dis souvent à Felix qu'il est "maladroit", il pourrait finir par le croire et agir en conséquence. Inversement, en le complimentant sur sa créativité avec les Lego, tu l'encourages à s'épanouir. C'est comme la science : une théorie bien formulée peut ouvrir de nouvelles perspectives, tandis qu'une hypothèse mal posée peut te limiter.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">02</div>
+      <div>
+        <h3><b>L'écoute est ton super-pouvoir caché.</b></h3>
+        <p>Dans un monde où tout va vite, l'impatience peut te faire rater des informations cruciales. Le livre nous apprend que l'écoute véritable, sans interruption ni jugement, est un don rare et précieux. Quand tu écoutes attentivement, tu offres un espace de sécurité à l'autre personne, qu'elle se sente comprise et valorisée. C'est une compétence essentielle, non seulement pour tes amis, mais aussi pour comprendre les nuances des cultures en géographie ou les subtilités d'un solo de guitare. Prends le temps de capter toutes les "notes" de la conversation.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">03</div>
+      <div>
+        <h3><b>Les erreurs ? Tes meilleurs professeurs !</b></h3>
+        <p>Toi qui es analytique, tu sais que même en science, les échecs expérimentaux sont des données. Ce livre dédramatise l'erreur en la présentant comme une étape naturelle de l'apprentissage. Il te pousse à assumer tes responsabilités sans culpabilité et à chercher la leçon cachée dans chaque "mauvais jugement". Michael Jordan, un grand joueur de basketball, a dit qu'il a réussi grâce à ses échecs. Pour ton autocontrôle, accepter que tu peux faire des erreurs et en tirer des leçons est une voie royale pour t'améliorer, comme répéter un passage difficile à la guitare jusqu'à la perfection.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">04</div>
+      <div>
+        <h3><b>Crée des "ententes" pour une harmonie durable.</b></h3>
+        <p>Les désaccords avec Felix ou les frustrations liées aux règles de la maison peuvent parfois te rendre impatient. Le livre propose d'établir des "ententes" claires à l'avance, comme des protocoles scientifiques pour gérer les situations problématiques. Ce n'est pas des règles rigides, mais des lignes directrices sur lesquelles tout le monde est d'accord. Discuter de ces ententes, de ce que chacun attend et de comment résoudre les soucis, transforme les relations. C'est comme établir les règles d'un jeu avant de commencer : ça évite les frustrations en plein milieu de la partie.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">05</div>
+      <div>
+        <h3><b>Ose le "Oui" : Explore les possibilités !</b></h3>
+        <p>Ton impatience peut parfois te faire rejeter rapidement des idées. Le livre t'encourage à freiner ton réflexe de dire "non" et à chercher activement des solutions positives. Plutôt que de dire "Non, je ne veux pas faire ça", essaie "Oui, si...". C'est une approche qui ouvre des portes, développe ta créativité et ta capacité d'adaptation. C'est comme quand tu cherches une solution à un problème en géographie : au lieu de t'arrêter au premier obstacle, tu explores d'autres pistes. Cela renforce aussi ta confiance, car tu passes du rôle de celui qui rejette à celui qui trouve des solutions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. Grand Quiz — 20 Questions</h2>
+
+    <div class="quiz-question">
+      <h3>Question 1 : Selon le livre, quelle est la principale raison pour laquelle il faut choisir ses mots sagement avec les enfants ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bravo ! Les mots ont un impact profond sur la façon dont les enfants se perçoivent et comprennent le monde.')">A. Les mots sont puissants et façonnent leur réalité.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas la raison principale. Les mots sont importants pour leur développement.')">B. Pour éviter qu'ils ne se fâchent.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas la raison principale. La discipline est importante, mais l\'impact des mots va au-delà.')">C. Pour qu'ils obéissent mieux aux règles.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 2 : La phrase "Je t'apprécie" diffère de "Je t'aime" en ce qu'elle exprime...</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'amour inconditionnel est exprimé par &quot;Je t\'aime&quot;. &quot;Je t\'apprécie&quot; va plus loin.')">A. L'amour inconditionnel pour l'enfant.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Excellent ! &quot;Je t\'apprécie&quot; montre que tu valorises la personne qu\'ils sont en train de devenir, leurs qualités et leurs efforts.')">B. L'admiration et le respect pour la personne qu'il est.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas la différence. L\'appréciation est plus spécifique aux qualités.')">C. L'approbation de ses actions récentes.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 3 : Quel est l'effet de dire à un enfant "Tu apprends rapidement" ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! Cela renforce leur identité en tant qu\'apprenant et réduit la frustration.')">A. Il développe une identité d'apprenant rapide et persévérant.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, au contraire. Ça l\'encourage à s\'engager.')">B. Il peut devenir paresseux et ne plus faire d'efforts.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le livre met en garde contre cela. Il faut se concentrer sur l\'apprentissage.')">C. Il se sentira plus intelligent que les autres.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 4 : Selon le livre, pourquoi est-il important d'utiliser "Merci" et "S'il vous plaît" avec les enfants ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est un bénéfice, mais pas la raison principale.')">A. Pour qu'ils se sentent obligés de faire la même chose.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas le but premier. C\'est plus fondamental.')">B. Pour qu'ils aient de meilleures notes à l'école.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'C\'est ça ! Ces mots enseignent le tact, la bienveillance et le respect, des aptitudes sociales essentielles.')">C. Pour développer leurs aptitudes sociales et le respect mutuel.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 5 : Qu'est-ce que l'expression "Que dirais-tu si on s'entendait pour...?" cherche à établir ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bien vu ! Cela permet de fixer des balises claires et de résoudre les problèmes ensemble.')">A. Des ententes de base et des lignes directrices familiales.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est une mauvaise interprétation. L\'objectif est la collaboration.')">B. Qui a le dernier mot dans la famille.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, même si ça peut arriver, ce n\'est pas le but de cette phrase.')">C. Une occasion de montrer qui est le plus intelligent.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 6 : Quand un enfant répond par un seul mot, comme "Bien" ou "Rien", quelle phrase le livre suggère-t-il d'utiliser pour l'encourager à parler ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est trop directif et ne favorise pas l\'ouverture.')">A. "Raconte-moi exactement ce qui s'est passé."</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Super ! &quot;Dis-m\'en davantage&quot; est une invitation ouverte à partager sans pression.')">B. "Dis-m'en davantage."</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, cela peut le faire se sentir interrogé, ce qui n\'aide pas.')">C. "Pourquoi ne veux-tu pas me parler ?"</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 7 : Selon le livre, quel est l'un des avantages de la lecture à voix haute avec les enfants ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas le principal avantage mis en avant.')">A. Cela les aide à dormir plus facilement.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! La lecture à voix haute ouvre leur esprit sur le monde et enrichit leur vocabulaire.')">B. Elle ouvre des horizons sur le monde et enrichit leur vocabulaire.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est une activité différente qui n\'est pas le focus ici.')">C. Cela les rend meilleurs aux jeux vidéo.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 8 : Pourquoi est-il crucial de reconnaître et d'admettre ses propres erreurs devant les enfants ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est l\'inverse. Ça leur montre qu\'ils peuvent l\'être.')">A. Pour qu'ils pensent que leurs parents sont parfaits.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! Cela leur apprend à assumer la responsabilité et à ne pas craindre l\'imperfection.')">B. Pour leur montrer que c'est normal de faire des erreurs et d'apprendre d'elles.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le livre met l\'accent sur l\'apprentissage et non le blâme.')">C. Pour qu'ils ne fassent pas les mêmes erreurs que nous.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 9 : Que permet la phrase "Je m'excuse" ou "Je suis désolé" dans une relation ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le but n\'est pas de montrer une faiblesse, mais de réparer.')">A. De montrer qu'on est faible et qu'on a tort.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bravo ! C\'est un signe de maturité qui aide à restaurer la confiance et le respect.')">B. De réparer les torts et de renforcer la confiance mutuelle.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le livre conseille de le faire rapidement, pas d\'attendre.')">C. D'attendre que l'autre oublie l'incident.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 10 : Pourquoi est-il important de demander l'avis des enfants avec "Qu'en penses-tu ?" ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est un signe d\'ouverture, pas de contrôle.')">A. Pour tester leurs connaissances.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! Cela leur donne un sentiment d\'influence, de valeur et développe leur capacité de décision.')">B. Pour les faire participer aux décisions et valoriser leur opinion.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas le but de cette question.')">C. Pour changer d'avis seulement s'ils ont une meilleure idée.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 11 : Le livre suggère de remplacer le "non" automatique par quoi ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, même si l\'honnêteté est bonne, il y a une meilleure approche.')">A. Un silence pour réfléchir.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! Chercher des alternatives montre l\'ouverture et le respect.')">B. Des options ou des conditions qui mènent à un "oui".</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est l\'inverse de ce que propose le livre.')">C. Une explication longue et complexe du refus.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 12 : Quel type de comportement des parents influence le plus les enfants, selon Robert Fulghum ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, même si c\'est important, ce n\'est pas ce que Fulghum souligne ici.')">A. Les paroles directes et les ordres.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'C\'est ça ! Les enfants sont de grands observateurs et imitent ce qu\'ils voient.')">B. Les actions et les comportements quotidiens observés.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, les cadeaux n\'ont pas la même portée que l\'exemple.')">C. Les récompenses et les cadeaux offerts.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 13 : Selon le livre, que se passe-t-il si un parent étiquette son enfant (ex: "tu es timide") ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! L\'enfant risque de s\'approprier cette étiquette et d\'agir en fonction d\'elle.')">A. L'enfant risque de croire à cette étiquette et de limiter son comportement.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le livre met en garde contre cela, même si l\'intention est bonne.')">B. L'enfant s'efforcera de prouver le contraire.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ça n\'a pas un tel effet.')">C. L'enfant oubliera rapidement ce commentaire.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 14 : Quand les conversations familiales sont-elles les plus enrichissantes et significatives ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le livre encourage la spontanéité, mais aussi la préparation.')">A. Quand elles sont planifiées et formelles.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Excellent ! Elles doivent être authentiques et basées sur un intérêt mutuel.')">B. Quand elles sont basées sur l'ouverture, la confiance et l'intérêt.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est une vision restrictive de la conversation.')">C. Quand elles ne portent que sur des sujets légers et agréables.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 15 : Quel est l'impact de l'écoute attentive sur les relations, selon Michael Nichols ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est l\'inverse. Écouter attentivement prend du temps.')">A. Elle rend les conversations plus rapides et efficaces.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'C\'est cela ! L\'écoute attentive construit des liens et une compréhension profonde.')">B. Elle permet aux gens de se sentir compris et crée des liens plus forts.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, l\'écoute va au-delà de la résolution de problèmes immédiats.')">C. Elle aide à résoudre tous les problèmes instantanément.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 16 : Pourquoi le livre met-il l'accent sur la patience lorsque les enfants apprennent ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, la patience est clé pour leur permettre d\'explorer.')">A. Pour qu'ils dépendent davantage de nous.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! La patience leur permet de découvrir par eux-mêmes et de développer leur autonomie.')">B. Pour leur permettre de développer leur identité et leur désir d'indépendance.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le temps n\'est pas la seule considération.')">C. Parce que nous avons beaucoup de temps libre.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 17 : Comment le livre suggère-t-il de gérer les problèmes dans une famille ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est l\'inverse. Il faut les aborder.')">A. En les ignorant et en espérant qu'ils disparaissent.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! Aborder les problèmes calmement et chercher des solutions ensemble est la meilleure approche.')">B. En les abordant directement avec un ton respectueux et en cherchant des solutions ensemble.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le livre conseille d\'éviter la confrontation directe et le blâme.')">C. En désignant la personne responsable et en la réprimandant.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 18 : Qu'est-ce qu'une "boîte à outils de réflexion" pour un parent, selon le livre ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'C\'est ça ! C\'est prendre du recul pour analyser et apprendre des expériences quotidiennes.')">A. Prendre du temps chaque jour pour réfléchir à ses conversations et à ses interactions.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas le but de cette &quot;boîte à outils&quot;.')">B. Un carnet où noter toutes les erreurs de l'enfant.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est un outil de développement personnel, pas un objet physique.')">C. Un cahier d'activités pour les enfants.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 19 : Comment Paul Axtell suggère-t-il de construire la confiance avec les enfants concernant leurs erreurs ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Exactement ! Inspirer confiance dès le départ et discuter des incidents plutôt que de punir.')">A. En inspirant la confiance au départ et en discutant des incidents sans exiger de "la regagner".</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le livre déconseille de ne pas leur donner la chance de se rattraper.')">B. En ne leur donnant pas de seconde chance s'ils brisent la confiance.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est l\'inverse de l\'approche proposée.')">C. En les soumettant à des règles très strictes pour éviter toute erreur.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 20 : Pourquoi est-il important de passer du temps de qualité avec chaque enfant, même sans parler ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le livre souligne que l\'attention est un cadeau, quelle que soit la forme.')">A. Pour les forcer à entamer une conversation importante.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui ! La simple présence communique l\'amour, l\'appréciation et renforce la relation.')">B. Pour leur communiquer qu'ils sont importants et appréciés, renforçant la relation.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, c\'est un bénéfice secondaire et non la raison principale.')">C. Pour que les parents puissent se détendre en leur présence.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div id="final-score"></div>
+  </div>
+
+  <div class="section">
+    <h2>5. Mots à Connaître</h2>
+    <ul>
+      <li><span class="vocab-word">Adage :</span> C'est une vieille phrase pleine de sagesse, comme un proverbe qui nous donne un conseil précieux sur la vie.</li>
+      <li><span class="vocab-word">Conscientisation :</span> C'est le fait de devenir super attentif et de remarquer des choses qu'on ne voyait pas avant. Comme quand tu remarques enfin ce petit détail sur ta guitare après l'avoir jouée des milliers de fois !</li>
+      <li><span class="vocab-word">Perspicace :</span> Quelqu'un qui est perspicace, c'est quelqu'un qui comprend très vite les choses, même les détails cachés, comme un détective.</li>
+      <li><span class="vocab-word">Condescendance :</span> C'est quand quelqu'un te parle en te traitant comme si tu étais plus jeune ou moins intelligent que lui, d'une manière un peu arrogante.</li>
+      <li><span class="vocab-word">Résilience :</span> C'est comme un super-pouvoir qui te permet de rebondir après une difficulté, de ne pas te laisser abattre par les problèmes et de continuer à avancer.</li>
+      <li><span class="vocab-word">Délivrer (des directives) :</span> Ça veut dire donner des instructions claires et précises, un peu comme un chef d'orchestre qui donne des indications à ses musiciens.</li>
+      <li><span class="vocab-word">Analogie :</span> C'est quand tu compares deux choses différentes pour expliquer l'une d'elles, comme quand on dit qu'une relation est comme une plante qu'il faut arroser.</li>
+      <li><span class="vocab-word">Prodigieux :</span> Quand quelque chose est prodigieux, ça veut dire que c'est extraordinaire, incroyable, immense ! Comme un prodige de la guitare, c'est quelqu'un d'incroyablement doué.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Défis de la Semaine</h2>
+    <div class="challenge">
+      <h3>Défi 1 : L'Observateur des Mots ! (Pour ton côté analytique)</h3>
+      <p>Cette semaine, deviens un scientifique des mots à la maison. Écoute attentivement les conversations autour de toi, et aussi les tiennes. Note (dans ta tête, ou sur un carnet secret) trois phrases "négatives" que tu entends ou dis souvent, et essaie de les transformer en phrases "positives" inspirées du livre. Par exemple, si tu as tendance à dire "C'est nul ce jeu !", essaie "Je pense que ce jeu pourrait être plus intéressant si...". C'est un exercice qui va t'aider à mieux gérer ton autocontrôle face à la frustration.</p>
+    </div>
+    <div class="challenge">
+      <h3>Défi 2 : Le Détective des Émotions de Felix ! (Pour ta relation avec ton frère)</h3>
+      <p>Felix est très social et créatif. Cette semaine, pratique l'écoute active avec lui. Quand il te parle de ses Lego, de ses blagues ou de ses échecs, essaie de ne pas l'interrompre, de ne pas donner de solution immédiate. Dis-lui plutôt "Dis-m'en davantage" ou "Qu'est-ce que tu ressens à ce propos ?". L'objectif n'est pas de résoudre son problème, mais de lui montrer que tu es là et que tu l'écoutes vraiment. Observe sa réaction : se sent-il plus compris ? C'est comme quand tu apprends une nouvelle chanson : tu dois d'abord écouter toutes les nuances pour la comprendre vraiment.</p>
+    </div>
+    <div class="challenge">
+      <h3>Défi 3 : L'Architecte des Ententes ! (Pour mieux gérer l'impatience)</h3>
+      <p>Pense à une situation où tu as été impatient ou où tu as eu un désaccord avec Felix ou un ami. Cette semaine, propose de créer une "entente" simple pour une situation future. Par exemple, "Que dirais-tu si on s'entendait pour... laisser l'autre finir sa phrase avant de donner son avis pendant nos discussions sur un documentaire ?" ou "Que dirais-tu si on s'entendait pour... alterner les morceaux de guitare qu'on joue quand on est ensemble ?". L'idée est de poser les bases d'une collaboration plus fluide, comme une bonne partition qui est claire pour tous les musiciens.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. On en Parle ?</h2>
+    <p>Ces questions sont faites pour discuter avec papa, ou même Felix. Il n'y a pas de bonnes ou de mauvaises réponses, juste des pistes pour mieux se comprendre !</p>
+    <ul>
+      <li>1. Après avoir lu ces idées, penses-tu que les mots qu'on utilise à la maison (même les petites phrases du quotidien) ont un impact important sur la façon dont nous nous sentons et dont nous agissons ? Donne un exemple récent.</li>
+      <li>2. Le livre parle beaucoup d'écouter sans interrompre. Est-ce que tu penses que c'est facile ou difficile pour nous à la maison, et pourquoi ? Qu'est-ce qui nous empêcherait parfois de bien nous écouter les uns les autres ?</li>
+      <li>3. Si on devait choisir une seule "entente" importante à mettre en place à la maison pour améliorer notre communication et diminuer les chamailleries, quelle serait-elle et pourquoi ?</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .header h1 {
+      font-size: 2em;
+      color: #667eea;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .nav-link {
+      display: inline-block;
+      padding: 10px 16px;
+      background: white;
+      color: #667eea;
+      text-decoration: none;
+      border: 2px solid #667eea;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .card-title {
+      font-size: 0.9em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #667eea;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #f0f1ff;
+    }
+
+    .stat-large {
+      font-size: 3em;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.9em;
+      color: #6b7280;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #10b981;
+      transition: width 0.3s;
+    }
+
+    .task-item {
+      padding: 12px;
+      background: #f9fafb;
+      border-left: 3px solid #667eea;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .task-checkbox {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .task-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .task-title {
+      font-weight: 600;
+      color: #1f2937;
+      font-size: 0.95em;
+      word-break: break-word;
+    }
+
+    .task-meta {
+      font-size: 0.8em;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    .task-item.completed {
+      opacity: 0.6;
+      background: #f0fdf4;
+      border-left-color: #10b981;
+    }
+
+    .task-item.completed .task-title {
+      text-decoration: line-through;
+      color: #6b7280;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #f0f1ff;
+      color: #667eea;
+      border-radius: 3px;
+      font-size: 0.75em;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    .badge.area-work { background: #dbeafe; color: #1e40af; }
+    .badge.area-parenting { background: #fce7f3; color: #831843; }
+    .badge.area-health { background: #dcfce7; color: #166534; }
+    .badge.area-relationships { background: #fef3c7; color: #92400e; }
+    .badge.area-personal { background: #f3e8ff; color: #5b21b6; }
+    .badge.area-home { background: #fed7aa; color: #92400e; }
+
+    .empty-state {
+      text-align: center;
+      padding: 32px 16px;
+      color: #9ca3af;
+    }
+
+    .empty-state p {
+      margin-bottom: 16px;
+    }
+
+    .habit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .habit-item {
+      background: #f9fafb;
+      padding: 12px;
+      border-radius: 6px;
+      text-align: center;
+      border: 2px solid #e5e7eb;
+      transition: all 0.2s;
+    }
+
+    .habit-item.completed {
+      background: #f0fdf4;
+      border-color: #10b981;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .habit-name {
+      font-size: 0.8em;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: inherit;
+    }
+
+    .habit-icon {
+      font-size: 1.5em;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .week-item {
+      background: #f9fafb;
+      padding: 16px;
+      border-radius: 6px;
+      border-left: 4px solid #667eea;
+      text-align: center;
+    }
+
+    .week-number {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .week-label {
+      font-size: 0.8em;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .overdue-warning {
+      background: #fef2f2;
+      border-left: 4px solid #dc2626;
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      color: #991b1b;
+    }
+
+    .no-overdue {
+      color: #10b981;
+      font-weight: 600;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 16px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin-top: 12px;
+    }
+
+    .button:hover {
+      background: #5568d3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1>Dashboard</h1>
+        <p style="color: #6b7280; font-size: 0.95em; margin-top: 4px;" id="dateDisplay"></p>
+      </div>
+      <div class="header-nav">
+        <a href="index.html" class="nav-link">← Back to Hub</a>
+        <a href="weekly-review.html" class="nav-link">📊 Weekly Review</a>
+      </div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div class="grid">
+      <div class="card full-width">
+        <div class="card-title">🎯 Today's Focus (3 Tasks)</div>
+        <div id="todayTasksContainer"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">✓ Today's Habits</div>
+        <div id="habitsContainer"></div>
+        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e7eb;">
+          <div style="font-size: 0.9em; color: #6b7280;">Daily Score</div>
+          <div class="stat-large" id="habitScore">0%</div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="habitProgressBar" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">⚠️ Overdue & Due Today</div>
+        <div id="overdueContainer"></div>
+      </div>
+
+      <div class="card full-width">
+        <div class="card-title">📈 This Week's Progress</div>
+        <div id="weekProgressContainer"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📋 Active Tasks</div>
+        <div class="stat-large" id="activeTasks">0</div>
+        <div class="stat-label">total in queue</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">✅ Completed This Week</div>
+        <div class="stat-large" id="completedThisWeek">0</div>
+        <div class="stat-label">tasks finished</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📚 Knowledge Base</div>
+        <div class="stat-large" id="kbEntries">0</div>
+        <div class="stat-label">entries collected</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📖 Book Summarizer (Sage)</div>
+        <p style="font-size: 0.9em; color: #6b7280; margin-bottom: 16px; line-height: 1.5;">
+          Drop a PDF book into the input folder to start the AI summarization process. Sage will generate a comprehensive summary automatically.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="PDF Book Input" class="button" style="margin-top: 0; text-align: center; background: #f0f1ff; color: #667eea; border: 2px dashed #667eea;">
+            📥 Open Input Folder
+          </a>
+          <a href="PDF Book Output" class="button" style="margin-top: 0; text-align: center; background: white; color: #10b981; border: 1px solid #10b981;">
+            📚 View Summaries
+          </a>
+        </div>
+      </div>
+
+      <div class="card full-width">
+        <div class="card-title">🔥 Area Status</div>
+        <div id="areaStatusContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function formatDate(date) {
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
+    }
+
+    function getWeekStart(date = new Date()) {
+      const d = new Date(date);
+      const day = d.getDay();
+      const diff = d.getDate() - day;
+      return new Date(d.setDate(diff));
+    }
+
+    function loadDashboard() {
+      // Set date
+      document.getElementById('dateDisplay').textContent = formatDate(new Date());
+
+      // Load data
+      const todaySelected = JSON.parse(localStorage.getItem('gtd_today_selected') || '[]');
+      const allTasks = JSON.parse(localStorage.getItem('gtd_tasks') || '[]');
+      const habits = JSON.parse(localStorage.getItem('habits_tracker') || '{}');
+      const kbEntries = JSON.parse(localStorage.getItem('knowledge_base') || '[]');
+
+      // Today's tasks
+      loadTodayTasks(todaySelected, allTasks);
+
+      // Habits
+      loadHabits(habits);
+
+      // Overdue
+      loadOverdue(allTasks);
+
+      // Week progress
+      loadWeekProgress(allTasks);
+
+      // Stats
+      document.getElementById('activeTasks').textContent = allTasks.filter(t => t.status !== 'completed').length;
+      document.getElementById('completedThisWeek').textContent = getCompletedThisWeek(allTasks);
+      document.getElementById('kbEntries').textContent = kbEntries.length;
+
+      // Area status
+      loadAreaStatus(allTasks);
+    }
+
+    function loadTodayTasks(selected, allTasks) {
+      const container = document.getElementById('todayTasksContainer');
+
+      if (selected.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <p>No tasks selected for today yet</p>
+            <a href="today-focus.html" class="button">Pick Your 3 Tasks</a>
+          </div>
+        `;
+        return;
+      }
+
+      const tasks = selected.map(id => allTasks.find(t => t.id === id)).filter(t => t);
+
+      let html = '';
+      tasks.forEach(task => {
+        const isCompleted = task.status === 'completed';
+        html += `
+          <div class="task-item ${isCompleted ? 'completed' : ''}">
+            <input type="checkbox" class="task-checkbox" ${isCompleted ? 'checked' : ''}
+              onchange="toggleTaskStatus('${task.id}', this.checked)">
+            <div class="task-text">
+              <div class="task-title">${task.title}</div>
+              <div class="task-meta">
+                ${task.area ? `<span class="badge area-${task.area.toLowerCase().replace(/[^a-z]/g, '')}">${task.area}</span>` : ''}
+                ${task.dueDate ? `Due: ${formatShortDate(task.dueDate)}` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function loadHabits(habits) {
+      const container = document.getElementById('habitsContainer');
+      const today = new Date().toISOString().split('T')[0];
+
+      const habitGroups = {
+        'Santé': ['Sommeil', 'Protéines/Bouffe', 'Consommation eau', 'Soleil matinal', 'Marche midi'],
+        'Relations': ['QT Friends', 'QT Felix', 'QT Matteo', 'QT Girlfriend'],
+        'Entrainement': ['Étirements', 'Cardio', 'Weightlifting'],
+        'GTD': ['Plan', 'Big P', 'Big W'],
+        'Mental': ['Méditation', 'Journal', 'Lecture'],
+        'Autres': ['Nouvelle recette', 'Pratique guitare ou piano', 'Rangement-menage']
+      };
+
+      const essentialHabits = ['Sommeil', 'Méditation', 'Plan', 'Journal', 'Lecture', 'Étirements', 'Cardio', 'Weightlifting', 'Protéines/Bouffe', 'Consommation eau', 'Soleil matinal', 'Marche midi', 'Big P', 'Big W', 'QT Friends', 'QT Matteo', 'QT Felix', 'QT Girlfriend'];
+      const optionalHabits = ['Nouvelle recette', 'Pratique guitare ou piano', 'Rangement-menage'];
+      const uniqueHabits = [...essentialHabits, ...optionalHabits];
+
+      const habitScores = {};
+      const pointPerEssential = 100 / essentialHabits.length;
+      essentialHabits.forEach(habit => { habitScores[habit] = pointPerEssential; });
+      optionalHabits.forEach(habit => { habitScores[habit] = 0; });
+
+      let html = '<div class="habit-grid">';
+      let score = 0;
+      let completed = 0;
+
+      uniqueHabits.forEach((habit, index) => {
+        const isCompleted = localStorage.getItem(`${today}-habit-${index}`) === 'true';
+        if (isCompleted) {
+          completed++;
+          score += habitScores[habit];
+        }
+
+        html += `
+          <div class="habit-item ${isCompleted ? 'completed' : ''}">
+            <div class="habit-icon">${isCompleted ? '✓' : '◯'}</div>
+            <div class="habit-name">${habit}</div>
+          </div>
+        `;
+      });
+      html += '</div>';
+
+      container.innerHTML = html;
+
+      // Update habit score - same calculation as tracker
+      const percentage = Math.round((score / 100) * 100);
+      document.getElementById('habitScore').textContent = `${percentage}%`;
+      document.getElementById('habitProgressBar').style.width = `${percentage}%`;
+    }
+
+    function loadOverdue(allTasks) {
+      const container = document.getElementById('overdueContainer');
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const overdue = allTasks.filter(t => {
+        if (t.status === 'completed') return false;
+        if (!t.dueDate) return false;
+        const dueDate = new Date(t.dueDate);
+        dueDate.setHours(0, 0, 0, 0);
+        return dueDate <= today;
+      });
+
+      if (overdue.length === 0) {
+        container.innerHTML = '<div class="no-overdue">✓ All caught up!</div>';
+        return;
+      }
+
+      let html = `<div class="overdue-warning">⚠️ ${overdue.length} overdue</div>`;
+      overdue.slice(0, 5).forEach(task => {
+        html += `
+          <div class="task-item" style="border-left-color: #dc2626;">
+            <div class="task-text">
+              <div class="task-title">${task.title}</div>
+              <div class="task-meta">Was due: ${formatShortDate(task.dueDate)}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function loadWeekProgress(allTasks) {
+      const container = document.getElementById('weekProgressContainer');
+      const weekStart = getWeekStart();
+
+      const completedThisWeek = allTasks.filter(t => {
+        if (t.status !== 'completed') return false;
+        if (!t.completedDate) return false;
+        const completed = new Date(t.completedDate);
+        return completed >= weekStart;
+      }).length;
+
+      const dueThisWeek = allTasks.filter(t => {
+        if (t.status === 'completed') return false;
+        if (!t.dueDate) return false;
+        const due = new Date(t.dueDate);
+        const weekEnd = new Date(weekStart);
+        weekEnd.setDate(weekEnd.getDate() + 7);
+        return due >= weekStart && due < weekEnd;
+      }).length;
+
+      const html = `
+        <div class="week-grid">
+          <div class="week-item">
+            <div class="week-number">${completedThisWeek}</div>
+            <div class="week-label">Completed this week</div>
+          </div>
+          <div class="week-item">
+            <div class="week-number">${dueThisWeek}</div>
+            <div class="week-label">Due this week</div>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+    }
+
+    function loadAreaStatus(allTasks) {
+      const container = document.getElementById('areaStatusContainer');
+      const areas = ['Work', 'Parenting', 'Health', 'Relationships', 'Personal Growth', 'Home & Life'];
+
+      let html = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">';
+
+      areas.forEach(area => {
+        const tasks = allTasks.filter(t => t.area === area && t.status !== 'completed');
+        const completed = allTasks.filter(t => t.area === area && t.status === 'completed').length;
+
+        html += `
+          <div style="background: #f9fafb; padding: 16px; border-radius: 6px; border-left: 4px solid #667eea;">
+            <div style="font-weight: 600; color: #1f2937; margin-bottom: 8px;">${area}</div>
+            <div style="font-size: 1.5em; color: #667eea; font-weight: 700;">${tasks.length}</div>
+            <div style="font-size: 0.8em; color: #9ca3af;">active · ${completed} completed</div>
+          </div>
+        `;
+      });
+
+      html += '</div>';
+      container.innerHTML = html;
+    }
+
+    function getCompletedThisWeek(allTasks) {
+      const weekStart = getWeekStart();
+      return allTasks.filter(t => {
+        if (t.status !== 'completed') return false;
+        if (!t.completedDate) return false;
+        const completed = new Date(t.completedDate);
+        return completed >= weekStart;
+      }).length;
+    }
+
+    function toggleTaskStatus(taskId, isCompleted) {
+      const allTasks = JSON.parse(localStorage.getItem('gtd_tasks') || '[]');
+      const task = allTasks.find(t => t.id === taskId);
+
+      if (task) {
+        task.status = isCompleted ? 'completed' : 'active';
+        task.completedDate = isCompleted ? new Date().toISOString() : null;
+        localStorage.setItem('gtd_tasks', JSON.stringify(allTasks));
+        loadDashboard();
+      }
+    }
+
+    function formatShortDate(dateString) {
+      const date = new Date(dateString);
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+
+      if (date.toDateString() === today.toDateString()) {
+        return 'Today';
+      } else if (date.toDateString() === tomorrow.toDateString()) {
+        return 'Tomorrow';
+      } else {
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      }
+    }
+
+    // Initialize
+    loadDashboard();
+
+    // Refresh every 10 seconds to stay in sync
+    setInterval(loadDashboard, 10000);
+  </script>
+</body>
+</html>

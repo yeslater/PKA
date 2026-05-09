@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks & Projects</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 20px;
+    }
+
+    .header a {
+      font-size: 0.9em;
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #667eea;
+      flex: 1;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #e5e7eb;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 12px 20px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      font-size: 0.95em;
+      font-weight: 600;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      color: #667eea;
+      border-bottom-color: #667eea;
+    }
+
+    .tab-btn:hover {
+      color: #667eea;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Items */
+    .items-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .item {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .item:hover {
+      border-color: #667eea;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+    }
+
+    .item.done {
+      background: #ecfdf5;
+      border-color: #10b981;
+      opacity: 0.8;
+    }
+
+    .item.blocked {
+      background: #fef3c7;
+      border-color: #f59e0b;
+    }
+
+    .item-content {
+      flex: 1;
+    }
+
+    .item-title {
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 8px;
+    }
+
+    .item-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      font-size: 0.85em;
+    }
+
+    .badge {
+      font-size: 0.8em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: #667eea;
+      color: white;
+    }
+
+    .badge.Work { background: #3b82f6; }
+    .badge.Health { background: #10b981; }
+    .badge.Parenting { background: #a855f7; }
+    .badge.Relationships { background: #f43f5e; }
+    .badge.Growth { background: #f59e0b; }
+
+    .due-date {
+      color: #6b7280;
+    }
+
+    .due-date.soon {
+      color: #dc2626;
+      font-weight: 600;
+    }
+
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      flex-shrink: 0;
+      accent-color: #667eea;
+    }
+
+    /* Projects */
+    .project-item {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+
+    .project-item:hover {
+      border-color: #667eea;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+    }
+
+    .project-title {
+      font-weight: 700;
+      font-size: 1.05em;
+      color: #1f2937;
+      margin-bottom: 8px;
+    }
+
+    .project-outcome {
+      font-size: 0.9em;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #667eea;
+      transition: width 0.3s;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85em;
+      color: #6b7280;
+    }
+
+    .area-group {
+      margin-bottom: 24px;
+    }
+
+    .area-title {
+      font-size: 0.9em;
+      font-weight: 700;
+      color: #667eea;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #667eea;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #9ca3af;
+    }
+
+    .empty-state h3 {
+      font-size: 1.1em;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #5568d3;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .stat-label {
+      font-size: 0.8em;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 40px 20px;
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 8px;
+      padding: 32px;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .modal-header {
+      font-size: 1.5em;
+      color: #667eea;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #1f2937;
+      font-size: 0.9em;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.95em;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      padding: 12px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: #5568d3;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 12px;
+      background: #e5e7eb;
+      color: #1f2937;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-secondary:hover {
+      background: #d1d5db;
+    }
+
+    .btn-small {
+      padding: 6px 12px;
+      font-size: 0.85em;
+    }
+
+    .project-option {
+      padding: 12px 16px;
+      background: #f9fafb;
+      border-bottom: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-option:last-child {
+      border-bottom: none;
+    }
+
+    .project-option:hover {
+      background: #f0f1ff;
+    }
+
+    .project-option-title {
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .project-option-meta {
+      font-size: 0.8em;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 768px) {
+      .tabs {
+        gap: 8px;
+      }
+
+      .tab-btn {
+        padding: 10px 16px;
+        font-size: 0.85em;
+      }
+
+      .item {
+        flex-direction: column;
+      }
+
+      .item-meta {
+        font-size: 0.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="index.html">← Back to Hub</a>
+      <h1>Tasks & Projects</h1>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('active')">Active Tasks</button>
+      <button class="tab-btn" onclick="switchTab('projects')">Projects</button>
+      <button class="tab-btn" onclick="switchTab('waiting')">Waiting For</button>
+      <button class="tab-btn" onclick="switchTab('someday')">Someday</button>
+      <button class="tab-btn" onclick="switchTab('done')">Done</button>
+    </div>
+
+    <!-- Active Tasks -->
+    <div id="active" class="tab-content active">
+      <div class="stats" id="activeStats"></div>
+      <div class="items-container" id="activeContainer"></div>
+    </div>
+
+    <!-- Projects -->
+    <div id="projects" class="tab-content">
+      <div class="quick-actions">
+        <button class="btn" onclick="openCreateProjectModal()">+ Create Project</button>
+      </div>
+      <div class="stats" id="projectStats"></div>
+      <div id="projectsContainer"></div>
+    </div>
+
+    <!-- Waiting For -->
+    <div id="waiting" class="tab-content">
+      <div class="stats" id="waitingStats"></div>
+      <div class="items-container" id="waitingContainer"></div>
+    </div>
+
+    <!-- Someday -->
+    <div id="someday" class="tab-content">
+      <div class="items-container" id="somedayContainer"></div>
+    </div>
+
+    <!-- Done -->
+    <div id="done" class="tab-content">
+      <div class="items-container" id="doneContainer"></div>
+    </div>
+  </div>
+
+  <!-- Create Project Modal -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <div class="modal-header">Create New Project</div>
+
+      <form onsubmit="saveProject(event)">
+        <div class="form-group">
+          <label class="form-label">Project Title *</label>
+          <input type="text" id="projectTitle" class="form-input" placeholder="e.g., Rebuild kitchen, AI mastery, Family vacation" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Desired Outcome</label>
+          <textarea id="projectOutcome" class="form-textarea" placeholder="What does success look like?"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Due Date</label>
+          <input type="date" id="projectDueDate" class="form-input">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Create Project</button>
+          <button type="button" class="btn-secondary" onclick="closeProjectModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Assign Task to Project Modal -->
+  <div class="modal" id="assignProjectModal">
+    <div class="modal-content">
+      <div class="modal-header">Assign to Project</div>
+
+      <div style="margin-bottom: 20px;">
+        <p style="color: #6b7280; margin-bottom: 16px;" id="assignTaskTitle"></p>
+        <div style="max-height: 300px; overflow-y: auto; border: 1px solid #e5e7eb; border-radius: 4px;">
+          <div id="projectsList" style="display: flex; flex-direction: column;"></div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" onclick="closeAssignModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TASKS_KEY = 'gtd_tasks';
+    const PROJECTS_KEY = 'gtd_projects';
+
+    // Initialize
+    window.addEventListener('load', () => {
+      renderAllTabs();
+    });
+
+    function switchTab(tabName) {
+      // Hide all
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+      // Show selected
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+
+      // Render
+      renderTab(tabName);
+    }
+
+    function renderAllTabs() {
+      renderTab('active');
+      renderTab('projects');
+      renderTab('waiting');
+      renderTab('someday');
+      renderTab('done');
+    }
+
+    function renderTab(tabName) {
+      const tasks = JSON.parse(localStorage.getItem(TASKS_KEY) || '[]');
+      const projects = JSON.parse(localStorage.getItem(PROJECTS_KEY) || '[]');
+
+      if (tabName === 'active') {
+        renderActiveTasks(tasks);
+      } else if (tabName === 'projects') {
+        renderProjects(projects);
+      } else if (tabName === 'waiting') {
+        renderWaitingFor(tasks);
+      } else if (tabName === 'someday') {
+        renderSomeday(tasks);
+      } else if (tabName === 'done') {
+        renderDone(tasks);
+      }
+    }
+
+    function renderActiveTasks(tasks) {
+      const active = tasks.filter(t => t.status === 'active');
+      const areas = ['Work', 'Health', 'Parenting', 'Relationships', 'Growth'];
+
+      // Stats
+      const statsHtml = `
+        <div class="stat-card">
+          <div class="stat-number">${active.length}</div>
+          <div class="stat-label">Active Tasks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">${active.filter(t => isOverdue(t.dueDate)).length}</div>
+          <div class="stat-label">Overdue</div>
+        </div>
+      `;
+      document.getElementById('activeStats').innerHTML = statsHtml;
+
+      // Group by area
+      let html = '';
+      areas.forEach(area => {
+        const areaItems = active.filter(t => t.area === area).sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+        if (areaItems.length > 0) {
+          html += `<div class="area-group">
+            <div class="area-title">${area}</div>
+            ${areaItems.map(task => renderTaskItem(task)).join('')}
+          </div>`;
+        }
+      });
+
+      if (active.length === 0) {
+        html = '<div class="empty-state"><h3>No active tasks</h3><p>Process inbox items to create tasks</p></div>';
+      }
+
+      document.getElementById('activeContainer').innerHTML = html;
+    }
+
+    function renderProjects(projects) {
+      const active = projects.filter(p => p.status === 'active');
+
+      // Stats
+      const completed = projects.filter(p => p.status === 'completed').length;
+      const statsHtml = `
+        <div class="stat-card">
+          <div class="stat-number">${active.length}</div>
+          <div class="stat-label">Active Projects</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">${completed}</div>
+          <div class="stat-label">Completed</div>
+        </div>
+      `;
+      document.getElementById('projectStats').innerHTML = statsHtml;
+
+      if (active.length === 0) {
+        document.getElementById('projectsContainer').innerHTML = '<div class="empty-state"><h3>No active projects</h3><p>Create a project from the inbox</p></div>';
+        return;
+      }
+
+      const html = active.map(project => {
+        const progress = project.tasksCount > 0 ? (project.tasksCompleted / project.tasksCount) * 100 : 0;
+        return `
+          <div class="project-item">
+            <div class="project-title">${escapeHtml(project.title)}</div>
+            <div class="project-outcome">${escapeHtml(project.outcome)}</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: ${progress}%"></div></div>
+            <div class="project-meta">
+              <span>${project.tasksCompleted} of ${project.tasksCount} tasks complete</span>
+              <span class="due-date">${formatDate(project.dueDate)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('projectsContainer').innerHTML = html;
+    }
+
+    function renderWaitingFor(tasks) {
+      const waiting = tasks.filter(t => t.status === 'blocked');
+
+      // Stats
+      const statsHtml = `
+        <div class="stat-card">
+          <div class="stat-number">${waiting.length}</div>
+          <div class="stat-label">Items Waiting</div>
+        </div>
+      `;
+      document.getElementById('waitingStats').innerHTML = statsHtml;
+
+      if (waiting.length === 0) {
+        document.getElementById('waitingContainer').innerHTML = '<div class="empty-state"><h3>Nothing waiting</h3><p>You\'re not blocked on anything</p></div>';
+        return;
+      }
+
+      const html = waiting.map(task => `
+        <div class="item blocked">
+          <div class="item-content">
+            <div class="item-title">${escapeHtml(task.title)}</div>
+            <div class="item-meta">
+              <span class="badge ${task.area}">${task.area}</span>
+              <span>Waiting on: <strong>${escapeHtml(task.blockedOnWho || 'Unknown')}</strong></span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('waitingContainer').innerHTML = html;
+    }
+
+    function renderSomeday(tasks) {
+      const someday = tasks.filter(t => t.status === 'someday');
+
+      if (someday.length === 0) {
+        document.getElementById('somedayContainer').innerHTML = '<div class="empty-state"><h3>No someday items</h3></div>';
+        return;
+      }
+
+      const html = someday.map(task => `
+        <div class="item">
+          <div class="item-content">
+            <div class="item-title">${escapeHtml(task.title)}</div>
+            <div class="item-meta">
+              <span class="badge ${task.area}">${task.area}</span>
+              <span class="due-date">Captured: ${formatDate(task.created)}</span>
+            </div>
+          </div>
+          <button class="btn" onclick="activateTask('${task.id}')" style="flex-shrink: 0;">Activate</button>
+        </div>
+      `).join('');
+
+      document.getElementById('somedayContainer').innerHTML = html;
+    }
+
+    function renderDone(tasks) {
+      const done = tasks.filter(t => t.status === 'done').sort((a, b) => new Date(b.completedDate) - new Date(a.completedDate));
+
+      if (done.length === 0) {
+        document.getElementById('doneContainer').innerHTML = '<div class="empty-state"><h3>No completed tasks yet</h3></div>';
+        return;
+      }
+
+      const html = done.map(task => `
+        <div class="item done">
+          <div class="item-content">
+            <div class="item-title">${escapeHtml(task.title)}</div>
+            <div class="item-meta">
+              <span class="badge ${task.area}">${task.area}</span>
+              <span>✓ Done: ${formatDate(task.completedDate)}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('doneContainer').innerHTML = html;
+    }
+
+    function renderTaskItem(task) {
+      const isOverdue = new Date(task.dueDate) < new Date() && task.status !== 'done';
+      const projects = JSON.parse(localStorage.getItem(PROJECTS_KEY) || '[]');
+      const projectName = task.projectId ? projects.find(p => p.id === task.projectId)?.title : null;
+
+      return `
+        <div class="item">
+          <div class="item-content">
+            <div class="item-title">${escapeHtml(task.title)}</div>
+            <div class="item-meta">
+              <span class="badge ${task.area}">${task.area}</span>
+              ${projectName ? `<span style="font-size: 0.75em; background: #f0f1ff; color: #667eea; padding: 4px 8px; border-radius: 3px; font-weight: 600;">📌 ${escapeHtml(projectName)}</span>` : ''}
+              <span class="due-date ${isOverdue ? 'soon' : ''}">${formatDate(task.dueDate)}</span>
+              <button onclick="assignTaskToProject('${task.id}')" class="btn btn-small" style="padding: 4px 8px; font-size: 0.8em;">Assign Project</button>
+            </div>
+          </div>
+          <input type="checkbox" class="checkbox" onchange="completeTask('${task.id}')">
+        </div>
+      `;
+    }
+
+    function completeTask(taskId) {
+      const tasks = JSON.parse(localStorage.getItem(TASKS_KEY) || '[]');
+      const task = tasks.find(t => t.id === taskId);
+      if (task) {
+        task.status = 'done';
+        task.completedDate = new Date().toISOString();
+        localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
+        updateProjectTaskCounts();
+        renderAllTabs();
+      }
+    }
+
+    function activateTask(taskId) {
+      const tasks = JSON.parse(localStorage.getItem(TASKS_KEY) || '[]');
+      const task = tasks.find(t => t.id === taskId);
+      if (task) {
+        task.status = 'active';
+        localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
+        renderAllTabs();
+      }
+    }
+
+    function isOverdue(dateString) {
+      return new Date(dateString) < new Date();
+    }
+
+    function formatDate(dateString) {
+      if (!dateString) return 'No date';
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Project creation
+    function openCreateProjectModal() {
+      document.getElementById('projectTitle').value = '';
+      document.getElementById('projectOutcome').value = '';
+      document.getElementById('projectDueDate').value = '';
+      document.getElementById('projectModal').classList.add('active');
+    }
+
+    function closeProjectModal() {
+      document.getElementById('projectModal').classList.remove('active');
+    }
+
+    function saveProject(e) {
+      e.preventDefault();
+
+      const title = document.getElementById('projectTitle').value.trim();
+      const outcome = document.getElementById('projectOutcome').value.trim();
+      const dueDate = document.getElementById('projectDueDate').value;
+
+      if (!title) return;
+
+      const project = {
+        id: Date.now().toString(),
+        title: title,
+        outcome: outcome,
+        dueDate: dueDate,
+        status: 'active',
+        tasksCount: 0,
+        tasksCompleted: 0,
+        created: new Date().toISOString()
+      };
+
+      let projects = JSON.parse(localStorage.getItem(PROJECTS_KEY) || '[]');
+      projects.push(project);
+      localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+
+      closeProjectModal();
+      renderAllTabs();
+    }
+
+    // Assign task to project
+    function assignTaskToProject(taskId) {
+      const tasks = JSON.parse(localStorage.getItem(TASKS_KEY) || '[]');
+      const projects = JSON.parse(localStorage.getItem(PROJECTS_KEY) || '[]');
+
+      const task = tasks.find(t => t.id === taskId);
+      if (!task) return;
+
+      const activeProjects = projects.filter(p => p.status === 'active');
+
+      if (activeProjects.length === 0) {
+        alert('Create a project first before assigning tasks');
+        return;
+      }
+
+      // Show modal with project list
+      document.getElementById('assignTaskTitle').textContent = `Task: ${escapeHtml(task.title)}`;
+
+      const projectsHtml = activeProjects.map(project => {
+        const isSelected = task.projectId === project.id;
+        return `
+          <div class="project-option ${isSelected ? 'selected' : ''}" onclick="selectProjectForTask('${taskId}', '${project.id}')">
+            <div>
+              <div class="project-option-title">${escapeHtml(project.title)}</div>
+              <div class="project-option-meta">${project.tasksCount} tasks</div>
+            </div>
+            ${isSelected ? '<span style="color: #667eea; font-weight: 700;">✓</span>' : ''}
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('projectsList').innerHTML = projectsHtml;
+      document.getElementById('assignProjectModal').classList.add('active');
+    }
+
+    function selectProjectForTask(taskId, projectId) {
+      const tasks = JSON.parse(localStorage.getItem(TASKS_KEY) || '[]');
+      const task = tasks.find(t => t.id === taskId);
+
+      if (task) {
+        task.projectId = projectId;
+        localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
+        updateProjectTaskCounts();
+        closeAssignModal();
+        renderAllTabs();
+      }
+    }
+
+    function closeAssignModal() {
+      document.getElementById('assignProjectModal').classList.remove('active');
+    }
+
+    function updateProjectTaskCounts() {
+      const tasks = JSON.parse(localStorage.getItem(TASKS_KEY) || '[]');
+      const projects = JSON.parse(localStorage.getItem(PROJECTS_KEY) || '[]');
+
+      projects.forEach(project => {
+        const projectTasks = tasks.filter(t => t.projectId === project.id);
+        project.tasksCount = projectTasks.length;
+        project.tasksCompleted = projectTasks.filter(t => t.status === 'done').length;
+      });
+
+      localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+    }
+
+    // Close modals on background click
+    document.getElementById('projectModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('projectModal')) {
+        closeProjectModal();
+      }
+    });
+
+    document.getElementById('assignProjectModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('assignProjectModal')) {
+        closeAssignModal();
+      }
+    });
+  </script>
+</body>
+</html>

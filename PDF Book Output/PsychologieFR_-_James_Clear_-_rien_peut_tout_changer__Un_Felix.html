@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résumé du Livre</title>
+<style>
+:root { --bg: #121212; --surface: #1e1e2e; --primary: #ff4757; --primary-hover: #ff6b81; --text: #f1f2f6; --text-muted: #ced6e0; --accent: #3742fa; --success: #2ed573; --error: #ff4757; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+h1, h2, h3 { color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.container { max-width: 800px; margin: auto; }
+.header { text-align: center; margin-bottom: 40px; background: linear-gradient(135deg, var(--surface), #2d3436); padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--primary); }
+.header h1 { font-size: 2.5em; margin: 0; color: white; }
+.section { margin-bottom: 40px; background: var(--surface); padding: 25px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+details { background: rgba(55, 66, 250, 0.1); border: 2px solid var(--accent); border-radius: 10px; margin-bottom: 15px; overflow: hidden; transition: all 0.3s; }
+summary { padding: 15px 20px; font-weight: bold; cursor: pointer; list-style: none; display: flex; align-items: center; font-size: 1.1em; color: #fff; }
+summary:hover { background: rgba(55, 66, 250, 0.2); }
+summary::-webkit-details-marker { display: none; }
+.details-content { padding: 20px; background: var(--surface); border-top: 1px solid var(--accent); }
+.action-box { background: rgba(255, 71, 87, 0.1); border-left: 4px solid var(--primary); padding: 15px; margin-top: 15px; border-radius: 0 10px 10px 0; }
+.lesson { display: flex; margin-bottom: 20px; }
+.lesson-num { font-size: 2em; font-weight: 900; color: var(--primary); margin-right: 15px; opacity: 0.8; }
+.quiz-question { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.quiz-btn { background: var(--accent); color: white; border: none; padding: 12px 20px; margin: 8px 0; border-radius: 8px; cursor: pointer; width: 100%; text-align: left; font-size: 1em; font-weight: bold; transition: background 0.2s; }
+.quiz-btn:hover { background: #5352ed; }
+.feedback { margin-top: 10px; padding: 15px; border-radius: 8px; display: none; font-weight: bold; }
+.vocab-word { color: var(--primary); font-weight: bold; font-size: 1.1em; }
+.challenge { background: rgba(46, 213, 115, 0.1); border-left: 4px solid var(--success); padding: 15px; margin-bottom: 15px; border-radius: 0 10px 10px 0; }
+</style>
+<script>
+window.quizScore = 0;
+window.quizAnswered = 0;
+function checkAnswer(btn, isCorrect, explanation) {
+  let parent = btn.parentElement;
+  let feedback = parent.querySelector('.feedback');
+  let buttons = parent.querySelectorAll('.quiz-btn');
+  if(buttons[0].disabled) return;
+  buttons.forEach(b => b.disabled = true);
+  feedback.style.display = 'block';
+  feedback.innerHTML = explanation;
+  if(isCorrect) {
+    btn.style.background = 'var(--success)';
+    feedback.style.background = 'rgba(46, 213, 115, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--success)';
+    window.quizScore++;
+  } else {
+    btn.style.background = 'var(--error)';
+    feedback.style.background = 'rgba(255, 71, 87, 0.2)';
+    feedback.style.borderLeft = '4px solid var(--error)';
+  }
+  window.quizAnswered++;
+  if(window.quizAnswered === 3) {
+    document.getElementById('final-score').innerHTML = '<h3>Score final : ' + window.quizScore + '/3 !</h3>';
+  }
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Salut Félix ! Prêt à devenir un super-héros des habitudes ?</h1>
+  </div>
+
+  <div class="section">
+    <h2>1. C'est quoi ce livre ?</h2>
+    <p>Imagine que tu as un pouvoir magique : chaque mini-action que tu fais, même la plus petite, peut te rendre super fort ou super intelligent au fil du temps ! Ce livre, "Un rien peut tout changer !", te montre comment utiliser ce pouvoir secret. C'est comme si chaque petite brique Lego que tu poses pouvait devenir un château géant. L'auteur, James Clear, a eu un gros accident et c'est en appliquant ces petites habitudes qu'il est devenu un champion, pas en faisant des trucs incroyables d'un coup. Prêt à transformer ta vie, une mini-habitude à la fois ? C'est parti pour l'aventure !</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Les Grands Thèmes — Rends-le Interactif</h2>
+
+    <details>
+      <summary>✨ Les petits pas font les grands bonds !</summary>
+      <div class="details-content">
+        <p>C'est l'idée que si tu t'améliores juste un tout petit peu chaque jour (genre, 1% de mieux), à la fin de l'année, tu seras devenu 37 fois meilleur ! C'est comme les intérêts composés à la banque, mais pour tes compétences et ta vie. Au début, tu ne vois rien, mais avec le temps, le changement est ÉNORME. C'est le secret de la persévérance.</p>
+        <blockquote>"Des changements qui, au départ, paraissent minimes et dérisoires aboutiront à des résultats remarquables si vous êtes prêt à les appliquer durablement." — James Clear, auteur et expert en habitudes.</blockquote>
+        <blockquote>"Si vous pouvez vous améliorer de 1 % chaque jour pendant un an, vous obtiendrez trente-sept fois plus à la fin." — James Clear.</blockquote>
+        <blockquote>"Quand rien ne semble fonctionner, je vais observer un tailleur de pierres abattant sa masse sur un rocher une bonne centaine de fois sans lui infliger la moindre fissure apparente. Mais au cent unième coup, le rocher se fendra en deux, et je sais que ce n’est pas seulement le dernier coup qui a fendu le rocher, mais les cent qui l’ont précédé." — Jacob Riis, réformateur social.</blockquote>
+        <div class="action-box">
+          <p><strong>Ce que ça veut dire pour toi :</strong> Pense à tes parties d'échecs, Félix. Tu ne deviens pas un grand maître d'un coup ! Chaque nouvelle stratégie apprise, chaque erreur analysée, chaque minute de pratique, même si c'est juste 1%, te rend meilleur. Imagine une petite amélioration chaque jour, et tu deviendras un super joueur d'échecs sans même t'en rendre compte !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🦸 Deviens qui tu veux être !</summary>
+      <div class="details-content">
+        <p>Ce livre te dit que le plus important, ce n'est pas ce que tu veux <em>obtenir</em> (comme gagner un tournoi), mais qui tu veux <em>devenir</em> (comme un joueur d'échecs persévérant). Quand tes habitudes correspondent à la personne que tu veux être, c'est beaucoup plus facile de les garder. Chaque action est comme un "vote" pour le type de personne que tu deviens.</p>
+        <blockquote>"L’objectif n’est pas de lire un livre, mais de devenir lecteur. L’objectif n’est pas de courir un marathon, mais de devenir coureur." — James Clear, auteur.</blockquote>
+        <blockquote>"Pour changer qui vous êtes, vous devez changer ce que vous faites." — James Clear.</blockquote>
+        <blockquote>"Je ne me suis plus jamais rongé les ongles depuis lors, je n’y pense même plus. Je suis simplement fier d’en prendre soin correctement." — Brian Clark, entrepreneur, sur l'arrêt d'une mauvaise habitude.</blockquote>
+        <div class="action-box">
+          <p><strong>Ce que ça veut dire pour toi :</strong> Si tu veux devenir un "créateur de Lego génial", alors chaque fois que tu construis quelque chose, même un petit truc, tu votes pour cette identité. Au lieu de dire "Je dois ranger mes Lego", dis "Je suis le genre de personne qui prend soin de ses créations". Ça change tout !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>👀 Rends ça SUPER évident !</summary>
+      <div class="details-content">
+        <p>Pour prendre une bonne habitude, il faut que le "déclencheur" soit impossible à rater. Met le signe de ton habitude là où tu le verras tout le temps ! Ton environnement est comme un aimant : il t'attire vers ce qui est visible. Rend les bonnes habitudes impossibles à ignorer et les mauvaises, invisibles.</p>
+        <blockquote>"L’environnement est la main invisible qui façonne le comportement humain." — James Clear, auteur.</blockquote>
+        <blockquote>"Un petit changement dans ce que vous voyez peut entraîner un grand changement dans ce que vous faites." — James Clear.</blockquote>
+        <blockquote>"J’avais l’habitude d’acheter des pommes, de les mettre dans le bac en bas du réfrigérateur et de les oublier. [...] Finalement, j’ai suivi mes propres conseils et redéfini mon environnement. J’ai acheté un grand panier [...] et je les ai placées dans le panier, à l’air libre, bien visibles. Presque comme par magie, j’ai commencé à manger des pommes chaque jour..." — James Clear.</blockquote>
+        <div class="action-box">
+          <p><strong>Ce que ça veut dire pour toi :</strong> Si tu veux t'entraîner au ski de fond, met tes skis juste devant la porte, pas au fond du garage ! Pour faire tes devoirs, prépare ton bureau avec tes livres et crayons avant même de t'asseoir. Rends l'action facile à commencer en la mettant sous ton nez.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>😍 Rends ça IRRESISTIBLEment fun !</summary>
+      <div class="details-content">
+        <p>Notre cerveau aime ce qui est plaisant ! Pour rendre une habitude géniale, associe-la à quelque chose que tu adores déjà. C'est ce qu'on appelle le "regroupement de tentations". Si tu dois faire quelque chose qui t'ennuie, fais-le juste avant ou pendant quelque chose que tu aimes énormément. Ton cerveau libère de la dopamine (la molécule du plaisir) en anticipant la récompense.</p>
+        <blockquote>"C’est l’attente d’une récompense, et non l’accomplissement, qui nous pousse à agir." — James Clear, auteur.</blockquote>
+        <blockquote>"Le regroupement de tentations est un moyen de rendre vos habitudes plus attractives. Cette stratégie consiste à associer une action que vous voulez faire à une action que vous devez faire." — James Clear.</blockquote>
+        <blockquote>"S’il ralentissait trop longtemps, le programme qu’il regardait s’interrompait jusqu’à ce qu’il recommence à pédaler." — Ronan Byrne, étudiant en génie électrique, sur son vélo d'appartement connecté à Netflix.</blockquote>
+        <div class="action-box">
+          <p><strong>Ce que ça veut dire pour toi :</strong> Tu aimes les échecs et les blagues ? Après avoir terminé une leçon d'échecs (le "doit faire"), tu peux t'accorder 5 minutes pour inventer une nouvelle blague (le "veut faire"). Ou si tu dois ranger tes Lego, mets ta musique préférée en même temps !</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🚀 Rends ça FACILE, facile, facile !</summary>
+      <div class="details-content">
+        <p>Moins une action demande d'effort, plus tu as de chances de la faire. C'est la "loi du moindre effort". Il faut rendre tes bonnes habitudes si faciles qu'il est presque impossible de les rater. C'est mieux de faire une chose super facile et de la faire tout le temps, que de vouloir faire un truc super dur et de t'arrêter vite. La "règle des deux minutes" est parfaite pour ça !</p>
+        <blockquote>"Le mieux est l’ennemi du bien." — Voltaire, philosophe.</blockquote>
+        <blockquote>"L’énergie est précieuse et le cerveau est programmé pour l’économiser autant que possible." — James Clear, auteur.</blockquote>
+        <blockquote>"Les gens pensent que je déploie des efforts colossaux, mais je suis vraiment très paresseux : je suis paresseux de manière proactive. Cela me permet de gagner un temps fou." — Oswald Nuckols, développeur informatique, sur sa méthode de "réinitialisation de la pièce".</blockquote>
+        <div class="action-box">
+          <p><strong>Ce que ça veut dire pour toi :</strong> Si tu veux t'améliorer aux échecs, ne te dis pas "Je vais étudier 2 heures". Dis-toi plutôt "Je vais juste regarder une position d'échecs pendant 2 minutes". Une fois que tu as commencé, tu auras peut-être envie de continuer. Mais l'important, c'est de commencer sans effort !</p>
+        </div>
+      </details>
+
+    <details>
+      <summary>🎉 Rends ça TELLEMENT satisfaisant !</summary>
+      <div class="details-content">
+        <p>On refait ce qui nous procure du plaisir. Pour que tes bonnes habitudes collent, tu dois ressentir une petite victoire immédiate. C'est un défi car souvent, les bonnes habitudes ont des récompenses lointaines (comme être en forme plus tard). Il faut trouver des moyens de te donner un "mini-plaisir" tout de suite. Le suivi de tes habitudes est un excellent moyen de voir tes progrès et de te sentir bien !</p>
+        <blockquote>"Une action recevant une récompense immédiate est répétée. Une action recevant une sanction immédiate est évitée." — Règle fondamentale du changement de comportement, James Clear.</blockquote>
+        <blockquote>"Il est beaucoup plus facile pour les gens d’adopter un produit qui émet un signal sensoriel positif fort, comme le goût du dentifrice à la menthe, que d’adopter une habitude qui ne procure pas de rétroaction sensorielle agréable, comme le fil dentaire." — Stephen Luby, professionnel de la santé publique.</blockquote>
+        <blockquote>"La première règle de la capitalisation : ne jamais arrêter inutilement." — Charlie Munger, investisseur.</blockquote>
+        <div class="action-box">
+          <p><strong>Ce que ça veut dire pour toi :</strong> Après avoir fait ton défi de ski de fond, coche une case sur un calendrier de tes entraînements. Voir la chaîne de X se former te donnera une satisfaction instantanée ! Pour tes Lego, après avoir construit quelque chose de cool, prends-le en photo et montre-le à ton papa ou ton frère pour sentir la fierté immédiate de ta création.</p>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>😴 L'ennui, ton ami secret du succès !</summary>
+      <div class="details-content">
+        <p>Même les champions comme Steve Martin (un humoriste célèbre !) s'ennuient parfois en travaillant. Le secret pour être vraiment bon, c'est de continuer à faire ce qui est important, même quand ce n'est plus excitant. La maîtrise d'une compétence vient quand tu as fait des milliers de répétitions, même les plus ennuyeuses. Apprends à aimer la répétition et le processus.</p>
+        <blockquote>"La plus grande menace au succès n’est pas l’échec, mais l’ennui." — James Clear, auteur.</blockquote>
+        <blockquote>"Un professionnel respecte le calendrier fixé ; un amateur se laisse déborder." — James Clear.</blockquote>
+        <blockquote>"Solidité et rigidité sont les compagnes de la mort. Souplesse et fluidité sont les compagnes de la vie. Ce qui est raide et dur rompt. Ce qui est tendre et souple triomphe." — Lao Tseu, philosophe.</blockquote>
+        <div class="action-box">
+          <p><strong>Ce que ça veut dire pour toi :</strong> Aux échecs, il y a des moments super excitants et d'autres où tu fais juste des exercices. C'est normal ! Un vrai joueur d'échecs continue d'étudier les ouvertures et les stratégies même quand il ne gagne pas de tournoi tout de suite. Le ski de fond, parfois, c'est juste de la répétition pour améliorer ton cardio, et c'est aussi important que la descente rapide !</p>
+        </div>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="section">
+    <h2>3. Les 5 Leçons les Plus Importantes</h2>
+
+    <div class="lesson">
+      <div class="lesson-num">01</div>
+      <div>
+        <h3><b>Les mini-habitudes, c'est comme des super-pouvoirs cachés !</b></h3>
+        <p>Le livre t'apprend que même un tout petit changement, comme ranger une seule pièce de Lego ou jouer un coup d'échecs, si tu le fais tous les jours, ça devient énorme ! C'est le principe des "habitudes atomiques". C'est comme quand tu construis un Lego géant : chaque petite brique compte, et à la fin, tu as une œuvre d'art super impressionnante. Ne sous-estime jamais le pouvoir d'un petit début.</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">02</div>
+      <div>
+        <h3><b>Ton environnement est ton meilleur ami (ou ton pire ennemi) pour les habitudes.</b></h3>
+        <p>Pour faire tes exercices de ski de fond, laisse tes bâtons et tes skis bien visibles près de la porte. Si tu veux moins jouer aux jeux vidéo, range ta console dans une boîte quand tu as fini. Ce livre te montre que ton cerveau est super influencé par ce qu'il voit autour de lui. En arrangeant ton espace, tu peux rendre les bonnes habitudes faciles à voir et les mauvaises, invisibles. C'est comme organiser ta boîte de Lego : si les pièces que tu utilises souvent sont faciles à trouver, tu construiras plus vite !</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">03</div>
+      <div>
+        <h3><b>Commencer, c'est déjà la moitié du chemin (la règle des 2 minutes !).</b></h3>
+        <p>Tu veux lire un livre ? Lis juste une page. Tu veux t'entraîner au ski de fond ? Mets juste tes bottes et ton dossard. Ce livre te dit que le plus dur est souvent de commencer. La "règle des deux minutes" te pousse à faire la plus petite version de ton habitude pendant seulement deux minutes. L'idée, c'est de "tromper" ton cerveau pour qu'il se mette en action. Une fois que tu es lancé, c'est souvent plus facile de continuer. Pour tes échecs, au lieu de te dire "Je vais faire 10 problèmes", dis-toi "Je fais juste UN problème".</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">04</div>
+      <div>
+        <h3><b>Construis l'identité de la personne que tu rêves de devenir.</b></h3>
+        <p>Au lieu de te fixer l'objectif de "gagner le prochain tournoi d'échecs", dis-toi "Je suis un joueur d'échecs intelligent et persévérant". Chaque petite action que tu fais (comme analyser une partie ou apprendre une nouvelle ouverture) est une preuve que tu es cette personne. Le livre explique que tes habitudes sont le reflet de ton identité. Si tu te vois comme un "inventeur de Lego créatif", tu auras plus envie de passer du temps à créer de nouvelles choses avec tes briques !</p>
+      </div>
+    </div>
+
+    <div class="lesson">
+      <div class="lesson-num">05</div>
+      <div>
+        <h3><b>Fais de tes habitudes un jeu amusant à suivre !</b></h3>
+        <p>C'est comme aux échecs, où tu as un score et tu sais si tu progresses. Le livre te conseille de suivre tes habitudes pour que tu puisses voir tes progrès. Quand tu vois que tu as fait un bon travail, ça te donne envie de continuer ! Tu peux utiliser un calendrier et cocher chaque jour où tu as fait une habitude, comme une chaîne. Ton cerveau aime les récompenses immédiates, et voir cette chaîne grandir est super motivant. Pour tes parties de ski de fond, tu pourrais noter chaque sortie et le nombre de kilomètres, et te sentir fier de voir le total augmenter !</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section">
+    <h2>4. Quiz Rapide — 3 Questions</h2>
+
+    <div class="quiz-question">
+      <h3>Question 1 : Selon le livre, qu'est-ce qui a le plus grand impact sur la réussite à long terme ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, ce n\'est pas tout à fait ça. Les grands objectifs peuvent te donner une direction, mais le livre insiste sur autre chose...')">A. Se fixer des objectifs très ambitieux.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bravo Félix ! C\'est exactement ça ! Le livre explique que des tout petits changements, répétés chaque jour, ont un effet incroyable sur le long terme. C\'est le super-pouvoir des petites habitudes !')">B. Apporter de très petits changements réguliers à ses habitudes.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, la motivation est un bon début, mais elle ne suffit pas à elle seule pour les résultats durables.')">C. Avoir une motivation énorme et constante.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 2 : Si Félix veut devenir un meilleur joueur d'échecs, quelle est la meilleure façon de se concentrer selon le livre ?</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Pas tout à fait. Gagner des tournois est un résultat, mais le livre suggère de se concentrer sur le processus pour y arriver.')">A. Se fixer comme objectif de gagner le prochain tournoi d'échecs.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'C\'est une bonne idée pour le court terme, mais le livre propose une vision plus profonde du changement.')">B. Regarder toutes les vidéos de grands maîtres d'échecs.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Oui, super Félix ! En te voyant comme un « joueur d\'échecs persévérant et intelligent », chaque fois que tu pratiques, même un peu, tu renforces cette identité. C\'est ça la clé pour que l\'habitude reste !')">C. Dire « Je suis un joueur d'échecs persévérant et intelligent » et agir comme tel.</button>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <h3>Question 3 : La "règle des deux minutes" suggère de...</h3>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, la récompense est importante, mais cette règle concerne le début de l\'habitude.')">A. Se récompenser avec deux minutes de jeu vidéo après chaque tâche.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, true, 'Bravo Félix ! C\'est l\'astuce magique pour vaincre la procrastination. Faire une petite partie de ski de fond, même 2 minutes, est plus facile que de se dire qu\'il faut faire une longue sortie.')">B. Réduire chaque nouvelle habitude à une action qui prend moins de deux minutes.</button>
+      <button class="quiz-btn" onclick="checkAnswer(this, false, 'Non, le livre dit qu\'il faut éviter de trop réfléchir avant de commencer, pour ne pas se décourager.')">C. Planifier ses habitudes sur une période de deux minutes avant de les exécuter.</button>
+      <div class="feedback"></div>
+    </div>
+    <div id="final-score"></div>
+
+  </div>
+
+  <div class="section">
+    <h2>5. Mots à Connaître</h2>
+    <ul>
+      <li><span class="vocab-word">Habitude Atomique :</span> Ce sont les toutes petites choses que tu fais, comme des mini-super-pouvoirs, qui s'additionnent pour devenir un truc géant, comme une super construction Lego que tu fais brique par brique.</li>
+      <li><span class="vocab-word">Effet Cumulé :</span> C'est quand plein de petites actions, qui ne semblent rien toutes seules, s'ajoutent les unes aux autres et deviennent ENORMES avec le temps. Comme si chaque petite goutte d'eau finissait par remplir une piscine !</li>
+      <li><span class="vocab-word">Déclencheur :</span> C'est un signal, une chose que tu vois, entends ou ressens, qui te donne envie de faire une habitude. Par exemple, voir tes skis de fond, c'est le déclencheur pour aller skier.</li>
+      <li><span class="vocab-word">Superposition d'Habitudes :</span> C'est quand tu colles une nouvelle habitude à une ancienne que tu fais déjà. Genre : "Après avoir rangé mes Lego, je vais faire un problème d'échecs."</li>
+      <li><span class="vocab-word">Règle des Deux Minutes :</span> C'est l'astuce pour commencer une nouvelle habitude en la rendant si petite qu'elle prend moins de deux minutes. Par exemple, au lieu de faire 30 pompes, tu fais juste une pompe. L'important c'est de commencer.</li>
+      <li><span class="vocab-word">Plateau du Potentiel Latent :</span> C'est la période où tu travailles beaucoup sur une habitude, mais tu ne vois pas de résultats tout de suite. Il faut continuer, car les résultats arrivent d'un coup, comme le glaçon qui fond à 0°C.</li>
+      <li><span class="vocab-word">Dispositif d'Engagement :</span> C'est une décision que tu prends maintenant pour t'empêcher de faire une mauvaise habitude plus tard. C'est comme quand tu ranges ta tablette loin de toi pour ne pas jouer quand tu devrais étudier.</li>
+      <li><span class="vocab-word">Dopamine :</span> C'est une petite molécule dans ton cerveau qui te donne envie et te pousse à l'action. Plus tu anticipes du plaisir, plus il y a de dopamine, et plus tu as envie de faire quelque chose !</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Défis de la Semaine pour Félix !</h2>
+    <div class="challenge">
+      <h3>Le Défi du Bâtisseur de Mini-Habitudes Lego 🧱</h3>
+      <p>Choisis une petite habitude de rangement pour tes Lego. Par exemple, "Après avoir fini de jouer aux Lego, je ramasse toujours 5 pièces et les range dans la bonne boîte." Fais-le chaque jour, même si tu as l'impression que c'est tout petit. Vois comment tes parents et Matteo réagissent quand ils voient tes efforts !</p>
+    </div>
+    <div class="challenge">
+      <h3>Le Défi du Journal de Victoires aux Échecs ♟️</h3>
+      <p>Après chaque partie d'échecs (que ce soit sur l'ordi ou avec Matteo), prends une minute pour noter une chose que tu as bien faite ou une idée que tu as eue. Tu n'as pas besoin de gagner, juste de remarquer tes progrès. C'est comme construire ta propre encyclopédie de stratégies d'échecs !</p>
+    </div>
+    <div class="challenge">
+      <h3>Le Défi du "Prépare ton Aventure Ski ou Vélo" 🎿🚴</h3>
+      <p>La veille d'une sortie de ski de fond ou de vélo de montagne, prépare tout ton équipement (habit, gants, casque, lunettes, gourde). Mets-le bien en évidence. L'idée est de rendre le départ le matin super facile. Moins tu as d'étapes à faire au dernier moment, plus tu auras envie d'y aller et de t'amuser dehors !</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. On en Parle ?</h2>
+    <p>Voici quelques questions pour en discuter avec ton papa ou Matteo :</p>
+    <ol>
+      <li>Pense à une habitude que tu aimerais prendre (comme t'améliorer aux échecs ou à Lego). Comment pourrais-tu la rendre si facile que ça prendrait moins de deux minutes pour commencer ?</li>
+      <li>Qu'est-ce qui te donne le plus envie de faire tes activités préférées (échecs, ski, Lego) ? Comment pourrais-tu utiliser cette "envie" pour t'aider à faire d'autres choses importantes, comme tes devoirs ou ranger ta chambre ?</li>
+      <li>Le livre dit que ton environnement est super important. Y a-t-il un endroit dans la maison où tu te sens plus créatif pour tes Lego, ou plus concentré pour les échecs ? Comment on pourrait rendre cet endroit encore plus propice à tes habitudes ?</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>
